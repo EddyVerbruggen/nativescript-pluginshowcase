@@ -1,0 +1,41 @@
+<RadSideDrawer showOverNavigation="true" drawerContentSize="260" transition="PushTransition">
+  <Gradient tkDrawerContent class="menu-contents-wrapper" direction="to bottom right" colors="#2da7fb, #227ebe">
+    <!--<Gradient direction="to right" colors="#2da7fb, #227ebe">-->
+      <GridLayout class="sideStackLayout" rows="auto, auto, *">
+        <StackLayout row="0" class="sideTitleStackLayout">
+          <Image src="~/images/logo.png" class="menu-logo"></Image>
+        </StackLayout>
+
+        <GridLayout row="1" rows="auto" columns="50, *" class="sideOptions menu-top-border" [nsRouterLink]="['/menu/feedback']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}">
+          <Label class="mdi" [text]="'mdi-message-text' | fonticon"></Label>
+          <Label col="1" text="Feedback"></Label>
+        </GridLayout>
+
+        <!--<GridLayout row="2" rows="auto" columns="50, *" class="sideOptions" [nsRouterLink]="['/menu/orders']" nsRouterLinkActive="active">-->
+        <!--<Label class="sideOptions-icon icomoon" [text]="'icomoon-orders-large' | fonticon"></Label>-->
+        <!--<Label col="1" text="Orders"></Label>-->
+        <!--</GridLayout>-->
+
+        <!--<GridLayout row="3" rows="auto" columns="50, *" class="sideOptions" [nsRouterLink]="['/menu/articlesstock']" nsRouterLinkActive="active">-->
+        <!--<Label class="sideOptions-icon icomoon icomoon-stock" [text]="'icomoon-stock-large' | fonticon"></Label>-->
+        <!--<Label col="1" text="Voorraadbeheer"></Label>-->
+        <!--</GridLayout>-->
+
+        <!--<GridLayout row="4" rows="auto" columns="50, *" class="sideOptions menu-bottom-border" [nsRouterLink]="['/menu/reporting']" nsRouterLinkActive="active">-->
+        <!--<Label class="sideOptions-icon icomoon" [text]="'icomoon-bar-chart' | fonticon"></Label>-->
+        <!--<Label col="1" text="Rapportage"></Label>-->
+        <!--</GridLayout>-->
+
+        <!--<StackLayout row="6"></StackLayout>-->
+
+        <StackLayout row="2" class="sideOptions logout-container" verticalAlignment="bottom" (tap)="openTwitter()">
+          <Label class="sideOptions-icon mdi" [text]="'Made with ' + ('mdi-heart-outline' | fonticon) + ' by @eddyverbruggen'"></Label>
+        </StackLayout>
+      </GridLayout>
+
+    <!--</Gradient>-->
+  </Gradient>
+  <StackLayout tkMainContent>
+    <router-outlet></router-outlet>
+  </StackLayout>
+</RadSideDrawer>

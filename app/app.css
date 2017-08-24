@@ -10,3 +10,283 @@ of writing your own CSS rules. For a full list of class names in the theme
 refer to http://docs.nativescript.org/ui/theme.
 */
 @import 'nativescript-theme-core/css/core.light.css';
+
+Page {
+  background-color: #fff;
+  font-size: 14;
+  font-family: 'Source Sans Pro', SourceSansPro-Regular, system, sans-serif;
+}
+
+ActionBar, .intro-page, .pin-page, .register-location-page, .category-modal, #cart-bar-wrapper {
+  font-size: 15;
+  font-family: 'Source Sans Pro', SourceSansPro-Regular, system, sans-serif;
+}
+
+.semibold {
+  font-weight: 600;
+  font-family: 'Source Sans Pro', SourceSansPro-Semibold, system, sans-serif;
+}
+
+.bold {
+  font-weight: 700;
+  font-family: 'Source Sans Pro', SourceSansPro-Bold, system, sans-serif;
+}
+
+Label.text-lighter {
+  color: #87898E;
+}
+
+.smaller {
+  font-size: 13;
+}
+
+.cover {
+  background-color: rgba(33, 37, 43, 0.85);
+}
+
+.hide {
+  opacity: 0;
+}
+
+.contrast-background {
+  background-color: #E1E3E7;
+}
+
+.section {
+  background-color: #ffffff;
+  border-radius: 3;
+  border-color: #d3d7df;
+  border-width: 1;
+  padding: 0 8;
+  margin-bottom: 10;
+}
+
+.section-row-separator {
+  border-bottom-width: 1px;
+  border-bottom-color: #E2E6EB;
+}
+
+.keyboardspace {
+  padding-bottom: 180;
+}
+
+.pageContainer {
+  background-image: ~/images/background_intro_pin.jpg;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.sync-button {
+  background-color: #6BDE78;
+  height: 49;
+  width: 300;
+  border-radius: 25;
+}
+
+.sync-button Label.sync-button-label {
+  font-size: 18;
+  color: #fff;
+}
+
+.row-divider {
+  border-bottom-width: 1px;
+  border-bottom-color: #E2E6EB;
+}
+
+.visible {
+  animation-name: show;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.invisible {
+  animation-name: hide;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.slide-up-immediately {
+  opacity: 0;
+  animation-name: slide-up;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  animation-name: slide-up;
+  animation-duration: 0.6s;
+  animation-delay: 0.6s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-down {
+  opacity: 0;
+  animation-name: slide-down;
+  animation-duration: 0.6s;
+  animation-delay: 0.6s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scale-in {
+  opacity: 0;
+  animation-name: scale-in;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95, 0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+ActionBar {
+  background-color: #282b32;
+  color: #fff;
+}
+
+NumericKeyboard {
+  font-size: 50;
+}
+
+TextField {
+  padding: 10;
+}
+
+.small-spacing {
+  margin: 6;
+}
+
+.small-spacing-v {
+  margin: 6 0;
+}
+
+.small-spacing-h {
+  margin: 0 6;
+}
+
+.medium-spacing {
+  margin: 10 14;
+}
+
+.large-spacing {
+  margin: 17;
+}
+
+.flip-horizontally {
+  transform: scaleX(-1);
+}
+
+.menu-contents-wrapper {
+  height: 100%;
+}
+
+.mdi {
+  font-family: 'Material Design Icons', materialdesignicons-webfont;
+}
+
+.mdi-actionitem {
+  font-family: 'Material Design Icons', materialdesignicons-webfont;
+  font-size: 22;
+  padding: 8;
+}
+
+.mdi-actionitem.mdi-menu {
+  padding-left: 0;
+  margin-right: 0;
+}
+
+.inactive {
+  opacity: 0.35;
+}
+
+ActivityIndicator {
+  color: #15D149;
+}
+
+.right {
+  text-align: right;
+}
+
+ActionBar Button {
+  color: #fff;
+}
+
+ActionBar Label, ActionBar Button {
+  font-size: 17;
+}
+
+Button {
+  color: #4CC55B;
+  font-size: 16;
+}
+
+Button.button {
+  color: #333740;
+}
+
+Button.button-bottom-nav {
+  padding: 14 0;
+  background-color: #15D149;
+  color: #fff;
+  width: 100%;
+  font-size: 18;
+  font-weight: 600;
+  border-top-width: 1px;
+  border-top-color: #bbbbbb;
+}
+
+Button.button-bottom-nav.button-bottom-nav-picker {
+  background-color: #87898E;
+}

@@ -3,11 +3,11 @@ import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { MenuComponent } from "../menu/menu.component";
 
 @Component({
-  selector: "Home",
+  selector: "Feedback",
   moduleId: module.id,
-  templateUrl: "./home.component.html"
+  templateUrl: "./feedback.component.html"
 })
-export class HomeComponent extends AbstractMenuPageComponent {
+export class FeedbackComponent extends AbstractMenuPageComponent {
 
   constructor(protected menuComponent: MenuComponent) {
     super(menuComponent);

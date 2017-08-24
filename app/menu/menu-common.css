@@ -1,0 +1,53 @@
+.sideStackLayout {
+  color: #fff;
+}
+
+.sideTitleStackLayout {
+  padding: 30 10 14 10;
+  text-align: center;
+}
+
+.sideOptions Label {
+  font-size: 14;
+  padding: 14 20 14 12;
+}
+
+.sideOptions Label.icomoon {
+  padding-left: 20;
+  padding-right: 0;
+  font-size: 22;
+}
+
+.sideOptions Label.icomoon.icomoon-stock {
+  font-size: 20;
+}
+
+.sideOptions.active {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.menu-top-border {
+  border-top-width: 0.5;
+  border-top-color: rgba(150, 150, 150, 0.25);
+}
+
+.menu-bottom-border {
+  border-bottom-width: 0.5;
+  border-bottom-color: rgba(150, 150, 150, 0.25);
+}
+
+.logout-container {
+  background-color: #DC1B4F;
+}
+
+.logout-container Label {
+  padding-top: 12;
+}
+
+.logout-container Label.logout-text {
+  font-size: 18;
+}
+
+.sideOptions Label.icomoon.active {
+  color: #4CC55B;
+}
