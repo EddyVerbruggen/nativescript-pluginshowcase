@@ -1,3 +1,4 @@
+import { alert } from "tns-core-modules/ui/dialogs";
 import * as LocalNotifications from "nativescript-local-notifications";
 
 export class LocalNotificationsHelper {
@@ -11,8 +12,17 @@ export class LocalNotificationsHelper {
       title: 'Sound & Badge',
       body: 'Who needs a push service anyway?',
       badge: 1,
-      at: new Date(new Date().getTime() + (5 * 1000)), // 5 seconds from now
+      at: new Date(new Date().getTime() + (5 * 1000)) // 5 seconds from now
     }]);
+
+    // adding a handler, so we can do something with the received notification.. in this case an alert
+    LocalNotifications.addOnMessageReceivedCallback(data => {
+      alert({
+        title: "Local Notificartion received",
+        message: `id: '${data.id}', title: '${data.title}'.`,
+        okButtonText: "Roger that"
+      });
+    });
   }
 
   continuous(): void {
