@@ -9,7 +9,7 @@ NativeScript plugins showcase
 [twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
 [twitter-url]:https://twitter.com/eddyverbruggen
 
-<img src="screenshots/ios/01-home.png" height="368px" /> <img src="screenshots/ios/02-feedback-menu.png" height="368px" /> <img src="screenshots/ios/03-mapping-menu.png" height="368px" /> <img src="screenshots/ios/04-mapping-info.png" height="368px" />
+<img src="screenshots/ios/01-home.png" height="370px" /> <img src="screenshots/ios/02-feedback-menu.png" height="370px" /> <img src="screenshots/ios/03-mapping-menu.png" height="370px" /> <img src="screenshots/ios/04-mapping-info.png" height="370px" />
 
 ### What's this?
 Glad you asked. I need it to demo a few plugins and wanted to play a bit with NativeScript & Angular.

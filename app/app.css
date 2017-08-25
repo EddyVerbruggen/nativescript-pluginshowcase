@@ -13,8 +13,11 @@ refer to http://docs.nativescript.org/ui/theme.
 @import url("./platform.css");
 
 Page {
+  /* this is also the color the user sees when the app starts (FOUC),
+   so made it the same as the home background color
+    TODO reuse this knowledge.. */
+  background-color: #009c9b;
   color: #fff;
-  background-color: #888;
   font-size: 15;
   font-family: 'Source Sans Pro', SourceSansPro-Regular, system, sans-serif;
 }
