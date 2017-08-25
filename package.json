@@ -41,7 +41,7 @@
     "nativescript-toast": "^1.4.6",
     "reflect-metadata": "0.1.10",
     "rxjs": "5.4.3",
-    "tns-core-modules": "3.1.1",
+    "tns-core-modules": "~3.1.1",
     "tns-platform-declarations": "^3.1.1",
     "tslint": "^5.6.0",
     "zone.js": "0.8.16"

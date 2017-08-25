@@ -1,3 +1,4 @@
+import { alert } from "tns-core-modules/ui/dialogs";
 import { TNSFancyAlert, TNSFancyAlertButton } from "nativescript-fancyalert";
 
 export class FancyalertHelper {
@@ -25,14 +26,34 @@ export class FancyalertHelper {
     TNSFancyAlert.showError("Uh oh!", "Somebody made a boo-boo..", "I'll clean it up..");
   }
 
-  // TODO examles here https://github.com/NathanWalker/nativescript-fancyalert
+  showWaiting(): void {
+    TNSFancyAlert.showWaiting("Hang on", "This only takes 5 seconds..", "I can't wait!", 5);
+  }
+
+  showTimer(): void {
+    TNSFancyAlert.showCustomButtonTimer(0, true, undefined, undefined, 'Mission Impossible', `This will self-destruct in 5 seconds.`, 'Ok');
+  }
+
+  showTextField(): void {
+    let initialValue = null;
+    TNSFancyAlert.showTextField('Enter your name', initialValue, new TNSFancyAlertButton({
+      label: "Done",
+      action: (value: any) => {
+        alert({
+          title: "User entered:",
+          message: value,
+          okButtonText: "Correct ;)"
+        });
+      }
+    }), undefined, undefined, "What's you name", ".. if you have one", "Dismiss");
+  }
+
   showSwitch(): void {
-    TNSFancyAlert.showSwitch(`Don"t show again`, "#58B136", new TNSFancyAlertButton({
+    TNSFancyAlert.showSwitch("Don't ask me again", '#58B136', new TNSFancyAlertButton({
       label: "Save",
       action: (isSelected: boolean) => {
-        console.log(`Don"t show again was selected: ${isSelected}`);
+        console.log(`Don't ask again was selected? ${isSelected}`);
       }
-      // TODO img
-    }), "switch.png", "#B3714F", "Need a switch?", `It can be useful.`, "Got it.");
+    }), 'switch.png', '#B3714F', 'Need a switch?', `It can be useful.`, 'Got it.');
   }
 }
