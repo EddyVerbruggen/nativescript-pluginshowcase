@@ -1,4 +1,7 @@
 .idea
 node_modules
 platforms
+report
 *.js
+!webpack.config.js
+*.log
