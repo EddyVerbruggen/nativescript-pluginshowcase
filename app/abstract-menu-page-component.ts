@@ -44,8 +44,8 @@ export abstract class AbstractMenuPageComponent implements OnDestroy {
       fullscreen: false,
     };
 
-    this.modalService.showModal(InfoModalComponent, options).then((x) => {
-      console.log(">> modal bla: " + x);
-    })
+    this.modalService.showModal(InfoModalComponent, options).then(() => {
+      // modal is showing
+    });
   }
 }

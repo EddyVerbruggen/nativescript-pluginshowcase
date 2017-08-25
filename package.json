@@ -12,6 +12,11 @@
       "version": "3.1.1"
     }
   },
+  "scripts": {
+    "ios": "npm run tslint && tns run ios",
+    "ios.emulator": "npm run ios -- --emulator",
+    "tslint": "tslint --config 'tslint.json' 'app/**/*.ts'"
+  },
   "dependencies": {
     "@angular/animations": "4.2.5",
     "@angular/common": "4.2.5",
@@ -38,6 +43,7 @@
     "rxjs": "5.4.3",
     "tns-core-modules": "3.1.1",
     "tns-platform-declarations": "^3.1.1",
+    "tslint": "^5.6.0",
     "zone.js": "0.8.16"
   },
   "devDependencies": {

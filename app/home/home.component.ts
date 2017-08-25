@@ -26,7 +26,7 @@ export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
       setTimeout(() => {
         this.routerExtensions.navigate([Config.DEBUG_MODE.firstPage], {
           animated: false
-        })
+        });
       }, 300);
   }
 
