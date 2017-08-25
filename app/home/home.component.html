@@ -2,7 +2,7 @@
   <ActionItem ios.position="left" (tap)="toggleTheMenu()">
     <Label class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"></Label>
   </ActionItem>
-  <Label horizontalAlignment="center" class="semibold" text="Welcome" *ngIf="isIOS"></Label>
+  <Label horizontalAlignment="center" class="semibold" text="Hi!  👋🏻" *ngIf="isIOS"></Label>
   <ActionItem ios.position="right" (tap)="showPluginInfo()">
     <Label class="mdi-actionitem mdi-actionitem-right mdi-menu" [text]="'mdi-information-outline' | fonticon"></Label>
   </ActionItem>
@@ -11,7 +11,7 @@
 <StackLayout class="main-content">
   <Gradient height="100%" direction="to bottom" colors="#009c9b, #006A69" class="p-20">
     <StackLayout class="p-20" style="background-color: rgba(255, 255, 255, 210)" height="100%" width="100%" borderRadius="20" verticalAlignment="center">
-      <Label text="Thanks for downloading this app!" textWrap="true"></Label>
+      <Label text="Thanks for installing this app." textWrap="true"></Label>
       <Label text="We currently showcase no less than" textWrap="true"></Label>
       <Label text="20" class="plugin-count m-t-24 m-b-24"></Label>
       <Label text="NativeScript plugins!" class="bold" textWrap="true"></Label>

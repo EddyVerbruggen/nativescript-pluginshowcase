@@ -3,13 +3,13 @@ ActionBar {
 }
 
 WrapLayout {
-  margin-bottom: 10;
+  margin-bottom: 16;
 }
 
 button {
   background-color: #6494AA;
   padding: 8 10;
-  margin: 10;
+  margin: 8 10 8 0;
   font-size: 14;
   border-radius: 4;
   border-width: 1;

@@ -54,7 +54,7 @@ export class MappingComponent extends AbstractMenuPageComponent {
         lng: 4.4201952,
         title: '{N] Developer day EU',
         subtitle: 'Such an awesome little conference',
-        icon: 'res://tns-marker-icon',
+        icon: 'res://tnsmarker',
         onTap: () => {
           console.log("{N] Developer day EU was tapped");
         },

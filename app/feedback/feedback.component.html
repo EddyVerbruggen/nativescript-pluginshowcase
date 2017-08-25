@@ -18,7 +18,7 @@
         <Button text="Info, 2s" (tap)="feedbackHelper.showInfo()" class="button button-info"></Button>
         <Button text="Warning, 4s" (tap)="feedbackHelper.showWarning()" class="button button-warning"></Button>
         <Button text="Error, 1s" (tap)="feedbackHelper.showError()" class="button button-error"></Button>
-        <Button text="Error, 5s, Bottom (iOS)" (tap)="feedbackHelper.showErrorBottom()" class="button button-error"></Button>
+        <Button text="Error, 5s, Bottom" (tap)="feedbackHelper.showErrorBottom()" class="button button-error" *ngIf="isIOS"></Button>
         <Button text="Title only" (tap)="feedbackHelper.showTitleOnly()" class="button button-custom"></Button>
         <Button text="Custom icon" (tap)="feedbackHelper.showCustomIcon()" class="button button-custom-alt"></Button>
         <Button text="Dismiss" (tap)="feedbackHelper.dismiss()" class="button button-dismiss"></Button>
@@ -47,7 +47,7 @@
       <WrapLayout>
         <Button text="Badge & Sound" (tap)="localNotificationsHelper.showWithSound()" class="button button-success"></Button>
         <Button text="Every minute" (tap)="localNotificationsHelper.continuous()" class="button button-warning"></Button>
-        <Button text="Cancel all" (tap)="localNotificationsHelper.cancelAll()" class="button button-error"></Button>
+        <Button text="Cancel" (tap)="localNotificationsHelper.cancelAll()" class="button button-dismiss"></Button>
       </WrapLayout>
     </StackLayout>
   </ScrollView>
