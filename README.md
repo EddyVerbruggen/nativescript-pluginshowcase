@@ -23,7 +23,8 @@ This app is in active development and optimized for **iOS** only at the moment.
 git clone https://github.com/EddyVerbruggen/nativescript-pluginshowcase
 cd nativescript-pluginshowcase
 npm run ios
-# or npm run ios.emulator
+# or: npm run ios.emulator
+# or even: npm run start-ios-bundle (for a faster startup experience because of Webpack with Uglify)
 ```
 
 ### Notes
