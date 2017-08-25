@@ -6,7 +6,23 @@ export class FancyalertHelper {
   }
 
   showSuccess(): void {
-    TNSFancyAlert.showSuccess("Success!", "Fancy alerts are nice.", "Yes they are!");
+    TNSFancyAlert.showSuccess("Success!", "You were able to press a button. Impressive stuff mate!", "Thanks :)");
+  }
+
+  showInfo(): void {
+    TNSFancyAlert.showInfo("Info", "1 + 1 = 2", "Correct!");
+  }
+
+  showNotice(): void {
+    TNSFancyAlert.showNotice("Notice", "This year Christmas is december 25 & 26.", "Well duh!");
+  }
+
+  showWarning(): void {
+    TNSFancyAlert.showError("Warning!", "There's something between your teeth.", "Uhm, thanks..");
+  }
+
+  showError(): void {
+    TNSFancyAlert.showError("Uh oh!", "Somebody made a boo-boo..", "I'll clean it up..");
   }
 
   // TODO examles here https://github.com/NathanWalker/nativescript-fancyalert

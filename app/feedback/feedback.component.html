@@ -32,7 +32,12 @@
 
       <Label class="section-title" text="FancyAlert"></Label>
       <WrapLayout>
-        <Button text="Short" (tap)="fancyAlertHelper.showSwitch()" class="button button-success"></Button>
+        <Button text="Success" (tap)="fancyAlertHelper.showSuccess()" class="button button-success"></Button>
+        <Button text="Info" (tap)="fancyAlertHelper.showInfo()" class="button button-info"></Button>
+        <Button text="Notice" (tap)="fancyAlertHelper.showNotice()" class="button button-custom"></Button>
+        <Button text="Warning" (tap)="fancyAlertHelper.showWarning()" class="button button-warning"></Button>
+        <Button text="Error" (tap)="fancyAlertHelper.showError()" class="button button-error"></Button>
+        <!--<Button text="Short" (tap)="fancyAlertHelper.showSwitch()" class="button button-success"></Button>-->
       </WrapLayout>
 
       <Label class="section-title" text="Snackbar"></Label>
