@@ -1,12 +1,13 @@
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { NativeScriptFormsModule, NativeScriptRouterModule } from "nativescript-angular";
+import { ModalDialogService, NativeScriptFormsModule, NativeScriptRouterModule } from "nativescript-angular";
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { Routes } from "@angular/router";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 import { NativeScriptUIListViewModule } from "nativescript-telerik-ui/listview/angular";
 import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
 import { MenuComponent } from "./menu/menu.component";
-import { Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
+import { InfoModalComponent } from "./info-modal/info-modal";
 
 const routerConfig: Routes = [
   {
@@ -20,6 +21,14 @@ const routerConfig: Routes = [
       {
         path: "feedback",
         loadChildren: "./feedback/feedback.module#FeedbackModule"
+      },
+      {
+        path: "mapping",
+        loadChildren: "./mapping/mapping.module#MappingModule"
+      },
+      {
+        path: "speech",
+        loadChildren: "./speech/speech.module#SpeechModule"
       },
     ]
   }
@@ -37,15 +46,15 @@ const routerConfig: Routes = [
     TNSFontIconModule,
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  // providers: [
-  //   CartService
-  // ],
+  providers: [
+    ModalDialogService
+  ],
   declarations: [
     MenuComponent,
-    // Can't extract these to an articles module because the ActionBar
-    // doesn't render upon first entry to the first lazily loaded module
     HomeComponent,
-  ]
+    InfoModalComponent,
+  ],
+  entryComponents: [InfoModalComponent]
 })
 
 export class MenuModule {

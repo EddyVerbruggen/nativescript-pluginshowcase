@@ -1,0 +1,37 @@
+.dimmed {
+  background-color: rgba(27, 68, 255, 200);
+}
+
+.modal-wrapper {
+  background-color: #fff;
+  color: #444;
+  border-radius: 10;
+}
+
+.description {
+  font-size: 13;
+  font-weight: 600;
+  color: #888;
+  padding: 15 10;
+  border-bottom-width: 1px;
+  border-bottom-color: #888;
+}
+
+.plugin-name {
+  color: #5abbf9;
+  font-weight: 600;
+}
+
+.plugin-url {
+  font-size: 18;
+}
+
+.plugin-id {
+  color: #888;
+  font-size: 13;
+  margin-bottom: 4;
+}
+
+.plugin-description {
+  font-size: 13;
+}

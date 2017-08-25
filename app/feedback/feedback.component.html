@@ -2,8 +2,53 @@
   <ActionItem ios.position="left" (tap)="toggleTheMenu()">
     <Label class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"></Label>
   </ActionItem>
+  <Label horizontalAlignment="center" class="semibold" text="Feedback" *ngIf="isIOS"></Label>
+  <ActionItem ios.position="right" (tap)="showPluginInfo()">
+    <Label class="mdi-actionitem mdi-actionitem-right mdi-menu" [text]="'mdi-information-outline' | fonticon"></Label>
+  </ActionItem>
 </ActionBar>
 
-<StackLayout class="p-20">
-  <Label text="Feedback buttons here.."></Label>
-</StackLayout>
+<Gradient height="100%" direction="to bottom" colors="mediumseagreen, #2d915e" class="main-content">
+  <ScrollView>
+    <StackLayout class="p-20">
+      <Label class="section-title" text="Feedback"></Label>
+      <WrapLayout>
+        <Button text="Success, 2.5s" (tap)="feedbackHelper.showSuccess()" class="button button-success"></Button>
+        <Button text="Success, alt colors" (tap)="feedbackHelper.showSuccessAltColors()" class="button button-custom"></Button>
+        <Button text="Info, 2s" (tap)="feedbackHelper.showInfo()" class="button button-info"></Button>
+        <Button text="Warning, 4s" (tap)="feedbackHelper.showWarning()" class="button button-warning"></Button>
+        <Button text="Error, 1s" (tap)="feedbackHelper.showError()" class="button button-error"></Button>
+        <Button text="Error, 5s, Bottom (iOS)" (tap)="feedbackHelper.showErrorBottom()" class="button button-error"></Button>
+        <Button text="Title only" (tap)="feedbackHelper.showTitleOnly()" class="button button-custom"></Button>
+        <Button text="Custom icon" (tap)="feedbackHelper.showCustomIcon()" class="button button-custom-alt"></Button>
+        <Button text="Dismiss" (tap)="feedbackHelper.dismiss()" class="button button-dismiss"></Button>
+      </WrapLayout>
+
+      <Label class="section-title" text="Toast"></Label>
+      <WrapLayout>
+        <Button text="Short" (tap)="toastHelper.showShort()" class="button button-custom"></Button>
+        <Button text="Long" (tap)="toastHelper.showLong()" class="button button-error"></Button>
+      </WrapLayout>
+
+      <Label class="section-title" text="FancyAlert"></Label>
+      <WrapLayout>
+        <Button text="Short" (tap)="fancyAlertHelper.showSwitch()" class="button button-success"></Button>
+      </WrapLayout>
+
+      <Label class="section-title" text="Snackbar"></Label>
+      <WrapLayout>
+        <Button text="Message" (tap)="snackbarHelper.showMessage()" class="button button-success"></Button>
+        <Button text="Action" (tap)="snackbarHelper.showAction()" class="button button-warning"></Button>
+        <Button text="Dismiss" (tap)="snackbarHelper.dismiss()" class="button button-dismiss"></Button>
+      </WrapLayout>
+
+      <Label class="section-title" text="Local Notifications"></Label>
+      <Label class="section-subtitle" text="Tap a button, close the app, and wait 5 seconds.." textWrap="true"></Label>
+      <WrapLayout>
+        <Button text="Badge & Sound" (tap)="localNotificationsHelper.showWithSound()" class="button button-success"></Button>
+        <Button text="Every minute" (tap)="localNotificationsHelper.continuous()" class="button button-warning"></Button>
+        <Button text="Cancel all" (tap)="localNotificationsHelper.cancelAll()" class="button button-error"></Button>
+      </WrapLayout>
+    </StackLayout>
+  </ScrollView>
+</Gradient>

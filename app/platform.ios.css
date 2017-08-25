@@ -1,0 +1,12 @@
+Page {
+  margin-top: -20;
+}
+
+.main-content {
+  margin-top: 20;
+}
+
+.mdi-actionitem.mdi-actionitem-right {
+  padding-left: 5;
+  padding-right: 0;
+}

@@ -1,0 +1,15 @@
+<ActionBar title="Speech" flat="true">
+  <ActionItem ios.position="left" (tap)="toggleTheMenu()">
+    <Label class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"></Label>
+  </ActionItem>
+  <Label horizontalAlignment="center" class="semibold" text="Speech" *ngIf="isIOS"></Label>
+  <ActionItem ios.position="right" (tap)="showPluginInfo()">
+    <Label class="mdi-actionitem mdi-actionitem-right mdi-menu" [text]="'mdi-information-outline' | fonticon"></Label>
+  </ActionItem>
+</ActionBar>
+
+<Gradient height="100%" direction="to bottom" colors="orangered, #c03400" class="main-content">
+  <StackLayout class="p-20">
+    <Label text="Speech stuff here.."></Label>
+  </StackLayout>
+</Gradient>

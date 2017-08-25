@@ -1,27 +1,23 @@
 import * as application from "application";
-import * as platform from "platform";
-import * as utils from "utils/utils";
-import { AndroidActivityEventData, AndroidApplication } from "tns-core-modules/application";
+import * as platform from "tns-core-modules/platform";
+import * as utils from "tns-core-modules/utils/utils";
 
 declare const android: any;
 declare const UIStatusBarStyle: any;
 declare const UIApplication: any;
 
 export function setStatusBarColors() {
-  // Make the iOS status bar transparent with white text.
+  // Make the iOS status bar transparent with white text
   if (application.ios) {
     application.on("launch", () => {
-      console.log(">>> set statusbar light")
       utils.ios.getter(UIApplication, UIApplication.sharedApplication).statusBarStyle = UIStatusBarStyle.LightContent;
     });
   }
 
-  // Make the Android status bar transparent.
-  // See http://bradmartin.net/2016/03/10/fullscreen-and-navigation-bar-color-in-a-nativescript-android-app/
-  // for details on the technique used.
+  // Make the Android status bar transparent
   if (application.android) {
     // TODO make sure this works when --uglify'd, otherwise use "activityStarted"
-    application.android.on(AndroidApplication.activityStartedEvent, (data: AndroidActivityEventData) => {
+    application.android.on(application.AndroidApplication.activityStartedEvent, (data: application.AndroidActivityEventData) => {
       if (application.android && platform.device.sdkVersion >= "21") {
         let View = android.view.View;
         let window = application.android.startActivity.getWindow();

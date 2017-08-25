@@ -1,14 +1,30 @@
 <RadSideDrawer showOverNavigation="true" drawerContentSize="260" transition="PushTransition">
   <Gradient tkDrawerContent class="menu-contents-wrapper" direction="to bottom right" colors="#2da7fb, #227ebe">
     <!--<Gradient direction="to right" colors="#2da7fb, #227ebe">-->
-      <GridLayout class="sideStackLayout" rows="auto, auto, *">
+      <GridLayout class="sideStackLayout" rows="auto, auto, auto, auto, *">
         <StackLayout row="0" class="sideTitleStackLayout">
-          <Image src="~/images/logo.png" class="menu-logo"></Image>
+          <!--<Image src="~/images/logo.png" class="menu-logo"></Image>-->
+          <Label text=" "></Label>
+          <!--<Label class="mdi" style="font-size: 22" [text]="'mdi-power-plug' | fonticon" horizontalAlignment="center"></Label>-->
         </StackLayout>
 
-        <GridLayout row="1" rows="auto" columns="50, *" class="sideOptions menu-top-border" [nsRouterLink]="['/menu/feedback']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}">
+        <GridLayout row="1" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border" [nsRouterLink]="['/menu/feedback']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}">
           <Label class="mdi" [text]="'mdi-message-text' | fonticon"></Label>
-          <Label col="1" text="Feedback"></Label>
+          <Label col="1" class="item-title" text="Feedback"></Label>
+          <Label row="1" col="1" class="plugin-names" text="Feedback, Toast, FancyAlert, Snackbar, Local Notifications" textWrap="true"></Label>
+        </GridLayout>
+
+        <GridLayout row="2" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border" [nsRouterLink]="['/menu/mapping']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}">
+          <!-- Ooooh the irony! This is the Material Design GOOGLE Maps icon.. linking to a Mapbox demo :P -->
+          <Label class="mdi" [text]="'mdi-google-maps' | fonticon"></Label>
+          <Label col="1" class="item-title" text="Mapping"></Label>
+          <Label row="1" col="1" class="plugin-names" text="Mapbox, Directions" textWrap="true"></Label>
+        </GridLayout>
+
+        <GridLayout row="3" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/menu/speech']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}">
+          <Label class="mdi" [text]="'mdi-text-to-speech' | fonticon"></Label>
+          <Label col="1" class="item-title" text="Speech"></Label>
+          <Label row="1" col="1" class="plugin-names" text="Speech Recognition, Text2Speech" textWrap="true"></Label>
         </GridLayout>
 
         <!--<GridLayout row="2" rows="auto" columns="50, *" class="sideOptions" [nsRouterLink]="['/menu/orders']" nsRouterLinkActive="active">-->
@@ -28,8 +44,8 @@
 
         <!--<StackLayout row="6"></StackLayout>-->
 
-        <StackLayout row="2" class="sideOptions logout-container" verticalAlignment="bottom" (tap)="openTwitter()">
-          <Label class="sideOptions-icon mdi" [text]="'Made with ' + ('mdi-heart-outline' | fonticon) + ' by @eddyverbruggen'"></Label>
+        <StackLayout row="4" class="sideOptions madeby-container" verticalAlignment="bottom" (tap)="openTwitter()">
+          <Label class="mdi madeby-text" [text]="'Made with ' + ('mdi-heart-outline' | fonticon) + ' by @eddyverbruggen'"></Label>
         </StackLayout>
       </GridLayout>
 

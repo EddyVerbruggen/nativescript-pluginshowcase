@@ -1,0 +1,30 @@
+<ActionBar title="Mapping" flat="true">
+  <ActionItem ios.position="left" (tap)="toggleTheMenu()">
+    <Label class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"></Label>
+  </ActionItem>
+  <Label horizontalAlignment="center" class="semibold" text="Mapping" *ngIf="isIOS"></Label>
+  <ActionItem ios.position="right" (tap)="showPluginInfo()">
+    <Label class="mdi-actionitem mdi-actionitem-right mdi-menu" [text]="'mdi-information-outline' | fonticon"></Label>
+  </ActionItem>
+</ActionBar>
+
+<StackLayout class="main-content">
+  <Gradient height="100%" direction="to bottom" colors="#444, #000" class="p-20">
+    <ContentView height="100%" width="100%" borderRadius="20">
+      <Mapbox
+          accessToken="sk.eyJ1IjoiZWRkeXZlcmJydWdnZW4iLCJhIjoia1JpRW82NCJ9.OgnvpsKzB3GJhzyofQNUBw"
+          mapStyle="traffic_day"
+          latitude="51.9280572"
+          longitude="4.4201952"
+          hideCompass="true"
+          zoomLevel="7"
+          showUserLocation="true"
+          disableZoom="false"
+          disableRotation="false"
+          disableScroll="false"
+          disableTilt="false"
+          (mapReady)="onMapReady($event)">
+      </Mapbox>
+    </ContentView>
+  </Gradient>
+</StackLayout>

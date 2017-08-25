@@ -1,0 +1,18 @@
+ActionBar {
+  background-color: #009c9b;
+}
+
+Label {
+  text-align: center;
+}
+
+Label.plugin-count {
+  font-size: 50;
+  font-weight: 800;
+  border-radius: 60;
+  border-width: 6;
+  border-color: #fff;
+  width: 120;
+  height: 120;
+  background-color: rgba(255, 255, 255, 200);
+}

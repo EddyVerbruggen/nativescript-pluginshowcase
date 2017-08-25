@@ -5,8 +5,9 @@ import { NavigationEnd, Router } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 import { isIOS } from "tns-core-modules/platform";
 import { Page } from "tns-core-modules/ui/page";
-import { available } from "nativescript-appavailability";
+import { availableSync } from "nativescript-appavailability";
 import { openUrl } from "tns-core-modules/utils/utils";
+import { alert } from "tns-core-modules/ui/dialogs";
 
 @Component({
   moduleId: module.id,
@@ -75,15 +76,24 @@ export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openTwitter(): void {
-    const twitterScheme = "twitter://";
-    available(twitterScheme).then((avail: boolean) => {
-      if (avail) {
-        // open in the app
-        openUrl(twitterScheme + (isIOS ? "/user?screen_name=" : "user?user_id=") + "eddyverbruggen");
-      } else {
-        // open in the default browser
-        openUrl("https://twitter.com/eddyverbruggen");
-      }
-    })
+    let url, message;
+
+    if (availableSync("twitter://")) {
+      message = "With nativescript-appavailability we determined you have the Twitter app installed, now opening it!";
+      url = "twitter://" + (isIOS ? "/user?screen_name=" : "user?user_id=") + "eddyverbruggen";
+    } else {
+      message = "With nativescript-appavailability we determined you don't have the Twitter app installed, so we're now loading Twitter in a browser instead.";
+      url = "https://twitter.com/eddyverbruggen";
+    }
+
+    alert({
+      title: "App Availability plugin FTW!",
+      message: message,
+      okButtonText: "Honestly I can't wait",
+      cancelable: false
+    }).then(() => {
+      // open in the app
+      openUrl(url);
+    });
   }
 }

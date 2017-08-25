@@ -1,0 +1,49 @@
+ActionBar {
+  background-color: mediumseagreen;
+}
+
+WrapLayout {
+  margin-bottom: 10;
+}
+
+button {
+  background-color: #6494AA;
+  padding: 8 10;
+  margin: 10;
+  font-size: 14;
+  border-radius: 4;
+  border-width: 1;
+  border-color: #fff;
+}
+
+.button {
+  color: #ffffff;
+}
+
+.button-success {
+  background-color: #51ae8c;
+}
+
+.button-info {
+  background-color: #516a78;
+}
+
+.button-warning {
+  background-color: #f18b34;
+}
+
+.button-error {
+  background-color: #ee664c;
+}
+
+.button-custom {
+  background-color: #6baad8;
+}
+
+.button-custom-alt {
+  background-color: yellowgreen;
+}
+
+.button-dismiss {
+  background-color: #444
+}
