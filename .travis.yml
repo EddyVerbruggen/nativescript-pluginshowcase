@@ -20,7 +20,7 @@ install:
     - echo no | npm install -g nativescript
     - tns usage-reporting disable
     - tns error-reporting disable
-    - npm run build
+    - echo no | npm run build
 
 script:
 
