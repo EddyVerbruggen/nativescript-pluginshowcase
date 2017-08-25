@@ -5,11 +5,11 @@
   "repository": "<fill-your-repository-here>",
   "nativescript": {
     "id": "org.nativescript.pluginshowcase",
-    "tns-ios": {
-      "version": "3.1.0"
-    },
     "tns-android": {
       "version": "3.1.1"
+    },
+    "tns-ios": {
+      "version": "3.2.0-2017-8-25-1"
     }
   },
   "scripts": {
