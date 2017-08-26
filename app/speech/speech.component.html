@@ -8,8 +8,19 @@
   </ActionItem>
 </ActionBar>
 
-<Gradient height="100%" direction="to bottom" colors="orangered, #c03400" class="main-content">
-  <StackLayout class="p-20">
-    <Label text="Speech stuff here.."></Label>
-  </StackLayout>
-</Gradient>
+<StackLayout class="main-content">
+  <Gradient height="100%" direction="to bottom" colors="orangered, #c03400" class="p-20">
+    <GridLayout rows="*, 130" columns="*">
+
+      <!-- TODO try stagger animation -->
+      <StackLayout row="0" class="p-20" style="background-color: rgba(255, 255, 255, 210)" borderRadius="20">
+        <Label [@from-right]="'in'" [text]="('mdi-format-quote-open' | fonticon) + recognizedText + ('mdi-format-quote-close' | fonticon)" textWrap="true" class="mdi recognizedText p-b-20" [visibility]="recognizedText === undefined ? 'collapse': 'visible'"></Label>
+      </StackLayout>
+
+      <StackLayout [@from-bottom]="'in'" row="1" horizontalAlignment="center" class="m-t-20">
+        <Label #recordButton class="mdi record-mic" [class.recording]="recording" [text]="'mdi-microphone-outline' | fonticon" [isEnabled]="!microphoneEnabled"></Label>
+        <Label class="record-hint" text="push to talk" *ngIf="!recording"></Label>
+      </StackLayout>
+    </GridLayout>
+  </Gradient>
+</StackLayout>

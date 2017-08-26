@@ -8,6 +8,7 @@ import { device } from "tns-core-modules/platform";
 import { PluginInfo } from "../shared/plugin-info";
 import { openUrl } from "tns-core-modules/utils/utils";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
+import { Config } from "../shared/config";
 
 const pageCommon = require("tns-core-modules/ui/page/page-common").PageBase;
 
@@ -17,7 +18,8 @@ const pageCommon = require("tns-core-modules/ui/page/page-common").PageBase;
   styleUrls: ["./info-modal.css"]
 })
 export class InfoModalComponent {
-  public pluginInfo: PluginInfoWrapper;
+  pluginInfo: PluginInfoWrapper;
+  isTablet: boolean = Config.isTablet;
 
   constructor(private params: ModalDialogParams,
               private page: Page) {
@@ -39,6 +41,7 @@ export class InfoModalComponent {
         pageCommon.prototype._showNativeModalView.call(this, parent, context, closeCallback, fullscreen);
         let that = this;
 
+        // TODO prevent back navigation gesture while this modal is open!
         this._modalParent = parent;
         if (!parent.ios.view.window) {
           throw new Error('Parent page is not part of the window hierarchy. ' +

@@ -30,4 +30,4 @@ npm run ios
 ### Notes
 * Don't judge Mapbox performance on the iOS simulator. It only blows you away on a real device.
 * When uploading this to GitHub (aug 25th, 2017) I only spent a day building this - so no, it's not all polished yet.
-* Not tested on iPad yet - nor will I, for now.
+* The app works on iPad but is not yet optimized for the larger screen yet.

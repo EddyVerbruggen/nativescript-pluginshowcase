@@ -1,4 +1,4 @@
-<ScrollView class="dimmed">
+<ScrollView [class.dimmed]="!isTablet">
   <StackLayout class="modal-wrapper p-10 m-30" verticalAlignment="center">
 
     <Label class="description" [text]="pluginInfo.description" textWrap="true"></Label>

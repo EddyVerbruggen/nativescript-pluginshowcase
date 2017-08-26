@@ -1,29 +1,28 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "noEmitHelpers": true,
-    "noEmitOnError": true,
-    "skipLibCheck": true,
-    "sourceMap": false,
-    "lib": [
-      "dom",
-      "es6",
-      "es2015.iterable"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "./node_modules/tns-core-modules/*",
-        "./node_modules/*"
-      ]
-    }
-  },
-  "exclude": [
-    "node_modules",
-    "platforms",
-    "**/*.aot.ts"
-  ]
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "noEmitHelpers": true,
+        "noEmitOnError": true,
+        "skipLibCheck": true,
+        "lib": [
+            "dom",
+            "es6",
+            "es2015.iterable"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "./node_modules/tns-core-modules/*",
+                "./node_modules/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "platforms",
+        "**/*.aot.ts"
+    ]
 }

@@ -29,11 +29,11 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
     trigger("listAnimation", [
       transition("* => *", [
         // this hides everything right away
-        query(":enter", style({opacity: 0, transform: 'translate(10%)'})),
+        query(":enter", style({opacity: 0, transform: "translate(10%)"})),
 
         // starts to animate things with a stagger in between
         query(":enter", stagger(250, [
-          animate(1200, style({opacity: 1, transform: 'translate(0)'}))
+          animate(1200, style({opacity: 1, transform: "translate(0)"}))
         ]), {delay: 250})
       ])
     ])
@@ -81,7 +81,7 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
                 "nativescript-fancyalert",
                 "FancyAlert",
                 "https://github.com/NathanWalker/nativescript-fancyalert",
-                "Want to get in your user's face? Throw an alert at them! Unlike the default alert this one is fully customizable."
+                "Want to get in your user's face? Throw a highly customizable alert at them."
             ),
 
             new PluginInfo(
@@ -95,7 +95,7 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
                 "nativescript-local-notifications",
                 "Local Notifications",
                 "https://github.com/EddyVerbruggen/nativescript-local-notifications",
-                "Show notifications when your app is inactive 😴. Just like push notifications, but a few orders of magnitude easier to set up."
+                "Show notifications when your app is inactive 😴. Much like push notifications, but without a server."
             )
         )
     );

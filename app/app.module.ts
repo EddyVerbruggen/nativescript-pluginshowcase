@@ -6,14 +6,15 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { setStatusBarColors } from "./utils/status-bar-util";
 import { Config } from "./shared/config";
-import { NativeScriptFormsModule, RouterExtensions } from "nativescript-angular";
+import { NativeScriptFormsModule, registerElement, RouterExtensions } from "nativescript-angular";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
-import { registerElement } from "nativescript-angular";
 import { NativeScriptAnimationsModule } from "nativescript-angular/animations";
-
-// import * as application from "tns-core-modules/application";
 import { ThreeDeeTouch } from "nativescript-3dtouch";
-import { isIOS } from "tns-core-modules/platform";
+import { device, isIOS } from "tns-core-modules/platform";
+import { DeviceType } from "tns-core-modules/ui/enums";
+import * as application from "application";
+
+const fs = require("file-system");
 
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 
@@ -22,6 +23,8 @@ setStatusBarColors();
 if (Config.isProdMode) {
   enableProdMode();
 }
+
+Config.isTablet = device.deviceType === DeviceType.Tablet;
 
 @NgModule({
   bootstrap: [
@@ -48,6 +51,13 @@ if (Config.isProdMode) {
 })
 export class AppModule {
   constructor(private routerExtensions: RouterExtensions) {
+
+    if (Config.isTablet) {
+      let cssFileName = fs.path.join(fs.knownFolders.currentApp().path, "app.tablet.css");
+      fs.File.fromPath(cssFileName).readText().then((result: string) => {
+        application.addCss(result);
+      });
+    }
 
     // This is for nativescript-3dtouch
     if (isIOS) {

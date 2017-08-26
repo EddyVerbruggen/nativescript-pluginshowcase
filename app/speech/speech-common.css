@@ -1,3 +1,30 @@
 ActionBar {
   background-color: orangered;
 }
+
+Label.record-mic {
+  font-size: 40;
+  font-weight: 800;
+  border-radius: 35;
+  border-width: 3;
+  border-color: #fff;
+  width: 70;
+  height: 70;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 190);
+  margin-bottom: 20;
+}
+
+Label.record-mic.recording {
+  border-width: 8;
+  background-color: rgba(255, 255, 255, 120);
+}
+
+Label.record-hint {
+  opacity: 0.7;
+}
+
+Label.recognizedText {
+  font-size: 26;
+  text-align: center;
+}
