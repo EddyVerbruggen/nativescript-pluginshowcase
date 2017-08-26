@@ -1,4 +1,11 @@
 import { Component, ViewContainerRef } from "@angular/core";
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { MenuComponent } from "../menu/menu.component";
 import { MapboxViewApi } from "nativescript-mapbox";
@@ -11,7 +18,16 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
   selector: "Mapping",
   moduleId: module.id,
   templateUrl: "./mapping.component.html",
-  styleUrls: ["mapping-common.css"]
+  styleUrls: ["mapping-common.css"],
+  animations: [
+    trigger("flyInOut", [
+      state("in", style({transform: "scale(1)", opacity: 1})),
+      transition("void => *", [
+        style({transform: "scale(0.9)", opacity: 0}),
+        animate("1000ms 100ms ease-out")
+      ])
+    ])
+  ]
 })
 export class MappingComponent extends AbstractMenuPageComponent {
 

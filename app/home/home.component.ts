@@ -1,4 +1,11 @@
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { MenuComponent } from "../menu/menu.component";
 import { Config } from "../shared/config";
@@ -10,7 +17,32 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
   selector: "Home",
   moduleId: module.id,
   templateUrl: "./home.component.html",
-  styleUrls: ["home-common.css"]
+  styleUrls: ["home-common.css"],
+  animations: [
+    trigger("state", [
+      state("in", style({
+        "opacity": 1,
+        transform: "scale(1)"
+      })),
+      state("void", style({
+        "opacity": 0,
+        transform: "scale(0.9)"
+      })),
+      transition("void => *", [animate("1300ms ease-out")])
+    ]),
+    trigger("plugincountstate", [
+      state("in", style({
+        "opacity": 1,
+        transform: "scale(1) rotate(0)"
+      })),
+      state("void", style({
+        "opacity": 0,
+        transform: "scale(0) rotate(-1300)"
+      })),
+      // "after a delay of 1000ms, show an animation with a duration of 2300ms"
+      transition("void => *", [animate("2300ms 1000ms ease-out")])
+    ])
+  ]
 })
 export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
   constructor(protected menuComponent: MenuComponent,
@@ -27,7 +59,7 @@ export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
         this.routerExtensions.navigate([Config.DEBUG_MODE.firstPage], {
           animated: false
         });
-      }, 300);
+      }, 200);
   }
 
   protected getPluginInfo(): PluginInfoWrapper {

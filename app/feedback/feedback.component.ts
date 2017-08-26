@@ -1,4 +1,12 @@
 import { Component, ViewContainerRef } from "@angular/core";
+import {
+  trigger,
+  query,
+  stagger,
+  style,
+  animate,
+  transition
+} from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { MenuComponent } from "../menu/menu.component";
 import { Feedback } from "nativescript-feedback";
@@ -16,7 +24,20 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
   selector: "Feedback",
   moduleId: module.id,
   templateUrl: "./feedback.component.html",
-  styleUrls: ["feedback-common.css"]
+  styleUrls: ["feedback-common.css"],
+  animations: [
+    trigger("listAnimation", [
+      transition("* => *", [
+        // this hides everything right away
+        query(":enter", style({opacity: 0, transform: 'translate(10%)'})),
+
+        // starts to animate things with a stagger in between
+        query(":enter", stagger(250, [
+          animate(1200, style({opacity: 1, transform: 'translate(0)'}))
+        ]), {delay: 250})
+      ])
+    ])
+  ],
 })
 export class FeedbackComponent extends AbstractMenuPageComponent {
   fancyAlertHelper: FancyalertHelper;
@@ -46,7 +67,7 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
                 "nativescript-feedback",
                 "Feedback",
                 "https://github.com/EddyVerbruggen/nativescript-feedback",
-                "Non-blocking textual feedback with custom icons and any colors you like."
+                "Non-blocking textual feedback with custom icons and any colors you like. Tap to hide these babies."
             ),
 
             new PluginInfo(

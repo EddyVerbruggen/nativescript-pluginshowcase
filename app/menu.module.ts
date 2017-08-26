@@ -1,4 +1,4 @@
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { ModalDialogService, NativeScriptFormsModule, NativeScriptRouterModule } from "nativescript-angular";
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { Routes } from "@angular/router";
@@ -37,7 +37,7 @@ const routerConfig: Routes = [
 //noinspection JSUnusedGlobalSymbols
 @NgModule({
   imports: [
-    NativeScriptModule,
+    NativeScriptCommonModule,
     NativeScriptFormsModule,
     NativeScriptRouterModule,
     NativeScriptRouterModule.forChild(routerConfig),

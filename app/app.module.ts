@@ -9,6 +9,7 @@ import { Config } from "./shared/config";
 import { NativeScriptFormsModule } from "nativescript-angular";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 import { registerElement } from "nativescript-angular";
+import { NativeScriptAnimationsModule } from "nativescript-angular/animations";
 
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 
@@ -25,6 +26,7 @@ if (Config.isProdMode) {
   imports: [
     NativeScriptModule,
     NativeScriptFormsModule,
+    NativeScriptAnimationsModule,
     AppRoutingModule,
     TNSFontIconModule.forRoot({
       'mdi': 'fonts/materialdesignicons.css'

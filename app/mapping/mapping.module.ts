@@ -1,5 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NativeScriptCommonModule } from "nativescript-angular/common";
 
 import { MappingRoutingModule } from "./mapping-routing.module";
 import { MappingComponent } from "./mapping.component";
@@ -10,7 +10,7 @@ registerElement("Mapbox", () => require("nativescript-mapbox").MapboxView);
 
 @NgModule({
   imports: [
-    NativeScriptModule,
+    NativeScriptCommonModule,
     MappingRoutingModule,
     TNSFontIconModule,
   ],

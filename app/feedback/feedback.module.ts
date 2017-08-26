@@ -1,5 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NativeScriptCommonModule } from "nativescript-angular/common";
 
 import { FeedbackRoutingModule } from "./feedback-routing.module";
 import { FeedbackComponent } from "./feedback.component";
@@ -8,7 +8,7 @@ import { ToastService } from "./toast.service";
 
 @NgModule({
   imports: [
-    NativeScriptModule,
+    NativeScriptCommonModule,
     FeedbackRoutingModule,
     TNSFontIconModule,
   ],
