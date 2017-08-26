@@ -6,10 +6,14 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { setStatusBarColors } from "./utils/status-bar-util";
 import { Config } from "./shared/config";
-import { NativeScriptFormsModule } from "nativescript-angular";
+import { NativeScriptFormsModule, RouterExtensions } from "nativescript-angular";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 import { registerElement } from "nativescript-angular";
 import { NativeScriptAnimationsModule } from "nativescript-angular/animations";
+
+// import * as application from "tns-core-modules/application";
+import { ThreeDeeTouch } from "nativescript-3dtouch";
+import { isIOS } from "tns-core-modules/platform";
 
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 
@@ -43,4 +47,24 @@ if (Config.isProdMode) {
   ]
 })
 export class AppModule {
+  constructor(private routerExtensions: RouterExtensions) {
+
+    // This is for nativescript-3dtouch
+    if (isIOS) {
+      new ThreeDeeTouch().setQuickActionCallback(shortcutItem => {
+        console.log("app was launched by shortcut type '" + shortcutItem.type + "' with title '" + shortcutItem.localizedTitle + "'");
+        // this is where you handle any specific case for the shortcut
+        if (shortcutItem.type === "feedback") {
+          this.routerExtensions.navigate(['/menu/feedback'], {
+            animated: false
+          });
+        } else if (shortcutItem.type === "mapping") {
+          // this one could be better (nav to today?)
+          this.routerExtensions.navigate(['/menu/mapping'], {
+            animated: false
+          });
+        }
+      });
+    }
+  }
 }

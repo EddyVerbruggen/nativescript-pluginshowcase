@@ -8,9 +8,9 @@
   </ActionItem>
 </ActionBar>
 
-<StackLayout class="main-content">
+<GridLayout class="main-content">
   <Gradient height="100%" direction="to bottom" colors="#444, #000" class="p-20">
-    <ContentView [@flyInOut]="'in'" height="100%" width="100%" borderRadius="20">
+    <ContentView [@flyInOut]="'in'" height="100%" width="100%" borderRadius="25">
       <Mapbox
           accessToken="sk.eyJ1IjoiZWRkeXZlcmJydWdnZW4iLCJhIjoia1JpRW82NCJ9.OgnvpsKzB3GJhzyofQNUBw"
           mapStyle="traffic_day"
@@ -27,4 +27,10 @@
       </Mapbox>
     </ContentView>
   </Gradient>
-</StackLayout>
+  <FAB
+      (tap)="fabTapped()"
+      icon="res://ic_add_white"
+      rippleColor="#f1f1f1"
+      class="fab">
+  </FAB>
+</GridLayout>

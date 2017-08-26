@@ -15,7 +15,7 @@ refer to http://docs.nativescript.org/ui/theme.
 Page {
   /* this is also the color the user sees when the app starts (FOUC),
    so made it the same as the home background color
-    TODO reuse this knowledge.. */
+    TODO reuse this knowledge.. also use this color for the splashscreen */
   background-color: #009c9b;
   color: #fff;
   font-size: 15;

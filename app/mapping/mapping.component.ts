@@ -8,7 +8,7 @@ import {
 } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { MenuComponent } from "../menu/menu.component";
-import { MapboxViewApi } from "nativescript-mapbox";
+import { MapboxViewApi, Viewport as MapboxViewport } from "nativescript-mapbox";
 import { AddressOptions, Directions } from "nativescript-directions";
 import { ModalDialogService } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
@@ -32,6 +32,7 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 export class MappingComponent extends AbstractMenuPageComponent {
 
   private directions: Directions;
+  private map: MapboxViewApi;
 
   constructor(protected menuComponent: MenuComponent,
               protected vcRef: ViewContainerRef,
@@ -48,7 +49,7 @@ export class MappingComponent extends AbstractMenuPageComponent {
                 "nativescript-mapbox",
                 "Mapbox 🗽 🗼 🗻",
                 "https://github.com/EddyVerbruggen/nativescript-mapbox",
-                "Native OpenGL powered Maps. Blazing performance and feature-rich! Use custom markers and show the user's location on the map. In this example we're using the 'traffic_day' map style which shows live traffic."
+                "Native OpenGL powered Maps. Blazing performance and feature-rich! Use custom markers and show the user's location on the map. In this example we're using the 'traffic_day' map style which shows live traffic.\n\nPress the FAB to drop a marker at the center of the viewport."
             ),
 
             new PluginInfo(
@@ -56,14 +57,21 @@ export class MappingComponent extends AbstractMenuPageComponent {
                 "Directions 👆 👉 👇 👈 ",
                 "https://github.com/EddyVerbruggen/nativescript-directions",
                 "Open the native Maps app to show directions to anywhere you like. Even with waypoints in between!"
+            ),
+
+            new PluginInfo(
+                "nativescript-floatingactionbutton",
+                "FAB",
+                "https://github.com/bradmartin/nativescript-floatingactionbutton",
+                "Add a Material Design Floating Action Button to your page, at a corner of your liking."
             )
         )
     );
   }
 
   onMapReady(args): void {
-    let map: MapboxViewApi = args.map;
-    map.addMarkers([
+    this.map = args.map;
+    this.map.addMarkers([
       {
         id: 1,
         lat: 51.9280572,
@@ -111,6 +119,26 @@ export class MappingComponent extends AbstractMenuPageComponent {
         }
       }]
     );
+  }
+
+  fabTapped(): void {
+    // add a marker at the center of the viewport
+    this.map.getViewport().then((viewport: MapboxViewport) => {
+      const lat = (viewport.bounds.north + viewport.bounds.south) / 2;
+      const lng = (viewport.bounds.east + viewport.bounds.west) / 2;
+      const markerId = new Date().getTime();
+
+      this.map.addMarkers([{
+        id: new Date().getTime(),
+        lat: lat,
+        lng: lng,
+        title: "FAB marker",
+        subtitle: "Tap to remove",
+        onCalloutTap: () => {
+          this.map.removeMarkers([markerId]);
+        }
+      }]);
+    });
   }
 
   private showDirectionsTo(address: AddressOptions): void {
