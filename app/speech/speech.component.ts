@@ -26,7 +26,7 @@ import { alert } from "tns-core-modules/ui/dialogs";
         "opacity": 0,
         transform: "translateY(20%)"
       })),
-      transition("void => *", [animate("1600ms 1000ms ease-out")])
+      transition("void => *", [animate("1600ms 700ms ease-out")])
     ]),
     trigger("from-right", [
       state("in", style({

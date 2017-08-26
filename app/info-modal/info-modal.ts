@@ -26,9 +26,6 @@ export class InfoModalComponent {
     this.pluginInfo = params.context;
 
     this.page.on("unloaded", () => {
-      console.log(">> unloaded event");
-      // using the unloaded event to close the modal when there is user interaction
-      // e.g. user taps outside the modal page
       this.params.closeCallback();
     });
 

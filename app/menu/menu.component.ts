@@ -75,6 +75,10 @@ export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  getDrawer(): SideDrawerType {
+    return this._drawer;
+  }
+
   openTwitter(): void {
     let url, message;
 
