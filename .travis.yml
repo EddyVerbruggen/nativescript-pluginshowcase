@@ -40,7 +40,9 @@ matrix:
       language: node_js 
       node_js: "6"
       jdk: oraclejdk8
-      script: npm run build-ios-bundle
+      script:
+        - pod repo update
+        - npm run build-ios-bundle
     - language: android
       os: linux
       env:
@@ -66,5 +68,6 @@ matrix:
       node_js: "6"
       jdk: oraclejdk8
       script: 
+        - pod repo update
         - tns build ios
     
