@@ -36,7 +36,7 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
         "opacity": 0,
         transform: "translate(20%)"
       })),
-      transition("void => *", [animate("600ms 1200ms ease-out")])
+      transition("void => *", [animate("600ms 1500ms ease-out")])
     ])
   ]
 })

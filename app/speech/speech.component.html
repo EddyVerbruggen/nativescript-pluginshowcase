@@ -13,10 +13,19 @@
     <GridLayout rows="*, 130" columns="*">
 
       <StackLayout [@scale-in]="'in'" row="0" class="p-20" style="background-color: rgba(255, 255, 255, 210)" borderRadius="20">
-        <Label [text]="('mdi-format-quote-open' | fonticon) + recognizedText + ('mdi-format-quote-close' | fonticon)" textWrap="true" class="mdi recognizedText p-b-20" [visibility]="recognizedText === undefined ? 'collapse': 'visible'"></Label>
+        <GridLayout rows="*, auto" columns="*">
+          <Label [text]="('mdi-format-quote-open' | fonticon) + recognizedText + ('mdi-format-quote-close' | fonticon)" textWrap="true" class="mdi recognizedText p-b-20" [visibility]="recognizedText === undefined ? 'collapse': 'visible'"></Label>
+          <Button [@fade-in]="'in'" row="1" text="show tips" class="p-20" horizontalAlignment="center" (tap)="showingTips = true" [visibility]="recording || showingTips ? 'collapse': 'visible'"></Button>
+          <StackLayout row="1" class="tips" *ngIf="showingTips">
+            <Label [text]="('mdi-format-quote-open' | fonticon) + 'Share a selfie' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-20" textWrap="true" (tap)="shareSelfie()"></Label>
+            <Label [text]="('mdi-format-quote-open' | fonticon) + 'What\'s my schedule today?' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-20" textWrap="true" (tap)="findTodaysEvents()"></Label>
+            <Label style="text-align: center" [text]="('mdi-format-quote-open' | fonticon) + 'Compose an email with subject...\nand message...' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-10" textWrap="true" (tap)="composeAnEmail()"></Label>
+          </StackLayout>
+        </GridLayout>
       </StackLayout>
 
       <StackLayout [@from-bottom]="'in'" row="1" horizontalAlignment="center" class="m-t-20">
+        <!-- todo use mdi-ear-hearing -->
         <Label #recordButton class="mdi record-mic" [class.recording]="recording" [text]="'mdi-microphone-outline' | fonticon" [isEnabled]="!microphoneEnabled"></Label>
         <Label class="record-hint" text="push to talk" *ngIf="!recording"></Label>
       </StackLayout>

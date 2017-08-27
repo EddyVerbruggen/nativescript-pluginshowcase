@@ -30,6 +30,10 @@ const routerConfig: Routes = [
         path: "speech",
         loadChildren: "./speech/speech.module#SpeechModule"
       },
+      {
+        path: "appicon",
+        loadChildren: "./appicon/appicon.module#AppIconModule"
+      }
     ]
   }
 ];

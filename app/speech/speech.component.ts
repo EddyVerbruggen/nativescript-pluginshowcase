@@ -10,6 +10,8 @@ import { SpeechRecognition, SpeechRecognitionTranscription } from "nativescript-
 import { GestureEventData } from "tns-core-modules/ui/gestures";
 import { Label } from "tns-core-modules/ui/label";
 import { alert } from "tns-core-modules/ui/dialogs";
+import { compose as composeEmail } from "nativescript-email";
+import * as Calendar from "nativescript-calendar";
 
 @Component({
   selector: "Speech",
@@ -27,6 +29,15 @@ import { alert } from "tns-core-modules/ui/dialogs";
         transform: "translateY(20%)"
       })),
       transition("void => *", [animate("1600ms 700ms ease-out")])
+    ]),
+    trigger("fade-in", [
+      state("in", style({
+        "opacity": 1
+      })),
+      state("void", style({
+        "opacity": 0
+      })),
+      transition("void => *", [animate("800ms 2000ms ease-out")])
     ]),
     trigger("scale-in", [
       state("in", style({
@@ -46,6 +57,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
   private speech2text: SpeechRecognition;
   microphoneEnabled: boolean = false;
   recording: boolean = false;
+  showingTips: boolean = false;
   recognizedText: string;
   private recordingAvailable: boolean;
 
@@ -127,17 +139,85 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
   private speak(text: string): void {
     let speakOptions: SpeakOptions = {
       text: text,
-      speakRate: 0.5,
+      speakRate: 0.45,
+      pitch: 1, // 0.1 and 2 are rather funny :)
       // locale: "en-US", // optional, uses the device locale by default
       finishedCallback: () => {
-        console.log("Speaking finished");
-        // TODO now accept voice input again
+        this.handleFollowUpAction(text.toLowerCase());
       }
     };
-
-    this.text2speech.speak(speakOptions).then();
+    this.text2speech.speak(speakOptions);
   }
 
+  private handleFollowUpAction(text: string): void {
+    if (text.indexOf("schedule") > -1 && text.indexOf("today") > -1) {
+      this.findTodaysEvents();
+
+    } else if (text.indexOf("compose") > -1 && text.indexOf("mail") > -1) {
+      let subject = "";
+      let body = "";
+      if (text.indexOf("subject") > -1) {
+        let endOfSubject: number;
+        if (text.indexOf("an message") > -1) {
+          endOfSubject = text.indexOf("an message");
+        } else if (text.indexOf("and message") > -1) {
+          endOfSubject = text.indexOf("and message");
+        } else if (text.indexOf("imessage") > -1) {
+          endOfSubject = text.indexOf("imessage");
+        }
+        subject = text.substring(text.indexOf("subject") + 8, endOfSubject);
+      }
+      if (text.indexOf("message") > -1) {
+        body = text.substring(text.indexOf("message") + 8);
+      }
+      this.composeAnEmail(subject, body);
+
+    } else if (text.indexOf("share") > -1 && text.indexOf("self") > -1) {
+      this.shareSelfie();
+    }
+  }
+
+  composeAnEmail(subject: string, body: string): void {
+    composeEmail({
+      subject: subject,
+      body: body
+    }).then((x) => {
+      console.log(">> email result: " + x);
+    });
+  }
+
+  shareSelfie(): void {
+    // TODO camera, then share.. see MDL app
+  }
+
+  findTodaysEvents(): void {
+    let now = new Date();
+    let midnight = new Date();
+    midnight.setHours(24, 0, 0, 0);
+    console.log(midnight);
+    Calendar.findEvents({
+      startDate: now,
+      endDate: midnight
+    }).then(
+        events => {
+          events.map(ev => {
+            // TODO remove this filter at some point
+            if (ev.calendar.name === "Eddy Verbruggen") {
+              let secondsFromNow = Math.round((ev.startDate.getTime() - new Date().getTime()) / 1000);
+              let hours = Math.round(secondsFromNow / (60 * 60));
+              let minutes = Math.round(secondsFromNow / 60);
+              this.text2speech.speak({
+                text: `${ev.title} in ${hours > 0 ? hours + ' hours and ' : ''} ${minutes} minutes`,
+                speakRate: 0.45,
+              });
+            }
+          })
+        },
+        function (error) {
+          console.log("Error finding Events: " + error);
+        }
+    );
+  }
 
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(

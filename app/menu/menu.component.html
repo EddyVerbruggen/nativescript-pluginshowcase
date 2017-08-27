@@ -1,6 +1,6 @@
 <RadSideDrawer showOverNavigation="true" drawerContentSize="260" transition="PushTransition">
   <Gradient tkDrawerContent class="menu-contents-wrapper" direction="to bottom right" colors="#2da7fb, #227ebe">
-    <GridLayout class="sideStackLayout" rows="auto, auto, auto, auto, auto, *">
+    <GridLayout class="sideStackLayout" rows="auto, auto, auto, auto, auto, auto, *">
       <StackLayout row="0" class="sideTitleStackLayout">
         <Label text=" "></Label>
       </StackLayout>
@@ -8,7 +8,7 @@
       <GridLayout row="1" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border" [nsRouterLink]="['/menu/feedback']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}">
         <Label class="mdi" [text]="'mdi-message-text' | fonticon"></Label>
         <Label col="1" class="item-title" text="Feedback"></Label>
-        <Label row="1" col="1" class="plugin-names" text="Fancy Alert, Feedback, Local Notifications, Snackbar, Toast" textWrap="true"></Label>
+        <Label row="1" col="1" class="plugin-names" text="Fancy Alert, Feedback, Snackbar, Local Notifications, Toast" textWrap="true"></Label>
       </GridLayout>
 
       <GridLayout row="2" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border" [nsRouterLink]="['/menu/mapping']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}">
@@ -18,10 +18,10 @@
         <Label row="1" col="1" class="plugin-names" text="Directions, Mapbox, FAB" textWrap="true"></Label>
       </GridLayout>
 
-      <GridLayout row="3" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-top-border" [nsRouterLink]="['/menu/speech']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}">
+      <GridLayout row="3" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border" [nsRouterLink]="['/menu/speech']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}">
         <Label class="mdi" [text]="'mdi-text-to-speech' | fonticon"></Label>
         <Label col="1" class="item-title" text="Speech"></Label>
-        <Label row="1" col="1" class="plugin-names" text="Speech Recognition, Text2Speech" textWrap="true"></Label>
+        <Label row="1" col="1" class="plugin-names" text="Speech Recognition, Camera, Email, Social Share, TextToSpeech, Calendar" textWrap="true"></Label>
       </GridLayout>
 
       <GridLayout row="4" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/menu/appicon']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" *ngIf="isIOS">
@@ -30,7 +30,13 @@
         <Label row="1" col="1" class="plugin-names" text="3D Touch, App Icon Changer" textWrap="true"></Label>
       </GridLayout>
 
-      <StackLayout row="5" class="sideOptions madeby-container" verticalAlignment="bottom" (tap)="openTwitter()">
+      <GridLayout row="5" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/menu/keyboard']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" *ngIf="isIOS">
+        <Label class="mdi" [text]="'mdi-keyboard' | fonticon"></Label>
+        <Label col="1" class="item-title" text="Keyboard input"></Label>
+        <Label row="1" col="1" class="plugin-names" text="Numeric Keyboard, IQKeyboardManager" textWrap="true"></Label>
+      </GridLayout>
+
+      <StackLayout row="6" class="sideOptions madeby-container" verticalAlignment="bottom" (tap)="openTwitter()">
         <Label class="mdi madeby-text" [text]="'Made with ' + ('mdi-heart-outline' | fonticon) + ' by @eddyverbruggen'"></Label>
       </StackLayout>
     </GridLayout>

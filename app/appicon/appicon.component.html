@@ -1,0 +1,26 @@
+<ActionBar title="App icon" flat="true">
+  <ActionItem ios.position="left" (tap)="toggleTheMenu()">
+    <Label class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"></Label>
+  </ActionItem>
+  <Label horizontalAlignment="center" class="semibold" text="App icon" *ngIf="isIOS"></Label>
+  <ActionItem ios.position="right" (tap)="showPluginInfo()">
+    <Label class="mdi-actionitem mdi-actionitem-right mdi-menu" [text]="'mdi-information-outline' | fonticon"></Label>
+  </ActionItem>
+</ActionBar>
+
+<StackLayout class="main-content">
+  <Gradient height="100%" direction="to bottom" colors="blueviolet, #5c1d97" class="p-20">
+    <GridLayout rows="*, *" columns="*">
+
+      <StackLayout [@scale-in]="'in'" row="0" class="transparent-area">
+        <Label class="section-title" text="3D Touch"></Label>
+        <Label class="section-subtitle" text="Bla bla blah" textWrap="true"></Label>
+      </StackLayout>
+
+      <StackLayout [@from-bottom]="'in'" row="1" class="transparent-area m-t-20">
+        <Label class="section-title" text="App Icon Changer"></Label>
+        <Label class="section-subtitle" text="Bla bla blah" textWrap="true"></Label>
+      </StackLayout>
+    </GridLayout>
+  </Gradient>
+</StackLayout>
