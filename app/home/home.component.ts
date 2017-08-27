@@ -83,7 +83,7 @@ export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
                 "nativescript-ngx-fonticon",
                 "Font icon",
                 "https://github.com/NathanWalker/nativescript-ngx-fonticon",
-                "Makes it easy to use any font icon with NativeScript. This app uses https://materialdesignicons.com."
+                "Makes it easy to use font icons with NativeScript. We're using materialdesignicons.com"
             )
         )
     );

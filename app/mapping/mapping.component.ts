@@ -26,6 +26,17 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
         style({transform: "scale(0.9)", opacity: 0}),
         animate("1000ms 100ms ease-out")
       ])
+    ]),
+    trigger("from-right", [
+      state("in", style({
+        "opacity": 1,
+        transform: "translate(0)"
+      })),
+      state("void", style({
+        "opacity": 0,
+        transform: "translate(20%)"
+      })),
+      transition("void => *", [animate("600ms 1200ms ease-out")])
     ])
   ]
 })
@@ -43,20 +54,20 @@ export class MappingComponent extends AbstractMenuPageComponent {
 
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
-        "Try a few one- and two-finger gestures. Then, when you're bored playing with the map, scroll to the center of The Netherlands and tap the Home icon. Then follow its instructions to trigger the Directions plugin!",
+        "Try a few one- and two-finger gestures. Alos, press the FAB to drop a marker at the center of the viewport.\n\nThen, when you're bored playing with the map, scroll to the center of The Netherlands and tap the Home icon. Then follow its instructions to trigger the Directions plugin!",
         Array.of(
             new PluginInfo(
                 "nativescript-mapbox",
-                "Mapbox 🗽 🗼 🗻",
+                "Mapbox  🗽 🗼 🗻",
                 "https://github.com/EddyVerbruggen/nativescript-mapbox",
-                "Native OpenGL powered Maps. Blazing performance and feature-rich! Use custom markers and show the user's location on the map. In this example we're using the 'traffic_day' map style which shows live traffic.\n\nPress the FAB to drop a marker at the center of the viewport."
+                "Native OpenGL powered Maps. Crazy performance and feature-rich! Use custom markers and show the user's location. Here we use the map style 'traffic_day' to show live traffic!"
             ),
 
             new PluginInfo(
                 "nativescript-directions",
-                "Directions 👆 👉 👇 👈 ",
+                "Directions  👆 👉 👇 👈",
                 "https://github.com/EddyVerbruggen/nativescript-directions",
-                "Open the native Maps app to show directions to anywhere you like. Even with waypoints in between!"
+                "Open the native Maps app to show directions to anywhere on 🌏 you like. Even with (multiple) waypoints in between!"
             ),
 
             new PluginInfo(

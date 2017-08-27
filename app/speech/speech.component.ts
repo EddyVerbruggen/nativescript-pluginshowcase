@@ -7,7 +7,7 @@ import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { SpeakOptions, TNSTextToSpeech } from "nativescript-texttospeech";
 import { SpeechRecognition, SpeechRecognitionTranscription } from "nativescript-speech-recognition";
-import { GestureEventData, TouchGestureEventData } from "tns-core-modules/ui/gestures";
+import { GestureEventData } from "tns-core-modules/ui/gestures";
 import { Label } from "tns-core-modules/ui/label";
 import { alert } from "tns-core-modules/ui/dialogs";
 
@@ -28,16 +28,16 @@ import { alert } from "tns-core-modules/ui/dialogs";
       })),
       transition("void => *", [animate("1600ms 700ms ease-out")])
     ]),
-    trigger("from-right", [
+    trigger("scale-in", [
       state("in", style({
         "opacity": 1,
-        transform: "translate(0)"
+        transform: "scale(1)"
       })),
       state("void", style({
         "opacity": 0,
-        transform: "translate(20%)"
+        transform: "scale(0.9)"
       })),
-      transition("void => *", [animate("1600ms ease-out")])
+      transition("void => *", [animate("1100ms ease-out")])
     ])
   ]
 })
@@ -59,6 +59,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
   }
 
   ngOnInit(): void {
+    // this creates a touch & hold gesture for the microphone button
     const recordButton: Label = this.recordButton.nativeElement;
     recordButton.on("touch", (args: GestureEventData) => {
       if (args["action"] === "down") {
@@ -75,15 +76,6 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
     });
 
     this.text2speech = new TNSTextToSpeech();
-
-    const speakOptions: SpeakOptions = {
-      text: "OK",
-      speakRate: 0.45,
-      finishedCallback: (() => {
-        console.log('Finished Speaking :)');
-      }),
-      language: "en-US"
-    };
 
     setTimeout(() => {
       this.speech2text.requestPermission().then((granted: boolean) => {
@@ -105,8 +97,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
 
     this.recording = true;
     this.speech2text.startListening({
-      // optional, uses the device locale by default
-      locale: "en-US",
+      // locale: "en-US", // optional, uses the device locale by default
       // set to true to get results back continuously
       returnPartialResults: true,
       // this callback will be invoked repeatedly during recognition
@@ -133,37 +124,36 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
     });
   }
 
-  private handleRecognizedSpeech(text: string): void {
-    this.zone.run(() => this.recognizedText = text);
-  }
-
   private speak(text: string): void {
     let speakOptions: SpeakOptions = {
       text: text,
       speakRate: 0.5,
-      language: "en-US",
-      finishedCallback: () => console.log("Speaking finished")
+      // locale: "en-US", // optional, uses the device locale by default
+      finishedCallback: () => {
+        console.log("Speaking finished");
+        // TODO now accept voice input again
+      }
     };
 
-    this.text2speech.speak(speakOptions);
+    this.text2speech.speak(speakOptions).then();
   }
 
 
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
-        "Always wanted to own an English speaking parrot?\n\nWhen running on a real device you can record your voice by pressing the microphone button at the bottom of the page. The recognized text will be shown an read back to you.",
+        "Always wanted a fully trained parrot?\n\nRecord your voice (in the device language) by pressing the microphone button at the bottom. Any recognized text will be shown an read back to you.",
         Array.of(
             new PluginInfo(
                 "nativescript-texttospeech",
                 "Text to Speech",
                 "https://github.com/bradmartin/nativescript-texttospeech",
-                "Make your app speak."),
+                "Make your app speak. Might be useful for disabled people 👀. Certainly useful for lazy ones."),
 
             new PluginInfo(
                 "nativescript-speech-recognition",
                 "Speech Recognition",
                 "https://github.com/EddyVerbruggen/nativescript-speech-recognition",
-                "Speak to your app."
+                "Speak to your app 👄. Useful for voice control and silly demo's."
             )
         )
     );

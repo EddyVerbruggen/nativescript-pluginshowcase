@@ -74,7 +74,7 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
                 "nativescript-toast",
                 "Toast",
                 "https://github.com/TobiasHennig/nativescript-toast",
-                "A more toned done way of providing non-blocking textual feedback."
+                "A sober way of providing non-blocking feedback."
             ),
 
             new PluginInfo(
@@ -86,9 +86,9 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
 
             new PluginInfo(
                 "nativescript-snackbar",
-                "Snackbar",
+                "Snackbar  🍭 🍫",
                 "https://github.com/bradmartin/nativescript-snackbar",
-                "Use the Material Design Snackbar in your app. 🍭🍫"
+                "Use a Material Design Snackbar in your app."
             ),
 
             new PluginInfo(

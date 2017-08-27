@@ -1,10 +1,8 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-telerik-ui/sidedrawer/angular";
-import { RouterExtensions } from "nativescript-angular";
 import { NavigationEnd, Router } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 import { isIOS } from "tns-core-modules/platform";
-import { Page } from "tns-core-modules/ui/page";
 import { availableSync } from "nativescript-appavailability";
 import { openUrl } from "tns-core-modules/utils/utils";
 import { alert } from "tns-core-modules/ui/dialogs";
@@ -24,10 +22,7 @@ export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
   private routerSubscription: Subscription;
 
   constructor(private _changeDetectionRef: ChangeDetectorRef,
-              private _page: Page,
-              private _router: Router,
-              private _routerExtensions: RouterExtensions) {
-    console.log(">> ios: " + this.isIOS);
+              private _router: Router) {
   }
 
   ngOnInit(): void {
