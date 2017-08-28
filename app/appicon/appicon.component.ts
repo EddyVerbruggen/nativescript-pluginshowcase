@@ -74,7 +74,7 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
         iconType: UIApplicationShortcutIconType.Location
       }
     ]).then(() => {
-      this.toastService.show("Added a deepling to Mapping. Close the app and apply pressure to the app icon to check it out!", true);
+      this.toastService.show("Close the app and press the app icon hard to see the new deeplink!", true);
     }, err => {
       this.toastService.show(`Error: ${err}`);
     });
@@ -90,6 +90,7 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
     });
   }
 
+  // After using nativescript-toast this will crash!
   changeAppIcon(name: string): void {
     this.appIconChanger.changeIcon({
       iconName: name,

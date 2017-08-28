@@ -32,3 +32,14 @@ Label.recognizedText {
 .tips Label {
   text-align: center;
 }
+
+.button {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 6 8;
+  margin-bottom: 10;
+  font-size: 14;
+  border-radius: 8;
+  border-width: 1px;
+  border-color: #fff;
+  color: #ffffff;
+}

@@ -15,7 +15,7 @@
       <StackLayout [@scale-in]="'in'" row="0" class="p-20" style="background-color: rgba(255, 255, 255, 210)" borderRadius="20">
         <GridLayout rows="*, auto" columns="*">
           <Label [text]="('mdi-format-quote-open' | fonticon) + recognizedText + ('mdi-format-quote-close' | fonticon)" textWrap="true" class="mdi recognizedText p-b-20" [visibility]="recognizedText === undefined ? 'collapse': 'visible'"></Label>
-          <Button [@fade-in]="'in'" row="1" text="show tips" class="p-20" horizontalAlignment="center" (tap)="showingTips = true" [visibility]="recording || showingTips ? 'collapse': 'visible'"></Button>
+          <Button [@fade-in]="'in'" row="1" text="show tips" class="button" horizontalAlignment="center" (tap)="showingTips = true" [visibility]="recording || showingTips ? 'collapse': 'visible'"></Button>
           <StackLayout row="1" class="tips" *ngIf="showingTips">
             <Label [text]="('mdi-format-quote-open' | fonticon) + 'Share a selfie' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-20" textWrap="true" (tap)="shareSelfie()"></Label>
             <Label [text]="('mdi-format-quote-open' | fonticon) + 'What\'s my schedule today?' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-20" textWrap="true" (tap)="findTodaysEvents()"></Label>

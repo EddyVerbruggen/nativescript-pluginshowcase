@@ -228,17 +228,14 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
         events => {
           let eventsSpoken = 0;
           events.map(ev => {
-            // TODO remove this filter at some point
-            if (ev.calendar.name === "Eddy Verbruggen") {
-              eventsSpoken++;
-              let secondsFromNow = Math.round((ev.startDate.getTime() - new Date().getTime()) / 1000);
-              let hours = Math.round(secondsFromNow / (60 * 60));
-              let minutes = Math.round((secondsFromNow / 60) % 60);
-              this.text2speech.speak({
-                text: `${ev.title} in ${hours > 0 ? hours + ' hours and ' : ''} ${minutes} minutes`,
-                speakRate: 0.5,
-              });
-            }
+            eventsSpoken++;
+            let secondsFromNow = Math.round((ev.startDate.getTime() - new Date().getTime()) / 1000);
+            let hours = Math.round(secondsFromNow / (60 * 60));
+            let minutes = Math.round((secondsFromNow / 60) % 60);
+            this.text2speech.speak({
+              text: `${ev.title} in ${hours > 0 ? hours + ' hour' + (hours > 1 ? 's' : '') + ' and ' : ''} ${minutes} minutes`,
+              speakRate: 0.5,
+            });
           });
           if (eventsSpoken === 0) {
             this.text2speech.speak({
@@ -256,7 +253,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
 
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
-        "Always wanted a fully trained parrot?\n\nRecord your voice (in the device language) by pressing the microphone button at the bottom. Any recognized text will be shown an read back to you.",
+        "Always wanted a fully trained parrot?\n\nRecord your voice in the device language and it will be shown and read back to you.\n\nBe sure to try the tips as well!",
         Array.of(
             new PluginInfo(
                 "nativescript-texttospeech",
