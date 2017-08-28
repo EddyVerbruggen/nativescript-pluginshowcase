@@ -33,6 +33,10 @@ const routerConfig: Routes = [
       {
         path: "appicon",
         loadChildren: "./appicon/appicon.module#AppIconModule"
+      },
+      {
+        path: "input",
+        loadChildren: "./input/input.module#InputModule"
       }
     ]
   }

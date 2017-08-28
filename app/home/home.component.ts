@@ -41,7 +41,16 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
       })),
       // "after a delay of 1000ms, show an animation with a duration of 2300ms"
       transition("void => *", [animate("2300ms 1000ms ease-out")])
-    ])
+    ]),
+    trigger("fade-in", [
+      state("in", style({
+        "opacity": 1
+      })),
+      state("void", style({
+        "opacity": 0
+      })),
+      transition("void => *", [animate("1600ms 3200ms ease-out")])
+    ]),
   ]
 })
 export class HomeComponent extends AbstractMenuPageComponent implements OnInit {

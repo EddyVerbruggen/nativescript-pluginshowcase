@@ -1,0 +1,9 @@
+ActionBar {
+  background-color: #1567a2;
+}
+
+.plugin-bar {
+  selected-background-color: #fff;
+  color: #fff;
+  font-size: 13;
+}

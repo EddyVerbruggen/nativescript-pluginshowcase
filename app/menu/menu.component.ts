@@ -12,7 +12,7 @@ import { Config } from "../shared/config";
   moduleId: module.id,
   selector: 'menu-contents',
   templateUrl: 'menu.component.html',
-  styleUrls: ['menu-common.css', 'menu.css']
+  styleUrls: ['menu.css']
 })
 
 export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
