@@ -4,7 +4,6 @@ import { MenuComponent } from "./menu/menu.component";
 import { ModalDialogOptions, ModalDialogService } from "nativescript-angular";
 import { InfoModalComponent } from "./info-modal/info-modal";
 import { PluginInfoWrapper } from "./shared/plugin-info-wrapper";
-import { Config } from "./shared/config";
 
 export abstract class AbstractMenuPageComponent implements OnDestroy {
 
@@ -39,7 +38,7 @@ export abstract class AbstractMenuPageComponent implements OnDestroy {
 
     const drawer = this.menuComponent.getDrawer();
     // this effectively disables the back gesture
-    if (drawer.ios && !Config.isTablet) {
+    if (drawer.ios) {
       drawer.ios.detachDrawerFromWindow();
     }
 
@@ -51,7 +50,7 @@ export abstract class AbstractMenuPageComponent implements OnDestroy {
 
     this.modalService.showModal(InfoModalComponent, options).then(() => {
       // modal closed, re-enable the back gesture
-      if (drawer.ios && !Config.isTablet) {
+      if (drawer.ios) {
         drawer.ios.attachDrawerToWindow();
       }
     });

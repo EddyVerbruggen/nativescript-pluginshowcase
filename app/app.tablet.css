@@ -2,52 +2,10 @@ Page, Label, Button, TextField {
   font-size: 20;
 }
 
-.single-page {
-  width: 75%;
-}
-
-.smaller {
-  font-size: 15;
-}
-
-.small-spacing {
-  margin: 10;
-}
-
-.small-spacing-v {
-  margin: 10 0;
-}
-
-.small-spacing-h {
-  margin: 0 10;
-}
-
-.medium-spacing {
-  margin: 14;
-}
-
-.large-spacing {
-  margin: 26;
-}
-
-ActionBar .icomoon-actionitem {
-  padding: 6 18;
-}
-
-ActionBar .icomoon-actionitem {
-  font-size: 20;
-}
-
-/* This can be removed once Mww fixes the bars svg (removed the superfluous width) */
-.icomoon-bars {
-  padding-left: 0;
+ActionBar .mdi-actionitem {
+  font-size: 28;
 }
 
 ActionBar Label, ActionBar Button {
   font-size: 19;
-}
-
-.page-divider {
-  border-left-width: 3px;
-  border-left-color: #c9c9ce;
 }

@@ -4,6 +4,7 @@ import { Toast } from "nativescript-toast";
 import { Color } from "color";
 import { isIOS } from "platform";
 import { Font } from "ui/styling/font";
+import { Config } from "../shared/config";
 
 declare const ToastView, UIFont;
 
@@ -19,9 +20,9 @@ export class ToastService {
       ToastView.appearance().bottomOffsetPortrait = 40;
       ToastView.appearance().bottomOffsetLandscape = 40;
       ToastView.appearance().backgroundColor = new Color(240, 70, 70, 70).ios;
-      ToastView.appearance().font = UIFont.fontWithNameSize("Source Sans Pro", 16);
+      ToastView.appearance().font = UIFont.fontWithNameSize("Source Sans Pro", Config.isTablet ? 20 : 16);
     } else {
-      let f = new Font("SourceSansPro-Regular", 14, "normal", "normal");
+      let f = new Font("SourceSansPro-Regular", (Config.isTablet ? 17 : 14), "normal", "normal");
       this.androidTypeface = f.getAndroidTypeface();
     }
   }

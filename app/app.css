@@ -16,7 +16,7 @@ Page {
   /* this is also the color the user sees when the app starts (FOUC),
    so made it the same as the home background color
     TODO reuse this knowledge.. also use this color for the splashscreen */
-  background-color: #009c9b;
+  background-color: rgba(255, 255, 255, 150);
   color: #fff;
   font-size: 15;
   font-family: 'Source Sans Pro', SourceSansPro-Regular, system, sans-serif;
@@ -109,7 +109,7 @@ ActionBar Label, ActionBar Button {
   font-size: 17;
 }
 
-Button {
+Button.button {
   color: #fff;
   font-size: 16;
 }

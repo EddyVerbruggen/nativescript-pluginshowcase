@@ -10,7 +10,7 @@ import { SpeechRecognition, SpeechRecognitionTranscription } from "nativescript-
 import { GestureEventData } from "tns-core-modules/ui/gestures";
 import { Label } from "tns-core-modules/ui/label";
 import { alert } from "tns-core-modules/ui/dialogs";
-import { compose as composeEmail } from "nativescript-email";
+import { compose as composeEmail, available as emailAvailable } from "nativescript-email";
 import * as Calendar from "nativescript-calendar";
 
 @Component({
@@ -139,7 +139,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
   private speak(text: string): void {
     let speakOptions: SpeakOptions = {
       text: text,
-      speakRate: 0.45,
+      speakRate: 0.5,
       pitch: 1, // 0.1 and 2 are rather funny :)
       // locale: "en-US", // optional, uses the device locale by default
       finishedCallback: () => {
@@ -178,11 +178,22 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
   }
 
   composeAnEmail(subject: string, body: string): void {
-    composeEmail({
-      subject: subject,
-      body: body
-    }).then((x) => {
-      console.log(">> email result: " + x);
+    emailAvailable().then(avail => {
+      if (!avail) {
+        alert({
+          title: "Not supported",
+          message: "There's no email client configured. Try a different device please.",
+          okButtonText: "Ah, makes sense.."
+        });
+        return;
+      }
+
+      composeEmail({
+        subject: subject,
+        body: body
+      }).then((x) => {
+        console.log(">> email result: " + x);
+      });
     });
   }
 
@@ -200,18 +211,27 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
       endDate: midnight
     }).then(
         events => {
+          let eventsSpoken = 0;
           events.map(ev => {
             // TODO remove this filter at some point
             if (ev.calendar.name === "Eddy Verbruggen") {
+              eventsSpoken++;
               let secondsFromNow = Math.round((ev.startDate.getTime() - new Date().getTime()) / 1000);
               let hours = Math.round(secondsFromNow / (60 * 60));
               let minutes = Math.round(secondsFromNow / 60);
               this.text2speech.speak({
                 text: `${ev.title} in ${hours > 0 ? hours + ' hours and ' : ''} ${minutes} minutes`,
-                speakRate: 0.45,
+                speakRate: 0.5,
               });
             }
-          })
+          });
+          if (eventsSpoken === 0) {
+            this.text2speech.speak({
+              text: `Your schedule is clear. Have a nice day.`,
+              locale: "en-US",
+              speakRate: 0.5
+            });
+          }
         },
         function (error) {
           console.log("Error finding Events: " + error);

@@ -19,7 +19,7 @@
           <StackLayout row="1" class="tips" *ngIf="showingTips">
             <Label [text]="('mdi-format-quote-open' | fonticon) + 'Share a selfie' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-20" textWrap="true" (tap)="shareSelfie()"></Label>
             <Label [text]="('mdi-format-quote-open' | fonticon) + 'What\'s my schedule today?' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-20" textWrap="true" (tap)="findTodaysEvents()"></Label>
-            <Label style="text-align: center" [text]="('mdi-format-quote-open' | fonticon) + 'Compose an email with subject...\nand message...' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-10" textWrap="true" (tap)="composeAnEmail()"></Label>
+            <Label style="text-align: center" [text]="('mdi-format-quote-open' | fonticon) + 'Compose an email with subject...\nand message...' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-10" textWrap="true" (tap)="composeAnEmail('Space race', 'Bring marshmallows!')"></Label>
           </StackLayout>
         </GridLayout>
       </StackLayout>

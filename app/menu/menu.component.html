@@ -33,7 +33,7 @@
       <GridLayout row="5" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/menu/keyboard']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" *ngIf="isIOS">
         <Label class="mdi" [text]="'mdi-keyboard' | fonticon"></Label>
         <Label col="1" class="item-title" text="Keyboard input"></Label>
-        <Label row="1" col="1" class="plugin-names" text="Numeric Keyboard, IQKeyboardManager" textWrap="true"></Label>
+        <Label row="1" col="1" class="plugin-names" text="IQKeyboardManager, Numeric Keyboard" textWrap="true"></Label>
       </GridLayout>
 
       <StackLayout row="6" class="sideOptions madeby-container" verticalAlignment="bottom" (tap)="openTwitter()">
