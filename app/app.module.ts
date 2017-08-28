@@ -63,8 +63,9 @@ export class AppModule {
     // This is for nativescript-3dtouch
     if (isIOS) {
       new ThreeDeeTouch().setQuickActionCallback(shortcutItem => {
-        console.log("app was launched by shortcut type '" + shortcutItem.type + "' with title '" + shortcutItem.localizedTitle + "'");
-        // this is where you handle any specific case for the shortcut
+        console.log(`The app was launched by shortcut type '${shortcutItem.type}' with title '${shortcutItem.localizedTitle}`);
+
+        // this is where you handle any specific case for the shortcut, based on its type
         if (shortcutItem.type === "feedback") {
           this.deeplink("/menu/feedback");
         } else if (shortcutItem.type === "appicon") {

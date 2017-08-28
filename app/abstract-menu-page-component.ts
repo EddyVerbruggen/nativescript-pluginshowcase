@@ -1,15 +1,14 @@
 import { OnDestroy, ViewContainerRef } from "@angular/core";
-import { isAndroid, isIOS } from "platform";
+import { isIOS } from "platform";
 import { MenuComponent } from "./menu/menu.component";
 import { ModalDialogOptions, ModalDialogService } from "nativescript-angular";
 import { InfoModalComponent } from "./info-modal/info-modal";
 import { PluginInfoWrapper } from "./shared/plugin-info-wrapper";
+import { Config } from "./shared/config";
 
 export abstract class AbstractMenuPageComponent implements OnDestroy {
-
   isIOS: boolean = isIOS;
-  //noinspection JSUnusedGlobalSymbols
-  isAndroid: boolean = isAndroid;
+  isTablet: boolean = Config.isTablet;
 
   constructor(protected menuComponent: MenuComponent,
               protected vcRef: ViewContainerRef,

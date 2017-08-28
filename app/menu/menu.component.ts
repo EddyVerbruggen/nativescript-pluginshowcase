@@ -6,6 +6,7 @@ import { isIOS } from "tns-core-modules/platform";
 import { availableSync } from "nativescript-appavailability";
 import { openUrl } from "tns-core-modules/utils/utils";
 import { alert } from "tns-core-modules/ui/dialogs";
+import { Config } from "../shared/config";
 
 @Component({
   moduleId: module.id,
@@ -15,7 +16,8 @@ import { alert } from "tns-core-modules/ui/dialogs";
 })
 
 export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
-  public isIOS: boolean = isIOS;
+  isIOS: boolean = isIOS;
+  isTablet: boolean = Config.isTablet;
 
   @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
   private _drawer: SideDrawerType;
