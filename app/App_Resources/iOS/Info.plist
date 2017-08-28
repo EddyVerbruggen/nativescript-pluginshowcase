@@ -73,16 +73,6 @@
     </dict>
     <dict>
       <key>UIApplicationShortcutItemIconType</key>
-      <string>UIApplicationShortcutIconTypeLocation</string>
-      <key>UIApplicationShortcutItemTitle</key>
-      <string>Mapping</string>
-      <key>UIApplicationShortcutItemSubtitle</key>
-      <string>Deeplink to Mapping</string>
-      <key>UIApplicationShortcutItemType</key>
-      <string>mapping</string>
-    </dict>
-    <dict>
-      <key>UIApplicationShortcutItemIconType</key>
       <string>UIApplicationShortcutIconTypeHome</string>
       <key>UIApplicationShortcutItemTitle</key>
       <string>App icon</string>

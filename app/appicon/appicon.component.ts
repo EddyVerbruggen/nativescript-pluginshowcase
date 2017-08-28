@@ -48,7 +48,7 @@ import { ToastService } from "../feedback/toast.service";
   ]
 })
 export class AppIconComponent extends AbstractMenuPageComponent implements OnInit {
-  showAppIconChangedNotification: boolean = true;
+  suppressAppIconChangedNotification: boolean = false;
   private appIconChanger;
 
   @ViewChild("recordButton") recordButton: ElementRef;
@@ -65,12 +65,11 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
   }
 
   changeIcon(name: string): void {
-    console.log(">> this.showAppIconChangedNotification: " + this.showAppIconChangedNotification);
     this.appIconChanger.changeIcon({
       iconName: name,
-      suppressUserNotification: !this.showAppIconChangedNotification // default true
+      suppressUserNotification: this.suppressAppIconChangedNotification // default true
     }).then(() => {
-      this.toastService.show(`Press the Home button to view the change :)`);
+      // nothing to do as there's already a prompt being shown
     }, (error: any) => {
       this.toastService.show(`Error code: ${error.code}, Error message: ${error.message}`, true);
     });

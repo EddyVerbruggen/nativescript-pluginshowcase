@@ -1,4 +1,4 @@
-import { enableProdMode, NgModule, NgModuleFactoryLoader, NO_ERRORS_SCHEMA } from "@angular/core";
+import { enableProdMode, NgModule, NgModuleFactoryLoader, NgZone, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NSModuleFactoryLoader } from "nativescript-angular/router";
 
@@ -50,7 +50,8 @@ Config.isTablet = device.deviceType === DeviceType.Tablet;
   ]
 })
 export class AppModule {
-  constructor(private routerExtensions: RouterExtensions) {
+  constructor(private routerExtensions: RouterExtensions,
+              private zone: NgZone) {
 
     if (Config.isTablet) {
       let cssFileName = fs.path.join(fs.knownFolders.currentApp().path, "app.tablet.css");
@@ -65,16 +66,19 @@ export class AppModule {
         console.log("app was launched by shortcut type '" + shortcutItem.type + "' with title '" + shortcutItem.localizedTitle + "'");
         // this is where you handle any specific case for the shortcut
         if (shortcutItem.type === "feedback") {
-          this.routerExtensions.navigate(['/menu/feedback'], {
-            animated: false
-          });
-        } else if (shortcutItem.type === "mapping") {
-          // this one could be better (nav to today?)
-          this.routerExtensions.navigate(['/menu/mapping'], {
-            animated: false
-          });
+          this.deeplink("/menu/feedback");
+        } else if (shortcutItem.type === "appicon") {
+          this.deeplink("/menu/appicon");
         }
       });
     }
+  }
+
+  private deeplink(to: string): void {
+    this.zone.run(() => {
+      this.routerExtensions.navigate([to], {
+        animated: false
+      });
+    });
   }
 }

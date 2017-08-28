@@ -1,4 +1,4 @@
-<RadSideDrawer showOverNavigation="true" drawerContentSize="260" transition="PushTransition">
+<RadSideDrawer showOverNavigation="true" [drawerContentSize]="isTablet ? 300 : 260" transition="PushTransition">
   <Gradient tkDrawerContent class="menu-contents-wrapper" direction="to bottom right" colors="#2da7fb, #227ebe">
     <GridLayout class="sideStackLayout" rows="auto, auto, auto, auto, auto, auto, *">
       <StackLayout row="0" class="sideTitleStackLayout">

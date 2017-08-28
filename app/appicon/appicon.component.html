@@ -10,7 +10,7 @@
 
 <StackLayout class="main-content">
   <Gradient height="100%" direction="to bottom" colors="blueviolet, #5c1d97" class="p-20">
-    <GridLayout rows="*, *" columns="*">
+    <GridLayout rows="*, auto" columns="*">
 
       <StackLayout [@scale-in]="'in'" row="0" class="transparent-area">
         <Label class="section-title" text="3D Touch"></Label>
@@ -21,11 +21,11 @@
         <Label class="section-title" text="App Icon Changer"></Label>
         <!--<Label class="section-subtitle" text="Fancy a diffent icon? Press any of these and press the home button." textWrap="true"></Label>-->
 
-        <GridLayout rows="auto, auto, auto" columns="auto, auto" class="icon-container">
-          <Label text="Default" class="m-t-15 m-r-20"></Label>
+        <GridLayout rows="auto, auto, auto" columns="auto, *" class="icon-container">
+          <Label text="Default icon" class="m-t-15"></Label>
           <Image col="1" src="res://icon-default" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon')" horizontalAlignment="left"></Image>
 
-          <Label row="1" text="Alternatives" class="m-t-15 m-r-20"></Label>
+          <Label row="1" text="Alternatives" class="m-t-15 p-t-20" verticalAlignment="top"></Label>
           <WrapLayout row="1" col="1">
             <Image src="res://icon-red-100" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-red')"></Image>
             <Image src="res://icon-blue-100" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-blue')"></Image>
@@ -34,8 +34,11 @@
             <Image src="res://icon-yellow-152" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-yellow')"></Image>
           </WrapLayout>
 
-          <Label row="2" text="Feedback?" class="m-t-25 m-r-20"></Label>
-          <Switch row="2" col="1" class="m-t-25" [(ngModel)]="showAppIconChangedNotification" horizontalAlignment="left"></Switch>
+          <!--StackLayout row="2">
+            <Label text="Suppress feedback" class="m-t-25 m-r-20"></Label>
+            <Label class="section-subtitle" text="Experimental feature"></Label>
+          </StackLayout>
+          <Switch row="2" col="1" class="m-t-25" [(ngModel)]="showAppIconChangedNotification" horizontalAlignment="left"></Switch-->
         </GridLayout>
       </StackLayout>
     </GridLayout>
