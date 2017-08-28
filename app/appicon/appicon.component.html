@@ -14,12 +14,29 @@
 
       <StackLayout [@scale-in]="'in'" row="0" class="transparent-area">
         <Label class="section-title" text="3D Touch"></Label>
-        <Label class="section-subtitle" text="Bla bla blah" textWrap="true"></Label>
+        <Label class="section-subtitle" text="We've preconfigured a few actions upon app installation, and you can add a 'dynamic' one here." textWrap="true"></Label>
       </StackLayout>
 
       <StackLayout [@from-bottom]="'in'" row="1" class="transparent-area m-t-20">
         <Label class="section-title" text="App Icon Changer"></Label>
-        <Label class="section-subtitle" text="Bla bla blah" textWrap="true"></Label>
+        <!--<Label class="section-subtitle" text="Fancy a diffent icon? Press any of these and press the home button." textWrap="true"></Label>-->
+
+        <GridLayout rows="auto, auto, auto" columns="auto, auto" class="icon-container">
+          <Label text="Default" class="m-t-15 m-r-20"></Label>
+          <Image col="1" src="res://icon-default" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon')" horizontalAlignment="left"></Image>
+
+          <Label row="1" text="Alternatives" class="m-t-15 m-r-20"></Label>
+          <WrapLayout row="1" col="1">
+            <Image src="res://icon-red-100" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-red')"></Image>
+            <Image src="res://icon-blue-100" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-blue')"></Image>
+            <Image src="res://icon-green-100" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-green')"></Image>
+            <Image src="res://icon-purple-100" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-purple')"></Image>
+            <Image src="res://icon-yellow-152" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-yellow')"></Image>
+          </WrapLayout>
+
+          <Label row="2" text="Feedback?" class="m-t-25 m-r-20"></Label>
+          <Switch row="2" col="1" class="m-t-25" [(ngModel)]="showAppIconChangedNotification" horizontalAlignment="left"></Switch>
+        </GridLayout>
       </StackLayout>
     </GridLayout>
   </Gradient>

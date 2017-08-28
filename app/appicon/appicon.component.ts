@@ -5,6 +5,8 @@ import { MenuComponent } from "../menu/menu.component";
 import { ModalDialogService } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
+import { AppIconChanger } from "nativescript-app-icon-changer";
+import { ToastService } from "../feedback/toast.service";
 
 @Component({
   selector: "AppIcon",
@@ -46,21 +48,32 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
   ]
 })
 export class AppIconComponent extends AbstractMenuPageComponent implements OnInit {
-  microphoneEnabled: boolean = false;
-  recording: boolean = false;
-  showingTips: boolean = false;
-  recognizedText: string;
-  private recordingAvailable: boolean;
+  showAppIconChangedNotification: boolean = true;
+  private appIconChanger;
 
   @ViewChild("recordButton") recordButton: ElementRef;
 
   constructor(protected menuComponent: MenuComponent,
               protected vcRef: ViewContainerRef,
-              protected modalService: ModalDialogService) {
+              protected modalService: ModalDialogService,
+              private toastService: ToastService) {
     super(menuComponent, vcRef, modalService);
+    this.appIconChanger = new AppIconChanger();
   }
 
   ngOnInit(): void {
+  }
+
+  changeIcon(name: string): void {
+    console.log(">> this.showAppIconChangedNotification: " + this.showAppIconChangedNotification);
+    this.appIconChanger.changeIcon({
+      iconName: name,
+      suppressUserNotification: !this.showAppIconChangedNotification // default true
+    }).then(() => {
+      this.toastService.show(`Press the Home button to view the change :)`);
+    }, (error: any) => {
+      this.toastService.show(`Error code: ${error.code}, Error message: ${error.message}`, true);
+    });
   }
 
   protected getPluginInfo(): PluginInfoWrapper {

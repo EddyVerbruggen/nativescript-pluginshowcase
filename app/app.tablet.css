@@ -9,3 +9,13 @@ ActionBar .mdi-actionitem {
 ActionBar Label, ActionBar Button {
   font-size: 19;
 }
+
+.section-title {
+  font-size: 22;
+  font-weight: 600;
+}
+
+.section-subtitle {
+  font-size: 16;
+  opacity: 0.8;
+}
