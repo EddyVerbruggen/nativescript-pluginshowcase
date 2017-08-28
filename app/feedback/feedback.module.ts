@@ -4,7 +4,6 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { FeedbackRoutingModule } from "./feedback-routing.module";
 import { FeedbackComponent } from "./feedback.component";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
-import { ToastService } from "./toast.service";
 
 @NgModule({
   imports: [
@@ -14,9 +13,6 @@ import { ToastService } from "./toast.service";
   ],
   declarations: [
     FeedbackComponent
-  ],
-  providers: [
-    ToastService
   ],
   schemas: [
     NO_ERRORS_SCHEMA

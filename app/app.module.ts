@@ -13,6 +13,7 @@ import { ThreeDeeTouch } from "nativescript-3dtouch";
 import { device, isIOS } from "tns-core-modules/platform";
 import { DeviceType } from "tns-core-modules/ui/enums";
 import * as application from "application";
+import { ToastService } from "./feedback/toast.service";
 
 const fs = require("file-system");
 
@@ -43,7 +44,10 @@ Config.isTablet = device.deviceType === DeviceType.Tablet;
     AppComponent
   ],
   providers: [
-    {provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader}
+    ToastService,
+    {
+      provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader
+    }
   ],
   schemas: [
     NO_ERRORS_SCHEMA

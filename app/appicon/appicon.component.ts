@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { MenuComponent } from "../menu/menu.component";
@@ -7,6 +7,7 @@ import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { AppIconChanger } from "nativescript-app-icon-changer";
 import { ToastService } from "../feedback/toast.service";
+import { ThreeDeeTouch } from "nativescript-3dtouch";
 
 @Component({
   selector: "AppIcon",
@@ -49,9 +50,8 @@ import { ToastService } from "../feedback/toast.service";
 })
 export class AppIconComponent extends AbstractMenuPageComponent implements OnInit {
   suppressAppIconChangedNotification: boolean = false;
-  private appIconChanger;
-
-  @ViewChild("recordButton") recordButton: ElementRef;
+  private appIconChanger: AppIconChanger;
+  private threeDeeTouch: ThreeDeeTouch;
 
   constructor(protected menuComponent: MenuComponent,
               protected vcRef: ViewContainerRef,
@@ -59,12 +59,38 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
               private toastService: ToastService) {
     super(menuComponent, vcRef, modalService);
     this.appIconChanger = new AppIconChanger();
+    this.threeDeeTouch = new ThreeDeeTouch();
   }
 
   ngOnInit(): void {
   }
 
-  changeIcon(name: string): void {
+  addDeeplink(): void {
+    this.threeDeeTouch.configureQuickActions([
+      {
+        type: "mapping",
+        title: "Mapping",
+        subtitle: "Deeplink to Mapping",
+        iconType: UIApplicationShortcutIconType.Location
+      }
+    ]).then(() => {
+      this.toastService.show("Added a deepling to Mapping. Close the app and apply pressure to the app icon to check it out!", true);
+    }, err => {
+      this.toastService.show(`Error: ${err}`);
+    });
+  }
+
+  removeDeeplink(): void {
+    this.threeDeeTouch.configureQuickActions(
+        []
+    ).then(() => {
+      this.toastService.show("Dynamic deeplink removed");
+    }, err => {
+      this.toastService.show(`Error: ${err}`);
+    });
+  }
+
+  changeAppIcon(name: string): void {
     this.appIconChanger.changeIcon({
       iconName: name,
       suppressUserNotification: this.suppressAppIconChangedNotification // default true
@@ -77,7 +103,7 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
 
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
-        "Fiddle with your app's home icon.\niOS only - for now.",
+        "Fiddle with your app's home icon. Currently for iOS only.",
         Array.of(
             new PluginInfo(
                 "nativescript-3dtouch",

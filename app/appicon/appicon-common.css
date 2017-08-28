@@ -5,3 +5,25 @@ ActionBar {
 .icon-container Image {
   margin: 20 0 0 20;
 }
+
+button {
+  background-color: #6494AA;
+  padding: 8 10;
+  margin: 8 10 8 0;
+  font-size: 14;
+  border-radius: 4;
+  border-width: 1;
+  border-color: #fff;
+}
+
+.button {
+  color: #ffffff;
+}
+
+.button-addd {
+  background-color: #51ae8c;
+}
+
+.button-remove {
+  background-color: #ee664c;
+}

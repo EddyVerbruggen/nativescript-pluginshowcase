@@ -93,7 +93,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
       this.speech2text.requestPermission().then((granted: boolean) => {
         this.microphoneEnabled = granted;
       });
-    }, 2000);
+    }, 1000);
   }
 
   private startListening(): void {
@@ -218,7 +218,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
               eventsSpoken++;
               let secondsFromNow = Math.round((ev.startDate.getTime() - new Date().getTime()) / 1000);
               let hours = Math.round(secondsFromNow / (60 * 60));
-              let minutes = Math.round(secondsFromNow / 60);
+              let minutes = Math.round((secondsFromNow / 60) % 60);
               this.text2speech.speak({
                 text: `${ev.title} in ${hours > 0 ? hours + ' hours and ' : ''} ${minutes} minutes`,
                 speakRate: 0.5,

@@ -15,23 +15,27 @@
       <StackLayout [@scale-in]="'in'" row="0" class="transparent-area">
         <Label class="section-title" text="3D Touch"></Label>
         <Label class="section-subtitle" text="We've preconfigured a few actions upon app installation, and you can add a 'dynamic' one here." textWrap="true"></Label>
+        <WrapLayout class="m-t-10">
+          <Button text="Add deeplink to Mapping" (tap)="addDeeplink()" class="button button-add"></Button>
+          <Button text="Remove deeplink" (tap)="removeDeeplink()" class="button button-remove"></Button>
+        </WrapLayout>
       </StackLayout>
 
       <StackLayout [@from-bottom]="'in'" row="1" class="transparent-area m-t-20">
         <Label class="section-title" text="App Icon Changer"></Label>
-        <!--<Label class="section-subtitle" text="Fancy a diffent icon? Press any of these and press the home button." textWrap="true"></Label>-->
+        <Label class="section-subtitle" text="Fancy a diffent icon? iOS 10.3 added support for dynamically changing your app's icon!" textWrap="true"></Label>
 
         <GridLayout rows="auto, auto, auto" columns="auto, *" class="icon-container">
           <Label text="Default icon" class="m-t-15"></Label>
-          <Image col="1" src="res://icon-default" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon')" horizontalAlignment="left"></Image>
+          <Image col="1" src="res://icon-default" width="50" height="50" borderRadius="5" (tap)="changeAppIcon('icon')" horizontalAlignment="left"></Image>
 
           <Label row="1" text="Alternatives" class="m-t-15 p-t-20" verticalAlignment="top"></Label>
           <WrapLayout row="1" col="1">
-            <Image src="res://icon-red-100" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-red')"></Image>
-            <Image src="res://icon-blue-100" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-blue')"></Image>
-            <Image src="res://icon-green-100" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-green')"></Image>
-            <Image src="res://icon-purple-100" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-purple')"></Image>
-            <Image src="res://icon-yellow-152" width="50" height="50" borderRadius="5" (tap)="changeIcon('icon-yellow')"></Image>
+            <Image src="res://icon-red-100" width="50" height="50" borderRadius="5" (tap)="changeAppIcon('icon-red')"></Image>
+            <Image src="res://icon-blue-100" width="50" height="50" borderRadius="5" (tap)="changeAppIcon('icon-blue')"></Image>
+            <Image src="res://icon-green-100" width="50" height="50" borderRadius="5" (tap)="changeAppIcon('icon-green')"></Image>
+            <Image src="res://icon-purple-100" width="50" height="50" borderRadius="5" (tap)="changeAppIcon('icon-purple')"></Image>
+            <Image src="res://icon-yellow-152" width="50" height="50" borderRadius="5" (tap)="changeAppIcon('icon-yellow')"></Image>
           </WrapLayout>
 
           <!--StackLayout row="2">
