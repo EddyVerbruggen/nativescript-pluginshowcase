@@ -10,8 +10,11 @@ import { SpeechRecognition, SpeechRecognitionTranscription } from "nativescript-
 import { GestureEventData } from "tns-core-modules/ui/gestures";
 import { Label } from "tns-core-modules/ui/label";
 import { alert } from "tns-core-modules/ui/dialogs";
-import { compose as composeEmail, available as emailAvailable } from "nativescript-email";
+import { available as emailAvailable, compose as composeEmail } from "nativescript-email";
 import * as Calendar from "nativescript-calendar";
+import * as Camera from "nativescript-camera";
+import * as SocialShare from "nativescript-social-share";
+import { ImageSource } from "tns-core-modules/image-source";
 
 @Component({
   selector: "Speech",
@@ -198,7 +201,19 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
   }
 
   shareSelfie(): void {
-    // TODO camera, then share.. see MDL app
+    // TODO on Android this call is async so this is not a good idea
+    // if (isIOS) {
+    Camera.requestPermissions();
+    // }
+
+    Camera.takePicture({
+      width: 1000,
+      height: 1000
+    }).then(imageAsset => {
+      new ImageSource().fromAsset(imageAsset).then(imageSource => {
+        SocialShare.shareImage(imageSource);
+      });
+    });
   }
 
   findTodaysEvents(): void {
