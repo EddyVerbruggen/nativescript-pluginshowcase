@@ -5,6 +5,9 @@ import { InputRoutingModule } from "./input-routing.module";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 import { InputComponent } from "./input.component";
 
+import {registerElement} from "nativescript-angular/element-registry";
+registerElement("DrawingPad", () => require("nativescript-drawingpad").DrawingPad);
+
 @NgModule({
   imports: [
     NativeScriptCommonModule,

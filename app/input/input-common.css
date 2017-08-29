@@ -7,3 +7,14 @@ ActionBar {
   color: #fff;
   font-size: 13;
 }
+
+Button.btn-primary {
+  background-color: #fff;
+  color: #1567a2;
+}
+
+Button.btn-outline {
+  color: #fff;
+  border-color: #fff;
+  background-color: rgba(255, 255, 255, 210);
+}

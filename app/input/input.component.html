@@ -17,15 +17,37 @@
       </StackLayout>
 
       <StackLayout [@from-bottom]="'in'" row="1" class="p-20 m-t-20" style="background-color: rgba(255, 255, 255, 210)" borderRadius="20">
-        <StackLayout [@from-bottom]="'in'" *ngIf="selectedPlugin === 'DrawingPad'">
-          <Label text="DrawingPad"></Label>
+        <StackLayout *ngIf="selectedPlugin === 'DrawingPad'">
+          <StackLayout>
+            <ContentView backgroundColor="#eeeeee" borderRadius="10">
+              <DrawingPad #myDrawing
+                          height="280"
+                          backgroundColor="#eeeeee"
+                          penColor="#ff4081"
+                          penWidth="10">
+              </DrawingPad>
+            </ContentView>
+
+            <StackLayout class="m-t-20" orientation="horizontal" horizontalAlignment="center">
+              <Button class="btn btn-rounded-sm btn-primary" text="Get Drawing" (tap)="getMyDrawing(myDrawing)"></Button>
+              <Button class="btn btn-rounded-sm btn-outline" text="Clear Drawing" (tap)="clearMyDrawing(myDrawing)"></Button>
+            </StackLayout>
+
+            <ScrollView>
+              <WrapLayout class="m-t-20">
+                <ContentView *ngFor="let drawing of drawings" class="m-r-10 m-b-10" backgroundColor="#eeeeee" borderRadius="5">
+                  <Image [src]="drawing" width="65" height="65" backgroundColor="#eeeeee"></Image>
+                </ContentView>
+              </WrapLayout>
+            </ScrollView>
+          </StackLayout>
         </StackLayout>
 
-        <StackLayout [@from-bottom]="'in'" *ngIf="selectedPlugin === 'NumKeyboard'">
+        <StackLayout *ngIf="selectedPlugin === 'NumKeyboard'">
           <Label text="NumKeyboard"></Label>
         </StackLayout>
 
-        <StackLayout [@from-bottom]="'in'" *ngIf="selectedPlugin === 'IQKeyboard'">
+        <StackLayout *ngIf="selectedPlugin === 'IQKeyboard'">
           <Label text="IQKeyboard"></Label>
         </StackLayout>
       </StackLayout>

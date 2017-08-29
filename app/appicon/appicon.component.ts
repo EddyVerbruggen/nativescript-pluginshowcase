@@ -6,7 +6,7 @@ import { ModalDialogService } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { AppIconChanger } from "nativescript-app-icon-changer";
-import { ToastService } from "../feedback/toast.service";
+import { ToastService } from "../services/toast.service";
 import { ThreeDeeTouch } from "nativescript-3dtouch";
 
 @Component({
@@ -89,6 +89,8 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
       this.toastService.show(`Error: ${err}`);
     });
   }
+
+  // TODO this resets the icon - also add to doc of plugin: UIApplication.shared.setAlternateIconName(nil)
 
   // After using nativescript-toast this will crash!
   changeAppIcon(name: string): void {

@@ -7,6 +7,7 @@ import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { SegmentedBarItem } from "tns-core-modules/ui/segmented-bar";
 import { PropertyChangeData } from "tns-core-modules/data/observable";
+import { DrawingPad } from "nativescript-drawingpad";
 
 @Component({
   selector: "Input",
@@ -51,6 +52,7 @@ import { PropertyChangeData } from "tns-core-modules/data/observable";
 export class InputComponent extends AbstractMenuPageComponent implements OnInit {
   plugins: Array<SegmentedBarItem> = [];
   selectedPlugin: string = "DrawingPad";
+  drawings: Array<any> = [];
 
   constructor(protected menuComponent: MenuComponent,
               protected vcRef: ViewContainerRef,
@@ -76,6 +78,21 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
       return;
     }
     this.selectedPlugin = this.plugins[args.value].title;
+  }
+
+  getMyDrawing(pad: DrawingPad) {
+    // then get the drawing (Bitmap on Android) of the drawingpad
+    pad.getDrawing().then(data => {
+      console.log(data);
+      this.drawings.push(data);
+      this.clearMyDrawing(pad);
+    }, function(err) {
+      console.log(err);
+    });
+  }
+
+  clearMyDrawing(pad: DrawingPad) {
+    pad.clearDrawing();
   }
 
   protected getPluginInfo(): PluginInfoWrapper {

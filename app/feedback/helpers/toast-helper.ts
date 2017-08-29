@@ -1,4 +1,4 @@
-import { ToastService } from "../toast.service";
+import { ToastService } from "../../services/toast.service";
 
 export class ToastHelper {
 

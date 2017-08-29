@@ -13,7 +13,7 @@ import { ThreeDeeTouch } from "nativescript-3dtouch";
 import { device, isIOS } from "tns-core-modules/platform";
 import { DeviceType } from "tns-core-modules/ui/enums";
 import * as application from "application";
-import { ToastService } from "./feedback/toast.service";
+import { ToastService } from "./services/toast.service";
 
 const fs = require("file-system");
 
