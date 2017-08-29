@@ -8,6 +8,7 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { SegmentedBarItem } from "tns-core-modules/ui/segmented-bar";
 import { PropertyChangeData } from "tns-core-modules/data/observable";
 import { DrawingPad } from "nativescript-drawingpad";
+import { IQKeyboardHelper } from "./helpers/iqkeyboard-helper";
 
 @Component({
   selector: "Input",
@@ -53,6 +54,7 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
   plugins: Array<SegmentedBarItem> = [];
   selectedPlugin: string = "DrawingPad";
   drawings: Array<any> = [];
+  iqkeyboardHelper: IQKeyboardHelper;
 
   constructor(protected menuComponent: MenuComponent,
               protected vcRef: ViewContainerRef,
@@ -65,6 +67,8 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
     this.addPluginToSegmentedBar("DrawingPad");
     this.addPluginToSegmentedBar("NumKeyboard");
     this.addPluginToSegmentedBar("IQKeyboard");
+
+    this.iqkeyboardHelper = new IQKeyboardHelper();
   }
 
   private addPluginToSegmentedBar(name: string) {
@@ -86,7 +90,7 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
       console.log(data);
       this.drawings.push(data);
       this.clearMyDrawing(pad);
-    }, function(err) {
+    }, err => {
       console.log(err);
     });
   }
@@ -97,19 +101,27 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
 
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
-        "Always wanted a fully trained parrot?\n\nRecord your voice in the device language and it will be shown and read back to you.\n\nBe sure to try the tips as well!",
+        // TODO
+        "..",
         Array.of(
             new PluginInfo(
-                "nativescript-texttospeech",
+                "nativescript-drawingpad",
                 "Text to Speech",
                 "https://github.com/bradmartin/nativescript-texttospeech",
-                "Make your app speak. Might be useful for disabled people 👀. Certainly useful for lazy ones."),
+                "..."),
 
             new PluginInfo(
-                "nativescript-speech-recognition",
-                "Speech Recognition",
-                "https://github.com/EddyVerbruggen/nativescript-speech-recognition",
-                "Speak to your app 👄. Useful for voice control and silly demo's."
+                "nativescript-numeric-keyboard",
+                "Numeric Keyboard (iOS)",
+                "https://github.com/EddyVerbruggen/nativescript-numeric-keyboard",
+                "..."
+            ),
+
+            new PluginInfo(
+                "https://github.com/tjvantoll/nativescript-IQKeyboardManager",
+                "IQKeyboardManager (iOS)",
+                "https://github.com/tjvantoll/nativescript-IQKeyboardManager",
+                "Tame that wild beast  🐅  of a keyboard  ⌨️  by dropping in this library."
             )
         )
     );

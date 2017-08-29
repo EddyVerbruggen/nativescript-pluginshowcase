@@ -36,7 +36,7 @@
             <ScrollView>
               <WrapLayout class="m-t-20">
                 <ContentView *ngFor="let drawing of drawings" class="m-r-10 m-b-10" backgroundColor="#eeeeee" borderRadius="5">
-                  <Image [src]="drawing" width="65" height="65" backgroundColor="#eeeeee"></Image>
+                  <Image [src]="drawing" width="65" height="65" backgroundcolor="#eeeeee"></Image>
                 </ContentView>
               </WrapLayout>
             </ScrollView>
@@ -44,14 +44,40 @@
         </StackLayout>
 
         <StackLayout *ngIf="selectedPlugin === 'NumKeyboard'">
-          <Label text="NumKeyboard"></Label>
+          <NumericKeyboard class="number-input" hint="100" noDecimals="true"></NumericKeyboard>
         </StackLayout>
 
-        <StackLayout *ngIf="selectedPlugin === 'IQKeyboard'">
-          <Label text="IQKeyboard"></Label>
-        </StackLayout>
+        <ScrollView *ngIf="selectedPlugin === 'IQKeyboard'">
+          <StackLayout>
+            <GridLayout rows="auto, auto, auto, auto, auto, auto, auto" columns="*, auto" horizontalAlignment="stretch">
+              <Label row="0" colSpan="2" text="Flip these switches and check out their effect on the textfields below" textWrap="true" class="title"></Label>
+
+              <Label row="1" text="Enable IQKeyboard" [class.disabled]="!iqkeyboardHelper.enabled"></Label>
+              <Switch row="1" [checked]="iqkeyboardHelper.enabled" (checkedChange)="iqkeyboardHelper.toggleIQKeyboard($event)"></Switch>
+
+              <Label row="2" text="Enable IQKeyboard toolbar" [class.disabled]="!iqkeyboardHelper.toolbarEnabled"></Label>
+              <Switch row="2" [checked]="iqkeyboardHelper.toolbarEnabled" (checkedChange)="iqkeyboardHelper.toggleIQKeyboardToolbar($event)"></Switch>
+
+              <Label row="3" text="Tap outside closes keyboard" [class.disabled]="!iqkeyboardHelper.tapOutsideToClose"></Label>
+              <Switch row="3" [checked]="iqkeyboardHelper.tapOutsideToClose" (checkedChange)="iqkeyboardHelper.toggleTapOutsideToClose($event)"></Switch>
+
+              <Label row="4" text="Show 'hint' in toolbar" [class.disabled]="!iqkeyboardHelper.showHintInToolbar"></Label>
+              <Switch row="4" [checked]="iqkeyboardHelper.showHintInToolbar" (checkedChange)="iqkeyboardHelper.toggleShowHintInToolbar($event)"></Switch>
+
+              <Label row="5" text="Change the 'Done' label" [class.disabled]="!iqkeyboardHelper.doneButtonTextChanged"></Label>
+              <Switch row="5" [checked]="iqkeyboardHelper.doneButtonTextChanged" (checkedChange)="iqkeyboardHelper.toggleDoneButtonText($event)"></Switch>
+
+              <Label row="6" text="Dark keyboard appearance" [class.disabled]="!iqkeyboardHelper.darkAppearance"></Label>
+              <Switch row="6" [checked]="iqkeyboardHelper.darkAppearance" (checkedChange)="iqkeyboardHelper.toggleDarkAppearance($event)"></Switch>
+            </GridLayout>
+
+            <TextField hint="E-mail" keyboardType="email"></TextField>
+            <TextField hint="Password" secure="true"></TextField>
+            <TextField hint="Home address"></TextField>
+          </StackLayout>
+        </ScrollView>
+
       </StackLayout>
-
     </GridLayout>
   </Gradient>
 </StackLayout>

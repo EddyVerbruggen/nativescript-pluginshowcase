@@ -7,6 +7,7 @@ import { InputComponent } from "./input.component";
 
 import {registerElement} from "nativescript-angular/element-registry";
 registerElement("DrawingPad", () => require("nativescript-drawingpad").DrawingPad);
+registerElement("NumericKeyboard", () => require("nativescript-numeric-keyboard").NumericKeyboardView);
 
 @NgModule({
   imports: [

@@ -18,3 +18,34 @@ Button.btn-outline {
   border-color: #fff;
   background-color: rgba(255, 255, 255, 210);
 }
+
+TextField, TextView, .number-input {
+  margin: 10;
+  padding: 5;
+  border-color: #fff;
+  border-width: 1px;
+  placeholder-color: rgba(255, 255, 255, 180);
+}
+
+GridLayout {
+  padding: 10;
+}
+
+Switch {
+  horizontal-align: right;
+}
+
+Label {
+  color: #fff;
+  margin: 10 0;
+}
+
+Label.title {
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 20 0;
+}
+
+Label.disabled {
+  opacity: 0.6;
+}
