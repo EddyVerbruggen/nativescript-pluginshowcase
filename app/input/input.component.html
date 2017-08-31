@@ -30,7 +30,7 @@
 
             <StackLayout class="m-t-20" orientation="horizontal" horizontalAlignment="center">
               <Button class="btn btn-rounded-sm btn-primary" text="Get Drawing" (tap)="getMyDrawing(myDrawing)"></Button>
-              <Button class="btn btn-rounded-sm btn-outline" text="Clear Drawing" (tap)="clearMyDrawing(myDrawing)"></Button>
+              <Button class="btn btn-rounded-sm btn-outline" text="Clear" (tap)="clearMyDrawing(myDrawing)"></Button>
             </StackLayout>
 
             <ScrollView>
@@ -43,9 +43,19 @@
           </StackLayout>
         </StackLayout>
 
-        <StackLayout *ngIf="selectedPlugin === 'NumKeyboard'">
-          <NumericKeyboard class="number-input" hint="100" noDecimals="true"></NumericKeyboard>
-        </StackLayout>
+        <ScrollView *ngIf="selectedPlugin === 'NumKeyboard'">
+          <StackLayout>
+            <Label text="TextView"></Label>
+            <TextView hint="keyboardType: number" keyboardType="number"></TextView>
+            <TextView hint="keyboardType: phone" keyboardType="phone"></TextView>
+
+            <Label text="Numeric Keyboard"></Label>
+            <NumericKeyboard class="number-input" hint="default"></NumericKeyboard>
+            <NumericKeyboard class="number-input" hint="noDecimals: true" noDecimals="true"></NumericKeyboard>
+            <NumericKeyboard class="number-input" hint="returnKeyTitle: Go!" returnKeyTitle="Go!"></NumericKeyboard>
+            <NumericKeyboard class="number-input" hint="noReturnKey: true" noReturnKey="true"></NumericKeyboard>
+          </StackLayout>
+        </ScrollView>
 
         <ScrollView *ngIf="selectedPlugin === 'IQKeyboard'">
           <StackLayout>

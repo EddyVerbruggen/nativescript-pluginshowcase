@@ -3,7 +3,7 @@ import { PropertyChangeData } from "tns-core-modules/data/observable";
 export class IQKeyboardHelper {
   private iqKeyboard: IQKeyboardManager;
 
-  enabled: boolean = false;
+  enabled: boolean = true; // useful for the NumKeyboard demo as well
   toolbarEnabled: boolean = false;
   tapOutsideToClose: boolean = false;
   showHintInToolbar: boolean = false;

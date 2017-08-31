@@ -24,16 +24,16 @@
         <Label row="1" col="1" class="plugin-names" text="Speech Recognition, Camera, Email, Social Share, TextToSpeech, Calendar" textWrap="true"></Label>
       </GridLayout>
 
-      <GridLayout row="4" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/menu/appicon']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" *ngIf="isIOS">
-        <Label class="mdi" [text]="'mdi-security-home' | fonticon"></Label>
-        <Label col="1" class="item-title" text="App icon"></Label>
-        <Label row="1" col="1" class="plugin-names" text="3D Touch, App Icon Changer" textWrap="true"></Label>
-      </GridLayout>
-
-      <GridLayout row="5" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/menu/input']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" *ngIf="isIOS">
+      <GridLayout row="4" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/menu/input']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}">
         <Label class="mdi" [text]="'mdi-keyboard' | fonticon"></Label>
         <Label col="1" class="item-title" text="Input"></Label>
         <Label row="1" col="1" class="plugin-names" text="IQKeyboardManager, Checkbox, DrawingPad, Numeric Keyboard" textWrap="true"></Label>
+      </GridLayout>
+
+      <GridLayout row="5" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/menu/appicon']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" *ngIf="isIOS">
+        <Label class="mdi" [text]="'mdi-security-home' | fonticon"></Label>
+        <Label col="1" class="item-title" text="App icon"></Label>
+        <Label row="1" col="1" class="plugin-names" text="3D Touch, App Icon Changer" textWrap="true"></Label>
       </GridLayout>
 
       <StackLayout row="6" class="sideOptions madeby-container" verticalAlignment="bottom" (tap)="openTwitter()">

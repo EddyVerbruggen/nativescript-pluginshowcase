@@ -101,20 +101,19 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
 
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
-        // TODO
-        "..",
+        "Input is one of the hardest things on mobile to get right. Here are a few plugins that tackle problems you may encounter with your app.",
         Array.of(
             new PluginInfo(
                 "nativescript-drawingpad",
                 "Text to Speech",
                 "https://github.com/bradmartin/nativescript-texttospeech",
-                "..."),
+                "Want to capture a signature, or send doodles from one user to the other? Then this is the plugin for you!"),
 
             new PluginInfo(
                 "nativescript-numeric-keyboard",
-                "Numeric Keyboard (iOS)",
+                "Numeric Keyboard (iOS)  🔢",
                 "https://github.com/EddyVerbruggen/nativescript-numeric-keyboard",
-                "..."
+                "Replace the meh default number/phone keyboard by this stylish one."
             ),
 
             new PluginInfo(
