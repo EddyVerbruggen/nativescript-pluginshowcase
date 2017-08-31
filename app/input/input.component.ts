@@ -114,9 +114,15 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
         Array.of(
             new PluginInfo(
                 "nativescript-drawingpad",
-                "Text to Speech",
+                "DrawingPad",
                 "https://github.com/bradmartin/nativescript-texttospeech",
                 "Want to capture a signature, or send doodles from one user to the other? Then this is the plugin for you!"),
+
+            new PluginInfo(
+                "nativescript-checkbox",
+                "Checkbox",
+                "https://github.com/bradmartin/nativescript-checkbox",
+                "Add checkboxes and radiobuttons to your app!"),
 
             new PluginInfo(
                 "nativescript-numeric-keyboard",
