@@ -17,7 +17,7 @@
       </StackLayout>
 
       <StackLayout [@from-bottom]="'in'" row="1" class="p-20 m-t-20" style="background-color: rgba(255, 255, 255, 210)" borderRadius="20">
-        <StackLayout *ngIf="selectedPlugin === 'DrawingPad'">
+        <StackLayout *ngIf="selectedPlugin === 'Drawing'">
           <StackLayout>
             <ContentView backgroundColor="#eeeeee" borderRadius="10">
               <DrawingPad #myDrawing
@@ -43,19 +43,40 @@
           </StackLayout>
         </StackLayout>
 
-        <ScrollView *ngIf="selectedPlugin === 'NumKeyboard'">
+        <ScrollView *ngIf="selectedPlugin === 'Numeric'">
           <StackLayout>
             <Label text="TextView"></Label>
             <TextView hint="keyboardType: number" keyboardType="number"></TextView>
             <TextView hint="keyboardType: phone" keyboardType="phone"></TextView>
 
-            <Label text="Numeric Keyboard"></Label>
+            <Label text="Numeric Keyboard" class="p-t-20"></Label>
             <NumericKeyboard class="number-input" hint="default"></NumericKeyboard>
             <NumericKeyboard class="number-input" hint="noDecimals: true" noDecimals="true"></NumericKeyboard>
             <NumericKeyboard class="number-input" hint="returnKeyTitle: Go!" returnKeyTitle="Go!"></NumericKeyboard>
             <NumericKeyboard class="number-input" hint="noReturnKey: true" noReturnKey="true"></NumericKeyboard>
           </StackLayout>
         </ScrollView>
+
+        <StackLayout *ngIf="selectedPlugin === 'Checkbox'">
+          <Label text="Which ones do you like? (checkboxes)"></Label>
+          <StackLayout orientation="horizontal" verticalAlignment="top" class="p-5">
+            <CheckBox #checkbox1 fillColor="#f9fa45" [checked]="checkboxHelper.checkbox1" (checkedChange)="checkboxHelper.checkbox1 = checkbox1.checked" class="checkbox"></CheckBox>
+            <Label text="NativeScript" (tap)="checkboxHelper.checkbox1 = !checkboxHelper.checkbox1"></Label>
+          </StackLayout>
+          <StackLayout orientation="horizontal" verticalAlignment="top" class="p-5">
+            <CheckBox #checkbox2 fillColor="#f9fa45" [checked]="checkboxHelper.checkbox2" (checkedChange)="checkboxHelper.checkbox2 = checkbox2.checked" class="checkbox"></CheckBox>
+            <Label text="React Native" (tap)="checkboxHelper.checkbox2 = !checkboxHelper.checkbox2"></Label>
+          </StackLayout>
+
+          <!-- in this case we use a nice ngFor loop to render these babies -->
+          <Label text="Which one do you like most? (radiobuttons)" class="p-t-20"></Label>
+          <StackLayout class="p-5" *ngFor="let radio of checkboxHelper.radios">
+            <StackLayout orientation="horizontal" verticalAlignment="top">
+              <CheckBox #elem fillColor="#faaa00" [checked]="radio.selected" (checkedChange)="elem.checked !== radio.selected && checkboxHelper.radioOptionSelected(radio)" class="checkbox"></CheckBox>
+              <Label [text]="radio.label" (tap)="checkboxHelper.radioOptionSelected(radio)"></Label>
+            </StackLayout>
+          </StackLayout>
+        </StackLayout>
 
         <ScrollView *ngIf="selectedPlugin === 'IQKeyboard'">
           <StackLayout>

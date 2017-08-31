@@ -9,6 +9,7 @@ import { SegmentedBarItem } from "tns-core-modules/ui/segmented-bar";
 import { PropertyChangeData } from "tns-core-modules/data/observable";
 import { DrawingPad } from "nativescript-drawingpad";
 import { IQKeyboardHelper } from "./helpers/iqkeyboard-helper";
+import { CheckboxHelper } from "./helpers/checkbox-helper";
 
 @Component({
   selector: "Input",
@@ -52,9 +53,10 @@ import { IQKeyboardHelper } from "./helpers/iqkeyboard-helper";
 })
 export class InputComponent extends AbstractMenuPageComponent implements OnInit {
   plugins: Array<SegmentedBarItem> = [];
-  selectedPlugin: string = "DrawingPad";
+  selectedPlugin: string = "Drawing";
   drawings: Array<any> = [];
   iqkeyboardHelper: IQKeyboardHelper;
+  checkboxHelper: CheckboxHelper;
 
   constructor(protected menuComponent: MenuComponent,
               protected vcRef: ViewContainerRef,
@@ -64,11 +66,18 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
   }
 
   ngOnInit(): void {
-    this.addPluginToSegmentedBar("DrawingPad");
-    this.addPluginToSegmentedBar("NumKeyboard");
-    this.addPluginToSegmentedBar("IQKeyboard");
+    this.addPluginToSegmentedBar("Drawing");
+    this.addPluginToSegmentedBar("Checkbox");
+    this.checkboxHelper = new CheckboxHelper();
 
-    this.iqkeyboardHelper = new IQKeyboardHelper();
+    // this one has a decent fallback on Android..
+    this.addPluginToSegmentedBar("Numeric");
+
+    // .. but this one doesn't
+    if (this.isIOS) {
+      this.addPluginToSegmentedBar("IQKeyboard");
+      this.iqkeyboardHelper = new IQKeyboardHelper();
+    }
   }
 
   private addPluginToSegmentedBar(name: string) {

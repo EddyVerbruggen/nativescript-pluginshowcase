@@ -49,3 +49,9 @@ Label.title {
 Label.disabled {
   opacity: 0.6;
 }
+
+.checkbox {
+  font-size: 22;
+  color: #fff;
+  vertical-align: center;
+}
