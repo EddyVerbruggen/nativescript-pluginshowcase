@@ -2,7 +2,7 @@ NativeScript plugins showcase
 -----------------------------
 
 [![Build Status][build-status]][build-url]
-![plugins 22](https://img.shields.io/badge/plugins-22-brightgreen.svg)
+![plugins 24](https://img.shields.io/badge/plugins-24-brightgreen.svg)
 [![Twitter Follow][twitter-image]][twitter-url]
 
 [build-status]:https://travis-ci.org/EddyVerbruggen/nativescript-pluginshowcase.svg?branch=master
