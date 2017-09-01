@@ -1,4 +1,4 @@
-import { enableProdMode, NgModule, NgModuleFactoryLoader, NgZone, NO_ERRORS_SCHEMA } from "@angular/core";
+import { NgModule, NgModuleFactoryLoader, NgZone, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NSModuleFactoryLoader } from "nativescript-angular/router";
 
@@ -20,10 +20,6 @@ const fs = require("file-system");
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 
 setStatusBarColors();
-
-if (Config.isProdMode) {
-  enableProdMode();
-}
 
 Config.isTablet = device.deviceType === DeviceType.Tablet;
 

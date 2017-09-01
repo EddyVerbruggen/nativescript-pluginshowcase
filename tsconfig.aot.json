@@ -11,8 +11,8 @@
             "console": ["node_modules/tns-core-modules/console"],
             "utils/*": ["node_modules/tns-core-modules/utils/*"],
             "file-system": ["node_modules/tns-core-modules/file-system"],
-            "file-system/file-system-access": ["node_modules/tns-core-modules/file-system/file-system-access"],
             "application": ["node_modules/tns-core-modules/application"],
+            "profiling": ["node_modules/tns-core-modules/profiling"],
             "globals": ["node_modules/tns-core-modules/globals"]
         }
     },
