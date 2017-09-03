@@ -13,7 +13,7 @@ NativeScript plugins showcase
 <img src="screenshots/ios/01-home.png" height="378px" /> <img src="screenshots/ios/02-feedback-menu.png" height="378px" /> <img src="screenshots/ios/03-mapping-menu.png" height="378px" /> <img src="screenshots/ios/04-mapping-info.png" height="378px" />
 
 ### What's this?
-Glad you asked. I need it to demo a few plugins and wanted to play a bit more with NativeScript & Angular.
+Glad you asked 😄.. I need it to demo a few plugins and wanted to play a bit more with NativeScript & Angular.
 
 ### CanIUse?
 This app is in active development and optimized **for iOS only** at the moment.
