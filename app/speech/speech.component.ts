@@ -17,7 +17,7 @@ import * as SocialShare from "nativescript-social-share";
 import { ImageSource } from "tns-core-modules/image-source";
 
 @Component({
-  selector: "Speech",
+  selector: "page-speech",
   moduleId: module.id,
   templateUrl: "./speech.component.html",
   styleUrls: ["speech-common.css"],
@@ -230,7 +230,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
           events.map(ev => {
             eventsSpoken++;
             let secondsFromNow = Math.round((ev.startDate.getTime() - new Date().getTime()) / 1000);
-            let hours = Math.round(secondsFromNow / (60 * 60));
+            let hours = Math.floor(secondsFromNow / (60 * 60));
             let minutes = Math.round((secondsFromNow / 60) % 60);
             this.text2speech.speak({
               text: `${ev.title} in ${hours > 0 ? hours + ' hour' + (hours > 1 ? 's' : '') + ' and ' : ''} ${minutes} minutes`,
