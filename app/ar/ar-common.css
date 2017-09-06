@@ -1,0 +1,38 @@
+ActionBar, .pageWrapper {
+  background-color: #444;
+}
+
+Label.hint {
+  color: #ddd;
+  text-align: center;
+  margin-bottom: 10;
+}
+
+.row {
+  margin: 14 8;
+}
+
+button {
+  background-color: #6494AA;
+  padding: 5 7;
+  font-size: 14;
+  border-radius: 4;
+  border-width: 1;
+  border-color: #fff;
+}
+
+.button {
+  color: #ffffff;
+}
+
+.button-bla {
+  background-color: #51ae8c;
+}
+
+.button-reset {
+  background-color: #ee664c;
+}
+
+Label.disabled {
+  opacity: 0.6;
+}

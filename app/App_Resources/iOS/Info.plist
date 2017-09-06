@@ -50,7 +50,7 @@
   <key>ITSAppUsesNonExemptEncryption</key>
   <false/>
   <key>NSCameraUsageDescription</key>
-  <string>To scan barcodes.</string>
+  <string>To augment reality.</string>
   <key>NSCalendarsUsageDescription</key>
   <string>Please grant access to your calendar.</string>
   <key>NSPhotoLibraryUsageDescription</key>

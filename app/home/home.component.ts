@@ -14,7 +14,7 @@ import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 
 @Component({
-  selector: "Home",
+  selector: "page-home",
   moduleId: module.id,
   templateUrl: "./home.component.html",
   styleUrls: ["home-common.css"],

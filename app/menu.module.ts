@@ -31,13 +31,17 @@ const routerConfig: Routes = [
         loadChildren: "./speech/speech.module#SpeechModule"
       },
       {
+        path: "input",
+        loadChildren: "./input/input.module#InputModule"
+      },
+      {
         path: "appicon",
         loadChildren: "./appicon/appicon.module#AppIconModule"
       },
       {
-        path: "input",
-        loadChildren: "./input/input.module#InputModule"
-      }
+        path: "ar",
+        loadChildren: "./ar/ar.module#ARModule"
+      },
     ]
   }
 ];

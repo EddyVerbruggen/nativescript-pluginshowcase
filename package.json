@@ -10,7 +10,7 @@
       "version": "3.1.1"
     },
     "tns-ios": {
-      "version": "3.2.0-2017-8-25-1"
+      "version": "3.2.0-rc-2017-8-30-1"
     }
   },
   "author": {
@@ -21,6 +21,7 @@
   "scripts": {
     "build": "npm i && tsc",
     "ios": "npm run tslint && tns run ios",
+    "ios.sync": "npm run tslint && tns run ios --syncAllFiles",
     "ios.emulator": "npm run ios -- --emulator",
     "tslint": "tslint --config 'tslint.json' 'app/**/*.ts'",
     "ns-bundle": "ns-bundle --uglify",
@@ -44,6 +45,7 @@
     "nativescript-angular": "4.2.0",
     "nativescript-app-icon-changer": "^1.0.3",
     "nativescript-appavailability": "^1.3.1",
+    "nativescript-ar": "file:localplugins/nativescript-ar/src",
     "nativescript-calendar": "^1.2.2",
     "nativescript-camera": "^3.0.2",
     "nativescript-checkbox": "^2.1.11",
@@ -69,7 +71,7 @@
     "nativescript-toast": "^1.4.6",
     "reflect-metadata": "0.1.10",
     "rxjs": "5.4.3",
-    "tns-core-modules": "~3.1.1",
+    "tns-core-modules": "rc",
     "tns-platform-declarations": "^3.1.1",
     "tslint": "^5.6.0",
     "zone.js": "0.8.16"

@@ -21,7 +21,7 @@ import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 
 @Component({
-  selector: "Feedback",
+  selector: "page-feedback",
   moduleId: module.id,
   templateUrl: "./feedback.component.html",
   styleUrls: ["feedback-common.css"],

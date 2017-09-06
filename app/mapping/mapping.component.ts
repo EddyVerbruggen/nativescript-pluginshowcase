@@ -15,7 +15,7 @@ import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 
 @Component({
-  selector: "Mapping",
+  selector: "page-mapping",
   moduleId: module.id,
   templateUrl: "./mapping.component.html",
   styleUrls: ["mapping-common.css"],

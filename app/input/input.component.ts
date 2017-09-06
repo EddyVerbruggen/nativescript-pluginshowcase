@@ -12,7 +12,7 @@ import { IQKeyboardHelper } from "./helpers/iqkeyboard-helper";
 import { CheckboxHelper } from "./helpers/checkbox-helper";
 
 @Component({
-  selector: "Input",
+  selector: "page-input",
   moduleId: module.id,
   templateUrl: "./input.component.html",
   styleUrls: ["input-common.css"],
