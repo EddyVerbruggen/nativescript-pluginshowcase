@@ -1,0 +1,11 @@
+ActionBar {
+  padding-top: 10;
+}
+
+Label.mdi-actionitem {
+  /*margin-top: 10;*/
+}
+
+Label.mdi-menu {
+  margin-top: 6;
+}

@@ -1,10 +1,11 @@
-<ActionBar title="Welcome" flat="true">
-  <ActionItem ios.position="left" (tap)="toggleTheMenu()">
+<ActionBar title="" flat="true">
+  <ActionItem ios.position="left" (tap)="toggleTheMenu()" *ngIf="isIOS">
     <Label class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"></Label>
   </ActionItem>
+  <Label horizontalAlignment="left" class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon" (tap)="toggleTheMenu()" *ngIf="!isIOS"></Label>
   <Label horizontalAlignment="center" class="semibold" text="Hi!  👋🏻" *ngIf="isIOS"></Label>
   <ActionItem ios.position="right" (tap)="showPluginInfo()">
-    <Label class="mdi-actionitem mdi-actionitem-right mdi-menu" [text]="'mdi-information-outline' | fonticon"></Label>
+    <Label class="mdi-actionitem mdi-actionitem-right" [text]="'mdi-information-outline' | fonticon"></Label>
   </ActionItem>
 </ActionBar>
 
@@ -13,7 +14,7 @@
     <StackLayout [@state]="'in'" class="transparent-area" height="100%" verticalAlignment="center">
       <Label text="Thanks for installing this app," textWrap="true"></Label>
       <Label text="we currently showcase no less than" textWrap="true"></Label>
-      <Label [@plugincountstate]="'in'" text="24" class="plugin-count m-t-30 m-b-30"></Label>
+      <Label [@plugincountstate]="'in'" text="24" verticalAlignment="center" class="plugin-count"></Label>
       <StackLayout [@fade-in]="'in'">
         <Label text="NativeScript plugins!" class="bold" textWrap="true"></Label>
         <Label text="..of over 500!" textWrap="true"></Label>
