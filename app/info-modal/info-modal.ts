@@ -14,7 +14,10 @@ const pageCommon = require("tns-core-modules/ui/page/page-common").PageBase;
 @Component({
   moduleId: module.id,
   templateUrl: "./info-modal.html",
-  styleUrls: ["./info-modal-common.css"]
+  styleUrls: [
+    "./info-modal-common.css",
+    "./info-modal.css"
+  ]
 })
 export class InfoModalComponent {
   pluginInfo: PluginInfoWrapper;
@@ -27,12 +30,13 @@ export class InfoModalComponent {
     this.page.on("unloaded", () => {
       this.params.closeCallback();
     });
+    this.page.backgroundColor = new Color(50, 0, 0, 0);
 
     if (page.ios) {
 
       // iOS by default won't let us have a transparent background on a modal
       // Ugly workaround from: https://github.com/NativeScript/nativescript/issues/2086#issuecomment-221956483
-      this.page.backgroundColor = new Color(50, 0, 0, 0);
+      // this.page.backgroundColor = new Color(50, 0, 0, 0);
 
       (<any>page)._showNativeModalView = function (parent, context, closeCallback, fullscreen) {
         pageCommon.prototype._showNativeModalView.call(this, parent, context, closeCallback, fullscreen);
