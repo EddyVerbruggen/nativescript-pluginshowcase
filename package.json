@@ -21,7 +21,8 @@
   "scripts": {
     "build": "npm i && tsc",
     "ios": "npm run tslint && tns run ios",
-    "ios.emulator": "npm run ios -- --emulator",
+    "ios.emulator": "tns run ios -- --emulator",
+    "android": "tns run android",
     "tslint": "tslint --config 'tslint.json' 'app/**/*.ts'",
     "ns-bundle": "ns-bundle --uglify",
     "publish-ios-bundle": "npm run ns-bundle --ios --publish-app",
@@ -61,7 +62,7 @@
     "nativescript-ngx-fonticon": "^2.2.3",
     "nativescript-numeric-keyboard": "^3.0.3",
     "nativescript-snackbar": "^1.2.0",
-    "nativescript-social-share": "^1.4.0",
+    "nativescript-social-share": "git+https://github.com/EddyVerbruggen/nativescript-social-share.git",
     "nativescript-speech-recognition": "^1.2.1",
     "nativescript-telerik-ui": "^3.0.4",
     "nativescript-texttospeech": "^2.0.1",
