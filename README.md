@@ -18,7 +18,7 @@ Glad you asked 😄.. I need it to demo a few plugins and wanted to play a bit m
 ### CanIUse?
 This app is in active development and optimized **for iOS only** at the moment.
 
-> Well, it works on Android, but some UI elements are off so I don't recommend installing it there yet. 
+> Well, it works on Android, but I haven't tested everything yet so it won't be as solid as iOS. 
 
 ```bash
 git clone https://github.com/EddyVerbruggen/nativescript-pluginshowcase
@@ -29,5 +29,5 @@ npm run ios
 ```
 
 ### Notes
-* Don't judge Mapbox performance on the iOS simulator. It only blows you away on a real device.
-* The app will crash if you change the App icon after a Toast was shown. I've sent a [PR to fix that](https://github.com/devxoul/Toaster/pull/116).
+* Don't judge Mapbox performance on the simulator. It only blows you away on a real device.
+* (iOS) The app will crash if you change the App icon after a Toast was shown. I've sent a [PR to fix that](https://github.com/devxoul/Toaster/pull/116).
