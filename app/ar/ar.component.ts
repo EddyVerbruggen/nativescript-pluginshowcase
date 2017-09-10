@@ -1,13 +1,16 @@
-import { Component, OnInit, ViewContainerRef } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { MenuComponent } from "../menu/menu.component";
-import { AR, ARDebugLevel, ARNode, ARPlaneTappedEventData, IARPlane, ARPosition } from "nativescript-ar";
+import { AR, ARDebugLevel, ARNode, ARPlaneTappedEventData, ARPosition } from "nativescript-ar";
 import { ModalDialogService } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { PropertyChangeData } from "tns-core-modules/data/observable";
-import { SelectedIndexChangedEventData } from "nativescript-drop-down";
+import { DropDown } from "nativescript-drop-down";
+import { Color } from "tns-core-modules/color";
+
+const insomnia = require("nativescript-insomnia");
 
 @Component({
   selector: "page-ar",
@@ -50,6 +53,8 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
 
   private demoObject: "cube" | "model" = "cube";
 
+  @ViewChild("dropDown") dropDown: ElementRef;
+
   constructor(protected menuComponent: MenuComponent,
               protected vcRef: ViewContainerRef,
               protected modalService: ModalDialogService) {
@@ -63,6 +68,21 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
     if (!this.isSupported) {
       this.hint = "THIS DEVICE DOESN'T SUPPORT AR ☹️";
     }
+
+    // modify the background color of the DropDown picker
+    const drop: any = this.dropDown.nativeElement;
+    if (this.dropDown.nativeElement.ios) {
+      const pickerView: UIPickerView = drop._listPicker;
+      pickerView.backgroundColor = new Color("#444").ios;
+    }
+
+    insomnia.keepAwake().then(() => console.log("Insomnia is now ON"));
+  }
+
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
+    // Insomnia OFF
+    insomnia.allowSleepAgain().then(() => console.log("Insomnia is now OFF"));
   }
 
   togglePlaneDetection(args: PropertyChangeData): void {
@@ -104,6 +124,12 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
                 "https://github.com/PeterStaev/NativeScript-Drop-Down",
                 "The DropDown displays items from which the user can select one. If the built-in ActionSheet is not to your liking, give this one a try!"
             ),
+            new PluginInfo(
+                "nativescript-insomnia",
+                "Insomnia  😪",
+                "https://github.com/EddyVerbruggen/nativescript-insomnia",
+                "Keep the device awake (not dim the screen, lock, etc). Useful if the user needs to see stuff on the device but doesn't touch it."
+            )
         )
     );
   }
@@ -121,26 +147,7 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
   }
 
   planeDetected(args): void {
-    console.log("Plane detected");
-    const plane: IARPlane = args.plane;
-    /*
-    if (!this.firstPlaneDetected) {
-      this.firstPlaneDetected = true;
-      this.ar.addModel({
-        name: "art.scnassets/Wind.dae",
-        position: {x: plane.position.x, y: plane.position.y + 0.1, z: plane.position.z - 0.1},
-        scale: {x: 0.12, y: 0.12, z: 0.12},
-        onTap: ((model: ARNode) => {
-          console.log(">>>> tapped model: " + model);
-          // model.remove();
-        }),
-        onLongPress: ((model: ARNode) => {
-          console.log(">>>>>> trying to remove the car..");
-          model.remove();
-        })
-      });
-    }
-    */
+    console.log("Plane detected @ " + new Date().getTime());
   }
 
   planeTapped(args: ARPlaneTappedEventData): void {
