@@ -131,6 +131,12 @@
             "size":"83.5x83.5",
             "scale":"2x",
             "filename":"Icon-App-83.5x83.5@2x.png"
+        },
+        {
+            "size" : "1024x1024",
+            "idiom" : "ios-marketing",
+            "filename" : "iTunesMarketing.png",
+            "scale" : "1x"
         }
     ],
     "info":{
