@@ -52,6 +52,7 @@
     "nativescript-dev-webpack": "^0.7.3",
     "nativescript-directions": "^1.1.0",
     "nativescript-drawingpad": "^2.1.0",
+    "nativescript-drop-down": "^3.1.1",
     "nativescript-email": "^1.5.1",
     "nativescript-fancyalert": "^1.1.2",
     "nativescript-feedback": "^1.0.6",

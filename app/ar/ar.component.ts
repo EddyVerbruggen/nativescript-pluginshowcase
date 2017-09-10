@@ -7,6 +7,7 @@ import { ModalDialogService } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { PropertyChangeData } from "tns-core-modules/data/observable";
+import { SelectedIndexChangedEventData } from "nativescript-drop-down";
 
 @Component({
   selector: "page-ar",
@@ -44,7 +45,10 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
   statsEnabled: boolean = true;
   isSupported: boolean;
 
-  private demoObject: "cube" | "plant" = "cube";
+  models: Array<string> = ["{N} Cube", "Car", "Ball", "Tree"];
+  selectedModelIndex = 0;
+
+  private demoObject: "cube" | "model" = "cube";
 
   constructor(protected menuComponent: MenuComponent,
               protected vcRef: ViewContainerRef,
@@ -93,7 +97,13 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
                 "AR  👀",
                 "https://github.com/EddyVerbruggen/nativescript-ar",
                 "Proof of Concept of an AR plugin. Currently supporting ARKit (iOS), and in the future ARCore (Android) as well."
-            )
+            ),
+            new PluginInfo(
+                "nativescript-drop-down",
+                "DropDown",
+                "https://github.com/PeterStaev/NativeScript-Drop-Down",
+                "The DropDown displays items from which the user can select one. If the built-in ActionSheet is not to your liking, give this one a try!"
+            ),
         )
     );
   }
@@ -136,38 +146,69 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
   planeTapped(args: ARPlaneTappedEventData): void {
     this.hint = `${this.demoObject} at ${args.position.x} y ${args.position.y} z ${args.position.z}`;
 
-    if (this.demoObject === "cube") {
+    if (this.selectedModelIndex === 0) {
       this.addCube(args.position);
-      this.demoObject = "plant";
-    } else {
-      this.addModel(args.position);
-      this.demoObject = "cube";
+    } else if (this.selectedModelIndex === 1) {
+      this.addCar(args.position);
+    } else if (this.selectedModelIndex === 2) {
+      this.addBall(args.position);
+    } else if (this.selectedModelIndex === 3) {
+      this.addTree(args.position);
     }
+
+    // if (this.demoObject === "cube") {
+    //   this.addCube(args.position);
+    //   this.demoObject = "model";
+    // } else {
+    //   this.addCar(args.position);
+    //   this.demoObject = "cube";
+    // }
   }
 
   private addCube(position: ARPosition): void {
     this.ar.addCube({
       // TODO 4 different materials, full paths
-      material: "granitesmooth",
+      material: "tnsgranite",
       position: {x: position.x, y: position.y + 0.7, z: position.z},
       scale: 0.1,
-      mass: 20,
+      mass: 1,
       onLongPress: ((model: ARNode) => {
         model.remove();
       })
     });
   }
 
-  private addModel(position: ARPosition): void {
+  private addBall(position: ARPosition): void {
     this.ar.addModel({
-      // name: "art.scnassets/Wind.dae",
-      name: "art.scnassets/Lowpoly_tree_sample.dae",
+      name: "Models.scnassets/Ball.dae",
+      position: {x: position.x, y: position.y + 0.7, z: position.z},
+      scale: 0.08,
+      mass: 0.3,
+      onLongPress: ((model: ARNode) => {
+        model.remove();
+      })
+    });
+  }
+
+  private addCar(position: ARPosition): void {
+    this.ar.addModel({
+      name: "Models.scnassets/Car.dae",
+      position: {x: position.x, y: position.y + 0.06, z: position.z},
+      scale: 0.8,
+      mass: 100,
+      onLongPress: ((model: ARNode) => {
+        model.remove();
+      })
+    });
+  }
+
+  private addTree(position: ARPosition): void {
+    this.ar.addModel({
+      name: "Models.scnassets/Tree.dae",
       childNodeName: "Tree_lp_11",
       position: position,
-      // position: {x: args.position.x, y: args.position.y + 0.7, z: args.position.z},
-      scale: 0.01, // tree
+      scale: 0.01,
       mass: 0.0002,
-      // scale: {x: 0.1, y: 0.1, z: 0.1},
       onLongPress: ((model: ARNode) => {
         model.remove();
       })

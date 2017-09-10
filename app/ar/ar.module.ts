@@ -4,6 +4,7 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { ARRoutingModule } from "./ar-routing.module";
 import { ARComponent } from "./ar.component";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
+import { DropDownModule } from "nativescript-drop-down/angular";
 
 import { registerElement } from "nativescript-angular/element-registry";
 registerElement("AR", () => require("nativescript-ar").AR);
@@ -13,6 +14,7 @@ registerElement("AR", () => require("nativescript-ar").AR);
     NativeScriptCommonModule,
     ARRoutingModule,
     TNSFontIconModule,
+    DropDownModule
   ],
   declarations: [
     ARComponent
