@@ -16,8 +16,8 @@ NativeScript plugins showcase
 Glad you asked 😄.. I need it to demo a few plugins and wanted to play a bit more with NativeScript & Angular.
 
 ### Themes included
-[Feedback](app/feedback/)
-[Mapping](app/mapping/)
+- [Feedback](app/feedback/)
+- [Mapping](app/mapping/)
 
 
 ### CanIUse?
