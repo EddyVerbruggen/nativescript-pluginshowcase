@@ -18,6 +18,9 @@ Glad you asked 😄.. I need it to demo a few plugins and wanted to play a bit m
 ### Themes included
 - [Feedback](app/feedback/)
 - [Mapping](app/mapping/)
+- [Speech](app/speech/)
+- [Input](app/input/)
+- [App Icon](app/appicon/)
 
 
 ### CanIUse?

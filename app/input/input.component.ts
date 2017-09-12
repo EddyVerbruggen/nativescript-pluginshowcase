@@ -132,7 +132,7 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
             ),
 
             new PluginInfo(
-                "https://github.com/tjvantoll/nativescript-IQKeyboardManager",
+                "nativescript-IQKeyboardManager",
                 "IQKeyboardManager (iOS)",
                 "https://github.com/tjvantoll/nativescript-IQKeyboardManager",
                 "Tame that wild beast  🐅  of a keyboard  ⌨️  by dropping in this library."

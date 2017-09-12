@@ -265,7 +265,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
                 "nativescript-speech-recognition",
                 "Speech Recognition",
                 "https://github.com/EddyVerbruggen/nativescript-speech-recognition",
-                "Speak to your app 👄. Useful for voice control and silly demo's."
+                "Speak to your app 👄. Useful for voice control and silly demo's 😄"
             )
         )
     );
