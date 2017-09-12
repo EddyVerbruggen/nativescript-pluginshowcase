@@ -8,6 +8,8 @@ Label {
 
 Label.plugin-count {
   font-size: 80;
+  padding: 24;
+  margin: 30;
   font-weight: 800;
   border-radius: 80;
   border-width: 7;
@@ -15,4 +17,5 @@ Label.plugin-count {
   width: 160;
   height: 160;
   background-color: rgba(255, 255, 255, 190);
+  vertical-align: center;
 }

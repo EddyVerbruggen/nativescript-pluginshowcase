@@ -1,10 +1,11 @@
-<ActionBar title="Feedback" flat="true">
-  <ActionItem ios.position="left" (tap)="toggleTheMenu()">
+<ActionBar title="" flat="true">
+  <ActionItem ios.position="left" (tap)="toggleTheMenu()" *ngIf="isIOS">
     <Label class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"></Label>
   </ActionItem>
+  <Label horizontalAlignment="left" class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon" (tap)="toggleTheMenu()" *ngIf="!isIOS"></Label>
   <Label horizontalAlignment="center" class="semibold" text="Feedback" *ngIf="isIOS"></Label>
-  <ActionItem ios.position="right" (tap)="showPluginInfo()">
-    <Label class="mdi-actionitem mdi-actionitem-right mdi-menu" [text]="'mdi-information-outline' | fonticon"></Label>
+  <ActionItem ios.position="right" (tap)="showPluginInfo()" style="margin-top: 20">
+    <Label class="mdi-actionitem mdi-actionitem-right" style="margin-top: 20" [text]="'mdi-information-outline' | fonticon"></Label>
   </ActionItem>
 </ActionBar>
 

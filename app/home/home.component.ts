@@ -63,12 +63,13 @@ export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
 
   ngOnInit(): void {
     // for quick dev-nav
-    if (!Config.isProdMode && Config.DEBUG_MODE.firstPage !== "/menu")
+    if (!Config.isProdMode && Config.DEBUG_MODE.firstPage !== "/menu") {
       setTimeout(() => {
         this.routerExtensions.navigate([Config.DEBUG_MODE.firstPage], {
           animated: false
         });
       }, 200);
+    }
   }
 
   protected getPluginInfo(): PluginInfoWrapper {
