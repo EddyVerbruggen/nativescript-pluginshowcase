@@ -15,7 +15,7 @@ NativeScript plugins showcase
 ### What's this?
 Glad you asked 😄.. I need it to demo a few plugins and wanted to play a bit more with NativeScript & Angular.
 
-### Themes included
+### Plugin themes included
 - [Feedback](app/feedback/)
 - [Mapping](app/mapping/)
 - [Speech](app/speech/)
