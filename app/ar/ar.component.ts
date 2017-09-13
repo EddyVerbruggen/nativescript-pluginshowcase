@@ -185,6 +185,8 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
       onLongPress: ((model: ARNode) => {
         model.remove();
       })
+    }).then(arNode => {
+      console.log("Cube successfully added");
     });
   }
 
@@ -200,6 +202,11 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
       onLongPress: ((model: ARNode) => {
         model.remove();
       })
+    }).then(arNode => {
+      setTimeout(() => {
+        // balls are removed after a few seconds
+        arNode.remove();
+      }, 2000);
     });
   }
 

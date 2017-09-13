@@ -77,7 +77,8 @@ export class AR extends ARBase {
     this.sceneView = ARSCNView.new();
     this.sceneView.delegate = this.delegate = ARSCNViewDelegateImpl.createWithOwnerResultCallbackAndOptions(
         new WeakRef(this),
-        data => {},
+        data => {
+        },
         {});
 
     // TODO depends on properties on the <AR> tag
@@ -235,29 +236,35 @@ export class AR extends ARBase {
   }
 
   // TODO promise makes more sense (so we can reject it in case of trouble, etc)
-  addModel(options: ARAddModelOptions): void {
-    const model: ARModel = ARModel.create(
-        options.position,
-        options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale},
-        options.mass || 0,
-        options.name,
-        options.childNodeName);
-    model.onTapHandler = options.onTap;
-    model.onLongPressHandler = options.onLongPress;
-    ARState.models.set(model.name, model);
-    this.sceneView.scene.rootNode.addChildNode(model.ios);
+  addModel(options: ARAddModelOptions): Promise<ARNode> {
+    return new Promise((resolve, reject) => {
+      const model: ARModel = ARModel.create(
+          options.position,
+          options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale},
+          options.mass || 0,
+          options.name,
+          options.childNodeName);
+      model.onTapHandler = options.onTap;
+      model.onLongPressHandler = options.onLongPress;
+      ARState.models.set(model.name, model);
+      this.sceneView.scene.rootNode.addChildNode(model.ios);
+      resolve(model);
+    });
   }
 
-  addCube(options: ARAddCubeOptions): void {
-    const cube: ARCube = ARCube.create(
-        options.position,
-        options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale},
-        options.mass || 0,
-        options.material ? ARMaterial.getMaterial(options.material) : null);
-    cube.onTapHandler = options.onTap;
-    cube.onLongPressHandler = options.onLongPress;
-    ARState.cubes.push(cube);
-    this.sceneView.scene.rootNode.addChildNode(cube);
+  addCube(options: ARAddCubeOptions): Promise<ARNode> {
+    return new Promise((resolve, reject) => {
+      const cube: ARCube = ARCube.create(
+          options.position,
+          options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale},
+          options.mass || 0,
+          options.material ? ARMaterial.getMaterial(options.material) : null);
+      cube.onTapHandler = options.onTap;
+      cube.onLongPressHandler = options.onLongPress;
+      ARState.cubes.push(cube);
+      this.sceneView.scene.rootNode.addChildNode(cube);
+      resolve(cube);
+    });
   }
 
   public reset(): void {

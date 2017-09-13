@@ -85,9 +85,9 @@ export abstract class AR extends ContentView {
 
   abstract reset(): void;
 
-  abstract addModel(options: ARAddModelOptions): void;
+  abstract addModel(options: ARAddModelOptions): Promise<ARNode>;
 
-  abstract addCube(options: ARAddCubeOptions): void;
+  abstract addCube(options: ARAddCubeOptions): Promise<ARNode>;
 
   abstract togglePlaneDetection(on: boolean): void;
 

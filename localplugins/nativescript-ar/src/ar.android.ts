@@ -1,4 +1,4 @@
-import { AR as ARBase, ARAddCubeOptions, ARAddModelOptions, ARDebugLevel } from "./ar-common";
+import { AR as ARBase, ARAddCubeOptions, ARAddModelOptions, ARDebugLevel, ARNode } from "./ar-common";
 import { Color } from "tns-core-modules/color";
 
 export class AR extends ARBase {
@@ -23,11 +23,11 @@ export class AR extends ARBase {
     throw new Error("Method not implemented.");
   }
 
-  addModel(options: ARAddModelOptions): void {
+  addModel(options: ARAddModelOptions): Promise<ARNode> {
     throw new Error("Method not implemented.");
   }
 
-  addCube(options: ARAddCubeOptions): void {
+  addCube(options: ARAddCubeOptions): Promise<ARNode> {
     throw new Error("Method not implemented.");
   }
 
