@@ -70,6 +70,8 @@ export class AppModule {
           this.deeplink("/menu/feedback");
         } else if (shortcutItem.type === "appicon") {
           this.deeplink("/menu/appicon");
+        } else if (shortcutItem.type === "mapping") {
+          this.deeplink("/menu/mapping");
         }
       });
     }

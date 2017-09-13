@@ -28,7 +28,7 @@ let demoObject: "cube" | "plant" = "cube";
 
 export class AR extends ARBase {
   sceneView: any; // ARSCNView;
-  private configuration: any; // ARWorldTrackingSessionConfiguration;
+  private configuration: any; // ARWorldTrackingConfiguration;
   private delegate: ARSCNViewDelegateImpl;
   private physicsWorldContactDelegate: SCNPhysicsContactDelegateImpl;
   private sceneTapHandler: SceneTapHandlerImpl;
