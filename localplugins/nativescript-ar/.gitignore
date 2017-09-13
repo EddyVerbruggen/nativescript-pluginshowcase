@@ -10,6 +10,7 @@ node_modules/
 src/hooks/
 !src/index.d.ts
 !src/references.d.ts
+!src/typings/*.d.ts
 demo/lib
 demo/platforms
 demo-ng/platforms

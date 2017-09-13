@@ -6,15 +6,6 @@ import {
 
 export { ARDebugLevel };
 
-declare const ARSCNView, ARWorldTrackingConfiguration, ARPlaneDetectionHorizontal, ARPlaneDetectionNone,
-    ARSCNViewDelegate,
-    ARTrackingStateNormal, ARTrackingStateNotAvailable, ARTrackingStateLimited,
-    ARTrackingStateReasonExcessiveMotion, ARTrackingStateReasonInsufficientFeatures, ARTrackingStateReasonInitializing,
-    ARTrackingStateReasonNone, ARHitTestResultTypeExistingPlaneUsingExtent,
-    SCNDebugOptionNone, ARSCNDebugOptionShowWorldOrigin, ARSCNDebugOptionShowFeaturePoints,
-    SCNDebugOptionShowPhysicsShapes,
-    ARPlaneAnchor: any;
-
 const ARState = {
   planes: new Map<string, ARPlane>(),
   models: new Map<string, ARModel>(),
@@ -22,13 +13,9 @@ const ARState = {
   cubes: new Array<ARCube>()
 };
 
-// set this to true to drop stuff when a plane is tapped
-const demoMode = false;
-let demoObject: "cube" | "plant" = "cube";
-
 export class AR extends ARBase {
-  sceneView: any; // ARSCNView;
-  private configuration: any; // ARWorldTrackingConfiguration;
+  sceneView: ARSCNView;
+  private configuration: ARWorldTrackingConfiguration;
   private delegate: ARSCNViewDelegateImpl;
   private physicsWorldContactDelegate: SCNPhysicsContactDelegateImpl;
   private sceneTapHandler: SceneTapHandlerImpl;
@@ -52,9 +39,9 @@ export class AR extends ARBase {
     } else if (to === ARDebugLevel.FEATURE_POINTS) {
       this.sceneView.debugOptions = ARSCNDebugOptionShowFeaturePoints;
     } else if (to === ARDebugLevel.PHYSICS_SHAPES) {
-      this.sceneView.debugOptions = SCNDebugOptionShowPhysicsShapes;
+      this.sceneView.debugOptions = SCNDebugOptions.ShowPhysicsShapes;
     } else {
-      this.sceneView.debugOptions = SCNDebugOptionNone;
+      this.sceneView.debugOptions = SCNDebugOptions.None;
     }
   }
 
@@ -69,7 +56,7 @@ export class AR extends ARBase {
     if (!this.sceneView) {
       return;
     }
-    this.configuration.planeDetection = on ? ARPlaneDetectionHorizontal : ARPlaneDetectionNone;
+    this.configuration.planeDetection = on ? ARPlaneDetection.Horizontal : ARPlaneDetection.None;
     this.sceneView.session.runWithConfiguration(this.configuration);
   }
 
@@ -180,7 +167,7 @@ export class AR extends ARBase {
     const hitTestResults: NSArray<SCNHitTestResult> =
         this.sceneView.hitTestOptions(
             recognizer.locationInView(this.sceneView),
-            {
+            <any>{
               SCNHitTestBoundingBoxOnlyKey: true,
               SCNHitTestFirstFoundOnlyKey: true
             });
@@ -189,25 +176,24 @@ export class AR extends ARBase {
       return;
     }
 
-    const hitResult = hitTestResults.firstObject;
-    const parentNode = hitResult.node.parentNode;
+    const hitResult: SCNHitTestResult = hitTestResults.firstObject;
     const savedModel = ARState.models.get(hitResult.node.name);
 
     if (savedModel) {
       savedModel.onLongPress();
-    } else if (parentNode instanceof ARCube) {
-      (<ARCube>parentNode).onLongPress();
+    } else if (hitResult.node.parentNode instanceof ARCube) {
+      (<ARCube>hitResult.node.parentNode).onLongPress();
     }
   }
 
   public sceneTapped(recognizer: UITapGestureRecognizer): void {
     const tapPoint = recognizer.locationInView(this.sceneView);
-    const hitTestResults = this.sceneView.hitTestTypes(tapPoint, ARHitTestResultTypeExistingPlaneUsingExtent);
+    const hitTestResults: NSArray<ARHitTestResult> = this.sceneView.hitTestTypes(tapPoint, ARHitTestResultType.ExistingPlaneUsingExtent);
     if (hitTestResults.count === 0) {
       return;
     }
 
-    const hitResult = hitTestResults.firstObject;
+    const hitResult: ARHitTestResult = hitTestResults.firstObject;
 
     // Currently, in {N} hitResult.worldTransform is undefined so let's hack around it :(
     const hitResultStr = "" + hitResult;
@@ -215,56 +201,36 @@ export class AR extends ARBase {
     const transformStr = hitResultStr.substring(transformStart, hitResultStr.indexOf(")", transformStart));
     const transformParts = transformStr.split(" ");
 
-    const eventData: ARPlaneTappedEventData = {
-      eventName: ARBase.planeTappedEvent,
-      object: this,
-      position: {
-        x: +transformParts[0],
-        y: +transformParts[1],
-        z: +transformParts[2]
-      }
-    };
-    this.notify(eventData);
+    // also figure out if an object was tapped:
+    let node: SCNNode = this.sceneView.nodeForAnchor(hitResult.anchor);
 
-    if (hitResult.node !== undefined) {
-      const parentNode = hitResult.node.parentNode;
+    // only send a 'plane tapped' event if no object (on that plane) was tapped
+    let existingItemTapped = false;
+
+    if (node !== undefined) {
+      const parentNode = node.parentNode;
       const savedModel = ARState.models.get(parentNode.name);
       if (savedModel) {
         savedModel.onTap();
+        existingItemTapped = true;
       } else if (parentNode instanceof ARCube) {
         const parent: ARCube = <ARCube>parentNode;
         parent.onTap();
+        existingItemTapped = true;
       }
     }
 
-    if (demoMode) {
-      // alternate between cubes and plants
-      if (demoObject === "cube") {
-        // to make it 'drop' add an Y offset
-        const insertionYOffset = 1;
-        const cube: ARCube = ARCube.create(
-            new ARPosition(+transformParts[0], +transformParts[1] + insertionYOffset, +transformParts[2]),
-            new ARPosition(0.2, 0.2, 0.2),
-            0.4,
-            ARMaterial.getMaterial("granitesmooth"));
-        ARState.cubes.push(cube);
-        this.sceneView.scene.rootNode.addChildNode(cube);
-        demoObject = "plant";
-
-      } else {
-        // we don't want to drop these..
-        const model = ARModel.create(
-            new ARPosition(+transformParts[0], +transformParts[1], +transformParts[2]),
-            new ARPosition(0.02, 0.02, 0.02),
-            0.1,
-            "art.scnassets/Lowpoly_tree_sample.dae",
-            "Tree_lp_11");
-        model.onTap = () => console.log("tree hug tapper!");
-        model.onLongPress = () => console.log("tree hug presser!");
-        ARState.models.set("demomodel_" + new Date().getTime(), model);
-        this.sceneView.scene.rootNode.addChildNode(model.ios);
-        demoObject = "cube";
-      }
+    if (!existingItemTapped) {
+      const eventData: ARPlaneTappedEventData = {
+        eventName: ARBase.planeTappedEvent,
+        object: this,
+        position: {
+          x: +transformParts[0],
+          y: +transformParts[1],
+          z: +transformParts[2]
+        }
+      };
+      this.notify(eventData);
     }
   }
 
@@ -354,13 +320,13 @@ class SceneLongPressHandlerImpl extends NSObject {
   };
 }
 
-class ARSCNViewDelegateImpl extends NSObject /* implements ARSCNViewDelegate */ {
+class ARSCNViewDelegateImpl extends NSObject implements ARSCNViewDelegate {
   public static ObjCProtocols = [];
 
   private owner: WeakRef<AR>;
   private resultCallback: (message: any) => void;
   private options?: any;
-  private currentTrackingState = ARTrackingStateNormal;
+  private currentTrackingState = ARTrackingState.Normal;
 
   public static new(): ARSCNViewDelegateImpl {
     try {
@@ -396,23 +362,23 @@ class ARSCNViewDelegateImpl extends NSObject /* implements ARSCNViewDelegate */ 
   }
   */
 
-  sessionDidFailWithError(session: any /* ARSession */, error: NSError): void {
+  sessionDidFailWithError(session: ARSession, error: NSError): void {
     // TODO inform the user
     console.log(">>> sessionDidFailWithError: " + error);
   }
 
-  sessionWasInterrupted(session: any /* ARSession */): void {
+  sessionWasInterrupted(session: ARSession): void {
     // TODO inform the user that the session has been interrupted because of fi. an overlay, or being put in to the background).
     console.log(">>> sessionWasInterrupted: The tracking session has been interrupted. The session will be reset once the interruption has completed");
   }
 
-  sessionInterruptionEnded(session: any /* ARSession */): void {
+  sessionInterruptionEnded(session: ARSession): void {
     console.log(">>> sessionInterruptionEnded, calling reset");
     // Reset tracking and/or remove existing anchors if consistent tracking is required
     this.owner.get().reset();
   }
 
-  sessionCameraDidChangeTrackingState(session: any /* ARSession */, camera: any /* ARCamera */): void {
+  sessionCameraDidChangeTrackingState(session: ARSession, camera: ARCamera): void {
     const trackingState = camera.trackingState;
     console.log(">>> sessionCameraDidChangeTrackingState: " + trackingState);
     if (this.currentTrackingState === trackingState) {
@@ -420,32 +386,32 @@ class ARSCNViewDelegateImpl extends NSObject /* implements ARSCNViewDelegate */ 
     }
 
     this.currentTrackingState = trackingState;
-    if (trackingState === ARTrackingStateNotAvailable) {
+    if (trackingState === ARTrackingState.NotAvailable) {
 
-    } else if (trackingState === ARTrackingStateLimited) {
+    } else if (trackingState === ARTrackingState.Limited) {
       const reason = camera.trackingStateReason;
       console.log(">>> sessionCameraDidChangeTrackingState, reason: " + reason);
-      if (reason === ARTrackingStateReasonExcessiveMotion) {
+      if (reason === ARTrackingStateReason.ExcessiveMotion) {
 
-      } else if (reason === ARTrackingStateReasonInsufficientFeatures) {
+      } else if (reason === ARTrackingStateReason.InsufficientFeatures) {
 
-      } else if (reason === ARTrackingStateReasonInitializing) {
+      } else if (reason === ARTrackingStateReason.Initializing) {
 
-      } else if (reason === ARTrackingStateReasonNone) {
+      } else if (reason === ARTrackingStateReason.None) {
 
       }
 
-    } else if (trackingState === ARTrackingStateNormal) {
+    } else if (trackingState === ARTrackingState.Normal) {
 
     }
   }
 
-  rendererDidAddNodeForAnchor(renderer: SCNSceneRenderer, node: SCNNode, anchor: any /* ARAnchor */): void {
+  rendererDidAddNodeForAnchor(renderer: SCNSceneRenderer, node: SCNNode, anchor: ARAnchor): void {
     if (anchor instanceof ARPlaneAnchor) {
       const owner = this.owner.get();
       // When a new plane is detected we create a new SceneKit plane to visualize it in 3D
       const plane: ARPlane = ARPlane.create(anchor, false, ARMaterial.getMaterial("tron"));
-      ARState.planes.set(anchor.identifier, plane);
+      ARState.planes.set(anchor.identifier.UUIDString, plane);
       node.addChildNode(plane.ios);
 
       owner.notify({
@@ -456,15 +422,15 @@ class ARSCNViewDelegateImpl extends NSObject /* implements ARSCNViewDelegate */ 
     }
   }
 
-  rendererDidUpdateNodeForAnchor(renderer: SCNSceneRenderer, node: SCNNode, anchor: any /* ARAnchor */): void {
-    const plane: ARPlane = ARState.planes.get(anchor.identifier);
+  rendererDidUpdateNodeForAnchor(renderer: SCNSceneRenderer, node: SCNNode, anchor: ARAnchor): void {
+    const plane: ARPlane = ARState.planes.get(anchor.identifier.UUIDString);
     if (plane) {
       plane.update(anchor);
     }
   }
 
-  rendererDidRemoveNodeForAnchor(renderer: SCNSceneRenderer, node: SCNNode, anchor: any /* ARAnchor */): void {
-    ARState.planes.delete(anchor.identifier);
+  rendererDidRemoveNodeForAnchor(renderer: SCNSceneRenderer, node: SCNNode, anchor: ARAnchor): void {
+    ARState.planes.delete(anchor.identifier.UUIDString);
   }
 }
 
@@ -540,9 +506,6 @@ export class ARCube extends SCNNode implements ARNodePrivate {
 
   onLongPress(): void {
     this.onLongPressHandler && this.onLongPressHandler(this);
-    if (demoMode) {
-      this.remove();
-    }
   }
 
   remove(): void {
@@ -584,9 +547,6 @@ export class ARModel implements ARNodePrivate {
 
   onLongPress(): void {
     this.onLongPressHandler && this.onLongPressHandler(this);
-    if (demoMode) {
-      this.remove();
-    }
   }
 
   remove(): void {
@@ -597,13 +557,13 @@ export class ARModel implements ARNodePrivate {
 
 export class ARPlane implements IARPlane {
   private planeGeometry: SCNBox;
-  private anchor: any /* ARAnchor */;
+  private anchor: ARAnchor;
 
   id: string;
   position: ARPosition;
   ios: SCNNode;
 
-  static create(anchor: any /* ARAnchor */, hidden: boolean, material: SCNMaterial) {
+  static create(anchor: ARAnchor, hidden: boolean, material: SCNMaterial) {
     const instance = new ARPlane();
     instance.ios = SCNNode.new();
     instance.anchor = anchor;

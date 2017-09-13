@@ -177,8 +177,11 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
       // TODO 4 different materials, full paths
       material: "tnsgranite",
       position: {x: position.x, y: position.y + 0.7, z: position.z},
-      scale: 0.1,
+      scale: 0.15,
       mass: 1,
+      onTap: ((model: ARNode) => {
+        console.log("Cube was tapped");
+      }),
       onLongPress: ((model: ARNode) => {
         model.remove();
       })
@@ -191,6 +194,9 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
       position: {x: position.x, y: position.y + 0.7, z: position.z},
       scale: 0.08,
       mass: 0.3,
+      onTap: ((model: ARNode) => {
+        console.log("Ball was tapped");
+      }),
       onLongPress: ((model: ARNode) => {
         model.remove();
       })
@@ -201,8 +207,11 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
     this.ar.addModel({
       name: "Models.scnassets/Car.dae",
       position: {x: position.x, y: position.y + 0.06, z: position.z},
-      scale: 0.8,
+      scale: 0.75,
       mass: 100,
+      onTap: ((model: ARNode) => {
+        console.log("Car was tapped");
+      }),
       onLongPress: ((model: ARNode) => {
         model.remove();
       })
@@ -216,6 +225,9 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
       position: position,
       scale: 0.01,
       mass: 0.0002,
+      onTap: ((model: ARNode) => {
+        console.log("Tree was tapped");
+      }),
       onLongPress: ((model: ARNode) => {
         model.remove();
       })
