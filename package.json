@@ -7,10 +7,10 @@
   "nativescript": {
     "id": "org.nativescript.pluginshowcase",
     "tns-android": {
-      "version": "3.1.1"
+      "version": "3.2.0"
     },
     "tns-ios": {
-      "version": "3.2.0-rc-2017-8-30-1"
+      "version": "3.2.0"
     }
   },
   "author": {
@@ -28,12 +28,12 @@
     "ns-bundle": "ns-bundle --uglify",
     "publish-ios-bundle": "npm run ns-bundle --ios --publish-app",
     "generate-android-snapshot": "generate-android-snapshot --targetArchs arm,arm64,ia32 --install",
+    "ios.release": "npm run build-ios-bundle -- --release --forDevice --provision 126a7372-fbc5-41bf-95f3-6d3e479bde86 && ipa-deploy platforms/ios/build/device/nativescriptpluginshowcase.ipa echo '***  Now check the app on the device and afterwards upload it with npm run ios.publish-after-release ***'",
+    "ios.publish-after-release": "echo \"Change the password :)\" && tns publish ios eddyverbruggen@gmail.com my-hidden-password --ipa platforms/ios/build/device/nativescriptpluginshowcase.ipa",
     "start-android-bundle": "npm run ns-bundle --android --run-app",
     "start-ios-bundle": "npm run ns-bundle --ios --run-app",
     "build-android-bundle": "npm run ns-bundle --android --build-app",
-    "build-ios-bundle": "npm run ns-bundle --ios --build-app",
-    "ios.release": "npm run build-ios-bundle -- --release --forDevice --provision 126a7372-fbc5-41bf-95f3-6d3e479bde86 && ipa-deploy platforms/ios/build/device/nativescriptpluginshowcase.ipa echo '***  Now check the app on the device and afterwards upload it with npm run ios.publish-after-release ***'",
-    "ios.publish-after-release": "echo \"Change the password :)\" && tns publish ios eddyverbruggen@gmail.com my-hidden-password --ipa platforms/ios/build/device/nativescriptpluginshowcase.ipa"
+    "build-ios-bundle": "npm run ns-bundle --ios --build-app"
   },
   "dependencies": {
     "@angular/animations": "4.2.5",
@@ -76,8 +76,8 @@
     "nativescript-toast": "^1.4.6",
     "reflect-metadata": "0.1.10",
     "rxjs": "5.4.3",
-    "tns-core-modules": "rc",
-    "tns-platform-declarations": "^3.1.1",
+    "tns-core-modules": "^3.2.0",
+    "tns-platform-declarations": "^3.2.0",
     "tslint": "^5.6.0",
     "zone.js": "0.8.16"
   },
