@@ -6,7 +6,7 @@ import {
 
 export { ARDebugLevel };
 
-declare const ARSCNView, ARWorldTrackingSessionConfiguration, ARPlaneDetectionHorizontal, ARPlaneDetectionNone,
+declare const ARSCNView, ARWorldTrackingConfiguration, ARPlaneDetectionHorizontal, ARPlaneDetectionNone,
     ARSCNViewDelegate,
     ARTrackingStateNormal, ARTrackingStateNotAvailable, ARTrackingStateLimited,
     ARTrackingStateReasonExcessiveMotion, ARTrackingStateReasonInsufficientFeatures, ARTrackingStateReasonInitializing,
@@ -84,7 +84,7 @@ export class AR extends ARBase {
     if (!AR.isSupported()) {
       return;
     }
-    this.configuration = ARWorldTrackingSessionConfiguration.new();
+    this.configuration = ARWorldTrackingConfiguration.new();
     this.configuration.lightEstimationEnabled = true;
 
     this.sceneView = ARSCNView.new();
