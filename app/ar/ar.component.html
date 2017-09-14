@@ -14,6 +14,7 @@
       <Label row="0" [text]="hint" class="hint" textWrap="true"></Label>
       <AR row="1"
           style="border-radius: 20"
+          [debugLevel]="debugLevel"
           (arLoaded)="arLoaded($event)"
           (planeDetected)="planeDetected($event)"
           (planeTapped)="planeTapped($event)">
@@ -23,7 +24,7 @@
               #dropDown
               row="0"
               col="1"
-              class="m-b-10 xm-r-10 semibold"
+              class="m-b-10 semibold"
               style="text-align: center; padding: 5"
               color="#4cd966"
               [items]="models"

@@ -47,11 +47,10 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
   planeDetectionActive: boolean = true;
   statsEnabled: boolean = true;
   isSupported: boolean;
+  debugLevel: ARDebugLevel = ARDebugLevel.FEATURE_POINTS;
 
-  models: Array<string> = ["{N} Cube", "Car", "Ball", "Tree"];
+  models: Array<string> = ["{N} Box", "Sphere", "Car", "Ball", "Tree"];
   selectedModelIndex = 0;
-
-  private demoObject: "cube" | "model" = "cube";
 
   @ViewChild("dropDown") dropDown: ElementRef;
 
@@ -89,7 +88,7 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
     if (args.value !== null && args.value !== this.planeDetectionActive) {
       this.planeDetectionActive = args.value;
       this.ar.togglePlaneDetection(this.planeDetectionActive);
-      this.ar.setDebugLevel(this.planeDetectionActive ? ARDebugLevel.FEATURE_POINTS : ARDebugLevel.NONE);
+      this.debugLevel = this.planeDetectionActive ? ARDebugLevel.FEATURE_POINTS : ARDebugLevel.NONE;
     }
   }
 
@@ -97,7 +96,7 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
     if (args.value !== null && args.value !== this.planesVisible) {
       this.planesVisible = args.value;
       this.ar.togglePlaneVisibility(this.planesVisible);
-      this.ar.setDebugLevel(this.planesVisible ? ARDebugLevel.FEATURE_POINTS : ARDebugLevel.NONE);
+      this.debugLevel = this.planesVisible ? ARDebugLevel.FEATURE_POINTS : ARDebugLevel.NONE;
     }
   }
 
@@ -151,42 +150,54 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
   }
 
   planeTapped(args: ARPlaneTappedEventData): void {
-    this.hint = `${this.demoObject} at ${args.position.x} y ${args.position.y} z ${args.position.z}`;
+    this.hint = `Tapped at ${args.position.x} y ${args.position.y} z ${args.position.z}`;
 
     if (this.selectedModelIndex === 0) {
-      this.addCube(args.position);
+      this.addBox(args.position);
     } else if (this.selectedModelIndex === 1) {
-      this.addCar(args.position);
+      this.addSphere(args.position);
     } else if (this.selectedModelIndex === 2) {
-      this.addBall(args.position);
+      this.addCar(args.position);
     } else if (this.selectedModelIndex === 3) {
+      this.addBall(args.position);
+    } else if (this.selectedModelIndex === 4) {
       this.addTree(args.position);
     }
-
-    // if (this.demoObject === "cube") {
-    //   this.addCube(args.position);
-    //   this.demoObject = "model";
-    // } else {
-    //   this.addCar(args.position);
-    //   this.demoObject = "cube";
-    // }
   }
 
-  private addCube(position: ARPosition): void {
-    this.ar.addCube({
+  private addBox(position: ARPosition): void {
+    this.ar.addBox({
       // TODO 4 different materials, full paths
       material: "tnsgranite",
       position: {x: position.x, y: position.y + 0.7, z: position.z},
       scale: 0.15,
       mass: 1,
       onTap: ((model: ARNode) => {
-        console.log("Cube was tapped");
+        console.log("Box was tapped");
       }),
       onLongPress: ((model: ARNode) => {
         model.remove();
       })
     }).then(arNode => {
-      console.log("Cube successfully added");
+      console.log("Box successfully added");
+    });
+  }
+
+  private addSphere(position: ARPosition): void {
+    this.ar.addSphere({
+      // TODO 4 different materials, full paths
+      material: "tnsgranite",
+      position: {x: position.x, y: position.y + 0.7, z: position.z},
+      scale: 0.2,
+      mass: 0.01,
+      onTap: ((model: ARNode) => {
+        console.log("Sphere was tapped");
+      }),
+      onLongPress: ((model: ARNode) => {
+        model.remove();
+      })
+    }).then(arNode => {
+      console.log("Sphere successfully added");
     });
   }
 

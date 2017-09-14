@@ -1,5 +1,7 @@
-import { AR as ARBase, ARAddCubeOptions, ARAddModelOptions, ARDebugLevel, ARNode } from "./ar-common";
-import { Color } from "tns-core-modules/color";
+import {
+  AR as ARBase, ARAddBoxOptions, ARAddModelOptions, ARAddSphereOptions, ARDebugLevel,
+  ARNode
+} from "./ar-common";
 
 export class AR extends ARBase {
   private _android: any;
@@ -27,16 +29,11 @@ export class AR extends ARBase {
     throw new Error("Method not implemented.");
   }
 
-  addCube(options: ARAddCubeOptions): Promise<ARNode> {
+  addBox(options: ARAddBoxOptions): Promise<ARNode> {
     throw new Error("Method not implemented.");
   }
 
-  protected updateColors(colors: Color[]) {
-  }
-
-  protected updateBorderRadius(radius: number) {
-  }
-
-  protected updateDirection(direction: string) {
+  addSphere(options: ARAddSphereOptions): Promise<ARNode> {
+    throw new Error("Method not implemented.");
   }
 }

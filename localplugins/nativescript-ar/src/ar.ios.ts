@@ -1,6 +1,6 @@
-import { Color } from "tns-core-modules/color";
 import {
-  AR as ARBase, ARAddCubeOptions, ARAddModelOptions, ARDebugLevel, ARNode, ARNodePrivate, ARPlaneTappedEventData,
+  AR as ARBase, ARAddBoxOptions, ARAddModelOptions, ARAddOptions, ARAddSphereOptions, ARDebugLevel, ARNode,
+  ARPlaneTappedEventData,
   ARPosition, IARPlane
 } from "./ar-common";
 
@@ -8,9 +8,7 @@ export { ARDebugLevel };
 
 const ARState = {
   planes: new Map<string, ARPlane>(),
-  models: new Map<string, ARModel>(),
-  // models: new Array<ARModel>(),
-  cubes: new Array<ARCube>()
+  shapes: new Map<string, CommonARNode>(),
 };
 
 export class AR extends ARBase {
@@ -71,6 +69,7 @@ export class AR extends ARBase {
     if (!AR.isSupported()) {
       return;
     }
+
     this.configuration = ARWorldTrackingConfiguration.new();
     this.configuration.lightEstimationEnabled = true;
 
@@ -178,12 +177,10 @@ export class AR extends ARBase {
     }
 
     const hitResult: SCNHitTestResult = hitTestResults.firstObject;
-    const savedModel = ARState.models.get(hitResult.node.name);
+    const savedModel = ARState.shapes.get(hitResult.node.name);
 
     if (savedModel) {
       savedModel.onLongPress();
-    } else if (hitResult.node.parentNode instanceof ARCube) {
-      (<ARCube>hitResult.node.parentNode).onLongPress();
     }
   }
 
@@ -210,13 +207,9 @@ export class AR extends ARBase {
 
     if (node !== undefined) {
       const parentNode = node.parentNode;
-      const savedModel = ARState.models.get(parentNode.name);
+      const savedModel = ARState.shapes.get(parentNode.name);
       if (savedModel) {
         savedModel.onTap();
-        existingItemTapped = true;
-      } else if (parentNode instanceof ARCube) {
-        const parent: ARCube = <ARCube>parentNode;
-        parent.onTap();
         existingItemTapped = true;
       }
     }
@@ -235,59 +228,39 @@ export class AR extends ARBase {
     }
   }
 
-  // TODO promise makes more sense (so we can reject it in case of trouble, etc)
   addModel(options: ARAddModelOptions): Promise<ARNode> {
     return new Promise((resolve, reject) => {
-      const model: ARModel = ARModel.create(
-          options.position,
-          options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale},
-          options.mass || 0,
-          options.name,
-          options.childNodeName);
-      model.onTapHandler = options.onTap;
-      model.onLongPressHandler = options.onLongPress;
-      ARState.models.set(model.name, model);
+      const model: ARModel = ARModel.create(options);
+      ARState.shapes.set(model.name, model);
       this.sceneView.scene.rootNode.addChildNode(model.ios);
       resolve(model);
     });
   }
 
-  addCube(options: ARAddCubeOptions): Promise<ARNode> {
+  addBox(options: ARAddBoxOptions): Promise<ARNode> {
     return new Promise((resolve, reject) => {
-      const cube: ARCube = ARCube.create(
-          options.position,
-          options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale},
-          options.mass || 0,
-          options.material ? ARMaterial.getMaterial(options.material) : null);
-      cube.onTapHandler = options.onTap;
-      cube.onLongPressHandler = options.onLongPress;
-      ARState.cubes.push(cube);
-      this.sceneView.scene.rootNode.addChildNode(cube);
-      resolve(cube);
+      const box: ARBox = ARBox.create(options);
+      ARState.shapes.set(box.name, box);
+      this.sceneView.scene.rootNode.addChildNode(box.ios);
+      resolve(box);
+    });
+  }
+
+  addSphere(options: ARAddSphereOptions): Promise<ARNode> {
+    return new Promise((resolve, reject) => {
+      const sphere: ARSphere = ARSphere.create(options);
+      ARState.shapes.set(sphere.name, sphere);
+      this.sceneView.scene.rootNode.addChildNode(sphere.ios);
+      resolve(sphere);
     });
   }
 
   public reset(): void {
     ARState.planes.forEach(plane => plane.remove());
     ARState.planes.clear();
-    ARState.cubes.forEach(cube => cube.remove());
-    ARState.cubes = [];
-    ARState.models.forEach(model => model.remove());
-    // ARState.models = [];
-    ARState.models.clear();
+    ARState.shapes.forEach(node => node.remove());
+    ARState.shapes.clear();
     // I think we need to reset more in order for plane detection to work again..
-  }
-
-  protected updateBorderRadius(radius: number) {
-    if (radius) {
-      // this._gradientLayer.cornerRadius = radius;
-    }
-  }
-
-  protected updateColors(colors?: Color[]): void {
-  }
-
-  protected updateDirection(direction?: string): void {
   }
 }
 
@@ -479,32 +452,25 @@ class SCNPhysicsContactDelegateImpl extends NSObject implements SCNPhysicsContac
   }
 }
 
-// TODO don't extend SCNNode
-export class ARCube extends SCNNode implements ARNodePrivate {
+export abstract class CommonARNode {
+  name: string;
+  ios: SCNNode;
   onTapHandler?: (model: ARNode) => void;
   onLongPressHandler?: (model: ARNode) => void;
 
-  static create(position: ARPosition, scale: ARPosition, mass: number, material: SCNMaterial) {
-    const instance = <ARCube>super.new();
+  constructor(options: ARAddOptions, node: SCNNode) {
+    this.onTapHandler = options.onTap;
+    this.onLongPressHandler = options.onLongPress;
+    node.position = options.position;
 
-    const cube = SCNBox.boxWithWidthHeightLengthChamferRadius(scale.x, scale.y, scale.z, 0.0);
+    // generate a unique name, used for later reference
+    node.name = this.name = (JSON.stringify(options.position) + "_" + new Date().getTime());
 
-    // make the box look nice
-    const materialArray: NSMutableArray<any> = NSMutableArray.alloc().initWithCapacity(1);
-    materialArray.addObject(material);
-    cube.materials = materialArray;
+    node.physicsBody = SCNPhysicsBody.bodyWithTypeShape(SCNPhysicsBodyType.Dynamic, null);
+    node.physicsBody.mass = options.mass || 0;
+    node.physicsBody.categoryBitMask = 1; // CollisionCategoryCube
 
-    // The node that wraps the geometry so we can add it to the scene
-    const boxNode = SCNNode.nodeWithGeometry(cube);
-
-    // The physicsBody tells SceneKit this geometry should be manipulated by the physics engine
-    boxNode.physicsBody = SCNPhysicsBody.bodyWithTypeShape(SCNPhysicsBodyType.Dynamic, null);
-    boxNode.physicsBody.mass = mass;
-    boxNode.physicsBody.categoryBitMask = 1; // CollisionCategoryCube
-
-    boxNode.position = position;
-    instance.addChildNode(boxNode);
-    return instance;
+    this.ios = node;
   }
 
   onTap(): void {
@@ -516,49 +482,55 @@ export class ARCube extends SCNNode implements ARNodePrivate {
   }
 
   remove(): void {
-    const storedIndex = ARState.cubes.indexOf(this);
-    if (storedIndex > -1) {
-      ARState.cubes.splice(storedIndex, 1);
-    }
-    this.removeFromParentNode();
+    ARState.shapes.delete(this.name);
+    this.ios.removeFromParentNode();
   }
 }
 
-export class ARModel implements ARNodePrivate {
-  public name: string;
-  public ios: SCNNode;
-  onTapHandler?: (model: ARNode) => void;
-  onLongPressHandler?: (model: ARNode) => void;
+export class ARBox extends CommonARNode {
+  static create(options: ARAddBoxOptions) {
+    const scale: ARPosition = options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale};
+    // TODO pass in chamfer (https://developer.apple.com/documentation/scenekit/scnbox?language=objc)
+    const box = SCNBox.boxWithWidthHeightLengthChamferRadius(scale.x, scale.y, scale.z, 0.0);
+
+    // make the box look nice
+    if (options.material) {
+      const materialArray: NSMutableArray<any> = NSMutableArray.alloc().initWithCapacity(1);
+      materialArray.addObject(ARMaterial.getMaterial(options.material));
+      box.materials = materialArray;
+    }
+
+    const boxNode = SCNNode.nodeWithGeometry(box);
+    return new ARBox(options, boxNode);
+  }
+}
+
+export class ARSphere extends CommonARNode {
+
+  static create(options: ARAddSphereOptions) {
+    const scale: ARPosition = options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale};
+    const sphere = SCNSphere.sphereWithRadius(scale.x); // TODO .radius
+
+    // make the sphere look nice (TODO move this to a new superclass that's not super to ARModel)
+    if (options.material) {
+      const materialArray: NSMutableArray<any> = NSMutableArray.alloc().initWithCapacity(1);
+      materialArray.addObject(ARMaterial.getMaterial(options.material));
+      sphere.materials = materialArray;
+    }
+
+    const sphereNode = SCNNode.nodeWithGeometry(sphere);
+    return new ARSphere(options, sphereNode);
+  }
+}
+
+export class ARModel extends CommonARNode {
 
   // note that these babies can be cloned, look for 'clone' at http://jamesonquave.com/blog/arkit-tutorial-in-swift-4-for-xcode-9-using-scenekit/
-  static create(position: ARPosition, scale: ARPosition, mass: number, name: string, childNodeName?: string) {
-    const instance = new ARModel();
-
-    let modelScene = SCNScene.sceneNamed(name);
-    let nodeModel = childNodeName ? modelScene.rootNode.childNodeWithNameRecursively(childNodeName, true) : modelScene.rootNode;
-    nodeModel.position = position;
-    nodeModel.scale = scale;
-    // "generate" a name so we can easily correlate these
-    nodeModel.name = instance.name = (name + "_" + new Date().getTime());
-    nodeModel.physicsBody = SCNPhysicsBody.bodyWithTypeShape(SCNPhysicsBodyType.Dynamic, null);
-    nodeModel.physicsBody.mass = mass;
-    nodeModel.physicsBody.categoryBitMask = 1; // CollisionCategoryCube
-
-    instance.ios = nodeModel;
-    return instance;
-  }
-
-  onTap(): void {
-    this.onTapHandler && this.onTapHandler(this);
-  }
-
-  onLongPress(): void {
-    this.onLongPressHandler && this.onLongPressHandler(this);
-  }
-
-  remove(): void {
-    ARState.models.delete(this.name);
-    this.ios.removeFromParentNode();
+  static create(options: ARAddModelOptions) {
+    let modelScene = SCNScene.sceneNamed(options.name);
+    let nodeModel = options.childNodeName ? modelScene.rootNode.childNodeWithNameRecursively(options.childNodeName, true) : modelScene.rootNode;
+    nodeModel.scale = options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale};
+    return new ARModel(options, nodeModel);
   }
 }
 
