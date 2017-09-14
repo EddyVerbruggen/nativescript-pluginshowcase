@@ -17,11 +17,14 @@ const debugLevelProperty = new Property<AR, ARDebugLevel>({
 export interface IARPlane {
   id: string;
   position: ARPosition;
-  ios: any;
+  ios?: any;
+  android?: any;
   remove(): void;
 }
 
 export interface ARNode {
+  ios?: any; /**/
+  android?: any; /**/
   remove(): void;
 }
 

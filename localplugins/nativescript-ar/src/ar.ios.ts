@@ -463,7 +463,7 @@ class SCNPhysicsContactDelegateImpl extends NSObject implements SCNPhysicsContac
   }
 }
 
-export abstract class CommonARNode {
+export abstract class CommonARNode implements ARNode {
   name: string;
   ios: SCNNode;
   onTapHandler?: (model: ARNode) => void;

@@ -180,6 +180,9 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
       })
     }).then(arNode => {
       console.log("Box successfully added");
+      if (arNode.ios) {
+        // do something iOS specific here if you like
+      }
     });
   }
 
