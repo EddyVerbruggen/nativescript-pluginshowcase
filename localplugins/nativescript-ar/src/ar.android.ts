@@ -1,5 +1,5 @@
 import {
-  AR as ARBase, ARAddBoxOptions, ARAddModelOptions, ARAddSphereOptions, ARDebugLevel,
+  AR as ARBase, ARAddBoxOptions, ARAddModelOptions, ARAddSphereOptions, ARAddTubeOptions, ARDebugLevel,
   ARNode
 } from "./ar-common";
 
@@ -34,6 +34,10 @@ export class AR extends ARBase {
   }
 
   addSphere(options: ARAddSphereOptions): Promise<ARNode> {
+    throw new Error("Method not implemented.");
+  }
+
+  addTube(options: ARAddTubeOptions): Promise<ARNode> {
     throw new Error("Method not implemented.");
   }
 }

@@ -49,7 +49,7 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
   isSupported: boolean;
   debugLevel: ARDebugLevel = ARDebugLevel.FEATURE_POINTS;
 
-  models: Array<string> = ["{N} Box", "Sphere", "Car", "Ball", "Tree"];
+  models: Array<string> = ["Box", "Sphere", "Tube", "Car", "Ball", "Tree"];
   selectedModelIndex = 0;
 
   @ViewChild("dropDown") dropDown: ElementRef;
@@ -157,10 +157,12 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
     } else if (this.selectedModelIndex === 1) {
       this.addSphere(args.position);
     } else if (this.selectedModelIndex === 2) {
-      this.addCar(args.position);
+      this.addTube(args.position);
     } else if (this.selectedModelIndex === 3) {
-      this.addBall(args.position);
+      this.addCar(args.position);
     } else if (this.selectedModelIndex === 4) {
+      this.addBall(args.position);
+    } else if (this.selectedModelIndex === 5) {
       this.addTree(args.position);
     }
   }
@@ -169,7 +171,7 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
     this.ar.addBox({
       // TODO 4 different materials, full paths
       material: "tnsgranite",
-      position: {x: position.x, y: position.y + 0.7, z: position.z},
+      position: {x: position.x, y: position.y + 0.8, z: position.z},
       scale: 0.15,
       mass: 1,
       onTap: ((model: ARNode) => {
@@ -187,8 +189,8 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
     this.ar.addSphere({
       // TODO 4 different materials, full paths
       material: "tnsgranite",
-      position: {x: position.x, y: position.y + 0.7, z: position.z},
-      scale: 0.2,
+      position: {x: position.x, y: position.y + 1.3, z: position.z},
+      radius: 0.2,
       mass: 0.01,
       onTap: ((model: ARNode) => {
         console.log("Sphere was tapped");
@@ -201,12 +203,34 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
     });
   }
 
+  private addTube(position: ARPosition): void {
+    this.ar.addTube({
+      // TODO 4 different materials, full paths
+      // TODO a tube also has 4 surfaces we can use different materials for (https://developer.apple.com/documentation/scenekit/scntube?language=objc)
+      material: "tnsgranite", // TODO a youtube texture :P
+      position: {x: position.x, y: position.y + 0.3, z: position.z},
+      innerRadius: 0.2,
+      outerRadius: 0.35,
+      radialSegmentCount: 1000,
+      height: 0.7,
+      mass: 8,
+      onTap: ((model: ARNode) => {
+        console.log("Tube was tapped");
+      }),
+      onLongPress: ((model: ARNode) => {
+        model.remove();
+      })
+    }).then(arNode => {
+      console.log("Tube successfully added");
+    });
+  }
+
   private addBall(position: ARPosition): void {
     this.ar.addModel({
       name: "Models.scnassets/Ball.dae",
-      position: {x: position.x, y: position.y + 0.7, z: position.z},
+      position: {x: position.x, y: position.y + 1.3, z: position.z},
       scale: 0.08,
-      mass: 0.3,
+      mass: 0.2,
       onTap: ((model: ARNode) => {
         console.log("Ball was tapped");
       }),
@@ -214,8 +238,8 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
         model.remove();
       })
     }).then(arNode => {
+      // to remove balls after a few seconds you can do this:
       setTimeout(() => {
-        // balls are removed after a few seconds
         arNode.remove();
       }, 2000);
     });

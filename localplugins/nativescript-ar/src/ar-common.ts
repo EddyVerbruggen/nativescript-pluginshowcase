@@ -27,7 +27,6 @@ export interface ARNode {
 
 export interface ARAddOptions {
   position: ARPosition;
-  scale: number | ARPosition;
   mass?: number;
   onTap?: (model: ARNode) => void;
   onLongPress?: (model: ARNode) => void;
@@ -40,13 +39,23 @@ export interface ARAddGeometryOptions extends ARAddOptions {
 export interface ARAddModelOptions extends ARAddOptions {
   name: string;
   childNodeName?: string;
+  scale: number | ARPosition;
 }
 
 export interface ARAddBoxOptions extends ARAddGeometryOptions {
+  scale: number | ARPosition;
 }
 
 export interface ARAddSphereOptions extends ARAddGeometryOptions {
-  // note that the super.scale property is used for 'radius'.. could make that explicit (or rename scale to sth more generic like 'dimensions')
+  radius: number;
+}
+
+export interface ARAddTubeOptions extends ARAddGeometryOptions {
+  innerRadius: number;
+  outerRadius: number;
+  height: number;
+  radialSegmentCount?: number;
+  heightSegmentCount?: number;
 }
 
 export interface ARPlaneTappedEventData extends EventData {
@@ -82,6 +91,8 @@ export abstract class AR extends ContentView {
   abstract addBox(options: ARAddBoxOptions): Promise<ARNode>;
 
   abstract addSphere(options: ARAddSphereOptions): Promise<ARNode>;
+
+  abstract addTube(options: ARAddTubeOptions): Promise<ARNode>;
 
   abstract togglePlaneDetection(on: boolean): void;
 

@@ -1,5 +1,6 @@
 import {
-  AR as ARBase, ARAddBoxOptions, ARAddModelOptions, ARAddOptions, ARAddSphereOptions, ARDebugLevel, ARNode,
+  AR as ARBase, ARAddBoxOptions, ARAddModelOptions, ARAddOptions, ARAddSphereOptions, ARAddTubeOptions, ARDebugLevel,
+  ARNode,
   ARPlaneTappedEventData,
   ARPosition, IARPlane
 } from "./ar-common";
@@ -137,7 +138,8 @@ export class AR extends ARBase {
     bottomPlane.materials = materialArray;
 
     const bottomNode = SCNNode.nodeWithGeometry(bottomPlane);
-    bottomNode.position = new ARPosition(0, -10, 0);
+    // position the plane 25 meters below our plane
+    bottomNode.position = new ARPosition(0, -25, 0);
     bottomNode.physicsBody = SCNPhysicsBody.bodyWithTypeShape(SCNPhysicsBodyType.Kinematic, null);
     bottomNode.physicsBody.categoryBitMask = 0; // CollisionCategoryBottom;
     bottomNode.physicsBody.contactTestBitMask = 1; // CollisionCategoryCube;
@@ -252,6 +254,15 @@ export class AR extends ARBase {
       ARState.shapes.set(sphere.name, sphere);
       this.sceneView.scene.rootNode.addChildNode(sphere.ios);
       resolve(sphere);
+    });
+  }
+
+  addTube(options: ARAddTubeOptions): Promise<ARNode> {
+    return new Promise((resolve, reject) => {
+      const tube: ARTube = ARTube.create(options);
+      ARState.shapes.set(tube.name, tube);
+      this.sceneView.scene.rootNode.addChildNode(tube.ios);
+      resolve(tube);
     });
   }
 
@@ -500,16 +511,14 @@ export class ARBox extends CommonARNode {
       box.materials = materialArray;
     }
 
-    const boxNode = SCNNode.nodeWithGeometry(box);
-    return new ARBox(options, boxNode);
+    return new ARBox(options, SCNNode.nodeWithGeometry(box));
   }
 }
 
 export class ARSphere extends CommonARNode {
 
   static create(options: ARAddSphereOptions) {
-    const scale: ARPosition = options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale};
-    const sphere = SCNSphere.sphereWithRadius(scale.x); // TODO .radius
+    const sphere = SCNSphere.sphereWithRadius(options.radius);
 
     // make the sphere look nice (TODO move this to a new superclass that's not super to ARModel)
     if (options.material) {
@@ -518,8 +527,22 @@ export class ARSphere extends CommonARNode {
       sphere.materials = materialArray;
     }
 
-    const sphereNode = SCNNode.nodeWithGeometry(sphere);
-    return new ARSphere(options, sphereNode);
+    return new ARSphere(options, SCNNode.nodeWithGeometry(sphere));
+  }
+}
+
+export class ARTube extends CommonARNode {
+  static create(options: ARAddTubeOptions) {
+    const tube = SCNTube.tubeWithInnerRadiusOuterRadiusHeight(options.innerRadius, options.outerRadius, options.height);
+
+    // make the sphere look nice (TODO move this to a new superclass that's not super to ARModel)
+    if (options.material) {
+      const materialArray: NSMutableArray<any> = NSMutableArray.alloc().initWithCapacity(1);
+      materialArray.addObject(ARMaterial.getMaterial(options.material));
+      tube.materials = materialArray;
+    }
+
+    return new ARSphere(options, SCNNode.nodeWithGeometry(tube));
   }
 }
 
@@ -651,7 +674,7 @@ export class ARPlane implements IARPlane {
 
 export class ARMaterial {
   static getMaterial(named): SCNMaterial {
-    const mat = SCNMaterial.new();
+    const mat = SCNMaterial.new(); // I'm sure these can be cached
     mat.lightingModelName = SCNLightingModelPhysicallyBased;
     mat.diffuse.contents = UIImage.imageNamed(`./Assets.scnassets/Materials/${named}/${named}-albedo.png`);
     mat.roughness.contents = UIImage.imageNamed(`./Assets.scnassets/Materials/${named}/${named}-roughness.png`);
