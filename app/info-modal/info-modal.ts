@@ -42,13 +42,6 @@ export class InfoModalComponent {
         pageCommon.prototype._showNativeModalView.call(this, parent, context, closeCallback, fullscreen);
         let that = this;
 
-        // TODO prevent back navigation gesture while this modal is open!
-        this._modalParent = parent;
-        if (!parent.ios.view.window) {
-          throw new Error('Parent page is not part of the window hierarchy. ' +
-              'Close the current modal page before showing another one!');
-        }
-
         if (fullscreen) {
           this._ios.modalPresentationStyle = 0;
         } else {

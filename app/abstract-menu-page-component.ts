@@ -1,4 +1,4 @@
-import { OnDestroy, ViewContainerRef } from "@angular/core";
+import { ViewContainerRef } from "@angular/core";
 import { isIOS } from "platform";
 import { MenuComponent } from "./menu/menu.component";
 import { ModalDialogOptions, ModalDialogService } from "nativescript-angular";
@@ -6,7 +6,7 @@ import { InfoModalComponent } from "./info-modal/info-modal";
 import { PluginInfoWrapper } from "./shared/plugin-info-wrapper";
 import { Config } from "./shared/config";
 
-export abstract class AbstractMenuPageComponent implements OnDestroy {
+export abstract class AbstractMenuPageComponent {
   isIOS: boolean = isIOS;
   isTablet: boolean = Config.isTablet;
 
@@ -16,10 +16,6 @@ export abstract class AbstractMenuPageComponent implements OnDestroy {
   }
 
   protected abstract getPluginInfo(): PluginInfoWrapper;
-
-  ngOnDestroy(): void {
-    // this.menuComponent = null;
-  }
 
   toggleTheMenu(): void {
     this.menuComponent.toggleMenu();

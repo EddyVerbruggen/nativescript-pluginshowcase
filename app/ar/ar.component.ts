@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { MenuComponent } from "../menu/menu.component";
@@ -38,7 +38,7 @@ const insomnia = require("nativescript-insomnia");
     ])
   ]
 })
-export class ARComponent extends AbstractMenuPageComponent implements OnInit {
+export class ARComponent extends AbstractMenuPageComponent implements OnInit, OnDestroy {
   private ar: AR;
   private firstPlaneDetected: boolean = false;
 
@@ -79,8 +79,6 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    super.ngOnDestroy();
-    // Insomnia OFF
     insomnia.allowSleepAgain().then(() => console.log("Insomnia is now OFF"));
   }
 
