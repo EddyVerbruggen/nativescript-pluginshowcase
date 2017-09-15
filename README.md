@@ -1,6 +1,7 @@
 NativeScript plugins showcase
 -----------------------------
 
+[![Appstore download][appstore-image]][appstore-url]
 [![Build Status][build-status]][build-url]
 ![plugins 27](https://img.shields.io/badge/plugins-27-brightgreen.svg)
 [![Twitter Follow][twitter-image]][twitter-url]
@@ -9,10 +10,9 @@ NativeScript plugins showcase
 [build-url]:https://travis-ci.org/EddyVerbruggen/nativescript-pluginshowcase
 [twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
 [twitter-url]:https://twitter.com/eddyverbruggen
-
-[![Appstore download][appstore-image]][appstore-url]
 [appstore-image]:screenshots/apple-appstore-badge.svg
 [appstore-url]:https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1281334006
+
 
 <img src="screenshots/ios/01-home.png" height="378px" /> <img src="screenshots/ios/02-feedback-menu.png" height="378px" /> <img src="screenshots/ios/03-mapping-menu.png" height="378px" /> <img src="screenshots/ios/04-mapping-info.png" height="378px" />
 
