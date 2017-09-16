@@ -105,32 +105,6 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
     }
   }
 
-  protected getPluginInfo(): PluginInfoWrapper {
-    return new PluginInfoWrapper(
-        "Is normal reality too dull for you? Augment it with the experimental plugin!",
-        Array.of(
-            new PluginInfo(
-                "nativescript-ar",
-                "AR  👀",
-                "https://github.com/EddyVerbruggen/nativescript-ar",
-                "Proof of Concept of an AR plugin. Currently supporting ARKit (iOS), and in the future ARCore (Android) as well."
-            ),
-            new PluginInfo(
-                "nativescript-drop-down",
-                "DropDown",
-                "https://github.com/PeterStaev/NativeScript-Drop-Down",
-                "The DropDown displays items from which the user can select one. If the built-in ActionSheet is not to your liking, give this one a try!"
-            ),
-            new PluginInfo(
-                "nativescript-insomnia",
-                "Insomnia  😪",
-                "https://github.com/EddyVerbruggen/nativescript-insomnia",
-                "Keep the device awake (not dim the screen, lock, etc). Useful if the user needs to see stuff on the device but doesn't touch it."
-            )
-        )
-    );
-  }
-
   reset(): void {
     if (this.ar) {
       this.ar.reset();
@@ -275,5 +249,31 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
         model.remove();
       })
     });
+  }
+
+  protected getPluginInfo(): PluginInfoWrapper {
+    return new PluginInfoWrapper(
+        "Is normal reality too dull for you? Augment it with the experimental plugin!",
+        Array.of(
+            new PluginInfo(
+                "nativescript-ar",
+                "AR  👀",
+                "https://github.com/EddyVerbruggen/nativescript-ar",
+                "Proof of Concept of an AR plugin. Currently supporting ARKit (iOS), and in the future ARCore (Android) as well."
+            ),
+            new PluginInfo(
+                "nativescript-drop-down",
+                "DropDown",
+                "https://github.com/PeterStaev/NativeScript-Drop-Down",
+                "The DropDown displays items from which the user can select one. If the built-in ActionSheet is not to your liking, give this one a try!"
+            ),
+            new PluginInfo(
+                "nativescript-insomnia",
+                "Insomnia  😪",
+                "https://github.com/EddyVerbruggen/nativescript-insomnia",
+                "Keep the device awake (not dim the screen, lock, etc). Useful if the user needs to see stuff on the device but doesn't touch it."
+            )
+        )
+    );
   }
 }

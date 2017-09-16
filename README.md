@@ -1,10 +1,10 @@
-NativeScript plugins showcase
------------------------------
+NativeScript plugin showcase
+----------------------------
 
 [![Appstore download][appstore-image]][appstore-url]
-[![Build Status][build-status]][build-url]
 ![iOS plugins 27](https://img.shields.io/badge/iOS_plugins-27-blue.svg)
 ![Android plugins 22](https://img.shields.io/badge/Android_plugins-22-brightgreen.svg)
+[![Build Status][build-status]][build-url]
 [![Twitter Follow][twitter-image]][twitter-url]
 
 [build-status]:https://travis-ci.org/EddyVerbruggen/nativescript-pluginshowcase.svg?branch=master
