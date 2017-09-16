@@ -36,7 +36,7 @@ matrix:
       os: osx
       env:
         - Webpack="iOS"
-      osx_image: xcode8.3
+      osx_image: xcode9
       language: node_js 
       node_js: "6"
       jdk: oraclejdk8
@@ -61,9 +61,9 @@ matrix:
         - tns build android
     - os: osx
       env: 
-        - BuildiOS="10.3"
-        - Xcode="8.3"
-      osx_image: xcode8.3
+        - BuildiOS="11"
+        - Xcode="9"
+      osx_image: xcode9
       language: node_js 
       node_js: "6"
       jdk: oraclejdk8

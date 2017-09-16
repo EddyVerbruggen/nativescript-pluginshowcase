@@ -1,5 +1,5 @@
 import {
-  AR as ARBase, ARAddBoxOptions, ARAddModelOptions, ARAddSphereOptions, ARAddTubeOptions, ARDebugLevel,
+  ARBase, ARAddBoxOptions, ARAddModelOptions, ARAddSphereOptions, ARAddTubeOptions, ARDebugLevel,
   ARNode
 } from "./ar-common";
 

@@ -9,20 +9,14 @@ export enum ARDebugLevel {
   PHYSICS_SHAPES = <any>"PHYSICS_SHAPES"
 }
 
-const debugLevelProperty = new Property<AR, ARDebugLevel>({
+const debugLevelProperty = new Property<ARBase, ARDebugLevel>({
   name: "debugLevel",
   defaultValue: ARDebugLevel.NONE
 });
 
-export interface IARPlane {
+export interface ARNode {
   id: string;
   position: ARPosition;
-  ios?: any;
-  android?: any;
-  remove(): void;
-}
-
-export interface ARNode {
   ios?: any; /**/
   android?: any; /**/
   remove(): void;
@@ -77,7 +71,7 @@ export class ARPosition {
   }
 }
 
-export abstract class AR extends ContentView {
+export abstract class ARBase extends ContentView {
 
   static arLoadedEvent: string = "arLoaded";
   static planeDetectedEvent: string = "planeDetected";
@@ -116,4 +110,4 @@ export abstract class AR extends ContentView {
   }
 }
 
-debugLevelProperty.register(AR);
+debugLevelProperty.register(ARBase);

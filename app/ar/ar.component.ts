@@ -200,7 +200,7 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
         model.remove();
       })
     }).then(arNode => {
-      console.log("Sphere successfully added");
+      console.log("Sphere successfully added at " + JSON.stringify(arNode.position));
     });
   }
 

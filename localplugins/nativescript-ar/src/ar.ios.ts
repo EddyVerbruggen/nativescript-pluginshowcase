@@ -1,15 +1,27 @@
 import {
-  AR as ARBase, ARAddBoxOptions, ARAddModelOptions, ARAddOptions, ARAddSphereOptions, ARAddTubeOptions, ARDebugLevel,
+  ARBase,
+  ARAddBoxOptions,
+  ARAddModelOptions,
+  ARAddSphereOptions,
+  ARAddTubeOptions,
+  ARDebugLevel,
   ARNode,
   ARPlaneTappedEventData,
-  ARPosition, IARPlane
+  ARPosition
 } from "./ar-common";
+import { ARMaterial } from "./nodes/ios/armaterial";
+import { ARBox } from "./nodes/ios/arbox";
+import { ARCommonNode } from "./nodes/ios/arcommon";
+import { ARPlane } from "./nodes/ios/arplane";
+import { ARModel } from "./nodes/ios/armodel";
+import { ARSphere } from "./nodes/ios/arsphere";
+import { ARTube } from "./nodes/ios/artube";
 
 export { ARDebugLevel };
 
 const ARState = {
   planes: new Map<string, ARPlane>(),
-  shapes: new Map<string, CommonARNode>(),
+  shapes: new Map<string, ARCommonNode>(),
 };
 
 export class AR extends ARBase {
@@ -32,7 +44,6 @@ export class AR extends ARBase {
     if (!this.sceneView) {
       return;
     }
-
     if (to === ARDebugLevel.WORLD_ORIGIN) {
       this.sceneView.debugOptions = ARSCNDebugOptionShowWorldOrigin;
     } else if (to === ARDebugLevel.FEATURE_POINTS) {
@@ -83,7 +94,7 @@ export class AR extends ARBase {
 
     // TODO depends on properties on the <AR> tag
     this.toggleStatistics(true);
-    this.setDebugLevel(ARDebugLevel.FEATURE_POINTS);
+    // this.setDebugLevel(ARDebugLevel.FEATURE_POINTS);
     this.togglePlaneDetection(true);
 
     // enabling these lines often result in an error: 'sensor failed to deliver [..] Make sure that the application has the required privacy settings'
@@ -233,7 +244,7 @@ export class AR extends ARBase {
   addModel(options: ARAddModelOptions): Promise<ARNode> {
     return new Promise((resolve, reject) => {
       const model: ARModel = ARModel.create(options);
-      ARState.shapes.set(model.name, model);
+      ARState.shapes.set(model.id, model);
       this.sceneView.scene.rootNode.addChildNode(model.ios);
       resolve(model);
     });
@@ -242,7 +253,7 @@ export class AR extends ARBase {
   addBox(options: ARAddBoxOptions): Promise<ARNode> {
     return new Promise((resolve, reject) => {
       const box: ARBox = ARBox.create(options);
-      ARState.shapes.set(box.name, box);
+      ARState.shapes.set(box.id, box);
       this.sceneView.scene.rootNode.addChildNode(box.ios);
       resolve(box);
     });
@@ -251,7 +262,7 @@ export class AR extends ARBase {
   addSphere(options: ARAddSphereOptions): Promise<ARNode> {
     return new Promise((resolve, reject) => {
       const sphere: ARSphere = ARSphere.create(options);
-      ARState.shapes.set(sphere.name, sphere);
+      ARState.shapes.set(sphere.id, sphere);
       this.sceneView.scene.rootNode.addChildNode(sphere.ios);
       resolve(sphere);
     });
@@ -260,7 +271,7 @@ export class AR extends ARBase {
   addTube(options: ARAddTubeOptions): Promise<ARNode> {
     return new Promise((resolve, reject) => {
       const tube: ARTube = ARTube.create(options);
-      ARState.shapes.set(tube.name, tube);
+      ARState.shapes.set(tube.id, tube);
       this.sceneView.scene.rootNode.addChildNode(tube.ios);
       resolve(tube);
     });
@@ -463,231 +474,4 @@ class SCNPhysicsContactDelegateImpl extends NSObject implements SCNPhysicsContac
   }
 }
 
-export abstract class CommonARNode implements ARNode {
-  name: string;
-  ios: SCNNode;
-  onTapHandler?: (model: ARNode) => void;
-  onLongPressHandler?: (model: ARNode) => void;
 
-  constructor(options: ARAddOptions, node: SCNNode) {
-    this.onTapHandler = options.onTap;
-    this.onLongPressHandler = options.onLongPress;
-    node.position = options.position;
-
-    // generate a unique name, used for later reference
-    node.name = this.name = (JSON.stringify(options.position) + "_" + new Date().getTime());
-
-    node.physicsBody = SCNPhysicsBody.bodyWithTypeShape(SCNPhysicsBodyType.Dynamic, null);
-    node.physicsBody.mass = options.mass || 0;
-    node.physicsBody.categoryBitMask = 1; // CollisionCategoryCube
-
-    this.ios = node;
-  }
-
-  onTap(): void {
-    this.onTapHandler && this.onTapHandler(this);
-  }
-
-  onLongPress(): void {
-    this.onLongPressHandler && this.onLongPressHandler(this);
-  }
-
-  remove(): void {
-    ARState.shapes.delete(this.name);
-    this.ios.removeFromParentNode();
-  }
-}
-
-export class ARBox extends CommonARNode {
-  static create(options: ARAddBoxOptions) {
-    const scale: ARPosition = options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale};
-    // TODO pass in chamfer (https://developer.apple.com/documentation/scenekit/scnbox?language=objc)
-    const box = SCNBox.boxWithWidthHeightLengthChamferRadius(scale.x, scale.y, scale.z, 0.0);
-
-    // make the box look nice
-    if (options.material) {
-      const materialArray: NSMutableArray<any> = NSMutableArray.alloc().initWithCapacity(1);
-      materialArray.addObject(ARMaterial.getMaterial(options.material));
-      box.materials = materialArray;
-    }
-
-    return new ARBox(options, SCNNode.nodeWithGeometry(box));
-  }
-}
-
-export class ARSphere extends CommonARNode {
-
-  static create(options: ARAddSphereOptions) {
-    const sphere = SCNSphere.sphereWithRadius(options.radius);
-
-    // make the sphere look nice (TODO move this to a new superclass that's not super to ARModel)
-    if (options.material) {
-      const materialArray: NSMutableArray<any> = NSMutableArray.alloc().initWithCapacity(1);
-      materialArray.addObject(ARMaterial.getMaterial(options.material));
-      sphere.materials = materialArray;
-    }
-
-    return new ARSphere(options, SCNNode.nodeWithGeometry(sphere));
-  }
-}
-
-export class ARTube extends CommonARNode {
-  static create(options: ARAddTubeOptions) {
-    const tube = SCNTube.tubeWithInnerRadiusOuterRadiusHeight(options.innerRadius, options.outerRadius, options.height);
-
-    // make the sphere look nice (TODO move this to a new superclass that's not super to ARModel)
-    if (options.material) {
-      const materialArray: NSMutableArray<any> = NSMutableArray.alloc().initWithCapacity(1);
-      materialArray.addObject(ARMaterial.getMaterial(options.material));
-      tube.materials = materialArray;
-    }
-
-    return new ARSphere(options, SCNNode.nodeWithGeometry(tube));
-  }
-}
-
-export class ARModel extends CommonARNode {
-
-  // note that these babies can be cloned, look for 'clone' at http://jamesonquave.com/blog/arkit-tutorial-in-swift-4-for-xcode-9-using-scenekit/
-  static create(options: ARAddModelOptions) {
-    let modelScene = SCNScene.sceneNamed(options.name);
-    let nodeModel = options.childNodeName ? modelScene.rootNode.childNodeWithNameRecursively(options.childNodeName, true) : modelScene.rootNode;
-    nodeModel.scale = options.scale instanceof ARPosition ? options.scale : {x: options.scale, y: options.scale, z: options.scale};
-    return new ARModel(options, nodeModel);
-  }
-}
-
-export class ARPlane implements IARPlane {
-  private planeGeometry: SCNBox;
-  private anchor: ARAnchor;
-
-  id: string;
-  position: ARPosition;
-  ios: SCNNode;
-
-  static create(anchor: ARAnchor, hidden: boolean, material: SCNMaterial) {
-    const instance = new ARPlane();
-    instance.ios = SCNNode.new();
-    instance.anchor = anchor;
-
-    // anchor.extent is undefined so we need to hack to extract it :(
-    const anchorstr = "" + anchor;
-    console.log(anchorstr);
-
-    const extentStart = anchorstr.indexOf("extent=(") + "extent=(".length;
-    const extentStr = anchorstr.substring(extentStart, anchorstr.indexOf(")", extentStart));
-    const extendParts = extentStr.split(" ");
-    const planeHeight = 0.01;
-    instance.planeGeometry = SCNBox.boxWithWidthHeightLengthChamferRadius(+extendParts[0], planeHeight, +extendParts[2], 0);
-
-    const translationStart = anchorstr.indexOf("<translation=(") + "<translation=(".length;
-    const translationStr = anchorstr.substring(translationStart, anchorstr.indexOf(")", translationStart));
-    const translationParts = translationStr.split(" ");
-    instance.position = new ARPosition(+translationParts[0], +translationParts[1], +translationParts[2]);
-
-    instance.setMaterial(material, false);
-
-    const planeNode = SCNNode.nodeWithGeometry(instance.planeGeometry);
-    planeNode.position = {x: 0, y: -planeHeight / 2, z: 0};
-    planeNode.physicsBody = SCNPhysicsBody.bodyWithTypeShape(
-        SCNPhysicsBodyType.Kinematic,
-        SCNPhysicsShape.shapeWithGeometryOptions(instance.planeGeometry, null));
-
-    ARPlane.setTextureScale(instance.planeGeometry);
-
-    instance.ios.addChildNode(planeNode);
-    instance.id = instance.anchor.identifier.UUIDString;
-    return instance;
-  }
-
-  setMaterial(material: SCNMaterial, hidden: boolean): void {
-    const transparentMaterial = SCNMaterial.new();
-    transparentMaterial.diffuse.contents = UIColor.colorWithWhiteAlpha(1.0, 0.0);
-
-    const materialArray: NSMutableArray<any> = NSMutableArray.alloc().initWithCapacity(6);
-    materialArray.addObject(transparentMaterial);
-    materialArray.addObject(transparentMaterial);
-    materialArray.addObject(transparentMaterial);
-    materialArray.addObject(transparentMaterial);
-    if (hidden) {
-      materialArray.addObject(transparentMaterial);
-      materialArray.addObject(transparentMaterial);
-      this.planeGeometry.materials = materialArray;
-    } else {
-      // make the plane not stand out too much
-      material.transparency = 0.4;
-      materialArray.addObject(material);
-      materialArray.addObject(transparentMaterial);
-      this.planeGeometry.materials = materialArray;
-    }
-  }
-
-  update(anchor: any) {
-    // anchor.extent is undefined so we need to hack to extract it
-    const anchorstr = "" + anchor;
-    const extentStart = anchorstr.indexOf("extent=(") + "extent=(".length;
-    const extentStr = anchorstr.substring(extentStart, anchorstr.indexOf(")", extentStart));
-    const extendParts = extentStr.split(" ");
-
-    // if this was a wrapper class we can have a 'planeGeometry' property there without using 'plany: any'
-    this.planeGeometry.width = +extendParts[0];
-    this.planeGeometry.length = +extendParts[2];
-
-    const centerStart = anchorstr.indexOf("center=(") + "center=(".length;
-    const centerStr = anchorstr.substring(centerStart, anchorstr.indexOf(")", centerStart));
-    const centerParts = centerStr.split(" ");
-
-    this.ios.position = {x: +centerParts[0], y: 0, z: +centerParts[2]};
-
-    const childNode = this.ios.childNodes.firstObject;
-    childNode.physicsBody = SCNPhysicsBody.bodyWithTypeShape(
-        SCNPhysicsBodyType.Kinematic,
-        SCNPhysicsShape.shapeWithGeometryOptions(this.planeGeometry, null));
-
-    ARPlane.setTextureScale(this.planeGeometry);
-  }
-
-  remove() {
-    this.ios.removeFromParentNode();
-    // removal from the global 'planes' property is done at 'rendererDidRemoveNodeForAnchor'
-  }
-
-  private static setTextureScale(planeGeometry: SCNBox): void {
-    const width = planeGeometry.width;
-    const height = planeGeometry.length;
-    const material = planeGeometry.materials[4];
-    const scaleFactor = 1;
-
-    // because this commented line is not possible, we do it differently:
-    // const m = {sx: width * scaleFactor, sy: height * scaleFactor, sz: 1};
-    const m = new SCNMatrix4();
-    m.m11 = width * scaleFactor;
-    m.m22 = height * scaleFactor;
-    m.m33 = 1;
-
-    material.diffuse.contentsTransform = m;
-    material.roughness.contentsTransform = m;
-    material.metalness.contentsTransform = m;
-    material.normal.contentsTransform = m;
-  }
-}
-
-export class ARMaterial {
-  static getMaterial(named): SCNMaterial {
-    const mat = SCNMaterial.new(); // I'm sure these can be cached
-    mat.lightingModelName = SCNLightingModelPhysicallyBased;
-    mat.diffuse.contents = UIImage.imageNamed(`./Assets.scnassets/Materials/${named}/${named}-albedo.png`);
-    mat.roughness.contents = UIImage.imageNamed(`./Assets.scnassets/Materials/${named}/${named}-roughness.png`);
-    mat.metalness.contents = UIImage.imageNamed(`./Assets.scnassets/Materials/${named}/${named}-metal.png`);
-    mat.normal.contents = UIImage.imageNamed(`./Assets.scnassets/Materials/${named}/${named}-normal.png`);
-    mat.diffuse.wrapS = SCNWrapMode.Repeat;
-    mat.diffuse.wrapT = SCNWrapMode.Repeat;
-    mat.roughness.wrapS = SCNWrapMode.Repeat;
-    mat.roughness.wrapT = SCNWrapMode.Repeat;
-    mat.metalness.wrapS = SCNWrapMode.Repeat;
-    mat.metalness.wrapT = SCNWrapMode.Repeat;
-    mat.normal.wrapS = SCNWrapMode.Repeat;
-    mat.normal.wrapT = SCNWrapMode.Repeat;
-    return mat;
-  }
-}
