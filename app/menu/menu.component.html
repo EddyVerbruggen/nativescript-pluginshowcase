@@ -27,7 +27,7 @@
       <GridLayout row="4" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/menu/input']" nsRouterLinkActive="active">
         <Label class="mdi" [text]="'mdi-keyboard' | fonticon"></Label>
         <Label col="1" class="item-title" text="Input"></Label>
-        <Label row="1" col="1" class="plugin-names" text="IQKeyboardManager, Checkbox, DrawingPad, Numeric Keyboard" textWrap="true"></Label>
+        <Label row="1" col="1" class="plugin-names" [text]="isIOS ? 'IQKeyboardManager, ' : '' + 'Checkbox, DrawingPad, Numeric Keyboard'" textWrap="true"></Label>
       </GridLayout>
 
       <!-- Sensors (Pedometer, Accelerometer, ..)? -->
