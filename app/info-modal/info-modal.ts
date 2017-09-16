@@ -42,6 +42,9 @@ export class InfoModalComponent {
         pageCommon.prototype._showNativeModalView.call(this, parent, context, closeCallback, fullscreen);
         let that = this;
 
+        // noinspection JSUnusedGlobalSymbols
+        this._modalParent = parent;
+
         if (fullscreen) {
           this._ios.modalPresentationStyle = 0;
         } else {

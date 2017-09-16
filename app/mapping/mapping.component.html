@@ -10,7 +10,7 @@
 </ActionBar>
 
 <GridLayout class="main-content">
-  <Gradient height="100%" direction="to bottom" colors="#444, #000" class="p-20">
+  <Gradient height="100%" direction="to bottom" colors="#444, #000" [class.p-20]="isIOS">
     <ContentView [@flyInOut]="'in'" height="100%" width="100%" borderRadius="20">
       <Mapbox
           accessToken="sk.eyJ1IjoiZWRkeXZlcmJydWdnZW4iLCJhIjoia1JpRW82NCJ9.OgnvpsKzB3GJhzyofQNUBw"
@@ -19,6 +19,7 @@
           longitude="4.4201952"
           hideCompass="true"
           zoomLevel="7"
+          delay="450"
           showUserLocation="true"
           disableZoom="false"
           disableRotation="false"
