@@ -87,7 +87,6 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
 
     this.speech2text = new SpeechRecognition();
     this.speech2text.available().then(avail => {
-      console.log(">> avail: " + avail);
       this.recordingAvailable = avail;
     });
 
@@ -144,7 +143,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
       },
     }).then(
         (started: boolean) => {
-          console.log(`started listening`);
+          console.log("started listening");
         },
         (errorMessage: string) => {
           console.log(`Error: ${errorMessage}`);
@@ -219,7 +218,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
         subject: subject,
         body: body
       }).then((x) => {
-        console.log(">> email result: " + x);
+        console.log("Email result: " + x);
       });
     });
   }
@@ -244,7 +243,6 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
     let now = new Date();
     let midnight = new Date();
     midnight.setHours(24, 0, 0, 0);
-    console.log(midnight);
     Calendar.findEvents({
       startDate: now,
       endDate: midnight
@@ -272,7 +270,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
           }
         },
         function (error) {
-          console.log("Error finding Events: " + error);
+          console.log(`Error finding Events: ${error}`);
         }
     );
   }

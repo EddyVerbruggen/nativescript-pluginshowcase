@@ -59,14 +59,14 @@ export class MappingComponent extends AbstractMenuPageComponent {
         id: 1,
         lat: 51.9280572,
         lng: 4.4201952,
-        title: '{N] Developer day EU',
+        title: '{N} Developer day EU',
         subtitle: 'Such an awesome little conference',
         icon: 'res://tnsmarker',
         onTap: () => {
-          console.log("{N] Developer day EU was tapped");
+          console.log("{N} Developer day EU was tapped");
         },
         onCalloutTap: () => {
-          console.log("{N] Developer day EU FTW Callout tapped");
+          console.log("{N} Developer day EU FTW Callout tapped");
         }
       }, {
         id: 2,
