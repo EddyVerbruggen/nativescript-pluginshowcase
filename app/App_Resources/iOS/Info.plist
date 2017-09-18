@@ -15,9 +15,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.0.1</string>
+	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>6</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -50,7 +50,7 @@
   <key>ITSAppUsesNonExemptEncryption</key>
   <false/>
   <key>NSCameraUsageDescription</key>
-  <string>To scan barcodes.</string>
+  <string>To augment reality.</string>
   <key>NSCalendarsUsageDescription</key>
   <string>Please grant access to your calendar.</string>
   <key>NSPhotoLibraryUsageDescription</key>
@@ -88,25 +88,12 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>icon</key>
-			<dict>
-				<key>UIPrerenderedIcon</key>
-				<true/>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>icon-57</string>
-					<string>icon-60</string>
-					<string>icon-72</string>
-					<string>icon-76</string>
-				</array>
-			</dict>
 			<key>icon-red</key>
 			<dict>
 				<key>UIPrerenderedIcon</key>
 				<true/>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon-red-57</string>
 					<string>icon-red-60</string>
 					<string>icon-red-72</string>
 					<string>icon-red-76</string>
@@ -118,7 +105,6 @@
 				<true/>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon-blue-57</string>
 					<string>icon-blue-60</string>
 					<string>icon-blue-72</string>
 					<string>icon-blue-76</string>
@@ -130,7 +116,6 @@
 				<true/>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon-green-57</string>
 					<string>icon-green-60</string>
 					<string>icon-green-72</string>
 					<string>icon-green-76</string>
@@ -152,7 +137,6 @@
 				<true/>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon-purple-57</string>
 					<string>icon-purple-60</string>
 					<string>icon-purple-72</string>
 					<string>icon-purple-76</string>
@@ -166,15 +150,6 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>icon</key>
-			<dict>
-				<key>UIPrerenderedIcon</key>
-				<true/>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>icon-76</string>
-				</array>
-			</dict>
 			<key>icon-red</key>
 			<dict>
 				<key>UIPrerenderedIcon</key>
@@ -222,6 +197,5 @@
 			</dict>
 		</dict>
   </dict>
-
 </dict>
 </plist>

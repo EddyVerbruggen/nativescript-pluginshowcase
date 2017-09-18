@@ -15,7 +15,7 @@ import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 
 @Component({
-  selector: "Mapping",
+  selector: "page-mapping",
   moduleId: module.id,
   templateUrl: "./mapping.component.html",
   styleUrls: ["mapping-common.css"],
@@ -52,34 +52,6 @@ export class MappingComponent extends AbstractMenuPageComponent {
     this.directions = new Directions();
   }
 
-  protected getPluginInfo(): PluginInfoWrapper {
-    return new PluginInfoWrapper(
-        "Try a few one- and two-finger gestures. Alos, press the FAB to drop a marker at the center of the viewport.\n\nThen, when you're bored playing with the map, scroll to the center of The Netherlands and tap the Home icon. Then follow its instructions to trigger the Directions plugin!",
-        Array.of(
-            new PluginInfo(
-                "nativescript-mapbox",
-                "Mapbox  🗽 🗼 🗻",
-                "https://github.com/EddyVerbruggen/nativescript-mapbox",
-                "Native OpenGL powered Maps. Crazy performance and feature-rich! Use custom markers and show the user's location. Here we use the map style 'traffic_day' to show live traffic!"
-            ),
-
-            new PluginInfo(
-                "nativescript-directions",
-                "Directions  👆 👉 👇 👈",
-                "https://github.com/EddyVerbruggen/nativescript-directions",
-                "Open the native Maps app to show directions to anywhere on 🌏 you like. Even with (multiple) waypoints in between!"
-            ),
-
-            new PluginInfo(
-                "nativescript-floatingactionbutton",
-                "FAB",
-                "https://github.com/bradmartin/nativescript-floatingactionbutton",
-                "Add a Material Design Floating Action Button to your page, at a corner of your liking."
-            )
-        )
-    );
-  }
-
   onMapReady(args): void {
     this.map = args.map;
     this.map.addMarkers([
@@ -87,14 +59,14 @@ export class MappingComponent extends AbstractMenuPageComponent {
         id: 1,
         lat: 51.9280572,
         lng: 4.4201952,
-        title: '{N] Developer day EU',
+        title: '{N} Developer day EU',
         subtitle: 'Such an awesome little conference',
         icon: 'res://tnsmarker',
         onTap: () => {
-          console.log("{N] Developer day EU was tapped");
+          console.log("{N} Developer day EU was tapped");
         },
         onCalloutTap: () => {
-          console.log("{N] Developer day EU FTW Callout tapped");
+          console.log("{N} Developer day EU FTW Callout tapped");
         }
       }, {
         id: 2,
@@ -163,5 +135,33 @@ export class MappingComponent extends AbstractMenuPageComponent {
     }, error => {
       console.log(error);
     });
+  }
+
+  protected getPluginInfo(): PluginInfoWrapper {
+    return new PluginInfoWrapper(
+        "Try a few one- and two-finger gestures. Alos, press the FAB to drop a marker at the center of the viewport.\n\nThen, when you're bored playing with the map, scroll to the center of The Netherlands and tap the Home icon. Then follow its instructions to trigger the Directions plugin!",
+        Array.of(
+            new PluginInfo(
+                "nativescript-mapbox",
+                "Mapbox  🗽 🗼 🗻",
+                "https://github.com/EddyVerbruggen/nativescript-mapbox",
+                "Native OpenGL powered Maps. Crazy performance and feature-rich! Use custom markers and show the user's location. Here we use the map style 'traffic_day' to show live traffic!"
+            ),
+
+            new PluginInfo(
+                "nativescript-directions",
+                "Directions  👆 👉 👇 👈",
+                "https://github.com/EddyVerbruggen/nativescript-directions",
+                "Open the native Maps app to show directions to anywhere on 🌏 you like. Even with (multiple) waypoints in between!"
+            ),
+
+            new PluginInfo(
+                "nativescript-floatingactionbutton",
+                "FAB",
+                "https://github.com/bradmartin/nativescript-floatingactionbutton",
+                "Add a Material Design Floating Action Button to your page, at a corner of your liking."
+            )
+        )
+    );
   }
 }

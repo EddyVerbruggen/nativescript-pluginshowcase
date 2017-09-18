@@ -159,6 +159,7 @@ function getPlugins(platform, env) {
         new CopyWebpackPlugin([
             { from: mainSheet },
             { from: "css/**" },
+            { from: "**/*.tablet.css" },
             { from: "fonts/**" },
             { from: "**/*.jpg" },
             { from: "**/*.png" },

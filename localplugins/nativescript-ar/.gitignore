@@ -1,0 +1,17 @@
+.vscode/
+.idea/
+node_modules/
+.DS_Store
+*.tgz
+*.js
+*.js.map
+*.log
+*.d.ts
+src/hooks/
+!src/index.d.ts
+!src/references.d.ts
+!src/typings/*.d.ts
+demo/lib
+demo/platforms
+demo-ng/platforms
+publish/package/

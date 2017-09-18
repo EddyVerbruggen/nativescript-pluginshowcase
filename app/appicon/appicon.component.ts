@@ -10,7 +10,7 @@ import { ToastService } from "../services/toast.service";
 import { ThreeDeeTouch } from "nativescript-3dtouch";
 
 @Component({
-  selector: "AppIcon",
+  selector: "page-appicon",
   moduleId: module.id,
   templateUrl: "./appicon.component.html",
   styleUrls: ["appicon-common.css"],

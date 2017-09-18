@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgZone, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { Component, NgZone, OnInit, ViewContainerRef } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { MenuComponent } from "../menu/menu.component";
@@ -7,14 +7,13 @@ import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { SpeakOptions, TNSTextToSpeech } from "nativescript-texttospeech";
 import { SpeechRecognition, SpeechRecognitionTranscription } from "nativescript-speech-recognition";
-import { GestureEventData } from "tns-core-modules/ui/gestures";
-import { Label } from "tns-core-modules/ui/label";
 import { alert } from "tns-core-modules/ui/dialogs";
 import { available as emailAvailable, compose as composeEmail } from "nativescript-email";
 import * as Calendar from "nativescript-calendar";
 import * as Camera from "nativescript-camera";
 import * as SocialShare from "nativescript-social-share";
 import { ImageSource } from "tns-core-modules/image-source";
+import { isIOS } from "tns-core-modules/platform";
 
 @Component({
   selector: "page-speech",
@@ -60,11 +59,13 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
   private speech2text: SpeechRecognition;
   microphoneEnabled: boolean = false;
   recording: boolean = false;
+  lastTranscription: string = null;
+  spoken: boolean = false;
   showingTips: boolean = false;
   recognizedText: string;
   private recordingAvailable: boolean;
 
-  @ViewChild("recordButton") recordButton: ElementRef;
+  // @ViewChild("recordButton") recordButton: ElementRef;
 
   constructor(protected menuComponent: MenuComponent,
               protected vcRef: ViewContainerRef,
@@ -75,18 +76,17 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
 
   ngOnInit(): void {
     // this creates a touch & hold gesture for the microphone button
-    const recordButton: Label = this.recordButton.nativeElement;
-    recordButton.on("touch", (args: GestureEventData) => {
-      if (args["action"] === "down") {
-        this.zone.run(() => this.startListening());
-      } else if (args["action"] === "up") {
-        this.zone.run(() => this.stopListening());
-      }
-    });
+    // const recordButton: Label = this.recordButton.nativeElement;
+    // recordButton.on("tap", (args: GestureEventData) => {
+    //   if (args["action"] === "down") {
+    //     this.zone.run(() => this.startListening());
+    //   } else if (args["action"] === "up") {
+    //     this.zone.run(() => this.stopListening());
+    //   }
+    // });
 
     this.speech2text = new SpeechRecognition();
     this.speech2text.available().then(avail => {
-      console.log(">> avail: " + avail);
       this.recordingAvailable = avail;
     });
 
@@ -95,8 +95,25 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
     setTimeout(() => {
       this.speech2text.requestPermission().then((granted: boolean) => {
         this.microphoneEnabled = granted;
+        if (!isIOS) {
+          Camera.requestPermissions();
+        }
       });
     }, 1000);
+  }
+
+  toggleRecording(): void {
+    this.recording = !this.recording;
+    if (this.recording) {
+      this.spoken = false;
+      this.lastTranscription = null;
+      this.startListening();
+    } else {
+      if (!this.spoken && this.lastTranscription !== null) {
+        this.speak(this.lastTranscription);
+      }
+      this.stopListening();
+    }
   }
 
   private startListening(): void {
@@ -118,13 +135,15 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
       // this callback will be invoked repeatedly during recognition
       onResult: (transcription: SpeechRecognitionTranscription) => {
         this.zone.run(() => this.recognizedText = transcription.text);
+        this.lastTranscription = transcription.text;
         if (transcription.finished) {
+          this.spoken = true;
           setTimeout(() => this.speak(transcription.text), 300);
         }
       },
     }).then(
         (started: boolean) => {
-          console.log(`started listening`);
+          console.log("started listening");
         },
         (errorMessage: string) => {
           console.log(`Error: ${errorMessage}`);
@@ -142,7 +161,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
   private speak(text: string): void {
     let speakOptions: SpeakOptions = {
       text: text,
-      speakRate: 0.5,
+      speakRate: this.getSpeakRate(),
       pitch: 1, // 0.1 and 2 are rather funny :)
       // locale: "en-US", // optional, uses the device locale by default
       finishedCallback: () => {
@@ -150,6 +169,10 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
       }
     };
     this.text2speech.speak(speakOptions);
+  }
+
+  private getSpeakRate(): number {
+    return isIOS ? 0.5 : 1.0;
   }
 
   private handleFollowUpAction(text: string): void {
@@ -195,20 +218,20 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
         subject: subject,
         body: body
       }).then((x) => {
-        console.log(">> email result: " + x);
+        console.log("Email result: " + x);
       });
     });
   }
 
   shareSelfie(): void {
-    // TODO on Android this call is async so this is not a good idea
-    // if (isIOS) {
-    Camera.requestPermissions();
-    // }
+    if (isIOS) {
+      Camera.requestPermissions();
+    }
 
     Camera.takePicture({
       width: 1000,
-      height: 1000
+      height: 1000,
+      cameraFacing: "front"
     }).then(imageAsset => {
       new ImageSource().fromAsset(imageAsset).then(imageSource => {
         SocialShare.shareImage(imageSource);
@@ -220,7 +243,6 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
     let now = new Date();
     let midnight = new Date();
     midnight.setHours(24, 0, 0, 0);
-    console.log(midnight);
     Calendar.findEvents({
       startDate: now,
       endDate: midnight
@@ -228,25 +250,27 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
         events => {
           let eventsSpoken = 0;
           events.map(ev => {
-            eventsSpoken++;
-            let secondsFromNow = Math.round((ev.startDate.getTime() - new Date().getTime()) / 1000);
-            let hours = Math.floor(secondsFromNow / (60 * 60));
-            let minutes = Math.round((secondsFromNow / 60) % 60);
-            this.text2speech.speak({
-              text: `${ev.title} in ${hours > 0 ? hours + ' hour' + (hours > 1 ? 's' : '') + ' and ' : ''} ${minutes} minutes`,
-              speakRate: 0.5,
-            });
+            if (!ev.allDay) {
+              eventsSpoken++;
+              let secondsFromNow = Math.round((ev.startDate.getTime() - new Date().getTime()) / 1000);
+              let hours = Math.floor(secondsFromNow / (60 * 60));
+              let minutes = Math.round((secondsFromNow / 60) % 60);
+              this.text2speech.speak({
+                text: `${ev.title} in ${hours > 0 ? hours + ' hour' + (hours > 1 ? 's' : '') + ' and ' : ''} ${minutes} minutes`,
+                speakRate: this.getSpeakRate(),
+              });
+            }
           });
           if (eventsSpoken === 0) {
             this.text2speech.speak({
               text: `Your schedule is clear. Have a nice day.`,
               locale: "en-US",
-              speakRate: 0.5
+              speakRate: this.getSpeakRate(),
             });
           }
         },
         function (error) {
-          console.log("Error finding Events: " + error);
+          console.log(`Error finding Events: ${error}`);
         }
     );
   }
@@ -259,13 +283,42 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
                 "nativescript-texttospeech",
                 "Text to Speech",
                 "https://github.com/bradmartin/nativescript-texttospeech",
-                "Make your app speak. Might be useful for disabled people 👀. Certainly useful for lazy ones."),
+                "Make your app speak. Might be useful for disabled people 👀. Certainly useful for lazy ones."
+            ),
 
             new PluginInfo(
                 "nativescript-speech-recognition",
                 "Speech Recognition",
                 "https://github.com/EddyVerbruggen/nativescript-speech-recognition",
                 "Speak to your app 👄. Useful for voice control and silly demo's 😄"
+            ),
+
+            new PluginInfo(
+                "nativescript-calendar",
+                "Calendar  🗓",
+                "https://github.com/EddyVerbruggen/nativescript-calendar",
+                "Create, Delete and Find Events in the native Calendar"
+            ),
+
+            new PluginInfo(
+                "nativescript-camera",
+                "Camera  🎥",
+                "https://github.com/NativeScript/nativescript-camera",
+                "Grab pictures from the device camera"
+            ),
+
+            new PluginInfo(
+                "nativescript-email",
+                "Email  ✉️",
+                "https://github.com/EddyVerbruggen/nativescript-email",
+                "Open an e-mail draft"
+            ),
+
+            new PluginInfo(
+                "nativescript-social-share",
+                "Social Share  ♻️️",
+                "https://github.com/tjvantoll/nativescript-social-share",
+                "Use the native sharing widget"
             )
         )
     );

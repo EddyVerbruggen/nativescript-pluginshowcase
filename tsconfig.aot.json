@@ -18,7 +18,7 @@
     },
     "exclude": [
         "node_modules",
-        "plugins",
+        "localplugins",
         "platforms"
     ],
     "angularCompilerOptions": {

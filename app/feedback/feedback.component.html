@@ -9,7 +9,7 @@
   </ActionItem>
 </ActionBar>
 
-<Gradient height="100%" direction="to bottom" colors="mediumseagreen, #2d915e" class="main-content">
+<Gradient height="100%" direction="to bottom" colors="mediumseagreen, #267B50" class="main-content">
   <ScrollView>
     <StackLayout class="p-20" [@listAnimation]>
       <!-- added *ngIf="true" for the listAnimation to work -->
@@ -39,9 +39,11 @@
         <Button text="Notice" (tap)="fancyAlertHelper.showNotice()" class="button button-info"></Button>
         <Button text="Warning" (tap)="fancyAlertHelper.showWarning()" class="button button-warning"></Button>
         <Button text="Error" (tap)="fancyAlertHelper.showError()" class="button button-error"></Button>
-        <Button text="Waiting" (tap)="fancyAlertHelper.showWaiting()" class="button button-custom-alt"></Button>
-        <Button text="Text" (tap)="fancyAlertHelper.showTextField()" class="button button-custom"></Button>
-        <Button text="Switch" (tap)="fancyAlertHelper.showSwitch()" class="button button-custom"></Button>
+        <ios>
+          <Button text="Waiting" (tap)="fancyAlertHelper.showWaiting()" class="button button-custom-alt"></Button>
+          <Button text="Text" (tap)="fancyAlertHelper.showTextField()" class="button button-custom"></Button>
+          <Button text="Switch" (tap)="fancyAlertHelper.showSwitch()" class="button button-custom"></Button>
+        </ios>
       </WrapLayout>
 
       <Label class="section-title" text="Snackbar" *ngIf="true"></Label>

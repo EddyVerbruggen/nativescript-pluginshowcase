@@ -17,7 +17,7 @@ require("nativescript-angular/http");
 require("nativescript-angular/router");
 require("nativescript-angular/dom-adapter");
 require("nativescript-angular/schema-registry");
-require("nativescript-angular/platform");
+// require("nativescript-angular/platform");
 require("nativescript-angular/resource-loader");
 require("nativescript-angular/modal-dialog");
 
