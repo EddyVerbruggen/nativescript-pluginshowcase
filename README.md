@@ -2,17 +2,20 @@ NativeScript plugin showcase
 ----------------------------
 
 [![Appstore download][appstore-image]][appstore-url]
+[![Playtore download][playstore-image]][playstore-url]
 ![iOS plugins 27](https://img.shields.io/badge/iOS_plugins-27-blue.svg)
 ![Android plugins 22](https://img.shields.io/badge/Android_plugins-22-brightgreen.svg)
 [![Build Status][build-status]][build-url]
 [![Twitter Follow][twitter-image]][twitter-url]
 
+[appstore-image]:screenshots/apple-appstore-badge.svg
+[appstore-url]:https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1281334006
+[playstore-image]:screenshots/google-playstore-badge.svg
+[playstore-url]:https://play.google.com/store/apps/details?id=org.nativescript.pluginshowcase
 [build-status]:https://travis-ci.org/EddyVerbruggen/nativescript-pluginshowcase.svg?branch=master
 [build-url]:https://travis-ci.org/EddyVerbruggen/nativescript-pluginshowcase
 [twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
 [twitter-url]:https://twitter.com/eddyverbruggen
-[appstore-image]:screenshots/apple-appstore-badge.svg
-[appstore-url]:https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1281334006
 
 
 <img src="screenshots/ios/01-home.png" height="378px" /> <img src="screenshots/ios/02-feedback-menu.png" height="378px" /> <img src="screenshots/ios/03-mapping-menu.png" height="378px" /> <img src="screenshots/ios/04-mapping-info.png" height="378px" />
