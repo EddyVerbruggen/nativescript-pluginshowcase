@@ -14,6 +14,7 @@ import * as Camera from "nativescript-camera";
 import * as SocialShare from "nativescript-social-share";
 import { ImageSource } from "tns-core-modules/image-source";
 import { isIOS } from "tns-core-modules/platform";
+import { Slider } from "tns-core-modules/ui/slider";
 
 @Component({
   selector: "page-speech",
@@ -32,14 +33,23 @@ import { isIOS } from "tns-core-modules/platform";
       })),
       transition("void => *", [animate("1600ms 700ms ease-out")])
     ]),
-    trigger("fade-in", [
+    trigger("fade-in-1", [
       state("in", style({
         "opacity": 1
       })),
       state("void", style({
         "opacity": 0
       })),
-      transition("void => *", [animate("800ms 2000ms ease-out")])
+      transition("void => *", [animate("1100ms 2000ms ease-out")])
+    ]),
+    trigger("fade-in-2", [
+      state("in", style({
+        "opacity": 1
+      })),
+      state("void", style({
+        "opacity": 0
+      })),
+      transition("void => *", [animate("1100ms 2500ms ease-out")])
     ]),
     trigger("scale-in", [
       state("in", style({
@@ -63,6 +73,9 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
   spoken: boolean = false;
   showingTips: boolean = false;
   recognizedText: string;
+  pitch: number = 100;
+  speakRate: number = isIOS ? 50 : 100;
+  maxSpeakRate: number = isIOS ? 100 : 200;
   private recordingAvailable: boolean;
 
   // @ViewChild("recordButton") recordButton: ElementRef;
@@ -162,7 +175,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
     let speakOptions: SpeakOptions = {
       text: text,
       speakRate: this.getSpeakRate(),
-      pitch: 1, // 0.1 and 2 are rather funny :)
+      pitch: this.getPitch(),
       // locale: "en-US", // optional, uses the device locale by default
       finishedCallback: () => {
         this.handleFollowUpAction(text.toLowerCase());
@@ -171,8 +184,20 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
     this.text2speech.speak(speakOptions);
   }
 
-  private getSpeakRate(): number {
-    return isIOS ? 0.5 : 1.0;
+  onSpeakRateChange(args): void {
+    let slider = <Slider>args.object;
+    this.speakRate = Math.floor(slider.value);
+    if (this.lastTranscription) {
+      this.speak(this.lastTranscription);
+    }
+  }
+
+  onPitchChange(args): void {
+    let slider = <Slider>args.object;
+    this.pitch = Math.floor(slider.value);
+    if (this.lastTranscription) {
+      this.speak(this.lastTranscription);
+    }
   }
 
   private handleFollowUpAction(text: string): void {
@@ -258,6 +283,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
               this.text2speech.speak({
                 text: `${ev.title} in ${hours > 0 ? hours + ' hour' + (hours > 1 ? 's' : '') + ' and ' : ''} ${minutes} minutes`,
                 speakRate: this.getSpeakRate(),
+                pitch: this.getPitch()
               });
             }
           });
@@ -266,6 +292,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
               text: `Your schedule is clear. Have a nice day.`,
               locale: "en-US",
               speakRate: this.getSpeakRate(),
+              pitch: this.getPitch()
             });
           }
         },
@@ -273,6 +300,14 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
           console.log(`Error finding Events: ${error}`);
         }
     );
+  }
+
+  private getSpeakRate(): number {
+    return this.speakRate / 100;
+  }
+
+  private getPitch(): number {
+    return this.pitch / 100;
   }
 
   protected getPluginInfo(): PluginInfoWrapper {
