@@ -12,7 +12,7 @@
   },
   "scripts": {
     "tsc": "tsc -skipLibCheck",
-    "build": "npm i && tsc",
+    "build": "npm i && npm run tsc",
     "demo.ios": "npm run preparedemo && cd ../demo && tns run ios --emulator",
     "demo.ng.ios": "npm run preparedemo.ng && cd ../demo-ng && tns run ios --emulator",
     "demo.ios.device": "npm run preparedemo && cd ../demo && tns run ios",
