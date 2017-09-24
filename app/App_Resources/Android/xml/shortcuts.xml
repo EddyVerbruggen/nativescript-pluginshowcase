@@ -1,0 +1,31 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <shortcut
+      android:shortcutId="appicon"
+      android:enabled="true"
+      android:icon="@drawable/icon"
+      android:shortcutShortLabel="@string/shortcut_short_appicon"
+      android:shortcutLongLabel="@string/shortcut_long_appicon"
+      android:shortcutDisabledMessage="@string/shortcut_disabled_appicon">
+    <intent
+        android:action="shortcut.type.appicon"
+        android:targetPackage="org.nativescript.pluginshowcase"
+        android:targetClass="com.tns.NativeScriptActivity"/>
+    <categories android:name="android.shortcut.conversation"/>
+  </shortcut>
+
+  <shortcut
+      android:shortcutId="feedback"
+      android:enabled="true"
+      android:icon="@drawable/feedback"
+      android:shortcutShortLabel="@string/shortcut_short_feedback"
+      android:shortcutLongLabel="@string/shortcut_long_feedback"
+      android:shortcutDisabledMessage="@string/shortcut_disabled_feedback">
+    <intent
+        android:action="shortcut.type.feedback"
+        android:targetPackage="org.nativescript.pluginshowcase"
+        android:targetClass="com.tns.NativeScriptActivity"/>
+    <categories android:name="android.shortcut.conversation"/>
+  </shortcut>
+
+</shortcuts>

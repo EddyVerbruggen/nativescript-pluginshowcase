@@ -9,7 +9,7 @@ import { Config } from "./shared/config";
 import { NativeScriptFormsModule, registerElement, RouterExtensions } from "nativescript-angular";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 import { NativeScriptAnimationsModule } from "nativescript-angular/animations";
-import { ThreeDeeTouch } from "nativescript-3dtouch";
+import { AppShortcuts } from "nativescript-app-shortcuts";
 import { device, isIOS } from "tns-core-modules/platform";
 import { DeviceType } from "tns-core-modules/ui/enums";
 import * as application from "application";
@@ -60,28 +60,30 @@ export class AppModule {
       });
     }
 
-    // This is for nativescript-3dtouch
-    if (isIOS) {
-      new ThreeDeeTouch().setQuickActionCallback(shortcutItem => {
-        console.log(`The app was launched by shortcut type '${shortcutItem.type}' with title '${shortcutItem.localizedTitle}`);
+    // This is for nativescript-app-shortcuts
+    new AppShortcuts().setQuickActionCallback(shortcutItem => {
+      console.log(`The app was launched by shortcut type '${shortcutItem.type}'`);
 
-        // this is where you handle any specific case for the shortcut, based on its type
-        if (shortcutItem.type === "feedback") {
-          this.deeplink("/menu/feedback");
-        } else if (shortcutItem.type === "appicon") {
-          this.deeplink("/menu/appicon");
-        } else if (shortcutItem.type === "mapping") {
-          this.deeplink("/menu/mapping");
-        }
-      });
-    }
+      // this is where you handle any specific case for the shortcut, based on its type
+      if (shortcutItem.type === "feedback") {
+        this.deeplink("/menu/feedback");
+      } else if (shortcutItem.type === "appicon") {
+        this.deeplink("/menu/appicon");
+      } else if (shortcutItem.type === "mapping") {
+        this.deeplink("/menu/mapping");
+      }
+    });
   }
 
   private deeplink(to: string): void {
-    this.zone.run(() => {
-      this.routerExtensions.navigate([to], {
-        animated: false
+    // a timeout is required for Android (not sure how long the delay should be yet)
+    setTimeout(() => {
+      this.zone.run(() => {
+        this.routerExtensions.navigate([to], {
+          animated: true,
+          clearHistory: true
+        });
       });
-    });
+    }, isIOS ? 0 : 1000);
   }
 }

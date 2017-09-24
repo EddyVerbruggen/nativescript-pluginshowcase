@@ -7,7 +7,7 @@ import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { AppIconChanger } from "nativescript-app-icon-changer";
 import { ToastService } from "../services/toast.service";
-import { ThreeDeeTouch } from "nativescript-3dtouch";
+import { AppShortcuts } from "nativescript-app-shortcuts";
 
 @Component({
   selector: "page-appicon",
@@ -50,8 +50,9 @@ import { ThreeDeeTouch } from "nativescript-3dtouch";
 })
 export class AppIconComponent extends AbstractMenuPageComponent implements OnInit {
   suppressAppIconChangedNotification: boolean = false;
+  supportsAppShortcuts: boolean;
   private appIconChanger: AppIconChanger;
-  private threeDeeTouch: ThreeDeeTouch;
+  private appShortcuts: AppShortcuts;
 
   constructor(protected menuComponent: MenuComponent,
               protected vcRef: ViewContainerRef,
@@ -59,19 +60,21 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
               private toastService: ToastService) {
     super(menuComponent, vcRef, modalService);
     this.appIconChanger = new AppIconChanger();
-    this.threeDeeTouch = new ThreeDeeTouch();
+    this.appShortcuts = new AppShortcuts();
+    this.appShortcuts.available().then(avail => this.supportsAppShortcuts = avail);
   }
 
   ngOnInit(): void {
   }
 
   addDeeplink(): void {
-    this.threeDeeTouch.configureQuickActions([
+    this.appShortcuts.configureQuickActions([
       {
         type: "mapping",
         title: "Mapping",
         subtitle: "Deeplink to Mapping",
-        iconType: UIApplicationShortcutIconType.Location
+        iconType: this.isIOS ? UIApplicationShortcutIconType.Location : null,
+        iconTemplate: "maps" // refers to App_Resources/Android/drawable-nodpi/maps.png (not used on iOS since 'iconType' was set as well)
       }
     ]).then(() => {
       this.toastService.show("Close the app and press the app icon hard to see the new deeplink!", true);
@@ -81,7 +84,7 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
   }
 
   removeDeeplink(): void {
-    this.threeDeeTouch.configureQuickActions(
+    this.appShortcuts.configureQuickActions(
         []
     ).then(() => {
       this.toastService.show("Dynamic deeplink removed");
@@ -90,7 +93,7 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
     });
   }
 
-  // TODO this resets the icon - also add to doc of plugin: UIApplication.shared.setAlternateIconName(nil)
+  // TODO add a 'reset' method to the plugin, which does this: UIApplication.shared.setAlternateIconName(nil)
 
   // After using nativescript-toast this will crash!
   changeAppIcon(name: string): void {
@@ -109,10 +112,10 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
         "Fiddle with your app's home icon. Currently for iOS only.",
         Array.of(
             new PluginInfo(
-                "nativescript-3dtouch",
-                "3D Touch",
-                "https://github.com/EddyVerbruggen/nativescript-3dtouch",
-                "Quick Home Icon Actions for your app."),
+                "nativescript-app-shortcuts",
+                "App Shortcuts",
+                "https://github.com/EddyVerbruggen/nativescript-app-shortcuts",
+                "Home Icon Actions for your NativeScript app."),
 
             new PluginInfo(
                 "nativescript-app-icon-changer",

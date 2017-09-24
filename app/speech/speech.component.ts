@@ -122,10 +122,10 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
       this.lastTranscription = null;
       this.startListening();
     } else {
+      this.stopListening();
       if (!this.spoken && this.lastTranscription !== null) {
         this.speak(this.lastTranscription);
       }
-      this.stopListening();
     }
   }
 

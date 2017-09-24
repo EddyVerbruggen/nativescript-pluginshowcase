@@ -2,4 +2,12 @@
 <resources>
   <string name="app_name">Plugins</string>
   <string name="title_activity_kimera">Plugins</string>
+
+  <string name="shortcut_short_appicon">App Icon</string>
+  <string name="shortcut_long_appicon">App Icon</string>
+  <string name="shortcut_disabled_appicon">App Icon disabled</string>
+
+  <string name="shortcut_short_feedback">Feedback</string>
+  <string name="shortcut_long_feedback">Feedback</string>
+  <string name="shortcut_disabled_feedback">Feedback disabled</string>
 </resources>

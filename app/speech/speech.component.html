@@ -25,8 +25,8 @@
           <GridLayout [@fade-in-1]="'in'" row="2" rows="auto, auto" columns="auto, *" horizontalalignment="center" width="240" class="m-t-24">
             <Label text="Rate" class="m-r-20"></Label>
             <Slider col="1" [value]="speakRate" (valueChange)="onSpeakRateChange($event)" [maxValue]="maxSpeakRate" minValue="1"></Slider>
-            <Label row="1" text="Pitch" class="m-r-20"></Label>
-            <Slider row="1" col="1" [value]="pitch" (valueChange)="onPitchChange($event)" maxValue="200" minValue="1"></Slider>
+            <Label row="1" text="Pitch" class="m-r-20 m-t-10"></Label>
+            <Slider row="1" col="1" [value]="pitch" (valueChange)="onPitchChange($event)" maxValue="200" minValue="1" class="m-t-10"></Slider>
           </GridLayout>
         </GridLayout>
       </StackLayout>
