@@ -5,7 +5,8 @@ NativeScript plugin showcase
 [![Playtore download][playstore-image]][playstore-url]
 
 ![iOS plugins 27](https://img.shields.io/badge/iOS_plugins-27-blue.svg)
-![Android plugins 22](https://img.shields.io/badge/Android_plugins-22-brightgreen.svg)
+![Android plugins 23](https://img.shields.io/badge/Android_plugins-23-brightgreen.svg)
+[![Build Status][build-status]][build-url]
 [![Twitter Follow][twitter-image]][twitter-url]
 
 
@@ -13,6 +14,8 @@ NativeScript plugin showcase
 [appstore-url]:https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1281334006
 [playstore-image]:screenshots/google-playstore-badge.svg
 [playstore-url]:https://play.google.com/store/apps/details?id=org.nativescript.pluginshowcase
+[build-status]:https://travis-ci.org/EddyVerbruggen/nativescript-pluginshowcase.svg?branch=master
+[build-url]:https://travis-ci.org/EddyVerbruggen/nativescript-pluginshowcase
 [build-status]:https://travis-ci.org/EddyVerbruggen/nativescript-pluginshowcase.svg?branch=master
 [build-url]:https://travis-ci.org/EddyVerbruggen/nativescript-pluginshowcase
 [twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
