@@ -90,10 +90,10 @@ export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
             ),
 
             new PluginInfo(
-                "nativescript-telerik-ui",
-                "Progress NativeScript UI",
-                "https://github.com/telerik/nativescript-ui-samples",
-                "We're leveraging the SideDrawer of this awesome UI library."
+                "nativescript-pro-ui",
+                "Progress NativeScript UI Pro",
+                "https://www.npmjs.com/package/nativescript-pro-ui",
+                "We're leveraging the SideDrawer of this awesome (now free!) UI library."
             ),
 
             new PluginInfo(

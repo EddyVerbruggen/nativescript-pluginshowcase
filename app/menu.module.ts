@@ -3,8 +3,8 @@ import { ModalDialogService, NativeScriptFormsModule, NativeScriptRouterModule }
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { Routes } from "@angular/router";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
-import { NativeScriptUIListViewModule } from "nativescript-telerik-ui/listview/angular";
-import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
+import { NativeScriptUIListViewModule } from "nativescript-pro-ui/listview/angular";
+import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
 import { MenuComponent } from "./menu/menu.component";
 import { HomeComponent } from "./home/home.component";
 import { InfoModalComponent } from "./info-modal/info-modal";
