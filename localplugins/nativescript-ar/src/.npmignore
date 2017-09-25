@@ -1,5 +1,0 @@
-*.js.map
-ar-common.ts
-ar.android.ts
-ar.ios.ts
-tsconfig.json
