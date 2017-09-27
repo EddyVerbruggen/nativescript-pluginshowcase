@@ -380,6 +380,13 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
                 "Social Share  ♻️️",
                 "https://github.com/tjvantoll/nativescript-social-share",
                 "Use the native sharing widget"
+            ),
+
+            new PluginInfo(
+                "nativescript-audio",
+                "Audio  🎤  🎵",
+                "https://github.com/bradmartin/nativescript-audio",
+                "NativeScript plugin to record and play audio"
             )
         )
     );
