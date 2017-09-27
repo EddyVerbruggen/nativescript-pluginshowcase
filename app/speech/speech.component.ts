@@ -239,7 +239,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
 
   playTotoAfrica(): void {
     let speakOptions: SpeakOptions = {
-      text: "That sounds like Toto with Africa, right?",
+      text: `That sounds like Toto with Africa${isIOS ? ', right?' : ''}`, // last bit sounds weird on Android
       speakRate: this.getSpeakRate(),
       pitch: this.getPitch(),
       locale: "en-US",

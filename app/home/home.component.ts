@@ -74,7 +74,7 @@ export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
 
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
-        "This app showcases a bunch of plugins for the NativeScript framework. Every page has an info-icon showing which plugins are used on the page. The plugins listed below are used app-wide.\n\nAll plugins are free and open source - just like this app: https://goo.gl/7HUAXa",
+        "This NativeScript plugin showcases app has an info-icon on every page, showing which plugins are used. Those listed below are used app-wide. Like these plugins, this app is open source as well: goo.gl/7HUAXa",
         Array.of(
             new PluginInfo(
                 "nativescript-gradient",

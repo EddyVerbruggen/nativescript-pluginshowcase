@@ -55,52 +55,77 @@ export class MappingComponent extends AbstractMenuPageComponent {
   onMapReady(args): void {
     this.map = args.map;
     this.map.addMarkers([
-      {
-        id: 1,
-        lat: 51.9280572,
-        lng: 4.4201952,
-        title: '{N} Developer day EU',
-        subtitle: 'Such an awesome little conference',
-        icon: 'res://tnsmarker',
-        onTap: () => {
-          console.log("{N} Developer day EU was tapped");
-        },
-        onCalloutTap: () => {
-          console.log("{N} Developer day EU FTW Callout tapped");
-        }
-      }, {
-        id: 2,
-        lat: 42.624189,
-        lng: 23.372106,
-        title: 'DevReach 2017',
-        subtitle: 'Tap to show directions',
-        onTap: () => {
-          console.log("DevReach 2017 was tapped");
-        },
-        onCalloutTap: () => {
-          this.showDirectionsTo({
+          {
+            id: 1,
+            lat: 51.9280572,
+            lng: 4.4201952,
+            title: '{N} Developer day EU',
+            subtitle: 'Such an awesome little conference',
+            icon: 'res://tnsmarker',
+            onTap: () => {
+              console.log("{N} Developer day EU was tapped");
+            },
+            onCalloutTap: () => {
+              console.log("{N} Developer day EU FTW Callout tapped");
+            }
+          }, {
+            id: 2,
             lat: 42.624189,
             lng: 23.372106,
-          });
-        }
-      },
-      {
-        id: 3,
-        lat: 52.1851585,
-        lng: 5.3974241,
-        title: "Eddy's home",
-        subtitle: "Tap to show directions",
-        iconPath: "images/mapmarkers/home_marker.png",
-        onTap: () => {
-          console.log("Eddy's home was tapped");
-        },
-        onCalloutTap: () => {
-          this.showDirectionsTo({
+            title: 'DevReach 2017',
+            subtitle: 'Tap to show directions (with waypoints)',
+            onTap: () => {
+              console.log("DevReach 2017 was tapped");
+            },
+            onCalloutTap: () => {
+              this.showDirectionsTo([
+                {
+                  lat: 52.1851585,
+                  lng: 5.3974241
+                },
+                {
+                  lat: 42.624189,
+                  lng: 23.372106,
+                }
+              ]);
+            }
+          },
+          {
+            id: 3,
             lat: 52.1851585,
-            lng: 5.3974241
-          });
-        }
-      }]
+            lng: 5.3974241,
+            title: "Eddy's home",
+            subtitle: "Tap to show directions",
+            iconPath: "images/mapmarkers/home_marker.png",
+            onTap: () => {
+              console.log("Eddy's home was tapped");
+            },
+            onCalloutTap: () => {
+              this.showDirectionsTo([{
+                lat: 52.1851585,
+                lng: 5.3974241
+              }]);
+            }
+          },
+          {
+            id: 4,
+            lat: 43.421834,
+            lng: 24.086096,
+            icon: 'res://truck1',
+          },
+          {
+            id: 5,
+            lat: 42.421834,
+            lng: 26.786096,
+            icon: 'res://truck2',
+          },
+          {
+            id: 6,
+            lat: 42.021834,
+            lng: 25.086096,
+            icon: 'res://truck3',
+          }
+        ]
     );
   }
 
@@ -124,11 +149,12 @@ export class MappingComponent extends AbstractMenuPageComponent {
     });
   }
 
-  private showDirectionsTo(address: AddressOptions): void {
+  private showDirectionsTo(addresses: Array<AddressOptions>): void {
     this.directions.navigate({
-      to: address,
+      to: addresses,
       ios: {
-        preferGoogleMaps: false
+        // Apple Maps can't show waypoints, so open Google maps if available in that case
+        preferGoogleMaps: addresses.length > 1
       }
     }).then(() => {
       console.log("Maps app launched.");

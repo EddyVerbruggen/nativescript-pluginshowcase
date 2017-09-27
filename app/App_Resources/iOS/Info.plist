@@ -44,6 +44,7 @@
   <key>LSApplicationQueriesSchemes</key>
   <array>
     <string>twitter</string>
+    <string>comgooglemaps</string>
   </array>
   <key>UIViewControllerBasedStatusBarAppearance</key>
   <false/>
