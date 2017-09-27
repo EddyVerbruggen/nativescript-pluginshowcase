@@ -12,6 +12,7 @@ import { available as emailAvailable, compose as composeEmail } from "nativescri
 import * as Calendar from "nativescript-calendar";
 import * as Camera from "nativescript-camera";
 import * as SocialShare from "nativescript-social-share";
+import { TNSPlayer } from "nativescript-audio";
 import { ImageSource } from "tns-core-modules/image-source";
 import { isIOS } from "tns-core-modules/platform";
 import { Slider } from "tns-core-modules/ui/slider";
@@ -200,6 +201,10 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
     }
   }
 
+  /**
+   * Poor man's Siri :)
+   * @param {string} text (lowercase)
+   */
   private handleFollowUpAction(text: string): void {
     if (text.indexOf("schedule") > -1 && text.indexOf("today") > -1) {
       this.findTodaysEvents();
@@ -225,7 +230,28 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
 
     } else if (text.indexOf("share") > -1 && text.indexOf("self") > -1) {
       this.shareSelfie();
+
+    } else if (text.indexOf("kilimanjaro") > -1 || text.indexOf("olympus") > -1 || text.indexOf("serengeti") > -1) {
+      // (very) loosely matching the sentence "as sure as kilimannjaro rises like olympus above the serengeti" :)
+      this.playTotoAfrica();
     }
+  }
+
+  playTotoAfrica(): void {
+    let speakOptions: SpeakOptions = {
+      text: "That sounds like Toto with Africa, right?",
+      speakRate: this.getSpeakRate(),
+      pitch: this.getPitch(),
+      locale: "en-US",
+      finishedCallback: () => {
+        const player = new TNSPlayer();
+        player.playFromFile({
+          audioFile: "~/speech/audiofiles/toto-africa-fragment.mp3", // ~ = app directory
+          loop: false
+        });
+      }
+    };
+    this.text2speech.speak(speakOptions);
   }
 
   composeAnEmail(subject: string, body: string): void {

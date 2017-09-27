@@ -4,8 +4,8 @@ NativeScript plugin showcase
 [![Appstore download][appstore-image]][appstore-url]
 [![Playtore download][playstore-image]][playstore-url]
 
-![iOS plugins 27](https://img.shields.io/badge/iOS_plugins-27-blue.svg)
-![Android plugins 23](https://img.shields.io/badge/Android_plugins-23-brightgreen.svg)
+![iOS plugins 28](https://img.shields.io/badge/iOS_plugins-28-blue.svg)
+![Android plugins 24](https://img.shields.io/badge/Android_plugins-24-brightgreen.svg)
 [![Build Status][build-status]][build-url]
 [![Twitter Follow][twitter-image]][twitter-url]
 

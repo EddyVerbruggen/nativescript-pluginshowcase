@@ -18,9 +18,10 @@
           <Label [text]="('mdi-format-quote-open' | fonticon) + recognizedText + ('mdi-format-quote-close' | fonticon)" textWrap="true" class="mdi recognizedText p-b-20" [visibility]="recognizedText === undefined ? 'collapse': 'visible'"></Label>
           <Button [@fade-in-2]="'in'" row="1" text="show tips" class="button" horizontalAlignment="center" (tap)="showingTips = true" [visibility]="recording || showingTips ? 'collapse': 'visible'"></Button>
           <StackLayout row="1" class="tips" *ngIf="showingTips">
-            <Label [text]="('mdi-format-quote-open' | fonticon) + 'Share a selfie' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-20" textWrap="true" (tap)="shareSelfie()"></Label>
-            <Label [text]="('mdi-format-quote-open' | fonticon) + 'What\'s my schedule today?' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-20" textWrap="true" (tap)="findTodaysEvents()"></Label>
-            <Label style="text-align: center" [text]="('mdi-format-quote-open' | fonticon) + 'Compose an email with subject...\nand message...' + ('mdi-format-quote-close' | fonticon)" class="mdi p-b-10" textWrap="true" (tap)="composeAnEmail('Space race', 'Bring marshmallows!')"></Label>
+            <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'Share a selfie' + ('mdi-format-quote-close' | fonticon)" (tap)="shareSelfie()"></Label>
+            <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'What\'s my schedule today?' + ('mdi-format-quote-close' | fonticon)" (tap)="findTodaysEvents()"></Label>
+            <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'Kilimanjaro rises like Olympus' + ('mdi-format-quote-close' | fonticon)" (tap)="playTotoAfrica()"></Label>
+            <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'Compose an email with subject...\nand message...' + ('mdi-format-quote-close' | fonticon)" style="text-align: center" (tap)="composeAnEmail('Space race', 'Bring marshmallows!')"></Label>
           </StackLayout>
           <GridLayout [@fade-in-1]="'in'" row="2" rows="auto, auto" columns="auto, *" horizontalalignment="center" width="240" class="m-t-24">
             <Label text="Rate" class="m-r-20"></Label>

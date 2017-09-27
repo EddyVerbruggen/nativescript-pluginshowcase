@@ -58,7 +58,7 @@
   <key>NSSpeechRecognitionUsageDescription</key>
   <string>This is required for this little demo.</string>
   <key>NSMicrophoneUsageDescription</key>
-  <string>Oh, without being able to use the mic we can't hear you, so please accept this as well.</string>
+  <string>Without being able to use the mic we can't hear you, so please accept this as well.</string>
   <key>UIApplicationShortcutItems</key>
   <array>
     <dict>

@@ -161,6 +161,7 @@ function getPlugins(platform, env) {
             { from: "css/**" },
             { from: "**/*.tablet.css" },
             { from: "fonts/**" },
+            { from: "speech/audiofiles/*.mp3" },
             { from: "**/*.jpg" },
             { from: "**/*.png" },
             { from: "**/*.xml" },
