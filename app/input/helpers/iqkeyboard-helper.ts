@@ -50,7 +50,7 @@ export class IQKeyboardHelper {
   }
 
   toggleDarkAppearance(args: PropertyChangeData): void {
-    if (args.value !== null && args.value !== this.doneButtonTextChanged) {
+    if (args.value !== null && args.value !== this.darkAppearance) {
       this.darkAppearance = args.value;
       this.iqKeyboard.overrideKeyboardAppearance = true;
       this.iqKeyboard.keyboardAppearance = this.darkAppearance ? UIKeyboardAppearance.Dark : UIKeyboardAppearance.Default;

@@ -93,10 +93,7 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
     });
   }
 
-  // TODO add a 'reset' method to the plugin, which does this: UIApplication.shared.setAlternateIconName(nil)
-
-  // After using nativescript-toast this will crash!
-  changeAppIcon(name: string): void {
+  changeAppIcon(name: string | null): void {
     this.appIconChanger.changeIcon({
       iconName: name,
       suppressUserNotification: this.suppressAppIconChangedNotification // default true
