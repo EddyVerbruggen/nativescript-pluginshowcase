@@ -14,9 +14,9 @@ export class SnackbarHelper {
 
   showAction() {
     let options: SnackBarOptions = {
-      actionText: "Do it!",
+      actionText: "OK",
       actionTextColor: "#ff4081", // Android only
-      snackText: "Want to show a plain old alert?",
+      snackText: "Press 'OK' to show a plain old alert",
       hideDelay: 5000
     };
 
