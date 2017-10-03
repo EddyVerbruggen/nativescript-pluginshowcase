@@ -59,7 +59,7 @@
         </ScrollView>
 
         <StackLayout *ngIf="selectedPlugin === 'Checkbox'">
-          <Label text="Which ones do you like? (checkboxes)"></Label>
+          <Label text="Which ones do you like? (checkboxes)" textWrap="true"></Label>
           <StackLayout orientation="horizontal" verticalAlignment="top" class="p-5">
             <CheckBox #checkbox1 fillColor="#f9fa45" [checked]="checkboxHelper.checkbox1" (checkedChange)="checkboxHelper.checkbox1 = checkbox1.checked" class="checkbox"></CheckBox>
             <Label text="NativeScript" (tap)="checkboxHelper.checkbox1 = !checkboxHelper.checkbox1"></Label>
@@ -70,7 +70,7 @@
           </StackLayout>
 
           <!-- in this case we use a nice ngFor loop to render these babies -->
-          <Label text="Which one do you like most? (radiobuttons)" class="p-t-20"></Label>
+          <Label text="Which one do you like most? (radiobuttons)" class="p-t-20" textWrap="true"></Label>
           <StackLayout class="p-5" *ngFor="let radio of checkboxHelper.radios">
             <StackLayout orientation="horizontal" verticalAlignment="top">
               <CheckBox #elem fillColor="#faaa00" [checked]="radio.selected" (checkedChange)="elem.checked !== radio.selected && checkboxHelper.radioOptionSelected(radio)" class="checkbox"></CheckBox>

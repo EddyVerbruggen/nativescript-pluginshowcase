@@ -10,16 +10,14 @@ class RadioOption {
 export class CheckboxHelper {
   checkbox1: boolean;
   checkbox2: boolean;
-
   radios: Array<RadioOption> = [];
 
   constructor() {
-    this.radios.push(new RadioOption("NativeScript"));
-    this.radios.push(new RadioOption("React Native"));
+    this.radios.push(new RadioOption("NativeScript!"));
+    this.radios.push(new RadioOption("React Native!"));
   }
 
   radioOptionSelected(radio: RadioOption): void {
-    console.log(">> radio.selected: " + radio.selected);
     radio.selected = !radio.selected;
 
     if (!radio.selected) {

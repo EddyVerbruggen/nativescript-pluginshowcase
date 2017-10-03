@@ -34,7 +34,11 @@
     "start-android-bundle": "npm run ns-bundle --android --run-app",
     "start-ios-bundle": "npm run ns-bundle --ios --run-app",
     "build-android-bundle": "npm run ns-bundle --android --build-app",
-    "build-ios-bundle": "npm run ns-bundle --ios --build-app"
+    "build-ios-bundle": "npm run ns-bundle --ios --build-app",
+    "e2e": "tsc -p e2e && mocha --opts ./e2e/config/mocha.opts",
+    "e2e.android": "npm run e2e -- --runType android26",
+    "e2e.ios": "npm run e2e -- --runType sim.iPhone8.iOS11",
+    "compile-tests": "tsc -p e2e --watch"
   },
   "dependencies": {
     "@angular/animations": "4.2.5",
@@ -53,7 +57,7 @@
     "nativescript-audio": "^4.0.3",
     "nativescript-calendar": "^1.2.2",
     "nativescript-camera": "^3.0.2",
-    "nativescript-checkbox": "^2.1.11",
+    "nativescript-checkbox": "^2.1.14",
     "nativescript-dev-webpack": "^0.7.3",
     "nativescript-directions": "^1.1.0",
     "nativescript-drawingpad": "^2.1.0",
@@ -84,21 +88,32 @@
     "zone.js": "0.8.16"
   },
   "devDependencies": {
+    "@angular/compiler-cli": "4.2.5",
+    "@ngtools/webpack": "~1.5.0",
+    "@types/chai": "^4.0.2",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^7.0.5",
+    "appium": "^1.7.1",
     "babel-traverse": "6.26.0",
     "babel-types": "6.26.0",
     "babylon": "6.18.0",
+    "chai": "~4.1.1",
+    "chai-as-promised": "~7.1.1",
+    "copy-webpack-plugin": "~4.0.1",
+    "extract-text-webpack-plugin": "~3.0.0",
     "lazy": "1.0.11",
+    "mocha": "~3.5.0",
+    "mocha-junit-reporter": "^1.13.0",
+    "mocha-multi": "^0.11.0",
+    "nativescript-css-loader": "~0.26.0",
+    "nativescript-dev-appium": "^3.0.0",
     "nativescript-dev-typescript": "0.5.0",
+    "raw-loader": "~0.5.1",
+    "resolve-url-loader": "~2.1.0",
+    "tslib": "^1.7.1",
     "typescript": "~2.3.4",
     "webpack": "~3.2.0",
     "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-sources": "~1.0.1",
-    "copy-webpack-plugin": "~4.0.1",
-    "raw-loader": "~0.5.1",
-    "nativescript-css-loader": "~0.26.0",
-    "resolve-url-loader": "~2.1.0",
-    "extract-text-webpack-plugin": "~3.0.0",
-    "@angular/compiler-cli": "4.2.5",
-    "@ngtools/webpack": "~1.5.0"
+    "webpack-sources": "~1.0.1"
   }
 }
