@@ -1,11 +1,11 @@
-import { AppiumDriver, createDriver, Direction, SearchOptions } from "nativescript-dev-appium";
+import { AppiumDriver, createDriver, SearchOptions } from "nativescript-dev-appium";
 import { assert } from "chai";
 
 describe("smoke test", () => {
   let driver: AppiumDriver;
 
   async function openMenuItem(which: string, verifyByLabel: string) {
-    // this Chinese fella is the hamburger icon (found it by running "tns debug android" and inspecting it with Chrome)
+    // The Chinese fella below is the hamburger icon (found it by running "tns debug android" and inspecting it with Chrome)
     const menuButton = await driver.findElementByText("", SearchOptions.contains);
     await menuButton.click();
     const messageLabel = await driver.findElementByText(which, SearchOptions.contains);
@@ -33,10 +33,10 @@ describe("smoke test", () => {
     }
   });
 
-  it("should find an element by text", async () => {
+  it("should find the welcome text", async () => {
     const displayMsg = "Thanks for installing this app,";
     const messageLabel = await driver.findElementByText(displayMsg, SearchOptions.exact);
-    assert.equal(await messageLabel.text(), displayMsg, "You have a problem. Probably the binding is not working!");
+    assert.equal(await messageLabel.text(), displayMsg);
   });
 
   // it("screenshot comparison succeeds", async () => {
@@ -51,12 +51,12 @@ describe("smoke test", () => {
 
     const feedbackSuccessButton = await driver.findElementByText("Success, 2.5s", SearchOptions.exact);
     await feedbackSuccessButton.click();
-    // the message needs to go
+    // the message needs to go, so wait a little
     await wait(3500);
 
     const fancyAlertSuccessButton = await driver.findElementByText("Success", SearchOptions.exact);
     const fancyAlertButtonText: string = await fancyAlertSuccessButton.text();
-    assert.equal(fancyAlertButtonText.toLowerCase(), "success", "You have a problem. Probably the binding is not working!");
+    assert.equal(fancyAlertButtonText.toLowerCase(), "success");
   });
 
   it("navigate to input", async () => {
@@ -79,6 +79,6 @@ describe("smoke test", () => {
     const displayMsg = "add deeplink to mapping";
     const buttonLabel = await driver.findElementByText(displayMsg, SearchOptions.exact);
     const buttonText: string = await buttonLabel.text();
-    assert.equal(buttonText.toLowerCase(), displayMsg, "You have a problem. Probably the binding is not working!");
+    assert.equal(buttonText.toLowerCase(), displayMsg);
   });
 });
