@@ -21,11 +21,11 @@ NativeScript plugin showcase
 [twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
 [twitter-url]:https://twitter.com/eddyverbruggen
 
-
 <img src="screenshots/ios/01-home.png" height="378px" /> <img src="screenshots/ios/02-feedback-menu.png" height="378px" /> <img src="screenshots/ios/03-mapping-menu.png" height="378px" /> <img src="screenshots/ios/04-mapping-info.png" height="378px" />
 
 ### What's this?
 Glad you asked 😄.. I need it to demo a few plugins and wanted to play a bit more with NativeScript & Angular.
+This was also a great opportunity for me to properly play with Webpack, AoT, Uglify, and (even) Appium.
 
 ### Plugin themes included
 - [Feedback](app/feedback/)
@@ -49,4 +49,4 @@ npm run ios
 
 ### Notes
 * Don't judge Mapbox performance on the simulator. It only blows you away on a real device.
-* (iOS) The app will crash if you change the App icon after a Toast was shown. I've sent a [PR to fix that](https://github.com/devxoul/Toaster/pull/116).
+* Samsung needs to get their shit together and release Android version more quickly. App Shortcuts need 7.1. AR needs 8.0. COME ON!
