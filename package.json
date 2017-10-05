@@ -57,7 +57,7 @@
     "nativescript-audio": "^4.0.3",
     "nativescript-calendar": "^1.2.2",
     "nativescript-camera": "^3.0.2",
-    "nativescript-checkbox": "^2.1.14",
+    "nativescript-checkbox": "^3.0.0",
     "nativescript-dev-webpack": "^0.7.3",
     "nativescript-directions": "^1.1.0",
     "nativescript-drawingpad": "^2.1.0",
