@@ -37,7 +37,7 @@ This was also a great opportunity for me to properly play with Webpack, AoT, Ugl
 
 
 ### CanIUse?
-Sure, you can either download it from the [AppStore](https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1281334006) (Play store is coming soon!) or build it yourself.
+Sure, you can either download it from the [AppStore](https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1281334006) or [Play store](https://play.google.com/store/apps/details?id=org.nativescript.pluginshowcase), or build it yourself.
 
 ```bash
 git clone https://github.com/EddyVerbruggen/nativescript-pluginshowcase
