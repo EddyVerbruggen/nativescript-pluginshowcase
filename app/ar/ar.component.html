@@ -14,8 +14,10 @@
       <Label row="0" [text]="hint" class="hint" textWrap="true"></Label>
       <AR row="1"
           style="border-radius: 20"
-          planeOpacity="0.1"
           [debugLevel]="debugLevel"
+          detectPlanes="true"
+          showStatistics="true"
+          [planeMaterial]="planeMaterial"
           (arLoaded)="arLoaded($event)"
           (planeDetected)="planeDetected($event)"
           (planeTapped)="planeTapped($event)">

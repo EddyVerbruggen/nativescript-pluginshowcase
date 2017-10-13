@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef }
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { MenuComponent } from "../menu/menu.component";
-import { AR, ARDebugLevel, ARNode, ARPlaneTappedEventData, ARPosition } from "nativescript-ar";
+import { AR, ARDebugLevel, ARMaterial, ARNode, ARPlaneTappedEventData, ARPosition } from "nativescript-ar";
 import { ModalDialogService } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
@@ -51,6 +51,14 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
 
   models: Array<string> = ["Box", "Sphere", "Tube", "Car", "Ball", "Tree"];
   selectedModelIndex = 0;
+
+  // All these are valid plane materials:
+  // planeMaterial = "Assets.scnassets/Materials/tron/tron-diffuse.png";
+  // planeMaterial = new Color("red");
+  planeMaterial = <ARMaterial>{
+    diffuse: new Color("white"),
+    transparency: 0.2
+  };
 
   @ViewChild("dropDown") dropDown: ElementRef;
 
@@ -141,10 +149,14 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
 
   private addBox(position: ARPosition): void {
     this.ar.addBox({
-      // TODO 4 different materials, full paths
-      material: "tnsgranite",
+      materials: [{
+        diffuse: {
+          contents: "Assets.scnassets/Materials/tnsgranite/tnsgranite-diffuse.png",
+          wrapMode: "ClampToBorder"
+        }
+      }],
       position: {x: position.x, y: position.y + 0.8, z: position.z},
-      scale: 0.15,
+      dimensions: 0.15,
       mass: 1,
       onTap: ((model: ARNode) => {
         console.log("Box was tapped");
@@ -162,8 +174,14 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
 
   private addSphere(position: ARPosition): void {
     this.ar.addSphere({
-      // TODO 4 different materials, full paths
-      material: "tnsgranite",
+      materials: [{
+        diffuse: new Color("red"),
+        normal: new Color("blue"),
+        roughness: new Color("green"),
+        specular: new Color("yellow"),
+        metalness: new Color("purple"),
+        transparency: 0.9
+      }],
       position: {x: position.x, y: position.y + 1.3, z: position.z},
       radius: 0.2,
       mass: 0.01,
@@ -180,9 +198,16 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
 
   private addTube(position: ARPosition): void {
     this.ar.addTube({
-      // TODO 4 different materials, full paths
       // TODO a tube also has 4 surfaces we can use different materials for (https://developer.apple.com/documentation/scenekit/scntube?language=objc)
-      material: "tnsgranite", // TODO a youtube texture :P
+      // TODO a youtube texture :P
+      materials: [{
+        diffuse: {
+          contents: "Assets.scnassets/Materials/tnsgranite/tnsgranite-diffuse.png",
+          wrapMode: "Repeat" // which is the default
+        },
+        roughness: "Assets.scnassets/Materials/tnsgranite/tnsgranite-roughness.png",
+        transparency: 1 // solid (which is the default)
+      }],
       position: {x: position.x, y: position.y + 0.3, z: position.z},
       innerRadius: 0.2,
       outerRadius: 0.35,
