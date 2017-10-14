@@ -1,0 +1,251 @@
+{
+  "dependencies": {
+    "@angular/animations": {
+      "version": "4.4.5",
+      "from": "@angular/animations@>=4.4.1 <4.5.0",
+      "resolved": "https://registry.npmjs.org/@angular/animations/-/animations-4.4.5.tgz"
+    },
+    "@angular/common": {
+      "version": "4.4.5",
+      "from": "@angular/common@>=4.4.1 <4.5.0",
+      "resolved": "https://registry.npmjs.org/@angular/common/-/common-4.4.5.tgz"
+    },
+    "@angular/compiler": {
+      "version": "4.4.5",
+      "from": "@angular/compiler@>=4.4.1 <4.5.0",
+      "resolved": "https://registry.npmjs.org/@angular/compiler/-/compiler-4.4.5.tgz"
+    },
+    "@angular/core": {
+      "version": "4.4.5",
+      "from": "@angular/core@>=4.4.1 <4.5.0",
+      "resolved": "https://registry.npmjs.org/@angular/core/-/core-4.4.5.tgz"
+    },
+    "@angular/forms": {
+      "version": "4.4.5",
+      "from": "@angular/forms@>=4.4.1 <4.5.0",
+      "resolved": "https://registry.npmjs.org/@angular/forms/-/forms-4.4.5.tgz"
+    },
+    "@angular/http": {
+      "version": "4.4.5",
+      "from": "@angular/http@>=4.4.1 <4.5.0",
+      "resolved": "https://registry.npmjs.org/@angular/http/-/http-4.4.5.tgz"
+    },
+    "@angular/platform-browser": {
+      "version": "4.4.5",
+      "from": "@angular/platform-browser@>=4.4.1 <4.5.0",
+      "resolved": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-4.4.5.tgz"
+    },
+    "@angular/router": {
+      "version": "4.4.5",
+      "from": "@angular/router@>=4.4.1 <4.5.0",
+      "resolved": "https://registry.npmjs.org/@angular/router/-/router-4.4.5.tgz"
+    },
+    "nativescript-angular": {
+      "version": "4.4.1",
+      "from": "nativescript-angular@>=4.4.0 <4.5.0",
+      "resolved": "https://registry.npmjs.org/nativescript-angular/-/nativescript-angular-4.4.1.tgz"
+    },
+    "nativescript-app-icon-changer": {
+      "version": "1.0.4",
+      "from": "nativescript-app-icon-changer@>=1.0.4 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-app-icon-changer/-/nativescript-app-icon-changer-1.0.4.tgz"
+    },
+    "nativescript-app-shortcuts": {
+      "version": "2.0.0",
+      "from": "nativescript-app-shortcuts@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-app-shortcuts/-/nativescript-app-shortcuts-2.0.0.tgz"
+    },
+    "nativescript-appavailability": {
+      "version": "1.3.1",
+      "from": "nativescript-appavailability@>=1.3.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-appavailability/-/nativescript-appavailability-1.3.1.tgz"
+    },
+    "nativescript-ar": {
+      "version": "0.3.2",
+      "from": "nativescript-ar@>=0.3.2 <0.4.0",
+      "resolved": "https://registry.npmjs.org/nativescript-ar/-/nativescript-ar-0.3.2.tgz"
+    },
+    "nativescript-audio": {
+      "version": "4.0.3",
+      "from": "nativescript-audio@>=4.0.3 <5.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-audio/-/nativescript-audio-4.0.3.tgz"
+    },
+    "nativescript-calendar": {
+      "version": "1.2.2",
+      "from": "nativescript-calendar@>=1.2.2 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-calendar/-/nativescript-calendar-1.2.2.tgz"
+    },
+    "nativescript-camera": {
+      "version": "3.1.2",
+      "from": "nativescript-camera@>=3.0.2 <4.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-camera/-/nativescript-camera-3.1.2.tgz"
+    },
+    "nativescript-checkbox": {
+      "version": "3.0.1",
+      "from": "nativescript-checkbox@>=3.0.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-checkbox/-/nativescript-checkbox-3.0.1.tgz"
+    },
+    "nativescript-directions": {
+      "version": "1.1.0",
+      "from": "nativescript-directions@>=1.1.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-directions/-/nativescript-directions-1.1.0.tgz"
+    },
+    "nativescript-drawingpad": {
+      "version": "2.1.0",
+      "from": "nativescript-drawingpad@>=2.1.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-drawingpad/-/nativescript-drawingpad-2.1.0.tgz"
+    },
+    "nativescript-drop-down": {
+      "version": "3.1.3",
+      "from": "nativescript-drop-down@>=3.1.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-drop-down/-/nativescript-drop-down-3.1.3.tgz"
+    },
+    "nativescript-email": {
+      "version": "1.5.1",
+      "from": "nativescript-email@>=1.5.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-email/-/nativescript-email-1.5.1.tgz"
+    },
+    "nativescript-fancyalert": {
+      "version": "1.1.2",
+      "from": "nativescript-fancyalert@>=1.1.2 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-fancyalert/-/nativescript-fancyalert-1.1.2.tgz"
+    },
+    "nativescript-feedback": {
+      "version": "1.0.6",
+      "from": "nativescript-feedback@>=1.0.6 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-feedback/-/nativescript-feedback-1.0.6.tgz"
+    },
+    "nativescript-flashlight": {
+      "version": "1.2.0",
+      "from": "nativescript-flashlight@>=1.2.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-flashlight/-/nativescript-flashlight-1.2.0.tgz"
+    },
+    "nativescript-floatingactionbutton": {
+      "version": "3.0.1",
+      "from": "nativescript-floatingactionbutton@>=3.0.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-floatingactionbutton/-/nativescript-floatingactionbutton-3.0.1.tgz"
+    },
+    "nativescript-gradient": {
+      "version": "2.0.1",
+      "from": "nativescript-gradient@>=2.0.1 <3.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-gradient/-/nativescript-gradient-2.0.1.tgz"
+    },
+    "nativescript-insomnia": {
+      "version": "1.2.1",
+      "from": "nativescript-insomnia@>=1.2.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-insomnia/-/nativescript-insomnia-1.2.1.tgz"
+    },
+    "nativescript-intl": {
+      "version": "3.0.0",
+      "from": "nativescript-intl@>=3.0.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-intl/-/nativescript-intl-3.0.0.tgz"
+    },
+    "nativescript-iqkeyboardmanager": {
+      "version": "1.1.0",
+      "from": "nativescript-iqkeyboardmanager@>=1.1.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-iqkeyboardmanager/-/nativescript-iqkeyboardmanager-1.1.0.tgz"
+    },
+    "nativescript-local-notifications": {
+      "version": "2.0.0",
+      "from": "nativescript-local-notifications@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-local-notifications/-/nativescript-local-notifications-2.0.0.tgz"
+    },
+    "nativescript-mapbox": {
+      "version": "3.1.2",
+      "from": "nativescript-mapbox@>=3.1.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-mapbox/-/nativescript-mapbox-3.1.2.tgz"
+    },
+    "nativescript-ngx-fonticon": {
+      "version": "2.2.3",
+      "from": "nativescript-ngx-fonticon@>=2.2.3 <3.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-ngx-fonticon/-/nativescript-ngx-fonticon-2.2.3.tgz",
+      "dependencies": {
+        "tslib": {
+          "version": "1.6.0",
+          "from": "tslib@1.6.0",
+          "resolved": "https://registry.npmjs.org/tslib/-/tslib-1.6.0.tgz"
+        }
+      }
+    },
+    "nativescript-numeric-keyboard": {
+      "version": "3.0.3",
+      "from": "nativescript-numeric-keyboard@>=3.0.3 <4.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-numeric-keyboard/-/nativescript-numeric-keyboard-3.0.3.tgz"
+    },
+    "nativescript-pro-ui": {
+      "version": "3.1.4",
+      "from": "nativescript-pro-ui@>=3.1.3 <4.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-pro-ui/-/nativescript-pro-ui-3.1.4.tgz"
+    },
+    "nativescript-snackbar": {
+      "version": "2.0.0",
+      "from": "nativescript-snackbar@>=2.0.0 <2.1.0",
+      "resolved": "https://registry.npmjs.org/nativescript-snackbar/-/nativescript-snackbar-2.0.0.tgz"
+    },
+    "nativescript-social-share": {
+      "version": "1.4.0",
+      "from": "git+https://github.com/EddyVerbruggen/nativescript-social-share.git",
+      "resolved": "git+https://github.com/EddyVerbruggen/nativescript-social-share.git#ead98c6db15593fa4000d683fcb9bffd2f2eb281"
+    },
+    "nativescript-speech-recognition": {
+      "version": "1.3.1",
+      "from": "nativescript-speech-recognition@>=1.3.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-speech-recognition/-/nativescript-speech-recognition-1.3.1.tgz"
+    },
+    "nativescript-texttospeech": {
+      "version": "2.0.1",
+      "from": "nativescript-texttospeech@>=2.0.1 <3.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-texttospeech/-/nativescript-texttospeech-2.0.1.tgz"
+    },
+    "nativescript-theme-core": {
+      "version": "1.0.4",
+      "from": "nativescript-theme-core@1.0.4",
+      "resolved": "https://registry.npmjs.org/nativescript-theme-core/-/nativescript-theme-core-1.0.4.tgz"
+    },
+    "nativescript-toast": {
+      "version": "1.4.6",
+      "from": "nativescript-toast@>=1.4.6 <2.0.0",
+      "resolved": "https://registry.npmjs.org/nativescript-toast/-/nativescript-toast-1.4.6.tgz"
+    },
+    "reflect-metadata": {
+      "version": "0.1.10",
+      "from": "reflect-metadata@0.1.10",
+      "resolved": "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.1.10.tgz"
+    },
+    "rxjs": {
+      "version": "5.4.3",
+      "from": "rxjs@5.4.3",
+      "resolved": "https://registry.npmjs.org/rxjs/-/rxjs-5.4.3.tgz"
+    },
+    "symbol-observable": {
+      "version": "1.0.4",
+      "from": "symbol-observable@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.0.4.tgz"
+    },
+    "tns-core-modules": {
+      "version": "3.2.0",
+      "from": "tns-core-modules@>=3.2.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/tns-core-modules/-/tns-core-modules-3.2.0.tgz"
+    },
+    "tns-core-modules-widgets": {
+      "version": "3.2.0",
+      "from": "tns-core-modules-widgets@3.2.0",
+      "resolved": "https://registry.npmjs.org/tns-core-modules-widgets/-/tns-core-modules-widgets-3.2.0.tgz"
+    },
+    "tns-platform-declarations": {
+      "version": "3.2.0",
+      "from": "tns-platform-declarations@>=3.2.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/tns-platform-declarations/-/tns-platform-declarations-3.2.0.tgz"
+    },
+    "tslib": {
+      "version": "1.8.0",
+      "from": "tslib@>=1.7.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/tslib/-/tslib-1.8.0.tgz"
+    },
+    "zone.js": {
+      "version": "0.8.16",
+      "from": "zone.js@0.8.16",
+      "resolved": "https://registry.npmjs.org/zone.js/-/zone.js-0.8.16.tgz"
+    }
+  }
+}
