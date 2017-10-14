@@ -49,4 +49,4 @@ npm run ios
 
 ### Notes
 * Don't judge Mapbox performance on the simulator. It only blows you away on a real device.
-* Samsung needs to get their shit together and release Android version more quickly. App Shortcuts need 7.1. AR needs 8.0. COME ON!
+* Samsung needs to get their sh together and release new Android versions more quickly on their phones. My shiny new S8 runs 7.0, but App Shortcuts needs 7.1 and AR needs 8.0. COME ON!
