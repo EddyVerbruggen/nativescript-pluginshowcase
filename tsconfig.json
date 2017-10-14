@@ -1,9 +1,13 @@
 {
     "compilerOptions": {
         "module": "commonjs",
+        "moduleResolution": "node",
         "target": "es5",
+        "inlineSourceMap": false,
         "experimentalDecorators": true,
+        "removeComments": true,
         "emitDecoratorMetadata": true,
+        "noImplicitUseStrict": true,
         "noEmitHelpers": true,
         "noEmitOnError": true,
         "skipLibCheck": true,
@@ -23,7 +27,6 @@
     "exclude": [
         "node_modules",
         "platforms",
-        "localplugins",
         "**/*.aot.ts"
     ]
 }

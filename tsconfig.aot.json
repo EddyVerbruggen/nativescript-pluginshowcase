@@ -1,28 +1,27 @@
 {
-    "extends": "./tsconfig",
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "ui/*": ["node_modules/tns-core-modules/ui/*"],
-            "platform": ["node_modules/tns-core-modules/platform"],
-            "text": ["node_modules/tns-core-modules/text"],
-            "data/*": ["node_modules/tns-core-modules/data/*"],
-            "color": ["node_modules/tns-core-modules/color"],
-            "console": ["node_modules/tns-core-modules/console"],
-            "utils/*": ["node_modules/tns-core-modules/utils/*"],
-            "file-system": ["node_modules/tns-core-modules/file-system"],
-            "application": ["node_modules/tns-core-modules/application"],
-            "profiling": ["node_modules/tns-core-modules/profiling"],
-            "globals": ["node_modules/tns-core-modules/globals"]
-        }
-    },
-    "exclude": [
-        "node_modules",
-        "localplugins",
-        "platforms"
-    ],
-    "angularCompilerOptions": {
-        "skipMetadataEmit": true,
-        "genDir": "./"
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "ui/*": ["node_modules/tns-core-modules/ui/*"],
+      "platform": ["node_modules/tns-core-modules/platform"],
+      "text": ["node_modules/tns-core-modules/text"],
+      "data/*": ["node_modules/tns-core-modules/data/*"],
+      "color": ["node_modules/tns-core-modules/color"],
+      "console": ["node_modules/tns-core-modules/console"],
+      "utils/*": ["node_modules/tns-core-modules/utils/*"],
+      "file-system": ["node_modules/tns-core-modules/file-system"],
+      "application": ["node_modules/tns-core-modules/application"],
+      "profiling": ["node_modules/tns-core-modules/profiling"],
+      "globals": ["node_modules/tns-core-modules/globals"]
     }
+  },
+  "exclude": [
+    "node_modules",
+    "platforms"
+  ],
+  "angularCompilerOptions": {
+    "skipMetadataEmit": true,
+    "genDir": "./"
+  }
 }

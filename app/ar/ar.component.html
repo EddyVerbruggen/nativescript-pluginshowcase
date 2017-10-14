@@ -21,7 +21,7 @@
           (arLoaded)="arLoaded($event)"
           (planeDetected)="planeDetected($event)"
           (planeTapped)="planeTapped($event)">
-        <GridLayout rows="auto, auto, auto, auto" columns="*, 80" horizontalAlignment="right" verticalAlignment="bottom" class="m-b-20 m-r-10">
+        <GridLayout rows="auto, auto, auto, auto, auto" columns="*, 80" horizontalAlignment="right" verticalAlignment="bottom" class="m-b-20 m-r-10">
           <Label row="0" text="Model" class="m-b-10 m-r-10" horizontalAlignment="right"></Label>
           <DropDown
               #dropDown
@@ -33,12 +33,14 @@
               [items]="models"
               [(ngModel)]="selectedModelIndex">
           </DropDown>
-          <Label row="1" text="Show stats" class="m-b-10 m-r-10" [class.disabled]="!statsEnabled" horizontalAlignment="right"></Label>
-          <Switch row="1" col="1" class="m-b-10" [checked]="statsEnabled" (checkedChange)="toggleStats($event)"></Switch>
-          <Label row="2" text="Show planes" class="m-b-10 m-r-10" [class.disabled]="!planesVisible" horizontalAlignment="right"></Label>
-          <Switch row="2" col="1" class="m-b-10" [checked]="planesVisible" (checkedChange)="togglePlaneVisibility($event)"></Switch>
-          <Label row="3" text="Detect planes" class="m-b-10 m-r-10" [class.disabled]="!planeDetectionActive" horizontalAlignment="right"></Label>
-          <Switch row="3" col="1" class="m-b-10" [checked]="planeDetectionActive" (checkedChange)="togglePlaneDetection($event)"></Switch>
+          <Label row="1" text="Flashlight" class="m-b-10 m-r-10" [class.disabled]="!flashlightActive" horizontalAlignment="right"></Label>
+          <Switch row="1" col="1" class="m-b-10" [checked]="flashlightActive" (checkedChange)="toggleFlashlight($event)"></Switch>
+          <Label row="2" text="Show stats" class="m-b-10 m-r-10" [class.disabled]="!statsEnabled" horizontalAlignment="right"></Label>
+          <Switch row="2" col="1" class="m-b-10" [checked]="statsEnabled" (checkedChange)="toggleStats($event)"></Switch>
+          <Label row="3" text="Show planes" class="m-b-10 m-r-10" [class.disabled]="!planesVisible" horizontalAlignment="right"></Label>
+          <Switch row="3" col="1" class="m-b-10" [checked]="planesVisible" (checkedChange)="togglePlaneVisibility($event)"></Switch>
+          <Label row="4" text="Detect planes" class="m-b-10 m-r-10" [class.disabled]="!planeDetectionActive" horizontalAlignment="right"></Label>
+          <Switch row="4" col="1" class="m-b-10" [checked]="planeDetectionActive" (checkedChange)="togglePlaneDetection($event)"></Switch>
         </GridLayout>
       </AR>
     </GridLayout>

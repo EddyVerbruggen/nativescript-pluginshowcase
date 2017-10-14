@@ -9,7 +9,7 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { PropertyChangeData } from "tns-core-modules/data/observable";
 import { DropDown } from "nativescript-drop-down";
 import { Color } from "tns-core-modules/color";
-
+const flashlight = require("nativescript-flashlight");
 const insomnia = require("nativescript-insomnia");
 
 @Component({
@@ -46,6 +46,7 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
   planesVisible: boolean = true;
   planeDetectionActive: boolean = true;
   statsEnabled: boolean = true;
+  flashlightActive: boolean = false;
   isSupported: boolean;
   debugLevel: ARDebugLevel = ARDebugLevel.FEATURE_POINTS;
 
@@ -95,6 +96,13 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
       this.planeDetectionActive = args.value;
       this.ar.togglePlaneDetection(this.planeDetectionActive);
       this.debugLevel = this.planeDetectionActive ? ARDebugLevel.FEATURE_POINTS : ARDebugLevel.NONE;
+    }
+  }
+
+  toggleFlashlight(args: PropertyChangeData): void {
+    if (args.value !== null && args.value !== this.flashlightActive) {
+      this.flashlightActive = args.value;
+      this.flashlightActive ? flashlight.on() : flashlight.off();
     }
   }
 
@@ -291,6 +299,12 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
                 "DropDown",
                 "https://github.com/PeterStaev/NativeScript-Drop-Down",
                 "The DropDown displays items from which the user can select one. If the built-in ActionSheet is not to your liking, give this one a try!"
+            ),
+            new PluginInfo(
+                "nativescript-flashlight",
+                "Flashlight  🔦",
+                "https://github.com/tjvantoll/nativescript-flashlight/",
+                "Use the device torch in your app!"
             ),
             new PluginInfo(
                 "nativescript-insomnia",

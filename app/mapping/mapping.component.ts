@@ -61,7 +61,6 @@ export class MappingComponent extends AbstractMenuPageComponent {
             lng: 23.372106,
             title: 'DevReach 2017',
             subtitle: 'Such an awesome little conference',
-            icon: 'res://tnsmarker',
             onTap: () => {
               console.log("DevReach 2017 was tapped");
             },
@@ -74,6 +73,7 @@ export class MappingComponent extends AbstractMenuPageComponent {
             lng: 4.4201952,
             title: '{N} Developer day EU',
             subtitle: 'Tap to show directions (with waypoints)',
+            icon: 'res://tnsmarker',
             onTap: () => {
               console.log("{N} Developer day EU was tapped");
             },
