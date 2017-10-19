@@ -23,6 +23,8 @@ NativeScript plugin showcase
 
 <img src="screenshots/ios/01-home.png" height="378px" /> <img src="screenshots/ios/02-feedback-menu.png" height="378px" /> <img src="screenshots/ios/03-mapping-menu.png" height="378px" /> <img src="screenshots/ios/04-mapping-info.png" height="378px" />
 
+> [Watch me demo this app (YouTube)](https://www.youtube.com/watch?v=WqhHorPcnyo)
+
 ### What's this?
 Glad you asked 😄.. I need it to demo a few plugins and wanted to play a bit more with NativeScript & Angular.
 This was also a great opportunity for me to properly play with Webpack, AoT, Uglify, and (even) Appium.
