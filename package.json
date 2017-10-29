@@ -29,7 +29,7 @@
     "publish-ios-bundle": "npm run ns-bundle --ios --publish-app",
     "generate-android-snapshot": "generate-android-snapshot --targetArchs arm,arm64,ia32 --install",
     "ios.release": "npm run build-ios-bundle -- --release --forDevice --provision 126a7372-fbc5-41bf-95f3-6d3e479bde86 && ipa-deploy platforms/ios/build/device/nativescriptpluginshowcase.ipa echo '***  Now check the app on the device and afterwards upload it with npm run ios.publish-after-release ***'",
-    "ios.publish-after-release": "echo \"Change the password :)\" && tns publish ios eddyverbruggen@gmail.com my-hidden-password --ipa platforms/ios/build/device/nativescriptpluginshowcase.ipa",
+    "ios.publish-after-release": "echo \"Don't forget to replace MY_PASSWORD :)\" && tns publish ios eddyverbruggen@gmail.com MY_PASSWORD --ipa platforms/ios/build/device/nativescriptpluginshowcase.ipa",
     "android.release": "echo '*** Replace MY_PASSWORD ***' && npm run ns-bundle --android --build-app --release --for-device --key-store-path \\\"/Users/eddyverbruggen/Desktop/werkmap/Android dev X-Services/xservices.keystore\\\" --key-store-password MY_PASSWORD --key-store-alias xservices --key-store-alias-password MY_PASSWORD && echo '*** Upload the apk to Play, or test it first with: adb install platforms/android/build/outputs/apk/pluginshowcase-release.apk ***'",
     "e2e": "tsc -p e2e && mocha --opts ./e2e/config/mocha.opts",
     "e2e.android": "npm run e2e -- --runType android26",
