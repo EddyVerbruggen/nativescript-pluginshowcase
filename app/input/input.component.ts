@@ -15,7 +15,10 @@ import { CheckboxHelper } from "./helpers/checkbox-helper";
   selector: "page-input",
   moduleId: module.id,
   templateUrl: "./input.component.html",
-  styleUrls: ["input-common.css"],
+  styleUrls: [
+      "input-common.css",
+      "input.css"
+  ],
   animations: [
     trigger("from-bottom", [
       state("in", style({
