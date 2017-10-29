@@ -45,6 +45,7 @@ Sure, you can either download it from the [AppStore](https://itunes.apple.com/We
 git clone https://github.com/EddyVerbruggen/nativescript-pluginshowcase
 cd nativescript-pluginshowcase
 npm run ios
+# or: npm run android
 # or: npm run ios.emulator
 # or even: npm run start-ios-bundle (for a faster startup experience because of Webpack with Uglify)
 ```
