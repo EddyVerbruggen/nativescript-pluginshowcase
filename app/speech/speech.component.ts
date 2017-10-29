@@ -7,11 +7,12 @@ import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { SpeakOptions, TNSTextToSpeech } from "nativescript-texttospeech";
 import { SpeechRecognition, SpeechRecognitionTranscription } from "nativescript-speech-recognition";
-import { alert } from "tns-core-modules/ui/dialogs";
+import { alert, action } from "tns-core-modules/ui/dialogs";
 import { available as emailAvailable, compose as composeEmail } from "nativescript-email";
 import * as Calendar from "nativescript-calendar";
 import * as Camera from "nativescript-camera";
 import * as SocialShare from "nativescript-social-share";
+import * as ImagePicker from "nativescript-imagepicker";
 import { TNSPlayer } from "nativescript-audio";
 import { ImageSource } from "tns-core-modules/image-source";
 import { isIOS } from "tns-core-modules/platform";
@@ -275,19 +276,64 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
   }
 
   shareSelfie(): void {
-    if (isIOS) {
-      Camera.requestPermissions();
-    }
+    let actionOptions: Array<string> = [
+      "Fresh pic (camera)",
+      "Older pic (camera album)"
+    ];
 
-    Camera.takePicture({
-      width: 1000,
-      height: 1000,
-      cameraFacing: "front"
-    }).then(imageAsset => {
-      new ImageSource().fromAsset(imageAsset).then(imageSource => {
-        SocialShare.shareImage(imageSource);
-      });
+    action(
+        "Do you want to take a fresh pic or select an older one?",
+        "Cancel",
+        actionOptions
+    ).then((pickedItem: string) => {
+      let pickedItemIndex = actionOptions.indexOf(pickedItem);
+      if (pickedItemIndex === 0) {
+        // Camera plugin
+        if (isIOS) {
+          Camera.requestPermissions();
+        }
+
+        Camera.takePicture({
+          width: 1000,
+          height: 1000,
+          keepAspectRatio: true,
+          saveToGallery: false,
+          cameraFacing: "front"
+        }).then(imageAsset => {
+          new ImageSource().fromAsset(imageAsset).then(imageSource => {
+            SocialShare.shareImage(imageSource);
+          });
+        });
+      } else if (pickedItemIndex === 1) {
+        // Image Picker plugin
+        const imagePicker = ImagePicker.create({
+          mode: "single",
+          newestFirst: true, // iOS
+          doneText: "Done",
+          cancelText: "Cancel"
+        });
+        imagePicker
+            .authorize()
+            .then(() => {
+              return imagePicker.present();
+            })
+            .then((selection: Array<ImagePicker.SelectedAsset /* which is a subclass of ImageAsset */>) => {
+              selection.forEach(selected => {
+                selected.getImage({
+                  maxWidth: 1000,
+                  maxHeight: 1000,
+                  aspectRatio: 'fit'
+                }).then((imageSource: ImageSource) => {
+                  SocialShare.shareImage(imageSource);
+                });
+              });
+            })
+            .catch(e => {
+              console.log(`Image Picker error: ${e}`);
+            });
+      }
     });
+
   }
 
   findTodaysEvents(): void {
@@ -362,13 +408,6 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
             ),
 
             new PluginInfo(
-                "nativescript-camera",
-                "Camera  🎥",
-                "https://github.com/NativeScript/nativescript-camera",
-                "Grab pictures from the device camera"
-            ),
-
-            new PluginInfo(
                 "nativescript-email",
                 "Email  ✉️",
                 "https://github.com/EddyVerbruggen/nativescript-email",
@@ -387,6 +426,20 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
                 "Audio  🎤  🎵",
                 "https://github.com/bradmartin/nativescript-audio",
                 "NativeScript plugin to record and play audio"
+            ),
+
+            new PluginInfo(
+                "nativescript-camera",
+                "Camera  🎥",
+                "https://github.com/NativeScript/nativescript-camera",
+                "Grab pictures from the device camera"
+            ),
+
+            new PluginInfo(
+                "nativescript-imagepicker",
+                "Image Picker",
+                "https://github.com/NativeScript/nativescript-imagepicker",
+                "Select one or more images from the camera roll"
             )
         )
     );

@@ -67,6 +67,7 @@
     "nativescript-flashlight": "git+https://github.com/EddyVerbruggen/nativescript-flashlight.git#patch-1",
     "nativescript-floatingactionbutton": "^4.1.1",
     "nativescript-gradient": "^2.0.1",
+    "nativescript-imagepicker": "^4.0.0",
     "nativescript-insomnia": "^1.2.1",
     "nativescript-iqkeyboardmanager": "^1.1.0",
     "nativescript-local-notifications": "^2.0.0",
