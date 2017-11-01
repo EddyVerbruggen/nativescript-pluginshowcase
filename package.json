@@ -64,7 +64,7 @@
     "nativescript-email": "^1.5.1",
     "nativescript-fancyalert": "^1.1.2",
     "nativescript-feedback": "^1.0.6",
-    "nativescript-flashlight": "git+https://github.com/EddyVerbruggen/nativescript-flashlight.git#patch-1",
+    "nativescript-flashlight": "^1.2.1",
     "nativescript-floatingactionbutton": "^4.1.1",
     "nativescript-gradient": "^2.0.1",
     "nativescript-imagepicker": "^4.0.0",
