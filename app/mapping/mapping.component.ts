@@ -67,44 +67,51 @@ export class MappingComponent extends AbstractMenuPageComponent {
             onCalloutTap: () => {
               console.log("DevReach 2017 callout tapped");
             }
-          }, {
-            id: 2,
-            lat: 51.9280572,
-            lng: 4.4201952,
-            title: '{N} Developer day EU',
-            subtitle: 'Tap to show directions (with waypoints)',
-            icon: 'res://tnsmarker',
-            onTap: () => {
-              console.log("{N} Developer day EU was tapped");
-            },
-            onCalloutTap: () => {
-              this.showDirectionsTo([
-                {
-                  lat: 52.1851585,
-                  lng: 5.3974241
-                },
-                {
-                  lat: 51.9280572,
-                  lng: 4.4201952
-                }
-              ]);
-            }
           },
+          // {
+          //       id: 2,
+          //       lat: 51.9280572,
+          //       lng: 4.4201952,
+          //       title: '{N} Developer day EU',
+          //       subtitle: 'Tap to show directions (with waypoints)',
+          //       icon: 'res://tnsmarker',
+          //       onTap: () => {
+          //         console.log("{N} Developer day EU was tapped");
+          //       },
+          //       onCalloutTap: () => {
+          //         this.showDirectionsTo([
+          //           {
+          //             lat: 52.1851585,
+          //             lng: 5.3974241
+          //           },
+          //           {
+          //             lat: 51.9280572,
+          //             lng: 4.4201952
+          //           }
+          //         ]);
+          //       }
+          //     },
           {
             id: 3,
             lat: 52.1851585,
             lng: 5.3974241,
             title: "Eddy's home",
-            subtitle: "Tap to show directions",
+            subtitle: "Tap to show directions (with waypoints)",
             iconPath: "images/mapmarkers/home_marker.png",
             onTap: () => {
               console.log("Eddy's home was tapped");
             },
             onCalloutTap: () => {
-              this.showDirectionsTo([{
-                lat: 52.1851585,
-                lng: 5.3974241
-              }]);
+              this.showDirectionsTo([
+                {
+                  lat: 43.421834,
+                  lng: 24.086096,
+                },
+                {
+                  lat: 52.1851585,
+                  lng: 5.3974241
+                }
+              ]);
             }
           },
           {
@@ -112,6 +119,17 @@ export class MappingComponent extends AbstractMenuPageComponent {
             lat: 43.421834,
             lng: 24.086096,
             icon: 'res://truck1',
+            title: "Dangerous truckdriver",
+            subtitle: "Tap to show directions",
+            onTap: () => {
+              console.log("Truck 1 was tapped");
+            },
+            onCalloutTap: () => {
+              this.showDirectionsTo([{
+                lat: 43.421834,
+                lng: 24.086096,
+              }]);
+            }
           },
           {
             id: 5,
@@ -154,7 +172,8 @@ export class MappingComponent extends AbstractMenuPageComponent {
       to: addresses,
       ios: {
         // Apple Maps can't show waypoints, so open Google maps if available in that case
-        preferGoogleMaps: addresses.length > 1
+        preferGoogleMaps: addresses.length > 1,
+        allowGoogleMapsWeb: true
       }
     }).then(() => {
       console.log("Maps app launched.");
