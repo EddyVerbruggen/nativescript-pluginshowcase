@@ -23,7 +23,7 @@ NativeScript plugin showcase
 
 <img src="screenshots/ios/01-home.png" height="378px" /> <img src="screenshots/ios/02-feedback-menu.png" height="378px" /> <img src="screenshots/ios/03-mapping-menu.png" height="378px" /> <img src="screenshots/ios/04-mapping-info.png" height="378px" />
 
-> [Watch me demo this app during my plugins talk at {N} dev day EU (YouTube)](https://www.youtube.com/watch?v=WqhHorPcnyo)
+> [Watch me demo this app during my plugins talk at {N} dev day EU (YouTube) 🗣](https://www.youtube.com/watch?v=WqhHorPcnyo)
 
 ### What's this?
 Glad you asked 😄.. I need it to demo a few plugins and wanted to play a bit more with NativeScript & Angular.
