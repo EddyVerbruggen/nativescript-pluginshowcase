@@ -6,3 +6,4 @@ report
 *.js
 !webpack.config.js
 *.log
+instrumentscli0.trace

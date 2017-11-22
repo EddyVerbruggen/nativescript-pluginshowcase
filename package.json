@@ -84,7 +84,6 @@
     "reflect-metadata": "~0.1.10",
     "rxjs": "~5.4.3",
     "tns-core-modules": "~3.3.0",
-    "tns-ios": "3.3.0",
     "tns-platform-declarations": "^3.2.0",
     "zone.js": "~0.8.16"
   },
