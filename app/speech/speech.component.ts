@@ -138,7 +138,9 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
         message: "Speech recognition not supported on this device. Try a different device please.",
         okButtonText: "Oh, bummer"
       });
-      this.recognizedText = "No support, sorry ☹️";
+      this.recognizedText = "No support 😟, but try the tips below!";
+      this.recording = false;
+      this.showingTips = true;
       return;
     }
 
