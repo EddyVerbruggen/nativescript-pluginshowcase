@@ -1,6 +1,5 @@
-import { NgModule, NgModuleFactoryLoader, NgZone, NO_ERRORS_SCHEMA } from "@angular/core";
+import { NgModule, NgZone, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { NSModuleFactoryLoader } from "nativescript-angular/router";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -40,10 +39,7 @@ Config.isTablet = device.deviceType === DeviceType.Tablet;
     AppComponent
   ],
   providers: [
-    ToastService,
-    {
-      provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader
-    }
+    ToastService
   ],
   schemas: [
     NO_ERRORS_SCHEMA
