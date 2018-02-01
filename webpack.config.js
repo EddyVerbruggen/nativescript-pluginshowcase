@@ -103,6 +103,8 @@ module.exports = env => {
                 { from: "**/*.jpg" },
                 { from: "**/*.png" },
                 { from: "**/*.xml" },
+                { from: "**/*.tablet.css" },
+                { from: "speech/audiofiles/*.mp3" },
             ]),
             // Generate a bundle starter script and activate it in package.json
             new nsWebpack.GenerateBundleStarterPlugin([
