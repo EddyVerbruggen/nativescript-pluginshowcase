@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from "@angular/core";
+import { Component, ViewContainerRef } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { MenuComponent } from "../menu/menu.component";
@@ -48,7 +48,7 @@ import { AppShortcuts } from "nativescript-app-shortcuts";
     ])
   ]
 })
-export class AppIconComponent extends AbstractMenuPageComponent implements OnInit {
+export class AppIconComponent extends AbstractMenuPageComponent {
   suppressAppIconChangedNotification: boolean = false;
   supportsAppShortcuts: boolean;
   private appIconChanger: AppIconChanger;
@@ -62,9 +62,6 @@ export class AppIconComponent extends AbstractMenuPageComponent implements OnIni
     this.appIconChanger = new AppIconChanger();
     this.appShortcuts = new AppShortcuts();
     this.appShortcuts.available().then(avail => this.supportsAppShortcuts = avail);
-  }
-
-  ngOnInit(): void {
   }
 
   addDeeplink(): void {

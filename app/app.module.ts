@@ -46,6 +46,8 @@ Config.isTablet = device.deviceType === DeviceType.Tablet;
   ]
 })
 export class AppModule {
+  private deeplink: string;
+
   constructor(private routerExtensions: RouterExtensions,
               private zone: NgZone) {
 
@@ -56,30 +58,55 @@ export class AppModule {
       });
     }
 
-    // This is for nativescript-app-shortcuts
-    new AppShortcuts().setQuickActionCallback(shortcutItem => {
-      console.log(`The app was launched by shortcut type '${shortcutItem.type}'`);
+    const appShortcuts = new AppShortcuts();
 
-      // this is where you handle any specific case for the shortcut, based on its type
-      if (shortcutItem.type === "feedback") {
-        this.deeplink("/menu/feedback");
-      } else if (shortcutItem.type === "appicon") {
-        this.deeplink("/menu/appicon");
-      } else if (shortcutItem.type === "mapping") {
-        this.deeplink("/menu/mapping");
+    appShortcuts.available().then(avail => {
+      if (!avail) {
+        return;
       }
+      appShortcuts.setQuickActionCallback(shortcutItem => {
+        console.log(`The app was launched by shortcut type '${shortcutItem.type}'`);
+
+        // this is where you handle any specific case for the shortcut, based on its type
+        if (shortcutItem.type === "feedback") {
+          this.deeplink = "/menu/feedback";
+        } else if (shortcutItem.type === "appicon") {
+          this.deeplink = "/menu/appicon";
+        } else if (shortcutItem.type === "mapping") {
+          this.deeplink = "/menu/mapping";
+        }
+
+        if (this.deeplink && isIOS) {
+          this.goToPage(this.deeplink);
+        }
+      });
+
+      // On Android launching from a deeplink triggers an exit event - we need to fully kill the app in that case,
+      // otherwise navigation doesn't fully occur.. super weird issue :(
+      application.on(application.exitEvent, args => {
+        if (args.android) {
+          android.os.Process.killProcess(android.os.Process.myPid());
+        }
+      });
+
+      application.on(application.resumeEvent, args => {
+        if (args.android && this.deeplink) {
+          this.goToPage(this.deeplink);
+          this.deeplink = undefined;
+        }
+      });
     });
   }
 
-  private deeplink(to: string): void {
+  private goToPage(to: string): void {
     // a timeout is required for Android (not sure how long the delay should be yet)
     setTimeout(() => {
       this.zone.run(() => {
         this.routerExtensions.navigate([to], {
-          animated: true,
+          animated: false,
           clearHistory: true
         });
       });
-    }, isIOS ? 0 : 1000);
+    }, isIOS ? 0 : 50);
   }
 }

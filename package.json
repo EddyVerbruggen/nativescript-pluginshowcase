@@ -6,10 +6,10 @@
   "homepage": "https://github.com/EddyVerbruggen/nativescript-pluginshowcase",
   "nativescript": {
     "id": "org.nativescript.pluginshowcase",
-    "tns-android": {
+    "tns-ios": {
       "version": "3.4.1"
     },
-    "tns-ios": {
+    "tns-android": {
       "version": "3.4.1"
     }
   },
@@ -27,7 +27,7 @@
     "tslint": "tslint --config 'tslint.json' 'app/**/*.ts'",
     "ios.release": "npm run build-ios-bundle -- --release --for-device --provision 126a7372-fbc5-41bf-95f3-6d3e479bde86 && ipa-deploy platforms/ios/build/device/nativescriptpluginshowcase.ipa echo '***  Now check the app on the device and afterwards upload it with npm run ios.publish-after-release ***'",
     "ios.publish-after-release.doesntwork": "echo \"Don't forget to replace MY_PASSWORD :)\" && tns publish ios eddyverbruggen@gmail.com MY_PASSWORD --ipa platforms/ios/build/device/nativescriptpluginshowcase.ipa",
-    "android.release": "echo '*** Replace MY_PASSWORD ***' && npm run build-android-bundle -- --release --for-device --key-store-path \\\"/Users/eddyverbruggen/Desktop/werkmap/Android dev X-Services/xservices.keystore\\\" --key-store-password MY_PASSWORD --key-store-alias xservices --key-store-alias-password MY_PASSWORD && echo '*** Upload the apk to Play, or test it first with: adb install platforms/android/build/outputs/apk/pluginshowcase-release.apk ***'",
+    "android.release": "echo '*** Replace MY_PASSWORD ***' && npm run build-android-bundle -- --release --for-device --key-store-path ./xservices.keystore --key-store-password MY_PASSWORD --key-store-alias xservices --key-store-alias-password MY_PASSWORD && echo '*** Upload the apk to Play, or test it first with: adb install platforms/android/app/build/outputs/apk/pluginshowcase-release.apk ***'",
     "e2e": "tsc -p e2e && mocha --opts ./e2e/config/mocha.opts",
     "e2e.android": "npm run e2e -- --runType android26",
     "e2e.ios": "npm run e2e -- --runType sim.iPhone8.iOS11",
@@ -47,7 +47,7 @@
     "@angular/platform-browser": "~5.2.0",
     "@angular/platform-browser-dynamic": "~5.2.0",
     "@angular/router": "~5.2.0",
-    "nativescript-angular": "^5.2.0",
+    "nativescript-angular": "~5.3.0-2018-02-08-01",
     "nativescript-app-icon-changer": "~1.0.4",
     "nativescript-app-shortcuts": "~2.0.0",
     "nativescript-appavailability": "~1.3.1",
@@ -73,24 +73,24 @@
     "nativescript-ngx-fonticon": "~4.0.0",
     "nativescript-numeric-keyboard": "~3.0.3",
     "nativescript-pro-ui": "~3.3.0",
-    "nativescript-snackbar": "~2.0.0",
+    "nativescript-snackbar": "~2.0.1",
     "nativescript-social-share": "~1.5.0",
     "nativescript-speech-recognition": "~1.3.1",
     "nativescript-texttospeech": "~2.0.2",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-toast": "git+https://github.com/EddyVerbruggen/nativescript-toast.git",
     "reflect-metadata": "~0.1.10",
-    "rxjs": "^5.5.0",
+    "rxjs": "~5.5.0",
     "tns-core-modules": "~3.4.0",
-    "zone.js": "^0.8.4"
+    "zone.js": "~0.8.4"
   },
   "devDependencies": {
     "@angular/compiler-cli": "~5.2.0",
     "@ngtools/webpack": "~1.9.1",
-    "@types/chai": "^4.0.2",
-    "@types/mocha": "^2.2.41",
+    "@types/chai": "~4.1.2",
+    "@types/mocha": "~2.2.41",
     "@types/node": "^7.0.5",
-    "appium": "^1.7.1",
+    "appium": "~1.7.2",
     "babel-traverse": "6.26.0",
     "babel-types": "6.26.0",
     "babylon": "6.18.0",
@@ -101,22 +101,22 @@
     "extract-text-webpack-plugin": "~3.0.2",
     "lazy": "1.0.11",
     "mocha": "~3.5.0",
-    "mocha-junit-reporter": "^1.13.0",
+    "mocha-junit-reporter": "~1.17.0",
     "mocha-multi": "^0.11.0",
     "nativescript-css-loader": "~0.26.0",
     "nativescript-dev-appium": "~3.1.0",
-    "nativescript-dev-typescript": "^0.6.0",
-    "nativescript-dev-webpack": "^0.9.1",
+    "nativescript-dev-typescript": "~0.6.0",
+    "nativescript-dev-webpack": "~0.9.1",
     "nativescript-worker-loader": "~0.8.1",
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.2.1",
     "tns-platform-declarations": "~3.4.0",
-    "tslib": "^1.8.0",
-    "tslint": "^5.7.0",
+    "tslib": "~1.9.0",
+    "tslint": "~5.9.0",
     "typescript": "~2.6.0",
     "uglifyjs-webpack-plugin": "~1.1.6",
     "webpack": "~3.10.0",
-    "webpack-bundle-analyzer": "^2.9.1",
+    "webpack-bundle-analyzer": "~2.10.0",
     "webpack-sources": "~1.1.0"
   }
 }

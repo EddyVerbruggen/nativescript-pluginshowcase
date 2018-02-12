@@ -33,9 +33,8 @@
       </StackLayout>
 
       <StackLayout [@from-bottom]="'in'" row="1" horizontalAlignment="center" class="m-t-20" (tap)="toggleRecording()">
-        <!-- todo use mdi-ear-hearing -->
         <Label class="mdi record-mic" [class.recording]="recording" [text]="'mdi-microphone-outline' | fonticon" [isEnabled]="!microphoneEnabled"></Label>
-        <Label class="record-hint" text="tap to talk" *ngIf="!recording"></Label>
+        <Label class="record-hint" text="tap and talk" *ngIf="!recording"></Label>
         <Label class="record-hint" text="tap again to stop" *ngIf="recording"></Label>
       </StackLayout>
     </GridLayout>
