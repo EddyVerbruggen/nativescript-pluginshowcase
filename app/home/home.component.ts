@@ -26,7 +26,7 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
       })),
       state("void", style({
         "opacity": 0,
-        transform: "scale(0.9)"
+        transform: "scale(0.8)"
       })),
       transition("void => *", [animate("1300ms ease-out")])
     ]),

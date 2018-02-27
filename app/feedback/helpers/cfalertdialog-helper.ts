@@ -1,7 +1,7 @@
+import { alert } from "tns-core-modules/ui/dialogs";
 import {
   CFAlertDialog,
   DialogOptions,
-  CFAlertGravity,
   CFAlertActionAlignment,
   CFAlertActionStyle,
   CFAlertStyle
@@ -29,12 +29,12 @@ export class CFAlertDialogHelper {
       title: "This is a notification!",
       message: "It is shown at the top of the screen, and the background is blurry (on iOS).",
       backgroundBlur: true,
-      onDismiss: dialog => console.log("Dialog was dismissed"),
+      onDismiss: dialog => console.log(`Dialog was dismissed: ${dialog}`),
       buttons: [{
         text: "Okay",
         buttonStyle: CFAlertActionStyle.POSITIVE,
         buttonAlignment: CFAlertActionAlignment.END,
-        textColor: "#EEE",
+        textColor: "#eee",
         backgroundColor: "#888",
         onClick: response => console.log(`Button pressed: ${response}`)
       }]
@@ -43,6 +43,14 @@ export class CFAlertDialogHelper {
   }
 
   showBottomSheet(): void {
+    const onSelection = response => {
+      alert({
+        title: "Your selection:",
+        message: response,
+        okButtonText: "OK"
+      });
+    };
+
     const options: DialogOptions = {
       dialogStyle: CFAlertStyle.BOTTOM_SHEET,
       title: "This is a bottom sheet!",
@@ -52,67 +60,63 @@ export class CFAlertDialogHelper {
           text: "Okay",
           buttonStyle: CFAlertActionStyle.POSITIVE,
           buttonAlignment: CFAlertActionAlignment.JUSTIFIED,
-          onClick: response => console.log(`Button pressed: ${response}`)
+          onClick: onSelection
         },
         {
           text: "Nope",
           buttonStyle: CFAlertActionStyle.NEGATIVE,
           buttonAlignment: CFAlertActionAlignment.JUSTIFIED,
-          onClick: response => console.log(`Button pressed: ${response}`)
+          onClick: onSelection
         }]
     };
     this.cfalertDialog.show(options);
   }
 
   showSimpleList(): void {
+    const items: any = ["Tomato", "Potato", "Carrot", "Spinach"];
     const options: DialogOptions = {
       dialogStyle: CFAlertStyle.ALERT,
       title: "This is a simple list!",
       simpleList: {
-        items: ["Tomato", "Potato", "Carrot", "Spinach"],
-        onClick: (dialogInterface, index) => console.log(`dialogInterface: ${dialogInterface}, index: ${index}`)
+        items: items,
+        onClick: (dialogInterface, index) => {
+          alert({
+            title: "Your selection:",
+            message: items[index],
+            okButtonText: "OK"
+          });
+        }
       }
     };
     this.cfalertDialog.show(options);
   }
 
   showSingleChoiceList(): void {
+    const items: any = ["Tomato", "Potato", "Carrot", "Spinach"];
+    let selection: string;
     const options: DialogOptions = {
       dialogStyle: CFAlertStyle.ALERT,
       title: "This is a simple list!",
       singleChoiceList: {
-        items: ["Tomato", "Potato", "Carrot", "Spinach"],
+        items: items,
         selectedItem: 2,
-        onClick: (dialogInterface, index) => console.log(`dialogInterface: ${dialogInterface}, index: ${index}`)
-      },
-      buttons: [
-        {
-          text: "Okay",
-          buttonStyle: CFAlertActionStyle.POSITIVE,
-          buttonAlignment: CFAlertActionAlignment.END,
-          onClick: response => console.log(`Button pressed: ${response}`)
+        onClick: (dialog, index) => {
+          selection = items[index];
+          console.log(`Option selected: ${selection}`);
         }
-      ]
-    };
-    this.cfalertDialog.show(options);
-  }
-
-  showMultiChoiceList(): void {
-    let itemState: [boolean] = [false, false, false, false];
-    let options: DialogOptions = {
-      dialogStyle: CFAlertStyle.ALERT,
-      title: "This is a simple list!",
-      multiChoiceList: {
-        items: ["Tomato", "Potato", "Carrot", "Spinach"],
-        selectedItems: itemState,
-        onClick: (dialogInterface, index, b) => console.log(`dialogInterface: ${dialogInterface}, index: ${index}, b: ${b}`)
       },
       buttons: [
         {
           text: "Okay",
           buttonStyle: CFAlertActionStyle.POSITIVE,
           buttonAlignment: CFAlertActionAlignment.END,
-          onClick: response => console.log(`Button pressed: ${response}`)
+          onClick: (pressedButton: string) => {
+            alert({
+              title: "You selected:",
+              message: selection,
+              okButtonText: "OK"
+            });
+          }
         }
       ]
     };

@@ -49,13 +49,14 @@
       <Label class="section-title" text="CFAlert Dialog" *ngIf="true"></Label>
       <WrapLayout *ngIf="true">
         <Button text="Alert" (tap)="cfalertDialogHelper.showAlert(false)" class="button button-error"></Button>
-        <Button text="Alert (blurry)" (tap)="cfalertDialogHelper.showAlert(true)" class="button button-error"></Button>
+        <ios>
+          <Button text="Alert (blurry)" (tap)="cfalertDialogHelper.showAlert(true)" class="button button-error"></Button>
+        </ios>
         <Button text="Notification" (tap)="cfalertDialogHelper.showNotification()" class="button button-success"></Button>
         <Button text="Bottom sheet" (tap)="cfalertDialogHelper.showBottomSheet()" class="button button-custom"></Button>
         <android>
-          <Button text="Simple list" (tap)="cfalertDialogHelper.showSimpleList()" class="button button-custom"></Button>
-          <Button text="Single choice list" (tap)="cfalertDialogHelper.showSingleChoiceList()" class="button button-custom"></Button>
-          <Button text="Multi choice list" (tap)="cfalertDialogHelper.showMultiChoiceList()" class="button button-custom"></Button>
+          <Button text="Simple list" (tap)="cfalertDialogHelper.showSimpleList()" class="button button-custom-alt"></Button>
+          <Button text="Single choice list" (tap)="cfalertDialogHelper.showSingleChoiceList()" class="button button-custom-alt"></Button>
         </android>
       </WrapLayout>
 
