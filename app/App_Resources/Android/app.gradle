@@ -2,10 +2,6 @@ android {
   defaultConfig {
     generatedDensities = []
     applicationId = "org.nativescript.pluginshowcase"
-
-    // required for nativescript-blur
-    renderscriptTargetApi 25
-    renderscriptSupportModeEnabled true
   }
   aaptOptions {
     additionalParameters "--no-version-vectors"

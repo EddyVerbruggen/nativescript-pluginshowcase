@@ -29,7 +29,7 @@ require("nativescript-angular/resource-loader");
 require("nativescript-angular/modal-dialog");
 
 // see https://github.com/telerik/nativescript-ui-feedback/issues/195
-require("nativescript-pro-ui/sidedrawer");
+require("nativescript-ui-sidedrawer");
 
 // move to the vendor chunk as this is required in every individual module
 require("nativescript-angular/nativescript.module");
