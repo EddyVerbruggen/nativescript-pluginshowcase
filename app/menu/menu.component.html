@@ -1,4 +1,4 @@
-<RadSideDrawer showOverNavigation="true" [drawerContentSize]="isTablet ? 320 : 260" transition="PushTransition">
+<RadSideDrawer showOverNavigation="true" [drawerContentSize]="isTablet ? 320 : 260" [transition]="isIOS ? 'SlideAlongTransition' : 'PushTransition'">
   <Gradient tkDrawerContent class="menu-contents-wrapper" direction="to bottom right" colors="#2da7fb, #227ebe">
     <GridLayout class="sideStackLayout" rows="auto, auto, auto, auto, auto, auto, auto, *">
       <StackLayout row="0" class="sideTitleStackLayout">
@@ -8,7 +8,7 @@
       <GridLayout row="1" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border" [nsRouterLink]="['/menu/feedback']" nsRouterLinkActive="active">
         <Label class="mdi" [text]="'mdi-message-text' | fonticon"></Label>
         <Label col="1" class="item-title" text="Feedback"></Label>
-        <Label row="1" col="1" class="plugin-names" text="Fancy Alert, Feedback, Snackbar, Local Notifications, Toast" textWrap="true"></Label>
+        <Label row="1" col="1" class="plugin-names" text="Fancy Alert, CFAlert Dialog, Feedback, Snackbar, Local Notifications, Toast" textWrap="true"></Label>
       </GridLayout>
 
       <GridLayout row="2" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border" [nsRouterLink]="['/menu/mapping']" nsRouterLinkActive="active">
