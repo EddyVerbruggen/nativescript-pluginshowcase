@@ -1,16 +1,13 @@
-// Add your native dependencies here:
-
-// Uncomment to add recyclerview-v7 dependency
-//dependencies {
-//	compile 'com.android.support:recyclerview-v7:+'
-//}
-
-android {  
-  defaultConfig {  
+android {
+  defaultConfig {
     generatedDensities = []
     applicationId = "org.nativescript.pluginshowcase"
-  }  
-  aaptOptions {  
-    additionalParameters "--no-version-vectors"  
-  }  
-} 
+
+    // required for nativescript-blur
+    renderscriptTargetApi 25
+    renderscriptSupportModeEnabled true
+  }
+  aaptOptions {
+    additionalParameters "--no-version-vectors"
+  }
+}

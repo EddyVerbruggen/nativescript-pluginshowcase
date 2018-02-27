@@ -90,10 +90,10 @@ export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
             ),
 
             new PluginInfo(
-                "nativescript-pro-ui",
-                "Progress NativeScript UI Pro",
-                "https://www.npmjs.com/package/nativescript-pro-ui",
-                "We're leveraging the SideDrawer of this awesome (now free!) UI library."
+                "nativescript-ui-sidedrawer",
+                "NativeScript UI Sidedrawer",
+                "https://www.npmjs.com/package/nativescript-ui-sidedrawer",
+                "The SideDrawer is one of the components that used to be part of NativeScript Pro UI, but now lives on its own. For other components see https://www.npmjs.com/package/nativescript-pro-ui."
             ),
 
             new PluginInfo(

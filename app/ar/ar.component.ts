@@ -286,7 +286,7 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
 
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
-        "Is normal reality too dull for you? Augment it with the experimental plugin!",
+        "Is normal reality too dull for you? Augment it with the nativescript-ar plugin!",
         Array.of(
             new PluginInfo(
                 "nativescript-ar",
