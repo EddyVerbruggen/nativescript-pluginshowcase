@@ -46,6 +46,11 @@
         </ios>
       </WrapLayout>
 
+      <Label class="section-title" text="CFAlert Dialog" *ngIf="true"></Label>
+      <WrapLayout *ngIf="true">
+        <Button text="Alert" (tap)="cfalertDialogHelper.showAlert()" class="button button-error"></Button>
+      </WrapLayout>
+
       <Label class="section-title" text="Snackbar" *ngIf="true"></Label>
       <WrapLayout *ngIf="true">
         <Button text="Message" (tap)="snackbarHelper.showMessage()" class="button button-success"></Button>

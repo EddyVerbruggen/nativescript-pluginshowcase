@@ -19,6 +19,7 @@ import { SnackbarHelper } from "./helpers/snackbar-helper";
 import { LocalNotificationsHelper } from "./helpers/localnotifications-helper";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
+import { CFAlertDialogHelper } from "./helpers/cfalertdialog-helper";
 
 @Component({
   selector: "page-feedback",
@@ -41,6 +42,7 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 })
 export class FeedbackComponent extends AbstractMenuPageComponent {
   fancyAlertHelper: FancyalertHelper;
+  cfalertDialogHelper: CFAlertDialogHelper;
   feedbackHelper: FeedbackHelper;
   localNotificationsHelper: LocalNotificationsHelper;
   snackbarHelper: SnackbarHelper;
@@ -53,6 +55,7 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
     super(menuComponent, vcRef, modalService);
 
     this.fancyAlertHelper = new FancyalertHelper();
+    this.cfalertDialogHelper = new CFAlertDialogHelper();
     this.feedbackHelper = new FeedbackHelper();
     this.localNotificationsHelper = new LocalNotificationsHelper();
     this.snackbarHelper = new SnackbarHelper();
@@ -75,6 +78,14 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
                 "Toast",
                 "https://github.com/TobiasHennig/nativescript-toast",
                 "A sober way of providing non-blocking feedback."
+            ),
+
+            // TODO
+            new PluginInfo(
+                "nativescript-fancyalert",
+                "FancyAlert",
+                "https://github.com/NathanWalker/nativescript-fancyalert",
+                "Want to get in your user's face? Throw a highly customizable alert at them."
             ),
 
             new PluginInfo(
