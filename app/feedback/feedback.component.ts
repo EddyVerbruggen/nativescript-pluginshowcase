@@ -80,12 +80,11 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
                 "A sober way of providing non-blocking feedback."
             ),
 
-            // TODO
             new PluginInfo(
-                "nativescript-fancyalert",
-                "FancyAlert",
-                "https://github.com/NathanWalker/nativescript-fancyalert",
-                "Want to get in your user's face? Throw a highly customizable alert at them."
+                "nativescript-cfalert-dialog",
+                "CFAlert Dialog",
+                "https://github.com/shiv19/nativescript-cfalert-dialog",
+                "Need an Alert, notification, or bottom dialog? Then this one's for you!"
             ),
 
             new PluginInfo(
