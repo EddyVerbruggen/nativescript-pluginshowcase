@@ -18,7 +18,7 @@ export class LocalNotificationsHelper {
     // adding a handler, so we can do something with the received notification.. in this case an alert
     LocalNotifications.addOnMessageReceivedCallback(data => {
       alert({
-        title: "Local Notificartion received",
+        title: "Local Notification received",
         message: `id: '${data.id}', title: '${data.title}'.`,
         okButtonText: "Roger that"
       });
