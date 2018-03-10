@@ -54,5 +54,6 @@
 
 .madeby-container Label.madeby-text {
   font-size: 14;
-  padding: 14 10 14 14;
+  padding-top: 14;
+  padding-left: 14;
 }

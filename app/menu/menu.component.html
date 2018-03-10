@@ -42,6 +42,7 @@
         <Label row="1" col="1" class="plugin-names" text="AR, DropDown, Flashlight, Insomnia" textWrap="true"></Label>
       </GridLayout>
 
+      <!-- Note that the CSS class 'adjust-bottom-safe-area' is added dynamically in app.component.ts -->
       <StackLayout row="7" class="sideOptions madeby-container" verticalAlignment="bottom" (tap)="openTwitter()">
         <Label class="mdi madeby-text" [text]="'Made with ' + ('mdi-heart-outline' | fonticon) + ' by @eddyverbruggen'"></Label>
       </StackLayout>
