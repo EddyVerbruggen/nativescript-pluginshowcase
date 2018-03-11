@@ -49,7 +49,3 @@ npm run ios
 # or: npm run ios.emulator
 # or even: npm run start-ios-bundle (for a faster startup experience because of Webpack with Uglify)
 ```
-
-### Notes
-* Don't judge Mapbox performance on the simulator. It only blows you away on a real device.
-* Samsung needs to get their sh together and release new Android versions more quickly on their phones. My shiny new S8 runs 7.0, but App Shortcuts needs 7.1 and AR needs 8.0. COME ON!
