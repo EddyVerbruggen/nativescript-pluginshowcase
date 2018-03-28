@@ -68,29 +68,6 @@ export class MappingComponent extends AbstractMenuPageComponent {
               console.log("DevReach 2017 callout tapped");
             }
           },
-          // {
-          //       id: 2,
-          //       lat: 51.9280572,
-          //       lng: 4.4201952,
-          //       title: '{N} Developer day EU',
-          //       subtitle: 'Tap to show directions (with waypoints)',
-          //       icon: 'res://tnsmarker',
-          //       onTap: () => {
-          //         console.log("{N} Developer day EU was tapped");
-          //       },
-          //       onCalloutTap: () => {
-          //         this.showDirectionsTo([
-          //           {
-          //             lat: 52.1851585,
-          //             lng: 5.3974241
-          //           },
-          //           {
-          //             lat: 51.9280572,
-          //             lng: 4.4201952
-          //           }
-          //         ]);
-          //       }
-          //     },
           {
             id: 3,
             lat: 52.1851585,
@@ -98,9 +75,7 @@ export class MappingComponent extends AbstractMenuPageComponent {
             title: "Eddy's home",
             subtitle: "Tap to show directions (with waypoints)",
             iconPath: "images/mapmarkers/home_marker.png",
-            onTap: () => {
-              console.log("Eddy's home was tapped");
-            },
+            onTap: () => console.log("Eddy's home was tapped"),
             onCalloutTap: () => {
               this.showDirectionsTo([
                 {
@@ -142,6 +117,38 @@ export class MappingComponent extends AbstractMenuPageComponent {
             lat: 42.021834,
             lng: 25.086096,
             icon: 'res://truck3',
+          },
+          {
+            id: 7,
+            lat: 37.3754338,
+            lng: -5.9900776,
+            icon: 'res://eddy-siesta',
+            title: "Mr. Siesta",
+            subtitle: "Loves Angular, especially lazzzzzy loading",
+          },
+          {
+            id: 8,
+            lat: 12.518514,
+            lng: -70.2474425,
+            icon: 'res://eddy-cool',
+            title: "Mr. Cool",
+            subtitle: "Thinks Vue is awesome",
+          },
+          {
+            id: 9,
+            lat: 61.6319675,
+            lng: 23.5501232,
+            icon: 'res://eddy-nerd',
+            title: "Mr. Nerdy",
+            subtitle: "A genuine JS and TS nerd",
+          },
+          {
+            id: 10,
+            lat: 48.2208286,
+            lng: 16.2399779,
+            icon: 'res://eddy-sport',
+            title: "Mr. Sporty",
+            subtitle: "Runs through diagrams like a madman",
           }
         ]
     );
