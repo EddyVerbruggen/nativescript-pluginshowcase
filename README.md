@@ -47,5 +47,5 @@ cd nativescript-pluginshowcase
 npm run ios
 # or: npm run android
 # or: npm run ios.emulator
-# or even: npm run start-ios-bundle (for a faster startup experience because of Webpack with Uglify)
+# or even: npm run start-ios-bundle (for a much faster startup experience because of Webpack with Uglify)
 ```
