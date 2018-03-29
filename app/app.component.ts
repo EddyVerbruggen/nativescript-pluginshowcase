@@ -9,13 +9,10 @@ import { isIOS } from "tns-core-modules/platform";
 export class AppComponent implements OnInit {
   ngOnInit(): void {
     // Only 1 thingy needs an iPhone X (and other devices later as well, perhaps) tweak, so doing it quick & dirty here
-    if (isIOS && application.ios.window.safeAreaInsets) {
-      const bottomSafeArea: number = application.ios.window.safeAreaInsets.bottom;
-      if (bottomSafeArea > 0) {
-        application.addCss(`
-            .madeby-container Label.madeby-text { padding-bottom: ${bottomSafeArea} }
-          `);
-      }
+    if (isIOS && application.ios.window.safeAreaInsets && application.ios.window.safeAreaInsets.bottom > 0) {
+      application.addCss(`
+          .madeby-container Label.madeby-text { padding-bottom: ${application.ios.window.safeAreaInsets.bottom} }
+        `);
     } else {
       application.addCss(`
             .madeby-container Label.madeby-text { padding-bottom: 14 }
