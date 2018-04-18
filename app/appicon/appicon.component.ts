@@ -1,13 +1,13 @@
 import { Component, ViewContainerRef } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
-import { MenuComponent } from "../menu/menu.component";
 import { ModalDialogService } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { AppIconChanger } from "nativescript-app-icon-changer";
 import { ToastService } from "../services/toast.service";
 import { AppShortcuts } from "nativescript-app-shortcuts";
+import { AppComponent } from "~/app.component";
 
 @Component({
   selector: "page-appicon",
@@ -54,11 +54,11 @@ export class AppIconComponent extends AbstractMenuPageComponent {
   private appIconChanger: AppIconChanger;
   private appShortcuts: AppShortcuts;
 
-  constructor(protected menuComponent: MenuComponent,
+  constructor(protected appComponent: AppComponent,
               protected vcRef: ViewContainerRef,
               protected modalService: ModalDialogService,
               private toastService: ToastService) {
-    super(menuComponent, vcRef, modalService);
+    super(appComponent, vcRef, modalService);
     this.appIconChanger = new AppIconChanger();
     this.appShortcuts = new AppShortcuts();
     this.appShortcuts.available().then(avail => this.supportsAppShortcuts = avail);

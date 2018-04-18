@@ -3,7 +3,7 @@
 
     <Label class="description" [text]="pluginInfo.description" textWrap="true"></Label>
 
-    <StackLayout class="p-10" style="padding-top: 5" *ngFor="let plugin of pluginInfo.plugins">
+    <StackLayout class="p-10" *ngFor="let plugin of pluginInfo.plugins">
       <GridLayout rows="auto" columns="*, 60">
         <Label col="0" [text]="plugin.name" class="plugin-name"></Label>
         <Label col="1" [text]="'mdi-open-in-new' | fonticon" class="plugin-url mdi p-5" horizontalAlignment="right" (tap)="openPluginUrl(plugin)"></Label>

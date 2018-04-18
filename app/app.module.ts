@@ -1,11 +1,16 @@
 import { NgModule, NgZone, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
-import { AppRoutingModule } from "./app-routing.module";
+import { routing } from "./app.routing";
 import { AppComponent } from "./app.component";
 import { setStatusBarColors } from "./utils/status-bar-util";
 import { Config } from "./shared/config";
-import { NativeScriptFormsModule, registerElement, RouterExtensions } from "nativescript-angular";
+import {
+  NativeScriptFormsModule,
+  NativeScriptRouterModule,
+  registerElement,
+  RouterExtensions
+} from "nativescript-angular";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 import { NativeScriptAnimationsModule } from "nativescript-angular/animations";
 import { AppShortcuts } from "nativescript-app-shortcuts";
@@ -13,6 +18,10 @@ import { device, isIOS } from "tns-core-modules/platform";
 import { DeviceType } from "tns-core-modules/ui/enums";
 import * as application from "application";
 import { ToastService } from "./services/toast.service";
+import { InfoModalComponent } from "~/info-modal/info-modal";
+import { HomeComponent } from "~/home/home.component";
+import { CommonModule } from "@angular/common";
+import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 
 const fs = require("file-system");
 
@@ -28,15 +37,27 @@ Config.isTablet = device.deviceType === DeviceType.Tablet;
   ],
   imports: [
     NativeScriptModule,
+    CommonModule,
     NativeScriptFormsModule,
+    NativeScriptRouterModule,
     NativeScriptAnimationsModule,
-    AppRoutingModule,
+    NativeScriptUISideDrawerModule,
+    routing,
     TNSFontIconModule.forRoot({
       'mdi': 'fonts/materialdesignicons.css'
-    }),
+    })
+  ],
+  exports: [
+    NativeScriptModule,
+    NativeScriptRouterModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    InfoModalComponent
+  ],
+  entryComponents: [
+      InfoModalComponent
   ],
   providers: [
     ToastService

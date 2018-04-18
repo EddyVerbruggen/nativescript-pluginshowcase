@@ -13,16 +13,17 @@ refer to http://docs.nativescript.org/ui/theme.
 @import url("./platform.css");
 
 Page {
-  /* this is also the color the user sees when the app starts (FOUC),
-   so made it the same as the home background color
-    TODO reuse this knowledge.. also use this color for the splashscreen */
   background-color: #009c9b;
   color: #fff;
   font-size: 15;
   font-family: 'Source Sans Pro', SourceSansPro-Regular, system, sans-serif;
 }
 
-ActionBar, .intro-page, .pin-page, .register-location-page, .category-modal, #cart-bar-wrapper {
+Label {
+  font-family: 'Source Sans Pro', SourceSansPro-Regular, system, sans-serif;
+}
+
+ActionBar {
   font-size: 15;
   font-family: 'Source Sans Pro', SourceSansPro-Regular, system, sans-serif;
 }
@@ -116,4 +117,64 @@ Button.button {
 
 Button:highlighted {
   opacity: 0.7;
+}
+
+.sideStackLayout {
+  color: #fff;
+}
+
+.sideTitleStackLayout {
+  padding: 30 10 14 10;
+  text-align: center;
+  height: 64;
+}
+
+.sideOptions {}
+
+.sideOptions Label.item-title {
+  font-size: 16;
+  padding: 12 10 4 10;
+}
+
+.sideOptions Label.plugin-names {
+  font-size: 12;
+  opacity: 0.8;
+  padding-left: 10;
+  padding-right: 8;
+  padding-bottom: 12;
+}
+
+.sideOptions Label.mdi {
+  padding-top: 12;
+  padding-left: 20;
+  padding-right: 0;
+  font-size: 22;
+}
+
+.sideOptions.active {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.menu-top-border {
+  border-top-width: 1px;
+  border-top-color: rgba(255, 255, 255, 0.4);
+}
+
+.menu-bottom-border {
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+}
+
+.madeby-container {
+  background-color: #DC1B4F;
+}
+
+.madeby-container Label {
+  padding-top: 12;
+}
+
+.madeby-container Label.madeby-text {
+  font-size: 14;
+  padding-top: 14;
+  padding-left: 14;
 }

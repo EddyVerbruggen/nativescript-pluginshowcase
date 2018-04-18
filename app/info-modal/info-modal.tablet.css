@@ -1,3 +1,8 @@
-.tablet .modal-wrapper {
-  margin: 120;
+.tablet .description {
+  font-size: 15;
+}
+
+.tablet .plugin-id,
+.tablet .plugin-description {
+  font-size: 14;
 }

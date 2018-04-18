@@ -1,15 +1,15 @@
 import { Component, NgZone, OnInit, ViewContainerRef } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
-import { MenuComponent } from "../menu/menu.component";
 import { ModalDialogService } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { SegmentedBarItem } from "tns-core-modules/ui/segmented-bar";
 import { PropertyChangeData } from "tns-core-modules/data/observable";
-import { DrawingPad } from "nativescript-drawingpad";
+// import { DrawingPad } from "nativescript-drawingpad";
 import { IQKeyboardHelper } from "./helpers/iqkeyboard-helper";
 import { CheckboxHelper } from "./helpers/checkbox-helper";
+import { AppComponent } from "~/app.component";
 
 @Component({
   selector: "page-input",
@@ -61,11 +61,11 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
   iqkeyboardHelper: IQKeyboardHelper;
   checkboxHelper: CheckboxHelper;
 
-  constructor(protected menuComponent: MenuComponent,
+  constructor(protected appComponent: AppComponent,
               protected vcRef: ViewContainerRef,
               protected modalService: ModalDialogService,
               private zone: NgZone) {
-    super(menuComponent, vcRef, modalService);
+    super(appComponent, vcRef, modalService);
   }
 
   ngOnInit(): void {
@@ -96,7 +96,7 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
     this.selectedPlugin = this.plugins[args.value].title;
   }
 
-  getMyDrawing(pad: DrawingPad) {
+  getMyDrawing(pad: any) {
     // then get the drawing (Bitmap on Android) of the drawingpad
     pad.getDrawing().then(data => {
       console.log(data);
@@ -107,7 +107,7 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
     });
   }
 
-  clearMyDrawing(pad: DrawingPad) {
+  clearMyDrawing(pad: any) {
     pad.clearDrawing();
   }
 

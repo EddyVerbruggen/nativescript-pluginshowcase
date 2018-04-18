@@ -1,7 +1,6 @@
 import { Component, NgZone, OnInit, ViewContainerRef } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
-import { MenuComponent } from "../menu/menu.component";
 import { ModalDialogService } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
@@ -17,6 +16,8 @@ import { TNSPlayer } from "nativescript-audio";
 import { ImageSource } from "tns-core-modules/image-source";
 import { isIOS } from "tns-core-modules/platform";
 import { Slider } from "tns-core-modules/ui/slider";
+import { ImageAsset } from "tns-core-modules/image-asset";
+import { AppComponent } from "~/app.component";
 
 @Component({
   selector: "page-speech",
@@ -82,11 +83,11 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
 
   // @ViewChild("recordButton") recordButton: ElementRef;
 
-  constructor(protected menuComponent: MenuComponent,
+  constructor(protected appComponent: AppComponent,
               protected vcRef: ViewContainerRef,
               protected modalService: ModalDialogService,
               private zone: NgZone) {
-    super(menuComponent, vcRef, modalService);
+    super(appComponent, vcRef, modalService);
   }
 
   ngOnInit(): void {
@@ -309,23 +310,29 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
       } else if (pickedItemIndex === 1) {
         // Image Picker plugin
         const imagePicker = ImagePicker.create({
-          mode: "single",
-          newestFirst: true, // iOS
-          doneText: "Done",
-          cancelText: "Cancel"
+          mode: "single"
         });
         imagePicker
             .authorize()
             .then(() => {
               return imagePicker.present();
             })
-            .then((selection: Array<ImagePicker.SelectedAsset /* which is a subclass of ImageAsset */>) => {
+            .then((selection: Array<ImageAsset>) => {
+              console.log(">>> selection: " + selection);
               selection.forEach(selected => {
-                selected.getImage({
-                  maxWidth: 1000,
-                  maxHeight: 1000,
-                  aspectRatio: 'fit'
-                }).then((imageSource: ImageSource) => {
+                console.log(">>> selected: " + selected);
+                selected.options.height = 1000;
+                selected.options.width = 1000;
+                selected.options.keepAspectRatio = true;
+                selected.getImageAsync((image: any, error: any) => {
+                  console.log(">>> error: " + error);
+                  console.log(">>> image: " + image);
+                  if (error) {
+                    console.log(`Error getting image source from pickerI: ${error}`);
+                    return;
+                  }
+                  const imageSource = new ImageSource();
+                  imageSource.setNativeSource(image);
                   SocialShare.shareImage(imageSource);
                 });
               });

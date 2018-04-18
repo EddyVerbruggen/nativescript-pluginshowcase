@@ -31,3 +31,7 @@
 .plugin-description {
   font-size: 13;
 }
+
+Button {
+  font-family: 'Source Sans Pro', SourceSansPro-Regular, system, sans-serif;
+}

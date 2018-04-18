@@ -9,7 +9,7 @@ import { TNSCheckBoxModule } from "nativescript-checkbox/angular";
 import { registerElement } from "nativescript-angular/element-registry";
 import { NativeScriptFormsModule } from "nativescript-angular";
 
-registerElement("DrawingPad", () => require("nativescript-drawingpad").DrawingPad);
+// registerElement("DrawingPad", () => require("nativescript-drawingpad").DrawingPad);
 registerElement("NumericKeyboard", () => require("nativescript-numeric-keyboard").NumericKeyboardView);
 
 @NgModule({
