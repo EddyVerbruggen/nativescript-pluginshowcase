@@ -1,11 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from "@angular/animations";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
 import { Config } from "../shared/config";
 import { ModalDialogService, RouterExtensions } from "nativescript-angular";
