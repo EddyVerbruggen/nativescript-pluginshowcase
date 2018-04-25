@@ -81,26 +81,27 @@ export class AppModule {
 
     const appShortcuts = new AppShortcuts();
 
+    appShortcuts.setQuickActionCallback(shortcutItem => {
+      console.log(`The app was launched by shortcut type '${shortcutItem.type}'`);
+
+      // this is where you handle any specific case for the shortcut, based on its type
+      if (shortcutItem.type === "feedback") {
+        this.deeplink = "/feedback";
+      } else if (shortcutItem.type === "appicon") {
+        this.deeplink = "/appicon";
+      } else if (shortcutItem.type === "mapping") {
+        this.deeplink = "/mapping";
+      }
+
+      if (this.deeplink && isIOS) {
+        this.goToPage(this.deeplink);
+      }
+    });
+
     appShortcuts.available().then(avail => {
       if (!avail) {
         return;
       }
-      appShortcuts.setQuickActionCallback(shortcutItem => {
-        console.log(`The app was launched by shortcut type '${shortcutItem.type}'`);
-
-        // this is where you handle any specific case for the shortcut, based on its type
-        if (shortcutItem.type === "feedback") {
-          this.deeplink = "/menu/feedback";
-        } else if (shortcutItem.type === "appicon") {
-          this.deeplink = "/menu/appicon";
-        } else if (shortcutItem.type === "mapping") {
-          this.deeplink = "/menu/mapping";
-        }
-
-        if (this.deeplink && isIOS) {
-          this.goToPage(this.deeplink);
-        }
-      });
 
       // On Android launching from a deeplink triggers an exit event - we need to fully kill the app in that case,
       // otherwise navigation doesn't fully occur.. super weird issue :(
