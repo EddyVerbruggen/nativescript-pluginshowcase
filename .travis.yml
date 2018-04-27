@@ -8,7 +8,7 @@ android:
     - sys-img-armeabi-v7a-android-21
 
 before_cache:
-    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock 
+    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 
 cache:
     directories:
@@ -36,8 +36,8 @@ matrix:
       os: osx
       env:
         - Webpack="iOS"
-      osx_image: xcode9
-      language: node_js 
+      osx_image: xcode9.2
+      language: node_js
       node_js: "6"
       jdk: oraclejdk8
       script:
@@ -51,7 +51,7 @@ matrix:
       before_install: nvm install 6.10.3
       script: npm run build-android-bundle
     - stage: "Build"
-      env: 
+      env:
         - BuildAndroid="26"
       language: android
       os: linux
@@ -60,14 +60,14 @@ matrix:
       script:
         - tns build android
     - os: osx
-      env: 
+      env:
         - BuildiOS="11"
         - Xcode="9"
-      osx_image: xcode9
-      language: node_js 
+      osx_image: xcode9.2
+      language: node_js
       node_js: "6"
       jdk: oraclejdk8
-      script: 
+      script:
         - pod repo update
         - tns build ios
-    
+

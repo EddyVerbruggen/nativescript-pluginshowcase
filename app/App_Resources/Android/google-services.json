@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "884257917279",
+    "firebase_url": "https://nativescript-pluginshowcase.firebaseio.com",
+    "project_id": "nativescript-pluginshowcase",
+    "storage_bucket": "nativescript-pluginshowcase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884257917279:android:c9768018536a35ee",
+        "android_client_info": {
+          "package_name": "org.nativescript.pluginshowcase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884257917279-q55osi2k33jsob5lar9h2noqd1qvkgqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtmD8Ngtw11IqSVHj9UOW6Pp-AAsGXvgc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
