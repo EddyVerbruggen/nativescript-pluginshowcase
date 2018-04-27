@@ -8,7 +8,6 @@ import {
   transition
 } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
-import { MenuComponent } from "../menu/menu.component";
 import { Feedback } from "nativescript-feedback";
 import { ToastService } from "../services/toast.service";
 import { ToastHelper } from "./helpers/toast-helper";
@@ -20,6 +19,7 @@ import { LocalNotificationsHelper } from "./helpers/localnotifications-helper";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { CFAlertDialogHelper } from "./helpers/cfalertdialog-helper";
+import { AppComponent } from "~/app.component";
 
 @Component({
   selector: "page-feedback",
@@ -48,11 +48,11 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
   snackbarHelper: SnackbarHelper;
   toastHelper: ToastHelper;
 
-  constructor(protected menuComponent: MenuComponent,
+  constructor(protected appComponent: AppComponent,
               protected vcRef: ViewContainerRef,
               protected modalService: ModalDialogService,
               private toastService: ToastService) {
-    super(menuComponent, vcRef, modalService);
+    super(appComponent, vcRef, modalService);
 
     this.fancyAlertHelper = new FancyalertHelper();
     this.cfalertDialogHelper = new CFAlertDialogHelper();

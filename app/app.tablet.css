@@ -1,3 +1,7 @@
+Page {
+  background-color: #fff;
+}
+
 Page, Label, Button, TextField {
   font-size: 20;
 }

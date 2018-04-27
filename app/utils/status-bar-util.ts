@@ -1,6 +1,5 @@
 import * as application from "application";
 import * as platform from "tns-core-modules/platform";
-import * as utils from "tns-core-modules/utils/utils";
 
 declare const android: any;
 declare const UIStatusBarStyle: any;
@@ -9,9 +8,7 @@ declare const UIApplication: any;
 export function setStatusBarColors() {
   // Make the iOS status bar transparent with white text
   if (application.ios) {
-    application.on("launch", () => {
-      utils.ios.getter(UIApplication, UIApplication.sharedApplication).statusBarStyle = UIStatusBarStyle.LightContent;
-    });
+    application.on("launch", () => UIApplication.sharedApplication.setStatusBarStyleAnimated(UIStatusBarStyle.LightContent, true));
   }
 
   // Make the Android status bar transparent

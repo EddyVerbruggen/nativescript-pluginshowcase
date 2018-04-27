@@ -7,12 +7,12 @@ import {
   transition
 } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
-import { MenuComponent } from "../menu/menu.component";
 import { MapboxViewApi, Viewport as MapboxViewport } from "nativescript-mapbox";
 import { AddressOptions, Directions } from "nativescript-directions";
 import { ModalDialogService } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
+import { AppComponent } from "~/app.component";
 
 @Component({
   selector: "page-mapping",
@@ -45,10 +45,10 @@ export class MappingComponent extends AbstractMenuPageComponent {
   private directions: Directions;
   private map: MapboxViewApi;
 
-  constructor(protected menuComponent: MenuComponent,
+  constructor(protected appComponent: AppComponent,
               protected vcRef: ViewContainerRef,
               protected modalService: ModalDialogService) {
-    super(menuComponent, vcRef, modalService);
+    super(appComponent, vcRef, modalService);
     this.directions = new Directions();
   }
 

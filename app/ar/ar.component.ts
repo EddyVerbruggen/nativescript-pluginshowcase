@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
-import { MenuComponent } from "../menu/menu.component";
 import { AR, ARDebugLevel, ARMaterial, ARNode, ARPlaneTappedEventData, ARPosition } from "nativescript-ar";
 import { ModalDialogService } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
@@ -9,6 +8,7 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
 import { PropertyChangeData } from "tns-core-modules/data/observable";
 import { DropDown } from "nativescript-drop-down";
 import { Color } from "tns-core-modules/color";
+import { AppComponent } from "~/app.component";
 const flashlight = require("nativescript-flashlight");
 const insomnia = require("nativescript-insomnia");
 
@@ -63,10 +63,10 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
 
   @ViewChild("dropDown") dropDown: ElementRef;
 
-  constructor(protected menuComponent: MenuComponent,
+  constructor(protected appComponent: AppComponent,
               protected vcRef: ViewContainerRef,
               protected modalService: ModalDialogService) {
-    super(menuComponent, vcRef, modalService);
+    super(appComponent, vcRef, modalService);
     this.hint = "Search for planes by pointing at a surface";
   }
 

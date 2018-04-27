@@ -1,17 +1,11 @@
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from "@angular/animations";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
-import { MenuComponent } from "../menu/menu.component";
 import { Config } from "../shared/config";
 import { ModalDialogService, RouterExtensions } from "nativescript-angular";
 import { PluginInfo } from "../shared/plugin-info";
 import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
+import { AppComponent } from "~/app.component";
 
 @Component({
   selector: "page-home",
@@ -54,11 +48,11 @@ import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
   ]
 })
 export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
-  constructor(protected menuComponent: MenuComponent,
+  constructor(protected appComponent: AppComponent,
               protected vcRef: ViewContainerRef,
               protected modalService: ModalDialogService,
               protected routerExtensions: RouterExtensions) {
-    super(menuComponent, vcRef, modalService);
+    super(appComponent, vcRef, modalService);
   }
 
   ngOnInit(): void {
