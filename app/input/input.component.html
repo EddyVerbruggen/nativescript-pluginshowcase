@@ -20,14 +20,14 @@
       <StackLayout [@from-bottom]="'in'" row="1" class="p-20 m-t-20" style="background-color: rgba(255, 255, 255, 210)" borderRadius="20">
         <StackLayout *ngIf="selectedPlugin === 'Drawing'">
           <StackLayout>
-            <!--ContentView backgroundColor="#eeeeee" borderRadius="10">
+            <ContentView backgroundColor="#eeeeee" borderRadius="10">
               <DrawingPad #myDrawing
                           height="250"
                           backgroundColor="#eeeeee"
                           penColor="#ff4081"
-                          penWidth="4">
+                          penWidth="8">
               </DrawingPad>
-            </ContentView-->
+            </ContentView>
 
             <StackLayout class="m-t-20" orientation="horizontal" horizontalAlignment="center">
               <Button class="btn btn-rounded-sm btn-primary" text="Grab it" (tap)="getMyDrawing(myDrawing)"></Button>
