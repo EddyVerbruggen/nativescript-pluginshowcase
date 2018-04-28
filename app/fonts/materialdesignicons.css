@@ -53,6 +53,10 @@
   content: "\F689"
 }
 
+.mdi-fire:before {
+  content: "\F238"
+}
+
 .mdi-text-to-speech:before {
   content: "\F50A"
 }

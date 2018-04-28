@@ -28,6 +28,10 @@ const APP_ROUTES: Routes = [
     loadChildren: "./appicon/appicon.module#AppIconModule"
   },
   {
+    path: "firebase",
+    loadChildren: "./firebase/firebase.module#FirebaseModule"
+  },
+  {
     path: "ar",
     loadChildren: "./ar/ar.module#ARModule"
   }

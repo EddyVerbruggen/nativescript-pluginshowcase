@@ -1,0 +1,67 @@
+<ActionBar title="" flat="true">
+  <ActionItem ios.position="left" (tap)="toggleTheMenu()" *ngIf="isIOS">
+    <Label class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"></Label>
+  </ActionItem>
+  <Label horizontalAlignment="left" class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon" (tap)="toggleTheMenu()" *ngIf="!isIOS"></Label>
+  <Label horizontalAlignment="center" class="semibold" text="Firebase" *ngIf="isIOS"></Label>
+  <ActionItem ios.position="right" (tap)="showPluginInfo()">
+    <Label class="mdi-actionitem mdi-actionitem-right mdi-menu" [text]="'mdi-information-outline' | fonticon"></Label>
+  </ActionItem>
+</ActionBar>
+
+<StackLayout class="main-content">
+  <Gradient height="100%" direction="to bottom" colors="#e9993a, #f2a13b" class="p-20">
+    <GridLayout rows="auto, *">
+
+      <StackLayout [@scale-in]="'in'" row="0" class="transparent-area">
+        <Label class="section-title" text="Google Authentication"></Label>
+        <Label class="section-subtitle" text="We've preconfigured a few actions upon app installation, and you can add a 'dynamic' one here." textWrap="true"></Label>
+        <ActivityIndicator busy="true" width="32" height="32" class="m-8" *ngIf="loadingUser"></ActivityIndicator>
+        <Button text="Login with Google" (tap)="loginWithGoogle()" class="button button-firebase m-t-12" *ngIf="!loadingUser && !user"></Button>
+        <GridLayout columns="auto, *, auto" orientation="horizontal" class="m-t-8" *ngIf="user">
+          <img col="0" [src]="user.profileImageURL" height="38" class="m-r-10" style="border-radius: 3">
+          <StackLayout col="1" verticalAlignment="middle">
+            <Label [text]="user.name"></Label>
+            <Label [text]="user.email" class="user-email"></Label>
+          </StackLayout>
+          <Button col="2" text="Logout" (tap)="logout()" class="button button-firebase" horizontalAlignment="right"></Button>
+        </GridLayout>
+      </StackLayout>
+
+      <GridLayout rows="auto, auto, *" [@scale-in]="'in'" row="1" class="transparent-area m-t-20">
+        <Label row="0" class="section-title" text="Firestore"></Label>
+        <Label row="1" class="section-subtitle" text="We've preconfigured a few actions upon app installation, and you can add a 'dynamic' one here." textWrap="true"></Label>
+
+        <RadListView #citiesListView row="2" [items]="cities" (itemLoading)="onItemLoading($event)" selectionBehavior="None" swipeActions="true" (itemSwipeProgressEnded)="onSwipeCellFinished($event)" (itemSwipeProgressStarted)="onSwipeCellStarted($event)" (itemSwipeProgressChanged)="onCellSwiping($event)" class="m-t-10" style="border-radius: 5; background-color: transparent">
+
+          <!-- rows template -->
+          <ng-template tkListItemTemplate let-item="item">
+            <GridLayout rows="auto, auto" columns="auto, *">
+              <Label row="0" colSpan="2" class="city-name" [text]="item.name"></Label>
+              <Label row="1" col="0" class="city-population" [text]="'Population: ' + (item.population | number)" [visibility]="item.population ? 'visible' : 'collapse'"></Label>
+              <Label row="1" col="1" class="city-author" [text]="getAuthor(item)" horizontalAlignment="right"></Label>
+            </GridLayout>
+          </ng-template>
+
+          <!-- swipe actions template -->
+          <GridLayout *tkListItemSwipeTemplate columns="auto, *, auto">
+            <GridLayout columns="*, *" col="0" id="left-stack">
+              <GridLayout col="0" class="bg-primary" (tap)="onLeftSwipeClick($event)" id="btnName">
+                <Label text="name" verticalAlignment="center" horizontalAlignment="center"></Label>
+              </GridLayout>
+              <GridLayout col="1" class="c-bg-blue" (tap)="onLeftSwipeClick($event)" id="btnPopulation">
+                <Label text="population" verticalAlignment="center" horizontalAlignment="center"></Label>
+              </GridLayout>
+            </GridLayout>
+            <GridLayout columns="*" col="2" id="right-stack">
+              <GridLayout col="0" class="bg-danger" (tap)="onRightSwipeClick($event)" id="btnDelete">
+                <Label text="delete" verticalAlignment="center" horizontalAlignment="center"></Label>
+              </GridLayout>
+            </GridLayout>
+          </GridLayout>
+        </RadListView>
+      </GridLayout>
+
+    </GridLayout>
+  </Gradient>
+</StackLayout>

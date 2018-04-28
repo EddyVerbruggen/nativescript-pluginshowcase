@@ -84,6 +84,27 @@
     </dict>
   </array>
 
+  <!-- For running Firebase on the Simulator -->
+  <key>com.apple.keystore.access-keychain-keys</key>
+  <true/>
+  <key>com.apple.keystore.device</key>
+  <true/>
+
+  <!-- for logging in with Google (as part of the Firebase plugin) -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>REVERSED_CLIENT_ID</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.884257917279-tqa19tams3a3o49sa3ekd546ph1qgh8d</string>
+			</array>
+		</dict>
+	</array>
+
   <!-- This bit is for the App Icon Changer plugin -->
 	<key>CFBundleIcons</key>
 	<dict>

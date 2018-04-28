@@ -4,7 +4,7 @@
     (drawerOpening)="onDrawerOpening($event)"
     (drawerClosing)="onDrawerClosing($event)">
   <Gradient tkDrawerContent class="menu-contents-wrapper" direction="to bottom right" colors="#2da7fb, #227ebe">
-    <GridLayout class="sideStackLayout" rows="auto, auto, auto, auto, auto, auto, auto, *">
+    <GridLayout class="sideStackLayout" rows="auto, auto, auto, auto, auto, auto, auto, auto, *">
       <StackLayout row="0" class="sideTitleStackLayout">
         <Label text=" "></Label>
       </StackLayout>
@@ -40,14 +40,20 @@
         <Label row="1" col="1" class="plugin-names" [text]="'App Shortcuts' + (isIOS ? ', App Icon Changer' : '')" textWrap="true"></Label>
       </GridLayout>
 
-      <GridLayout row="6" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/ar']" clearHistory="true" nsRouterLinkActive="active" *ngIf="isIOS">
+      <GridLayout row="6" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/firebase']" clearHistory="true" nsRouterLinkActive="active">
+        <Label class="mdi" [text]="'mdi-fire' | fonticon"></Label>
+        <Label col="1" class="item-title" text="Firebase"></Label>
+        <Label row="1" col="1" class="plugin-names" text="Firestore, Google Auth, Crashlytics" textWrap="true"></Label>
+      </GridLayout>
+
+      <GridLayout row="7" rows="auto, auto" columns="50, *" class="sideOptions menu-top-border menu-bottom-border" [nsRouterLink]="['/ar']" clearHistory="true" nsRouterLinkActive="active" *ngIf="isIOS">
         <Label class="mdi" [text]="'mdi-printer-3d' | fonticon"></Label>
         <Label col="1" class="item-title" text="Augmented Reality"></Label>
         <Label row="1" col="1" class="plugin-names" text="AR, DropDown, Flashlight, Insomnia" textWrap="true"></Label>
       </GridLayout>
 
       <!-- Note that the CSS class 'madeby-container' is added dynamically in app.component.ts -->
-      <StackLayout row="7" class="sideOptions madeby-container" verticalAlignment="bottom" (tap)="openTwitter()">
+      <StackLayout row="8" class="sideOptions madeby-container" verticalAlignment="bottom" (tap)="openTwitter()">
         <Label class="mdi madeby-text" [text]="'Made with ' + ('mdi-heart-outline' | fonticon) + ' by @eddyverbruggen'"></Label>
       </StackLayout>
     </GridLayout>

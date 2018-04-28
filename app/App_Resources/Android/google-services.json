@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "884257917279-vbs4jhk63jq398bd9so7pljfgmr7oevr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.nativescript.pluginshowcase",
+            "certificate_hash": "86bfaa9359cd32b94a0db4e71381d7f553e29efe"
+          }
+        },
+        {
+          "client_id": "884257917279-vs3adl3idf0suiv8g031ofcrpcuarbdk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.nativescript.pluginshowcase",
+            "certificate_hash": "f7e078e5bfcaa18db892f8ccc50a82e1775fb272"
+          }
+        },
+        {
           "client_id": "884257917279-q55osi2k33jsob5lar9h2noqd1qvkgqg.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +45,21 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "884257917279-tqa19tams3a3o49sa3ekd546ph1qgh8d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.nativescript.pluginshowcase",
+                "app_store_id": "1281334006"
+              }
+            },
+            {
+              "client_id": "884257917279-q55osi2k33jsob5lar9h2noqd1qvkgqg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

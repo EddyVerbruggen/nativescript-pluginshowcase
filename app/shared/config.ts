@@ -3,6 +3,6 @@ export class Config {
   static isTablet: boolean = false; // set in app.module.ts
 
   static DEBUG_MODE = {
-    firstPage: "/menu"
+    firstPage: "/"
   };
 }

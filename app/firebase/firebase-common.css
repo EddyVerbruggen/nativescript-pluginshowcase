@@ -1,0 +1,50 @@
+ActionBar {
+  background-color: #e9993a;
+}
+
+.icon-container Image {
+  margin: 20 0 0 20;
+}
+
+button {
+  background-color: #6494AA;
+  padding: 8 10;
+  margin: 8 10 8 0;
+  font-size: 14;
+  border-radius: 4;
+  border-width: 1;
+  border-color: #fff;
+}
+
+.button {
+  color: #ffffff;
+}
+
+.button-firebase {
+  background-color: #f39c38;
+}
+
+.user-email {
+  font-size: 12;
+}
+
+.city-name,
+.city-population,
+.city-author {
+  color: #fff;
+}
+
+.city-name {
+  padding: 8 8 2 8;
+  font-weight: bold;
+}
+
+.city-author,
+.city-population {
+  padding: 0 8 8 8;
+  font-size: 12;
+}
+
+.city-author {
+  font-style: italic;
+}

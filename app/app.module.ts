@@ -22,6 +22,7 @@ import { InfoModalComponent } from "~/info-modal/info-modal";
 import { HomeComponent } from "~/home/home.component";
 import { CommonModule } from "@angular/common";
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
+import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 
 const fs = require("file-system");
 
@@ -42,6 +43,7 @@ Config.isTablet = device.deviceType === DeviceType.Tablet;
     NativeScriptRouterModule,
     NativeScriptAnimationsModule,
     NativeScriptUISideDrawerModule,
+    NativeScriptUIListViewModule,
     routing,
     TNSFontIconModule.forRoot({
       'mdi': 'fonts/materialdesignicons.css'
