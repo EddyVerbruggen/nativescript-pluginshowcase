@@ -16,9 +16,6 @@ cache:
         - $HOME/.gradle/caches/
         - $HOME/.gradle/wrapper/
 
-before_install:
-  - yes | sdkmanager "platforms;android-26"
-
 install:
     - echo no | npm install -g nativescript
     - tns usage-reporting disable

@@ -6,7 +6,6 @@ NativeScript plugin showcase
 
 ![iOS plugins 33](https://img.shields.io/badge/iOS_plugins-33-blue.svg)
 ![Android plugins 28](https://img.shields.io/badge/Android_plugins-28-brightgreen.svg)
-[![Build Status][build-status]][build-url]
 [![Twitter Follow][twitter-image]][twitter-url]
 
 
