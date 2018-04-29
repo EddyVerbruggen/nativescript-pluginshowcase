@@ -1,12 +1,12 @@
 <RadSideDrawer
-    [drawerContentSize]="isTablet ? 320 : 260"
+    [drawerContentSize]="isTablet ? 340 : 280"
     [transition]="isIOS ? 'SlideAlongTransition' : 'PushTransition'"
     (drawerOpening)="onDrawerOpening($event)"
     (drawerClosing)="onDrawerClosing($event)">
   <Gradient tkDrawerContent class="menu-contents-wrapper" direction="to bottom right" colors="#2da7fb, #227ebe">
     <GridLayout class="sideStackLayout" rows="auto, auto, auto, auto, auto, auto, auto, *">
 
-      <GridLayout row="0" rows="auto, auto" columns="50, *" class="sideOptions" [nsRouterLink]="['/feedback']" clearHistory="true" nsRouterLinkActive="active">
+      <GridLayout row="0" rows="auto, auto" columns="50, *" class="sideOptions menu-safearea-top" [nsRouterLink]="['/feedback']" clearHistory="true" nsRouterLinkActive="active">
         <Label class="mdi" [text]="'mdi-message-text' | fonticon"></Label>
         <Label col="1" class="item-title" text="Feedback"></Label>
         <Label row="1" col="1" class="plugin-names" text="Fancy Alert, CFAlert Dialog, Feedback, Snackbar, Local Notifications, Toast" textWrap="true"></Label>

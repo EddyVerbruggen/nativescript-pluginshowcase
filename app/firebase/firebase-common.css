@@ -8,10 +8,10 @@ ActionBar {
 
 button {
   background-color: #6494AA;
-  padding: 8 10;
-  margin: 8 10 8 0;
-  font-size: 14;
-  border-radius: 4;
+  padding: 6 8;
+  margin: 8 8 8 0;
+  font-size: 13;
+  border-radius: 3;
   border-width: 1;
   border-color: #fff;
 }

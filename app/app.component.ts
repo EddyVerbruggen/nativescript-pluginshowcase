@@ -33,11 +33,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     // A few fixes for RadSideDrawer and iPhone X (and other devices later as well, perhaps)
     if (isIOS && application.ios.window.safeAreaInsets && application.ios.window.safeAreaInsets.bottom > 0) {
       application.addCss(`
+          GridLayout.menu-safearea-top { margin-top: ${34 + application.ios.window.safeAreaInsets.top} }
           RadSideDrawer { margin-bottom: -${application.ios.window.safeAreaInsets.bottom} }
           .madeby-container Label.madeby-text { padding-bottom: ${2 * application.ios.window.safeAreaInsets.bottom} }
         `);
     } else {
       application.addCss(`
+          GridLayout.menu-safearea-top { margin-top: 34 }
           .madeby-container Label.madeby-text { padding-bottom: 14 }
         `);
     }

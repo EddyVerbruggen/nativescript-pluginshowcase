@@ -15,7 +15,7 @@
 
       <StackLayout [@scale-in]="'in'" row="0" class="transparent-area">
         <Label class="section-title" text="Google Authentication"></Label>
-        <Label class="section-subtitle" text="We've preconfigured a few actions upon app installation, and you can add a 'dynamic' one here." textWrap="true"></Label>
+        <Label class="section-subtitle" text="Stay anonymous or log in with your Google account" textWrap="true"></Label>
         <ActivityIndicator busy="true" width="32" height="32" class="m-8" *ngIf="loadingUser"></ActivityIndicator>
         <Button text="Login with Google" (tap)="loginWithGoogle()" class="button button-firebase m-t-12" *ngIf="!loadingUser && !user"></Button>
         <GridLayout columns="auto, *, auto" orientation="horizontal" class="m-t-8" *ngIf="user">
@@ -24,13 +24,13 @@
             <Label [text]="user.name"></Label>
             <Label [text]="user.email" class="user-email"></Label>
           </StackLayout>
-          <Button col="2" text="Logout" (tap)="logout()" class="button button-firebase" horizontalAlignment="right"></Button>
+          <Button col="2" text="Logout" (tap)="logout()" class="button button-firebase m-l-4" horizontalAlignment="right"></Button>
         </GridLayout>
       </StackLayout>
 
       <GridLayout rows="auto, auto, *" [@scale-in]="'in'" row="1" class="transparent-area m-t-20">
         <Label row="0" class="section-title" text="Firestore"></Label>
-        <Label row="1" class="section-subtitle" text="We've preconfigured a few actions upon app installation, and you can add a 'dynamic' one here." textWrap="true"></Label>
+        <Label row="1" class="section-subtitle" text="Add rows with the FAB, and try swiping these rows left and right to reveal actions. Keep it clean :)" textWrap="true"></Label>
 
         <RadListView #citiesListView row="2" [items]="cities" (itemLoading)="onItemLoading($event)" selectionBehavior="None" swipeActions="true" (itemSwipeProgressEnded)="onSwipeCellFinished($event)" (itemSwipeProgressStarted)="onSwipeCellStarted($event)" (itemSwipeProgressChanged)="onCellSwiping($event)" class="m-t-10" style="border-radius: 5; background-color: transparent">
 

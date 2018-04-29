@@ -18,10 +18,9 @@ import { ListViewEventData } from "nativescript-ui-listview";
 import { Color } from "tns-core-modules/color";
 import * as appSettings from "tns-core-modules/application-settings";
 import { View } from "tns-core-modules/ui/core/view";
-import { layout } from "tns-core-modules/utils/utils";
+import { ad, layout } from "tns-core-modules/utils/utils";
 import { prompt, PromptResult } from "tns-core-modules/ui/dialogs";
 import { RadListViewComponent } from "nativescript-ui-listview/angular";
-import { Viewport as MapboxViewport } from "nativescript-mapbox";
 
 const firebase = require("nativescript-plugin-firebase/app");
 
@@ -171,14 +170,13 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
       cancelable: true
     }).then((result: PromptResult) => {
       if (result.result && result.text) {
-        console.log(">>>> result.result: " + (typeof result.result));
         let name = result.text.trim().length === 0 ? undefined : result.text.trim();
         this.citiesCollectionRef.add(
             {
               name: name,
               author: this.user ? this.user.email : "Anonymous"
             })
-            .then(() => console.log(`Created city '${name}'`))
+            .then(() => ad && ad.dismissSoftInput())
             .catch(err => console.log(`Create err: ${err}`));
       }
     });
@@ -244,11 +242,12 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
       }).then((result: PromptResult) => {
         if (result.result) {
           city.name = result.text.trim().length === 0 ? undefined : result.text.trim();
-          this.citiesCollectionRef.doc(city.id).update({
-            name: city.name,
-            author: this.user ? this.user.email : "Anonymous"
-          })
-              .then(() => console.log(`Update the city name to '${city.name}'`))
+          this.citiesCollectionRef.doc(city.id).update(
+              {
+                name: city.name,
+                author: this.user ? this.user.email : "Anonymous"
+              })
+              .then(() => ad && ad.dismissSoftInput())
               .catch(err => console.log(`Update err: ${err}`));
         }
       });
@@ -263,11 +262,12 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
       }).then((result: PromptResult) => {
         if (result.result) {
           city.population = +(result.text.trim().length === 0 ? undefined : result.text.trim());
-          this.citiesCollectionRef.doc(city.id).update({
-            population: city.population,
-            author: this.user ? this.user.email : "Anonymous"
-          })
-              .then(() => console.log(`Update the city population to '${city.population}'`))
+          this.citiesCollectionRef.doc(city.id).update(
+              {
+                population: city.population,
+                author: this.user ? this.user.email : "Anonymous"
+              })
+              .then(() => ad && ad.dismissSoftInput())
               .catch(err => console.log(`Update err: ${err}`));
         }
       });
