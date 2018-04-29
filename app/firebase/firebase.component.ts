@@ -7,7 +7,13 @@ import { PluginInfoWrapper } from "~/shared/plugin-info-wrapper";
 import { AppIconChanger } from "nativescript-app-icon-changer";
 import { AppShortcuts } from "nativescript-app-shortcuts";
 import { AppComponent } from "~/app.component";
-import { firestore, LoginType, login as firebaseLogin, logout as firebaseLogout, User as firebaseUser } from "nativescript-plugin-firebase";
+import {
+  firestore,
+  LoginType,
+  login as firebaseLogin,
+  logout as firebaseLogout,
+  User as firebaseUser
+} from "nativescript-plugin-firebase";
 import { ListViewEventData } from "nativescript-ui-listview";
 import { Color } from "tns-core-modules/color";
 import * as appSettings from "tns-core-modules/application-settings";
@@ -15,6 +21,7 @@ import { View } from "tns-core-modules/ui/core/view";
 import { layout } from "tns-core-modules/utils/utils";
 import { prompt, PromptResult } from "tns-core-modules/ui/dialogs";
 import { RadListViewComponent } from "nativescript-ui-listview/angular";
+import { Viewport as MapboxViewport } from "nativescript-mapbox";
 
 const firebase = require("nativescript-plugin-firebase/app");
 
@@ -63,6 +70,17 @@ interface City {
         transform: "scale(0.9)"
       })),
       transition("void => *", [animate("1100ms ease-out")])
+    ]),
+    trigger("from-right", [
+      state("in", style({
+        "opacity": 1,
+        transform: "translate(0)"
+      })),
+      state("void", style({
+        "opacity": 0,
+        transform: "translate(20%)"
+      })),
+      transition("void => *", [animate("600ms 1500ms ease-out")])
     ])
   ]
 })
@@ -143,6 +161,27 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
           appSettings.setBoolean(FirebaseComponent.APP_SETTINGS_KEY_HAS_LOGGED_IN_WITH_GOOGLE, false);
         })
         .catch(err => console.log("Logout error: " + err));
+  }
+
+  fabTapped(): void {
+    prompt({
+      title: "What's the name of the city?",
+      okButtonText: "Confirm",
+      cancelButtonText: "Cancel",
+      cancelable: true
+    }).then((result: PromptResult) => {
+      if (result.result && result.text) {
+        console.log(">>>> result.result: " + (typeof result.result));
+        let name = result.text.trim().length === 0 ? undefined : result.text.trim();
+        this.citiesCollectionRef.add(
+            {
+              name: name,
+              author: this.user ? this.user.email : "Anonymous"
+            })
+            .then(() => console.log(`Created city '${name}'`))
+            .catch(err => console.log(`Create err: ${err}`));
+      }
+    });
   }
 
   onItemLoading(args: ListViewEventData) {
@@ -266,20 +305,29 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
         "Google's cloud storage product, but it can do a whole lot more! This app includes 3 of those sub modules.",
         Array.of(
             new PluginInfo(
-                "nativescript-plugin-firebase",
-                "Firebase",
-                "https://github.com/EddyVerbruggen/nativescript-plugin-firebase",
-                `FIRESTORE: sdddfdf fsdfd sdfdsfsdf sdfsdfdf sdfdsf dsfsdfdf sdfdsfd fdsfdsf.
-
-GOOGLE AUTH: adsdsa ddsdsd fdfsd fdfdf sdfdsfds fsdfsdf.
-
-CRASHLYTICS: sadsddfsd fsd fdfsdfgff gdfgagff gdfagfgfd gfdagdfgfdg dfgdfgdfg dgfdgdf afgdg dfg.`),
-
-            new PluginInfo(
                 "nativescript-ui-listview",
                 "NativeScript UI ListView",
                 "https://www.npmjs.com/package/nativescript-ui-listview",
-                "The ListView is one of the components that used to be part of NativeScript Pro UI, but now lives on its own. For other components see https://www.npmjs.com/package/nativescript-pro-ui."
+                "The ListView is one of the components that used to be part of Progress NativeScript UI, but now lives on its own. For other components see https://www.npmjs.com/package/nativescript-pro-ui."
+            ),
+
+            new PluginInfo(
+                "nativescript-plugin-firebase",
+                "Firebase",
+                "https://github.com/EddyVerbruggen/nativescript-plugin-firebase",
+                `CLOUD FIRESTORE: A flexible, scalable database which keeps your data in sync across client apps through realtime listeners and offers offline support so you can build responsive apps that work regardless of network latency or Internet connectivity.
+
+GOOGLE AUTH: You can let your users authenticate with Firebase using their Google Accounts. This is just one of the support authentication methods Firebase offers.
+
+ANALYTICS: Google Analytics for Firebase is a free app measurement solution that provides insight on app usage and user engagement.
+
+CRASHLYTICS: Get clear, actionable insight into app issues with this powerful crash reporting solution.`),
+
+            new PluginInfo(
+                "nativescript-floatingactionbutton",
+                "FAB",
+                "https://github.com/bradmartin/nativescript-floatingactionbutton",
+                "Add a Material Design Floating Action Button to your page, at a corner of your liking."
             )
         )
     );

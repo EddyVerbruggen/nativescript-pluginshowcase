@@ -6,8 +6,8 @@ import { MappingComponent } from "./mapping.component";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 
 import { registerElement } from "nativescript-angular/element-registry";
+
 registerElement("Mapbox", () => require("nativescript-mapbox").MapboxView);
-registerElement("FAB", () => require("nativescript-floatingactionbutton").Fab);
 
 @NgModule({
   imports: [

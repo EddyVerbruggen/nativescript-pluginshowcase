@@ -4,8 +4,8 @@ NativeScript plugin showcase
 [![Appstore download][appstore-image]][appstore-url]
 [![Playtore download][playstore-image]][playstore-url]
 
-![iOS plugins 32](https://img.shields.io/badge/iOS_plugins-32-blue.svg)
-![Android plugins 27](https://img.shields.io/badge/Android_plugins-27-brightgreen.svg)
+![iOS plugins 33](https://img.shields.io/badge/iOS_plugins-33-blue.svg)
+![Android plugins 28](https://img.shields.io/badge/Android_plugins-28-brightgreen.svg)
 [![Build Status][build-status]][build-url]
 [![Twitter Follow][twitter-image]][twitter-url]
 
@@ -35,6 +35,7 @@ This was also a great opportunity for me to properly play with Webpack, AoT, Ugl
 - [Speech](app/speech/)
 - [Input](app/input/)
 - [App Icon](app/appicon/)
+- [Firebase](app/firebase/)
 - [Augmented Reality](app/ar/)
 
 

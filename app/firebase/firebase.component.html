@@ -9,7 +9,7 @@
   </ActionItem>
 </ActionBar>
 
-<StackLayout class="main-content">
+<GridLayout class="main-content">
   <Gradient height="100%" direction="to bottom" colors="#e9993a, #f2a13b" class="p-20">
     <GridLayout rows="auto, *">
 
@@ -19,7 +19,7 @@
         <ActivityIndicator busy="true" width="32" height="32" class="m-8" *ngIf="loadingUser"></ActivityIndicator>
         <Button text="Login with Google" (tap)="loginWithGoogle()" class="button button-firebase m-t-12" *ngIf="!loadingUser && !user"></Button>
         <GridLayout columns="auto, *, auto" orientation="horizontal" class="m-t-8" *ngIf="user">
-          <img col="0" [src]="user.profileImageURL" height="38" class="m-r-10" style="border-radius: 3">
+          <img col="0" class="user-avatar m-r-10" [src]="user.profileImageURL" height="38">
           <StackLayout col="1" verticalAlignment="middle">
             <Label [text]="user.name"></Label>
             <Label [text]="user.email" class="user-email"></Label>
@@ -36,7 +36,7 @@
 
           <!-- rows template -->
           <ng-template tkListItemTemplate let-item="item">
-            <GridLayout rows="auto, auto" columns="auto, *">
+            <GridLayout rows="28, 28" columns="auto, *">
               <Label row="0" colSpan="2" class="city-name" [text]="item.name"></Label>
               <Label row="1" col="0" class="city-population" [text]="'Population: ' + (item.population | number)" [visibility]="item.population ? 'visible' : 'collapse'"></Label>
               <Label row="1" col="1" class="city-author" [text]="getAuthor(item)" horizontalAlignment="right"></Label>
@@ -64,4 +64,12 @@
 
     </GridLayout>
   </Gradient>
-</StackLayout>
+
+  <FAB
+      [@from-right]="'in'"
+      (tap)="fabTapped()"
+      icon="res://ic_add_white"
+      rippleColor="#f2a13b"
+      class="fab">
+  </FAB>
+</GridLayout>

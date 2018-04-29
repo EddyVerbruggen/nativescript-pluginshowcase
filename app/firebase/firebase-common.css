@@ -28,6 +28,12 @@ button {
   font-size: 12;
 }
 
+.user-avatar {
+  border-radius: 3;
+  border-width: 1;
+  border-color: #fff;
+}
+
 .city-name,
 .city-population,
 .city-author {
@@ -47,4 +53,13 @@ button {
 
 .city-author {
   font-style: italic;
+}
+
+.fab {
+  height: 48;
+  width: 48;
+  margin: 10;
+  background-color: #f8cb4f;
+  horizontal-align: right;
+  vertical-align: bottom;
 }
