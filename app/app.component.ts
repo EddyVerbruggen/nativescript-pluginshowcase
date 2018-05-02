@@ -94,10 +94,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   openTwitter(): void {
     let url, message;
+    const urlScheme = this.isIOS ? "twitter://" : "com.twitter.android";
 
-    if (availableSync("twitter://")) {
+    if (availableSync(urlScheme)) {
       message = "With nativescript-appavailability we determined you have the Twitter app installed, now opening it!";
-      url = "twitter://" + (isIOS ? "/user?screen_name=" : "user?user_id=") + "eddyverbruggen";
+      url = `${urlScheme}${this.isIOS ? "/user?screen_name=" : "user?user_id="}eddyverbruggen`;
     } else {
       message = "With nativescript-appavailability we determined you don't have the Twitter app installed, so we're now loading Twitter in a browser instead.";
       url = "https://twitter.com/eddyverbruggen";
