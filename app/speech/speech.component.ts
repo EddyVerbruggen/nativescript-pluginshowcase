@@ -279,7 +279,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
   }
 
   shareSelfie(): void {
-    let actionOptions: Array<string> = [
+    const actionOptions: Array<string> = [
       "Fresh pic (camera)",
       "Older pic (camera album)"
     ];
@@ -314,9 +314,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
         });
         imagePicker
             .authorize()
-            .then(() => {
-              return imagePicker.present();
-            })
+            .then(() => imagePicker.present())
             .then((selection: Array<ImageAsset>) => {
               console.log(">>> selection: " + selection);
               selection.forEach(selected => {
