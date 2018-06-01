@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import * as ToastModule from "nativescript-toast";
-import { Toast } from "nativescript-toast";
+import { makeText, Toast } from "nativescript-toast";
 import { Color } from "color";
 import { isIOS } from "platform";
 import { Font } from "ui/styling/font";
@@ -33,7 +32,7 @@ export class ToastService {
       this.previousToast = null;
     }
 
-    let t = ToastModule.makeText(message, long ? "long" : undefined);
+    let t = makeText(message, long ? "long" : undefined);
 
     if (!isIOS) {
       (<any>t).getView().getChildAt(0).setTypeface(this.androidTypeface);
