@@ -8,16 +8,16 @@
 
 <Gradient height="100%" direction="to bottom" colors="#009c9b, #006a69" class="p-20">
   <ScrollView>
-    <StackLayout class="xmodal-wrapper transparent-area" verticalAlignment="center">
+    <StackLayout class="transparent-area" style="padding-bottom: 10" verticalAlignment="center">
 
       <Label class="description" [text]="pluginInfo.description" textWrap="true"></Label>
 
       <StackLayout class="p-10" *ngFor="let plugin of pluginInfo.plugins">
-        <GridLayout rows="auto" columns="*, 60">
-          <Label col="0" [text]="plugin.name" class="plugin-name"></Label>
-          <Label col="1" [text]="'mdi-open-in-new' | fonticon" class="plugin-url mdi p-5" horizontalAlignment="right" (tap)="openPluginUrl(plugin)"></Label>
+        <GridLayout rows="auto, auto" columns="*, 60">
+          <Label row="0" col="0" [text]="plugin.name" class="plugin-name"></Label>
+          <Label row="1" col="0" [text]="plugin.id" class="plugin-id"></Label>
+          <Label row="0" rowSpan="2" col="1" [text]="'mdi-open-in-new' | fonticon" class="plugin-url mdi p-5" horizontalAlignment="right" (tap)="openPluginUrl(plugin)"></Label>
         </GridLayout>
-        <Label [text]="plugin.id" class="plugin-id"></Label>
         <Label [text]="plugin.description" class="plugin-description" textWrap="true"></Label>
       </StackLayout>
 

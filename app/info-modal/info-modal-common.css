@@ -11,15 +11,15 @@ ActionBar {
 .description {
   font-size: 13;
   font-weight: 600;
-  color: #888;
-  margin: 15 10 5 10;
+  color: #fff;
+  margin: 20 10 5 10;
   padding-bottom: 15;
   border-bottom-width: 1px;
-  border-bottom-color: #888;
+  border-bottom-color: #eee;
 }
 
 .plugin-name {
-  color: #5abbf9;
+  color: #00fffe;
   font-weight: 600;
 }
 
@@ -28,9 +28,8 @@ ActionBar {
 }
 
 .plugin-id {
-  color: #888;
+  color: #00d9d8;
   font-size: 13;
-  margin-bottom: 4;
 }
 
 .plugin-description {

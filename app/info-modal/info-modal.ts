@@ -11,10 +11,7 @@ import { ActivatedRoute } from "@angular/router";
 @Component({
   moduleId: module.id,
   templateUrl: "./info-modal.html",
-  styleUrls: [
-    "./info-modal-common.css",
-    "./info-modal.css"
-  ]
+  styleUrls: ["./info-modal-common.css"]
 })
 export class InfoModalComponent implements OnInit, OnDestroy {
   pluginInfo: PluginInfoWrapper;
