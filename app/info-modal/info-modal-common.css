@@ -1,6 +1,11 @@
+ActionBar {
+  background-color: #009c9b;
+}
+
 .modal-wrapper {
   background-color: #fff;
   color: #444;
+  margin-top: 30;
 }
 
 .description {

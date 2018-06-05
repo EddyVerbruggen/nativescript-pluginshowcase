@@ -1,12 +1,11 @@
-import { Component, NgZone, OnInit, ViewContainerRef } from "@angular/core";
+import { Component, NgZone, OnInit } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
-import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
-import { ModalDialogService } from "nativescript-angular";
-import { PluginInfo } from "../shared/plugin-info";
-import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
+import { AbstractMenuPageComponent } from "~/abstract-menu-page-component";
+import { RouterExtensions } from "nativescript-angular";
+import { PluginInfo } from "~/shared/plugin-info";
+import { PluginInfoWrapper } from "~/shared/plugin-info-wrapper";
 import { SegmentedBarItem } from "tns-core-modules/ui/segmented-bar";
 import { PropertyChangeData } from "tns-core-modules/data/observable";
-import { DrawingPad } from "nativescript-drawingpad";
 import { IQKeyboardHelper } from "./helpers/iqkeyboard-helper";
 import { CheckboxHelper } from "./helpers/checkbox-helper";
 import { AppComponent } from "~/app.component";
@@ -62,10 +61,9 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
   checkboxHelper: CheckboxHelper;
 
   constructor(protected appComponent: AppComponent,
-              protected vcRef: ViewContainerRef,
-              protected modalService: ModalDialogService,
+              protected routerExtensions: RouterExtensions,
               private zone: NgZone) {
-    super(appComponent, vcRef, modalService);
+    super(appComponent, routerExtensions);
   }
 
   ngOnInit(): void {

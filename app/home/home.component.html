@@ -9,10 +9,10 @@
   </ActionItem>
 </ActionBar>
 
-<StackLayout class="main-content">
-  <Gradient height="100%" direction="to bottom" colors="#009c9b, #006a69" class="p-20">
-    <!-- On Android this currently doesn't render correctly -->
-    <StackLayout class="transparent-area" height="100%" verticalAlignment="center" *ngIf="isIOS">
+<Gradient height="100%" direction="to bottom" colors="#009c9b, #006a69" class="p-20">
+  <!-- On Android this currently doesn't render correctly -->
+  <ios>
+    <StackLayout class="transparent-area" height="100%" verticalAlignment="center">
       <Label [@state]="'in'" text="Thanks for installing this app," textWrap="true"></Label>
       <Label [@state]="'in'" text="we currently showcase no less than" textWrap="true"></Label>
       <Label [@plugincountstate]="'in'" text="33" class="plugin-count m-t-30 m-b-30"></Label>
@@ -21,8 +21,10 @@
         <Label text="..of over 750!" textWrap="true"></Label>
       </StackLayout>
     </StackLayout>
+  </ios>
 
-    <StackLayout class="transparent-area" height="100%" verticalAlignment="center" *ngIf="!isIOS">
+  <android>
+    <StackLayout class="transparent-area" height="100%" verticalAlignment="center">
       <Label text="Thanks for installing this app," textWrap="true"></Label>
       <Label text="we currently showcase no less than" textWrap="true"></Label>
       <Label text="28" class="plugin-count m-t-30 m-b-30"></Label>
@@ -31,5 +33,6 @@
         <Label text="..of over 750!" textWrap="true"></Label>
       </StackLayout>
     </StackLayout>
-  </Gradient>
-</StackLayout>
+  </android>
+
+</Gradient>

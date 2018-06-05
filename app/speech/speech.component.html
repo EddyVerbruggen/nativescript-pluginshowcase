@@ -9,34 +9,32 @@
   </ActionItem>
 </ActionBar>
 
-<StackLayout class="main-content">
-  <Gradient height="100%" direction="to bottom" colors="orangered, #b03000" class="p-20">
-    <GridLayout rows="*, 132" columns="*">
+<Gradient height="100%" direction="to bottom" colors="orangered, #b03000" class="p-20">
+  <GridLayout rows="*, 132" columns="*">
 
-      <StackLayout [@scale-in]="'in'" row="0" class="p-20" style="background-color: rgba(255, 255, 255, 210)" borderRadius="20">
-        <GridLayout rows="*, auto, auto" columns="*">
-          <Label [text]="('mdi-format-quote-open' | fonticon) + recognizedText + ('mdi-format-quote-close' | fonticon)" textWrap="true" class="mdi recognizedText p-b-20" [visibility]="recognizedText === undefined ? 'collapse': 'visible'"></Label>
-          <Button [@fade-in-2]="'in'" row="1" text="show tips" class="button" horizontalAlignment="center" (tap)="showingTips = true" [visibility]="recording || showingTips ? 'collapse': 'visible'"></Button>
-          <StackLayout row="1" class="tips" *ngIf="showingTips">
-            <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'Share a selfie' + ('mdi-format-quote-close' | fonticon)" (tap)="shareSelfie()"></Label>
-            <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'What\'s my schedule today?' + ('mdi-format-quote-close' | fonticon)" (tap)="findTodaysEvents()"></Label>
-            <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'Kilimanjaro rises like Olympus' + ('mdi-format-quote-close' | fonticon)" (tap)="playTotoAfrica()"></Label>
-            <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'Compose an email with subject...\nand message...' + ('mdi-format-quote-close' | fonticon)" style="text-align: center" (tap)="composeAnEmail('Space race', 'Bring marshmallows!')"></Label>
-          </StackLayout>
-          <GridLayout [@fade-in-1]="'in'" row="2" rows="auto, auto" columns="auto, *" horizontalalignment="center" width="240" class="m-t-24">
-            <Label text="Rate" class="m-r-20"></Label>
-            <Slider col="1" [value]="speakRate" (valueChange)="onSpeakRateChange($event)" [maxValue]="maxSpeakRate" minValue="1"></Slider>
-            <Label row="1" text="Pitch" class="m-r-20 m-t-10"></Label>
-            <Slider row="1" col="1" [value]="pitch" (valueChange)="onPitchChange($event)" maxValue="200" minValue="1" class="m-t-10"></Slider>
-          </GridLayout>
+    <StackLayout [@scale-in]="'in'" row="0" class="p-20" style="background-color: rgba(255, 255, 255, 210)" borderRadius="20">
+      <GridLayout rows="*, auto, auto" columns="*">
+        <Label [text]="('mdi-format-quote-open' | fonticon) + recognizedText + ('mdi-format-quote-close' | fonticon)" textWrap="true" class="mdi recognizedText p-b-20" [visibility]="recognizedText === undefined ? 'collapse': 'visible'"></Label>
+        <Button [@fade-in-2]="'in'" row="1" text="show tips" class="button" horizontalAlignment="center" (tap)="showingTips = true" [visibility]="recording || showingTips ? 'collapse': 'visible'"></Button>
+        <StackLayout row="1" class="tips" *ngIf="showingTips">
+          <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'Share a selfie' + ('mdi-format-quote-close' | fonticon)" (tap)="shareSelfie()"></Label>
+          <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'What\'s my schedule today?' + ('mdi-format-quote-close' | fonticon)" (tap)="findTodaysEvents()"></Label>
+          <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'Kilimanjaro rises like Olympus' + ('mdi-format-quote-close' | fonticon)" (tap)="playTotoAfrica()"></Label>
+          <Label class="mdi p-b-20" textWrap="true" [text]="('mdi-format-quote-open' | fonticon) + 'Compose an email with subject...\nand message...' + ('mdi-format-quote-close' | fonticon)" style="text-align: center" (tap)="composeAnEmail('Space race', 'Bring marshmallows!')"></Label>
+        </StackLayout>
+        <GridLayout [@fade-in-1]="'in'" row="2" rows="auto, auto" columns="auto, *" horizontalalignment="center" width="240" class="m-t-24">
+          <Label text="Rate" class="m-r-20"></Label>
+          <Slider col="1" [value]="speakRate" (valueChange)="onSpeakRateChange($event)" [maxValue]="maxSpeakRate" minValue="1"></Slider>
+          <Label row="1" text="Pitch" class="m-r-20 m-t-10"></Label>
+          <Slider row="1" col="1" [value]="pitch" (valueChange)="onPitchChange($event)" maxValue="200" minValue="1" class="m-t-10"></Slider>
         </GridLayout>
-      </StackLayout>
+      </GridLayout>
+    </StackLayout>
 
-      <StackLayout [@from-bottom]="'in'" row="1" horizontalAlignment="center" class="m-t-20" (tap)="toggleRecording()">
-        <Label class="mdi record-mic" [class.recording]="recording" [text]="'mdi-microphone-outline' | fonticon" [isEnabled]="!microphoneEnabled"></Label>
-        <Label class="record-hint" text="tap and talk" *ngIf="!recording"></Label>
-        <Label class="record-hint" text="tap again to stop" *ngIf="recording"></Label>
-      </StackLayout>
-    </GridLayout>
-  </Gradient>
-</StackLayout>
+    <StackLayout [@from-bottom]="'in'" row="1" horizontalAlignment="center" class="m-t-20" (tap)="toggleRecording()">
+      <Label class="mdi record-mic" [class.recording]="recording" [text]="'mdi-microphone-outline' | fonticon" [isEnabled]="!microphoneEnabled"></Label>
+      <Label class="record-hint" text="tap and talk" *ngIf="!recording"></Label>
+      <Label class="record-hint" text="tap again to stop" *ngIf="recording"></Label>
+    </StackLayout>
+  </GridLayout>
+</Gradient>

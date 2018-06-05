@@ -44,6 +44,10 @@ button {
   background-color: yellowgreen;
 }
 
+.button-custom-font {
+  background-color: #264bcd;
+}
+
 .button-dismiss {
   background-color: #444
 }

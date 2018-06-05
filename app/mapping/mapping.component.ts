@@ -1,17 +1,11 @@
-import { Component, ViewContainerRef } from "@angular/core";
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from "@angular/animations";
-import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
+import { Component } from "@angular/core";
+import { animate, state, style, transition, trigger } from "@angular/animations";
+import { AbstractMenuPageComponent } from "~/abstract-menu-page-component";
 import { MapboxViewApi, Viewport as MapboxViewport } from "nativescript-mapbox";
 import { AddressOptions, Directions } from "nativescript-directions";
-import { ModalDialogService } from "nativescript-angular";
-import { PluginInfo } from "../shared/plugin-info";
-import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
+import { RouterExtensions } from "nativescript-angular";
+import { PluginInfo } from "~/shared/plugin-info";
+import { PluginInfoWrapper } from "~/shared/plugin-info-wrapper";
 import { AppComponent } from "~/app.component";
 
 @Component({
@@ -46,9 +40,8 @@ export class MappingComponent extends AbstractMenuPageComponent {
   private map: MapboxViewApi;
 
   constructor(protected appComponent: AppComponent,
-              protected vcRef: ViewContainerRef,
-              protected modalService: ModalDialogService) {
-    super(appComponent, vcRef, modalService);
+              protected routerExtensions: RouterExtensions) {
+    super(appComponent, routerExtensions);
     this.directions = new Directions();
   }
 

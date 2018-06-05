@@ -9,108 +9,106 @@
   </ActionItem>
 </ActionBar>
 
-<StackLayout class="main-content">
-  <Gradient height="100%" direction="to bottom" colors="#1567a2, #0b3757" class="p-x-20 p-y-10">
-    <GridLayout rows="auto, *" columns="*">
+<Gradient height="100%" direction="to bottom" colors="#1567a2, #0b3757" class="p-x-20 p-y-10">
+  <GridLayout rows="auto, *" columns="*">
 
-      <StackLayout [@scale-in]="'in'" row="0" horizontalAlignment="center">
-        <SegmentedBar class="plugin-bar" [items]="plugins" [selectedIndex]="0" (selectedIndexChange)="pluginChanged($event)"></SegmentedBar>
+    <StackLayout [@scale-in]="'in'" row="0" horizontalAlignment="center">
+      <SegmentedBar class="plugin-bar" [items]="plugins" [selectedIndex]="0" (selectedIndexChange)="pluginChanged($event)"></SegmentedBar>
+    </StackLayout>
+
+    <StackLayout [@from-bottom]="'in'" row="1" class="p-20 m-t-20" style="background-color: rgba(255, 255, 255, 210)" borderRadius="20">
+      <StackLayout *ngIf="selectedPlugin === 'Drawing'">
+        <StackLayout>
+          <ContentView backgroundColor="#eeeeee" borderRadius="10">
+            <DrawingPad #myDrawing
+                        height="250"
+                        backgroundColor="#eeeeee"
+                        penColor="#ff4081"
+                        penWidth="8">
+            </DrawingPad>
+          </ContentView>
+
+          <StackLayout class="m-t-20" orientation="horizontal" horizontalAlignment="center">
+            <Button class="btn btn-rounded-sm btn-primary" text="Grab it" (tap)="getMyDrawing(myDrawing)"></Button>
+            <Button class="btn btn-rounded-sm btn-outline" text="Clear" (tap)="clearMyDrawing(myDrawing)"></Button>
+          </StackLayout>
+
+          <ScrollView>
+            <WrapLayout class="m-t-20">
+              <ContentView *ngFor="let drawing of drawings" class="m-r-10 m-b-10" backgroundColor="#eeeeee" borderRadius="5">
+                <Image [src]="drawing" width="65" height="65" backgroundcolor="#eeeeee"></Image>
+              </ContentView>
+            </WrapLayout>
+          </ScrollView>
+        </StackLayout>
       </StackLayout>
 
-      <StackLayout [@from-bottom]="'in'" row="1" class="p-20 m-t-20" style="background-color: rgba(255, 255, 255, 210)" borderRadius="20">
-        <StackLayout *ngIf="selectedPlugin === 'Drawing'">
-          <StackLayout>
-            <ContentView backgroundColor="#eeeeee" borderRadius="10">
-              <DrawingPad #myDrawing
-                          height="250"
-                          backgroundColor="#eeeeee"
-                          penColor="#ff4081"
-                          penWidth="8">
-              </DrawingPad>
-            </ContentView>
+      <ScrollView *ngIf="selectedPlugin === 'Numeric'">
+        <StackLayout>
+          <Label text="Non-enhanced TextField"></Label>
+          <TextField hint="keyboardType: number" keyboardType="number"></TextField>
+          <TextField hint="keyboardType: phone" keyboardType="phone"></TextField>
 
-            <StackLayout class="m-t-20" orientation="horizontal" horizontalAlignment="center">
-              <Button class="btn btn-rounded-sm btn-primary" text="Grab it" (tap)="getMyDrawing(myDrawing)"></Button>
-              <Button class="btn btn-rounded-sm btn-outline" text="Clear" (tap)="clearMyDrawing(myDrawing)"></Button>
-            </StackLayout>
+          <Label text="Numeric Keyboard" class="p-t-20"></Label>
+          <NumericKeyboard class="number-input" hint="default"></NumericKeyboard>
+          <NumericKeyboard class="number-input" hint="noDecimals: true" noDecimals="true"></NumericKeyboard>
+          <NumericKeyboard class="number-input" hint="returnKeyTitle: Go!" returnKeyTitle="Go!"></NumericKeyboard>
+          <NumericKeyboard class="number-input" hint="noReturnKey: true" noReturnKey="true"></NumericKeyboard>
+        </StackLayout>
+      </ScrollView>
 
-            <ScrollView>
-              <WrapLayout class="m-t-20">
-                <ContentView *ngFor="let drawing of drawings" class="m-r-10 m-b-10" backgroundColor="#eeeeee" borderRadius="5">
-                  <Image [src]="drawing" width="65" height="65" backgroundcolor="#eeeeee"></Image>
-                </ContentView>
-              </WrapLayout>
-            </ScrollView>
-          </StackLayout>
+      <StackLayout *ngIf="selectedPlugin === 'Checkbox'">
+        <Label text="Which ones do you like? (checkboxes)" textWrap="true"></Label>
+        <StackLayout orientation="horizontal" verticalAlignment="top" class="p-5">
+          <CheckBox boxType="square" #checkbox1 fillColor="#f9fa45" [checked]="checkboxHelper.checkbox1" (checkedChange)="checkboxHelper.checkbox1 = checkbox1.checked" class="checkbox"></CheckBox>
+          <Label text="NativeScript" (tap)="checkboxHelper.checkbox1 = !checkboxHelper.checkbox1"></Label>
+        </StackLayout>
+        <StackLayout orientation="horizontal" verticalAlignment="top" class="p-5">
+          <CheckBox boxType="square" boxType="2" #checkbox2 fillColor="#f9fa45" [checked]="checkboxHelper.checkbox2" (checkedChange)="checkboxHelper.checkbox2 = checkbox2.checked" class="checkbox"></CheckBox>
+          <Label text="React Native" (tap)="checkboxHelper.checkbox2 = !checkboxHelper.checkbox2"></Label>
         </StackLayout>
 
-        <ScrollView *ngIf="selectedPlugin === 'Numeric'">
-          <StackLayout>
-            <Label text="TextView"></Label>
-            <TextView hint="keyboardType: number" keyboardType="number"></TextView>
-            <TextView hint="keyboardType: phone" keyboardType="phone"></TextView>
-
-            <Label text="Numeric Keyboard" class="p-t-20"></Label>
-            <NumericKeyboard class="number-input" hint="default"></NumericKeyboard>
-            <NumericKeyboard class="number-input" hint="noDecimals: true" noDecimals="true"></NumericKeyboard>
-            <NumericKeyboard class="number-input" hint="returnKeyTitle: Go!" returnKeyTitle="Go!"></NumericKeyboard>
-            <NumericKeyboard class="number-input" hint="noReturnKey: true" noReturnKey="true"></NumericKeyboard>
-          </StackLayout>
-        </ScrollView>
-
-        <StackLayout *ngIf="selectedPlugin === 'Checkbox'">
-          <Label text="Which ones do you like? (checkboxes)" textWrap="true"></Label>
-          <StackLayout orientation="horizontal" verticalAlignment="top" class="p-5">
-            <CheckBox boxType="square" #checkbox1 fillColor="#f9fa45" [checked]="checkboxHelper.checkbox1" (checkedChange)="checkboxHelper.checkbox1 = checkbox1.checked" class="checkbox"></CheckBox>
-            <Label text="NativeScript" (tap)="checkboxHelper.checkbox1 = !checkboxHelper.checkbox1"></Label>
-          </StackLayout>
-          <StackLayout orientation="horizontal" verticalAlignment="top" class="p-5">
-            <CheckBox boxType="square" boxType="2" #checkbox2 fillColor="#f9fa45" [checked]="checkboxHelper.checkbox2" (checkedChange)="checkboxHelper.checkbox2 = checkbox2.checked" class="checkbox"></CheckBox>
-            <Label text="React Native" (tap)="checkboxHelper.checkbox2 = !checkboxHelper.checkbox2"></Label>
-          </StackLayout>
-
-          <!-- in this case we use a nice ngFor loop to render these babies -->
-          <Label text="Which one do you like most? (radiobuttons)" class="p-t-20" textWrap="true"></Label>
-          <StackLayout class="p-5" *ngFor="let radio of checkboxHelper.radios">
-            <StackLayout orientation="horizontal" verticalAlignment="top">
-              <CheckBox boxType="circle" #elem fillColor="#faaa00" [checked]="radio.selected" (checkedChange)="elem.checked !== radio.selected && checkboxHelper.radioOptionSelected(radio)" class="checkbox"></CheckBox>
-              <Label [text]="radio.label" (tap)="checkboxHelper.radioOptionSelected(radio)"></Label>
-            </StackLayout>
+        <!-- in this case we use a nice ngFor loop to render these babies -->
+        <Label text="Which one do you like most? (radiobuttons)" class="p-t-20" textWrap="true"></Label>
+        <StackLayout class="p-5" *ngFor="let radio of checkboxHelper.radios">
+          <StackLayout orientation="horizontal" verticalAlignment="top">
+            <CheckBox boxType="circle" #elem fillColor="#faaa00" [checked]="radio.selected" (checkedChange)="elem.checked !== radio.selected && checkboxHelper.radioOptionSelected(radio)" class="checkbox"></CheckBox>
+            <Label [text]="radio.label" (tap)="checkboxHelper.radioOptionSelected(radio)"></Label>
           </StackLayout>
         </StackLayout>
-
-
-        <ScrollView *ngIf="selectedPlugin === 'IQKeyboard'">
-          <StackLayout>
-            <GridLayout rows="auto, auto, auto, auto, auto, auto, auto" columns="*, auto" horizontalAlignment="stretch">
-              <Label row="0" colSpan="2" text="Flip these switches and check out their effect on the textfields below" textWrap="true" class="title"></Label>
-
-              <Label row="1" text="Enable IQKeyboard" [class.disabled]="!iqkeyboardHelper.enabled"></Label>
-              <Switch row="1" [checked]="iqkeyboardHelper.enabled" (checkedChange)="iqkeyboardHelper.toggleIQKeyboard($event)"></Switch>
-
-              <Label row="2" text="Enable IQKeyboard toolbar" [class.disabled]="!iqkeyboardHelper.toolbarEnabled"></Label>
-              <Switch row="2" [checked]="iqkeyboardHelper.toolbarEnabled" (checkedChange)="iqkeyboardHelper.toggleIQKeyboardToolbar($event)"></Switch>
-
-              <Label row="3" text="Tap outside closes keyboard" [class.disabled]="!iqkeyboardHelper.tapOutsideToClose"></Label>
-              <Switch row="3" [checked]="iqkeyboardHelper.tapOutsideToClose" (checkedChange)="iqkeyboardHelper.toggleTapOutsideToClose($event)"></Switch>
-
-              <Label row="4" text="Show 'hint' in toolbar" [class.disabled]="!iqkeyboardHelper.showHintInToolbar"></Label>
-              <Switch row="4" [checked]="iqkeyboardHelper.showHintInToolbar" (checkedChange)="iqkeyboardHelper.toggleShowHintInToolbar($event)"></Switch>
-
-              <Label row="5" text="Change the 'Done' label" [class.disabled]="!iqkeyboardHelper.doneButtonTextChanged"></Label>
-              <Switch row="5" [checked]="iqkeyboardHelper.doneButtonTextChanged" (checkedChange)="iqkeyboardHelper.toggleDoneButtonText($event)"></Switch>
-
-              <Label row="6" text="Dark keyboard appearance" [class.disabled]="!iqkeyboardHelper.darkAppearance"></Label>
-              <Switch row="6" [checked]="iqkeyboardHelper.darkAppearance" (checkedChange)="iqkeyboardHelper.toggleDarkAppearance($event)"></Switch>
-            </GridLayout>
-
-            <TextField hint="E-mail" keyboardType="email"></TextField>
-            <TextField hint="Password" secure="true"></TextField>
-            <TextField hint="Home address"></TextField>
-          </StackLayout>
-        </ScrollView>
-
       </StackLayout>
-    </GridLayout>
-  </Gradient>
-</StackLayout>
+
+
+      <ScrollView *ngIf="selectedPlugin === 'IQKeyboard'">
+        <StackLayout>
+          <GridLayout rows="auto, auto, auto, auto, auto, auto, auto" columns="*, auto" horizontalAlignment="stretch">
+            <Label row="0" colSpan="2" text="Flip these switches and check out their effect on the textfields below" textWrap="true" class="title"></Label>
+
+            <Label row="1" text="Enable IQKeyboard" [class.disabled]="!iqkeyboardHelper.enabled"></Label>
+            <Switch row="1" [checked]="iqkeyboardHelper.enabled" (checkedChange)="iqkeyboardHelper.toggleIQKeyboard($event)"></Switch>
+
+            <Label row="2" text="Enable IQKeyboard toolbar" [class.disabled]="!iqkeyboardHelper.toolbarEnabled"></Label>
+            <Switch row="2" [checked]="iqkeyboardHelper.toolbarEnabled" (checkedChange)="iqkeyboardHelper.toggleIQKeyboardToolbar($event)"></Switch>
+
+            <Label row="3" text="Tap outside closes keyboard" [class.disabled]="!iqkeyboardHelper.tapOutsideToClose"></Label>
+            <Switch row="3" [checked]="iqkeyboardHelper.tapOutsideToClose" (checkedChange)="iqkeyboardHelper.toggleTapOutsideToClose($event)"></Switch>
+
+            <Label row="4" text="Show 'hint' in toolbar" [class.disabled]="!iqkeyboardHelper.showHintInToolbar"></Label>
+            <Switch row="4" [checked]="iqkeyboardHelper.showHintInToolbar" (checkedChange)="iqkeyboardHelper.toggleShowHintInToolbar($event)"></Switch>
+
+            <Label row="5" text="Change the 'Done' label" [class.disabled]="!iqkeyboardHelper.doneButtonTextChanged"></Label>
+            <Switch row="5" [checked]="iqkeyboardHelper.doneButtonTextChanged" (checkedChange)="iqkeyboardHelper.toggleDoneButtonText($event)"></Switch>
+
+            <Label row="6" text="Dark keyboard appearance" [class.disabled]="!iqkeyboardHelper.darkAppearance"></Label>
+            <Switch row="6" [checked]="iqkeyboardHelper.darkAppearance" (checkedChange)="iqkeyboardHelper.toggleDarkAppearance($event)"></Switch>
+          </GridLayout>
+
+          <TextField hint="E-mail" keyboardType="email"></TextField>
+          <TextField hint="Password" secure="true"></TextField>
+          <TextField hint="Home address"></TextField>
+        </StackLayout>
+      </ScrollView>
+
+    </StackLayout>
+  </GridLayout>
+</Gradient>

@@ -3,7 +3,6 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "target": "es5",
-        "inlineSourceMap": false,
         "experimentalDecorators": true,
         "removeComments": true,
         "emitDecoratorMetadata": true,
@@ -11,11 +10,6 @@
         "noEmitHelpers": true,
         "noEmitOnError": true,
         "skipLibCheck": true,
-        "lib": [
-            "dom",
-            "es6",
-            "es2015.iterable"
-        ],
         "baseUrl": ".",
         "paths": {
             "*": [
@@ -25,7 +19,12 @@
             "~/*": [
                 "app/*"
             ]
-        }
+        },
+        "lib": [
+            "es6",
+            "dom",
+            "es2015.iterable"
+        ]
     },
     "exclude": [
         "node_modules",

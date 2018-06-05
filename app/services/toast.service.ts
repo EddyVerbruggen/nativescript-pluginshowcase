@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { makeText, Toast } from "nativescript-toast";
-import { Color } from "color";
-import { isIOS } from "platform";
-import { Font } from "ui/styling/font";
-import { Config } from "../shared/config";
+import { Color } from "tns-core-modules/color";
+import { isIOS } from "tns-core-modules/platform";
+import { Font } from "tns-core-modules/ui/styling/font";
+import { Config } from "~/shared/config";
 
 declare const ToastView, UIFont;
 

@@ -1,7 +1,7 @@
-import { Component, NgZone, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { Component, NgZone, OnInit, ViewChild } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "~/abstract-menu-page-component";
-import { ModalDialogService } from "nativescript-angular";
+import { RouterExtensions } from "nativescript-angular";
 import { PluginInfo } from "~/shared/plugin-info";
 import { PluginInfoWrapper } from "~/shared/plugin-info-wrapper";
 import { AppIconChanger } from "nativescript-app-icon-changer";
@@ -9,8 +9,8 @@ import { AppShortcuts } from "nativescript-app-shortcuts";
 import { AppComponent } from "~/app.component";
 import {
   firestore,
-  LoginType,
   login as firebaseLogin,
+  LoginType,
   logout as firebaseLogout,
   User as firebaseUser
 } from "nativescript-plugin-firebase";
@@ -102,10 +102,9 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
   @ViewChild("citiesListView") listViewComponent: RadListViewComponent;
 
   constructor(protected appComponent: AppComponent,
-              protected vcRef: ViewContainerRef,
-              protected modalService: ModalDialogService,
+              protected routerExtensions: RouterExtensions,
               private zone: NgZone) {
-    super(appComponent, vcRef, modalService);
+    super(appComponent, routerExtensions);
   }
 
   private getCity(cityDoc: firestore.DocumentSnapshot): City {

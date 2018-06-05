@@ -8,6 +8,10 @@ const APP_ROUTES: Routes = [
     component: HomeComponent
   },
   {
+    path: "info",
+    loadChildren: "./info-modal/info.module#InfoModule"
+  },
+  {
     path: "feedback",
     loadChildren: "./feedback/feedback.module#FeedbackModule"
   },

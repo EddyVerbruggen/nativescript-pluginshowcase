@@ -1,5 +1,5 @@
-import * as application from "application";
-import * as platform from "tns-core-modules/platform";
+import * as application from "tns-core-modules/application";
+import { device } from "tns-core-modules/platform";
 
 declare const android: any;
 declare const UIStatusBarStyle: any;
@@ -15,7 +15,7 @@ export function setStatusBarColors() {
   if (application.android) {
     // TODO make sure this works when --uglify'd, otherwise use "activityStarted"
     application.android.on(application.AndroidApplication.activityStartedEvent, (data: application.AndroidActivityEventData) => {
-      if (application.android && platform.device.sdkVersion >= "21") {
+      if (application.android && device.sdkVersion >= "21") {
         let View = android.view.View;
         let window = application.android.startActivity.getWindow();
         window.setStatusBarColor(0x000000);

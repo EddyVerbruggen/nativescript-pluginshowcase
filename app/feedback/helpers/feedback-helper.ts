@@ -1,5 +1,6 @@
 import { Feedback, FeedbackPosition, FeedbackType } from "nativescript-feedback";
 import { Color } from "tns-core-modules/color";
+import { isIOS } from "tns-core-modules/platform";
 
 export class FeedbackHelper {
   private feedback: Feedback;
@@ -14,24 +15,22 @@ export class FeedbackHelper {
       message: "Sorry. I will dismiss myself after 2.5 seconds.",
       duration: 2500,
       // type: FeedbackType.Success, // no need to specify when using 'success' instead of 'show'
-      onTap: () => {
-        console.log("showSuccess tapped");
-      }
+      onTap: () => console.log("showSuccess tapped")
     });
   }
 
-  showSuccessAltColors(): void {
+  showSuccessAltColorsAndFontSize(): void {
     this.feedback.show({
       title: "Custom colors :)",
+      titleSize: 19,
       titleColor: new Color("black"),
-      message: "Custom text colors and background color.",
-      messageColor: new Color("#e5f5f8"),
-      duration: 2500,
+      message: "Custom text colors and background color, and a bigger fontsize.",
+      messageSize: 15,
+      messageColor: new Color("#444444"),
+      duration: 3200,
       type: FeedbackType.Success,
       backgroundColor: new Color("lightskyblue"),
-      onTap: () => {
-        console.log("showSuccessAltColor tapped");
-      }
+      onTap: () => console.log("showSuccessAltColor tapped")
     });
   }
 
@@ -41,9 +40,7 @@ export class FeedbackHelper {
       message: "{N}ativeScript ROCKS!",
       duration: 2500,
       type: FeedbackType.Info,
-      onTap: () => {
-        console.log("showInfo tapped");
-      }
+      onTap: () => console.log("showInfo tapped")
     });
   }
 
@@ -54,9 +51,7 @@ export class FeedbackHelper {
       duration: 4000,
       position: FeedbackPosition.Top,
       type: FeedbackType.Warning,
-      onTap: () => {
-        console.log("showWarning tapped");
-      }
+      onTap: () => console.log("showWarning tapped")
     });
   }
 
@@ -64,9 +59,7 @@ export class FeedbackHelper {
     this.feedback.show({
       title: "Title only, not even an icon. Sad.",
       duration: 2000,
-      onTap: () => {
-        console.log("showMessageOnly tapped");
-      }
+      onTap: () => console.log("showMessageOnly tapped")
     });
   }
 
@@ -77,9 +70,7 @@ export class FeedbackHelper {
       duration: 6000,
       backgroundColor: new Color("yellowgreen"),
       icon: "thumbsup", // in App_Resources/platform folders
-      onTap: () => {
-        console.log("showCustomIcon tapped");
-      }
+      onTap: () => console.log("showCustomIcon tapped")
     });
   }
 
@@ -89,9 +80,7 @@ export class FeedbackHelper {
       message: "Not too long a text here. But it could be..",
       duration: 1000,
       type: FeedbackType.Error,
-      onTap: () => {
-        console.log("showError tapped");
-      }
+      onTap: () => console.log("showError tapped")
     });
   }
 
@@ -102,9 +91,20 @@ export class FeedbackHelper {
       duration: 5000,
       position: FeedbackPosition.Bottom,
       type: FeedbackType.Error,
-      onTap: () => {
-        console.log("showErrorBottom tapped");
-      }
+      onTap: () => console.log("showErrorBottom tapped")
+    });
+  }
+
+  public showCustomFont(): void {
+    this.feedback.success({
+      title: "With custom font",
+      titleSize: 17,
+      messageSize: 14,
+      message: "I'm configured to show with a custom font. With a bold title even.",
+      duration: 3000,
+      titleFont: isIOS ? "SourceSansPro-Bold" : "SourceSansPro-Bold.otf",
+      messageFont: isIOS ? "Source Sans Pro" : "SourceSansPro-Regular.otf",
+      onTap: () => console.log("showCustomFont tapped")
     });
   }
 

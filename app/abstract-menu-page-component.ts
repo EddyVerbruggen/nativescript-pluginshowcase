@@ -1,7 +1,5 @@
-import { ViewContainerRef } from "@angular/core";
 import { isIOS } from "platform";
-import { ModalDialogOptions, ModalDialogService } from "nativescript-angular";
-import { InfoModalComponent } from "./info-modal/info-modal";
+import { RouterExtensions } from "nativescript-angular";
 import { PluginInfoWrapper } from "./shared/plugin-info-wrapper";
 import { Config } from "./shared/config";
 import { AppComponent } from "~/app.component";
@@ -11,8 +9,7 @@ export abstract class AbstractMenuPageComponent {
   isTablet: boolean = Config.isTablet;
 
   constructor(protected appComponent: AppComponent,
-              protected vcRef: ViewContainerRef,
-              protected modalService: ModalDialogService) {
+              protected routerExtensions: RouterExtensions) {
   }
 
   protected abstract getPluginInfo(): PluginInfoWrapper;
@@ -27,19 +24,13 @@ export abstract class AbstractMenuPageComponent {
       return;
     }
 
-    const options: ModalDialogOptions = {
-      viewContainerRef: this.vcRef,
-      context: info,
-      fullscreen: false // iPhones will ignore this
-    };
-
-    if (!this.isTablet && this.isIOS) {
-      UIApplication.sharedApplication.setStatusBarHiddenWithAnimation(true, UIStatusBarAnimation.Fade);
-    }
-
-    this.modalService.showModal(InfoModalComponent, options).then(() => {
-      if (!this.isTablet && this.isIOS) {
-        UIApplication.sharedApplication.setStatusBarHiddenWithAnimation(false, UIStatusBarAnimation.Fade);
+    this.routerExtensions.navigate(["/info"], {
+      transition: {
+        name: this.isIOS ? "curl" : "fade",
+        duration: 450
+      },
+      queryParams: {
+        pluginInfo: JSON.stringify(info)
       }
     });
   }

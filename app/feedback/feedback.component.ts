@@ -1,23 +1,15 @@
-import { Component, ViewContainerRef } from "@angular/core";
-import {
-  trigger,
-  query,
-  stagger,
-  style,
-  animate,
-  transition
-} from "@angular/animations";
-import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
-import { Feedback } from "nativescript-feedback";
-import { ToastService } from "../services/toast.service";
+import { Component } from "@angular/core";
+import { animate, query, stagger, style, transition, trigger } from "@angular/animations";
+import { AbstractMenuPageComponent } from "~/abstract-menu-page-component";
+import { ToastService } from "~/services/toast.service";
 import { ToastHelper } from "./helpers/toast-helper";
 import { FeedbackHelper } from "./helpers/feedback-helper";
 import { FancyalertHelper } from "./helpers/fancyalert-helper";
-import { ModalDialogService } from "nativescript-angular";
+import { RouterExtensions } from "nativescript-angular";
 import { SnackbarHelper } from "./helpers/snackbar-helper";
 import { LocalNotificationsHelper } from "./helpers/localnotifications-helper";
-import { PluginInfo } from "../shared/plugin-info";
-import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
+import { PluginInfo } from "~/shared/plugin-info";
+import { PluginInfoWrapper } from "~/shared/plugin-info-wrapper";
 import { CFAlertDialogHelper } from "./helpers/cfalertdialog-helper";
 import { AppComponent } from "~/app.component";
 
@@ -49,10 +41,9 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
   toastHelper: ToastHelper;
 
   constructor(protected appComponent: AppComponent,
-              protected vcRef: ViewContainerRef,
-              protected modalService: ModalDialogService,
+              protected routerExtensions: RouterExtensions,
               private toastService: ToastService) {
-    super(appComponent, vcRef, modalService);
+    super(appComponent, routerExtensions);
 
     this.fancyAlertHelper = new FancyalertHelper();
     this.cfalertDialogHelper = new CFAlertDialogHelper();

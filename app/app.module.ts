@@ -18,13 +18,12 @@ import { device, isIOS } from "tns-core-modules/platform";
 import { DeviceType } from "tns-core-modules/ui/enums";
 import * as application from "application";
 import { ToastService } from "./services/toast.service";
-import { InfoModalComponent } from "~/info-modal/info-modal";
 import { HomeComponent } from "~/home/home.component";
 import { CommonModule } from "@angular/common";
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 
-const fs = require("file-system");
+const fs = require("tns-core-modules/file-system");
 
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 registerElement("FAB", () => require("nativescript-floatingactionbutton").Fab);
@@ -56,11 +55,7 @@ Config.isTablet = device.deviceType === DeviceType.Tablet;
   ],
   declarations: [
     AppComponent,
-    HomeComponent,
-    InfoModalComponent
-  ],
-  entryComponents: [
-      InfoModalComponent
+    HomeComponent
   ],
   providers: [
     ToastService

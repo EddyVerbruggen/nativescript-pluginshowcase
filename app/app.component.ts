@@ -8,7 +8,7 @@ import { alert } from "tns-core-modules/ui/dialogs";
 import { availableSync } from "nativescript-appavailability";
 import { openUrl } from "tns-core-modules/utils/utils";
 import { NavigationEnd, Router } from "@angular/router";
-import { Subscription } from "rxjs/Subscription";
+import { Subscription } from "rxjs";
 
 const firebase = require("nativescript-plugin-firebase");
 

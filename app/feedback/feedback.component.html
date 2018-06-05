@@ -9,20 +9,21 @@
   </ActionItem>
 </ActionBar>
 
-<Gradient height="100%" direction="to bottom" colors="mediumseagreen, #267B50" class="main-content">
+<Gradient height="100%" direction="to bottom" colors="mediumseagreen, #267B50">
   <ScrollView>
     <StackLayout class="p-20" [@listAnimation]>
       <!-- added *ngIf="true" for the listAnimation to work -->
       <Label class="section-title" text="Feedback" *ngIf="true"></Label>
       <WrapLayout *ngIf="true">
         <Button text="Success, 2.5s" (tap)="feedbackHelper.showSuccess()" class="button button-success"></Button>
-        <Button text="Success, alt colors" (tap)="feedbackHelper.showSuccessAltColors()" class="button button-custom"></Button>
+        <Button text="Success /w tweaks" (tap)="feedbackHelper.showSuccessAltColorsAndFontSize()" class="button button-custom"></Button>
         <Button text="Info, 2s" (tap)="feedbackHelper.showInfo()" class="button button-info"></Button>
         <Button text="Warning, 4s" (tap)="feedbackHelper.showWarning()" class="button button-warning"></Button>
         <Button text="Error, 1s" (tap)="feedbackHelper.showError()" class="button button-error"></Button>
-        <Button text="Error, Bottom (iOS)" (tap)="feedbackHelper.showErrorBottom()" class="button button-error"></Button>
+        <ios><Button text="Error, Bottom" (tap)="feedbackHelper.showErrorBottom()" class="button button-error"></Button></ios>
         <Button text="Title only" (tap)="feedbackHelper.showTitleOnly()" class="button button-custom"></Button>
         <Button text="Custom icon" (tap)="feedbackHelper.showCustomIcon()" class="button button-custom-alt"></Button>
+        <Button text="Custom font" (tap)="feedbackHelper.showCustomFont()" class="button button-custom-font"></Button>
         <Button text="Dismiss" (tap)="feedbackHelper.dismiss()" class="button button-dismiss"></Button>
       </WrapLayout>
 

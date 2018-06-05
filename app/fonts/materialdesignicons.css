@@ -60,3 +60,7 @@
 .mdi-text-to-speech:before {
   content: "\F50A"
 }
+
+.mdi-close-circle-outline:before {
+  content: "\F15A"
+}

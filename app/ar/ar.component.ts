@@ -1,14 +1,14 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
-import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
+import { AbstractMenuPageComponent } from "~/abstract-menu-page-component";
 import { AR, ARDebugLevel, ARMaterial, ARNode, ARPlaneTappedEventData, ARPosition } from "nativescript-ar";
-import { ModalDialogService } from "nativescript-angular";
-import { PluginInfo } from "../shared/plugin-info";
-import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
+import { RouterExtensions } from "nativescript-angular";
+import { PluginInfo } from "~/shared/plugin-info";
+import { PluginInfoWrapper } from "~/shared/plugin-info-wrapper";
 import { PropertyChangeData } from "tns-core-modules/data/observable";
-import { DropDown } from "nativescript-drop-down";
 import { Color } from "tns-core-modules/color";
 import { AppComponent } from "~/app.component";
+
 const flashlight = require("nativescript-flashlight");
 const insomnia = require("nativescript-insomnia");
 
@@ -64,9 +64,8 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
   @ViewChild("dropDown") dropDown: ElementRef;
 
   constructor(protected appComponent: AppComponent,
-              protected vcRef: ViewContainerRef,
-              protected modalService: ModalDialogService) {
-    super(appComponent, vcRef, modalService);
+              protected routerExtensions: RouterExtensions) {
+    super(appComponent, routerExtensions);
     this.hint = "Search for planes by pointing at a surface";
   }
 

@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewContainerRef } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
-import { AbstractMenuPageComponent } from "../abstract-menu-page-component";
-import { Config } from "../shared/config";
-import { ModalDialogService, RouterExtensions } from "nativescript-angular";
-import { PluginInfo } from "../shared/plugin-info";
-import { PluginInfoWrapper } from "../shared/plugin-info-wrapper";
+import { AbstractMenuPageComponent } from "~/abstract-menu-page-component";
+import { Config } from "~/shared/config";
+import { RouterExtensions } from "nativescript-angular";
+import { PluginInfo } from "~/shared/plugin-info";
+import { PluginInfoWrapper } from "~/shared/plugin-info-wrapper";
 import { AppComponent } from "~/app.component";
 
 @Component({
@@ -49,10 +49,8 @@ import { AppComponent } from "~/app.component";
 })
 export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
   constructor(protected appComponent: AppComponent,
-              protected vcRef: ViewContainerRef,
-              protected modalService: ModalDialogService,
               protected routerExtensions: RouterExtensions) {
-    super(appComponent, vcRef, modalService);
+    super(appComponent, routerExtensions);
   }
 
   ngOnInit(): void {
