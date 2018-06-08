@@ -36,7 +36,7 @@
     "compile-tests": "tsc -p e2e --watch",
     "start-android-bundle": "tns run android --bundle --env.aot --env.uglify",
     "start-ios-bundle": "tns run ios --bundle --env.aot --env.uglify",
-    "build-android-bundle": "tns build android --bundle --env.aot --env.uglify",
+    "build-android-bundle": "tns build android --bundle --env.aot --env.uglify --env.snapshot",
     "build-ios-bundle": "tns build ios --bundle --env.aot --env.uglify"
   },
   "dependencies": {
