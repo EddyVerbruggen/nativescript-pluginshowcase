@@ -25,7 +25,6 @@ import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 
 const fs = require("tns-core-modules/file-system");
 
-registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 registerElement("FAB", () => require("nativescript-floatingactionbutton").Fab);
 
 setStatusBarColors();

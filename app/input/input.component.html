@@ -9,21 +9,21 @@
   </ActionItem>
 </ActionBar>
 
-<Gradient height="100%" direction="to bottom" colors="#1567a2, #0b3757" class="p-x-20 p-y-10">
+<StackLayout class="page-wrapper p-x-20 p-y-10">
   <GridLayout rows="auto, *" columns="*">
 
     <StackLayout [@scale-in]="'in'" row="0" horizontalAlignment="center">
       <SegmentedBar class="plugin-bar" [items]="plugins" [selectedIndex]="0" (selectedIndexChange)="pluginChanged($event)"></SegmentedBar>
     </StackLayout>
 
-    <StackLayout [@from-bottom]="'in'" row="1" class="p-20 m-t-20" style="background-color: rgba(255, 255, 255, 210)" borderRadius="20">
+    <StackLayout [@from-bottom]="'in'" row="1" class="m-t-20 transparent-area">
       <StackLayout *ngIf="selectedPlugin === 'Drawing'">
         <StackLayout>
           <ContentView backgroundColor="#eeeeee" borderRadius="10">
             <DrawingPad #myDrawing
                         height="250"
                         backgroundColor="#eeeeee"
-                        penColor="#ff4081"
+                        penColor="#e66465"
                         penWidth="8">
             </DrawingPad>
           </ContentView>
@@ -60,11 +60,11 @@
       <StackLayout *ngIf="selectedPlugin === 'Checkbox'">
         <Label text="Which ones do you like? (checkboxes)" textWrap="true"></Label>
         <StackLayout orientation="horizontal" verticalAlignment="top" class="p-5">
-          <CheckBox boxType="square" #checkbox1 fillColor="#f9fa45" [checked]="checkboxHelper.checkbox1" (checkedChange)="checkboxHelper.checkbox1 = checkbox1.checked" class="checkbox"></CheckBox>
+          <CheckBox boxType="square" #checkbox1 fillColor="#ffffff" [checked]="checkboxHelper.checkbox1" (checkedChange)="checkboxHelper.checkbox1 = checkbox1.checked" class="checkbox"></CheckBox>
           <Label text="NativeScript" (tap)="checkboxHelper.checkbox1 = !checkboxHelper.checkbox1"></Label>
         </StackLayout>
         <StackLayout orientation="horizontal" verticalAlignment="top" class="p-5">
-          <CheckBox boxType="square" boxType="2" #checkbox2 fillColor="#f9fa45" [checked]="checkboxHelper.checkbox2" (checkedChange)="checkboxHelper.checkbox2 = checkbox2.checked" class="checkbox"></CheckBox>
+          <CheckBox boxType="square" boxType="2" #checkbox2 fillColor="#ffffff" [checked]="checkboxHelper.checkbox2" (checkedChange)="checkboxHelper.checkbox2 = checkbox2.checked" class="checkbox"></CheckBox>
           <Label text="React Native" (tap)="checkboxHelper.checkbox2 = !checkboxHelper.checkbox2"></Label>
         </StackLayout>
 
@@ -72,7 +72,7 @@
         <Label text="Which one do you like most? (radiobuttons)" class="p-t-20" textWrap="true"></Label>
         <StackLayout class="p-5" *ngFor="let radio of checkboxHelper.radios">
           <StackLayout orientation="horizontal" verticalAlignment="top">
-            <CheckBox boxType="circle" #elem fillColor="#faaa00" [checked]="radio.selected" (checkedChange)="elem.checked !== radio.selected && checkboxHelper.radioOptionSelected(radio)" class="checkbox"></CheckBox>
+            <CheckBox boxType="circle" #elem fillColor="#ffffff" [checked]="radio.selected" (checkedChange)="elem.checked !== radio.selected && checkboxHelper.radioOptionSelected(radio)" class="checkbox"></CheckBox>
             <Label [text]="radio.label" (tap)="checkboxHelper.radioOptionSelected(radio)"></Label>
           </StackLayout>
         </StackLayout>
@@ -111,4 +111,4 @@
 
     </StackLayout>
   </GridLayout>
-</Gradient>
+</StackLayout>

@@ -1,5 +1,9 @@
 ActionBar {
-  background-color: orangered;
+  background-color: rgba(255,93,177,1);
+}
+
+.page-wrapper {
+  background: linear-gradient(to bottom, rgba(255,93,177,1) 0%, rgba(239,1,124,1) 100%);
 }
 
 Label.record-mic {
@@ -13,8 +17,6 @@ Label.record-mic {
   text-align: center;
   background-color: rgba(255, 255, 255, 190);
   margin-bottom: 20;
-  padding: 12;
-  vertical-align: center;
 }
 
 Label.record-mic.recording {

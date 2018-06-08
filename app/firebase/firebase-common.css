@@ -1,5 +1,9 @@
 ActionBar {
-  background-color: #e9993a;
+  background-color: #f7b733;
+}
+
+.page-wrapper {
+  background: linear-gradient(to bottom, #f7b733, #fc4a1a);
 }
 
 .icon-container Image {
@@ -21,7 +25,7 @@ button {
 }
 
 .button-firebase {
-  background-color: #f39c38;
+  background-color: #fc9123;
 }
 
 .user-email {
@@ -59,7 +63,7 @@ button {
   height: 48;
   width: 48;
   margin: 10;
-  background-color: #f8cb4f;
+  background-color: #f7b733;
   horizontal-align: right;
   vertical-align: bottom;
 }

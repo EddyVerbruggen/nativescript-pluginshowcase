@@ -1,11 +1,9 @@
 ActionBar {
-  background-color: #009c9b;
+  background-color: #360033;
 }
 
-.modal-wrapper {
-  background-color: #fff;
-  color: #444;
-  margin-top: 30;
+.page-wrapper {
+  background: linear-gradient(to bottom, #360033 0%, #0b8793 100%);
 }
 
 .description {
@@ -19,7 +17,7 @@ ActionBar {
 }
 
 .plugin-name {
-  color: #00fffe;
+  color: #fff;
   font-weight: 600;
 }
 
@@ -28,8 +26,9 @@ ActionBar {
 }
 
 .plugin-id {
-  color: #00d9d8;
+  color: #fff;
   font-size: 13;
+  font-style: italic;
 }
 
 .plugin-description {

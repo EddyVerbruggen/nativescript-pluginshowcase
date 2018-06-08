@@ -69,12 +69,6 @@ export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
         "This NativeScript plugin showcases app has an info-icon on every page, showing which plugins are used. Those listed below are used app-wide. Like these plugins, this app is open source as well: goo.gl/7HUAXa",
         Array.of(
             new PluginInfo(
-                "nativescript-gradient",
-                "Gradient",
-                "https://github.com/EddyVerbruggen/nativescript-gradient",
-                "All pages (including the menu) have a nice top-to-bottom gradient. You obviously need to have this to be taken seriously as an app. 🤔"),
-
-            new PluginInfo(
                 "nativescript-appavailability",
                 "App Availability",
                 "https://github.com/EddyVerbruggen/nativescript-appavailability",
@@ -85,7 +79,7 @@ export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
                 "nativescript-ui-sidedrawer",
                 "NativeScript UI SideDrawer",
                 "https://www.npmjs.com/package/nativescript-ui-sidedrawer",
-                "The SideDrawer is one of the components that used to be part of Progress NativeScript UI, but now lives on its own. For other components see https://www.npmjs.com/package/nativescript-pro-ui."
+                "The SideDrawer is one of the components that used to be part of Progress NativeScript UI, but now lives on its own. Just tap the hamburger 🍔 icon to reveal it."
             ),
 
             new PluginInfo(

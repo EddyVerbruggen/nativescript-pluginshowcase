@@ -1,6 +1,11 @@
 ActionBar {
-  background-color: blueviolet;
+  background-color: #659999;
 }
+
+.page-wrapper {
+  background: linear-gradient(to bottom, #659999 0%, #f4791f 100%);
+}
+
 
 .icon-container Image {
   margin: 20 0 0 20;

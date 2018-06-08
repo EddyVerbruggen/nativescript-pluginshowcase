@@ -41,5 +41,4 @@ const APP_ROUTES: Routes = [
   }
 ];
 
-// TODO swap
 export const routing = NativeScriptRouterModule.forRoot(APP_ROUTES, {preloadingStrategy: PreloadAllModules});

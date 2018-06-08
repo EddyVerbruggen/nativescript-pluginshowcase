@@ -23,7 +23,10 @@ import { AppComponent } from "~/app.component";
   selector: "page-speech",
   moduleId: module.id,
   templateUrl: "./speech.component.html",
-  styleUrls: ["speech-common.css"],
+  styleUrls: [
+    "speech-common.css",
+    "speech.css"
+  ],
   animations: [
     trigger("from-bottom", [
       state("in", style({

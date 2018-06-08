@@ -28,6 +28,11 @@ ActionBar {
   font-family: 'Source Sans Pro', SourceSansPro-Regular, system, sans-serif;
 }
 
+.page-wrapper {
+  height: 100%;
+  padding-bottom: 22;
+}
+
 .semibold {
   font-weight: 600;
   font-family: 'Source Sans Pro', SourceSansPro-Semibold, system, sans-serif;
@@ -52,6 +57,8 @@ ActionBar {
   background-color: rgba(255, 255, 255, 210);
   border-radius: 20;
   padding: 20;
+  border-color: white;
+  border-width: 1;
 }
 
 .hide {
@@ -73,6 +80,7 @@ TextField {
 
 .menu-contents-wrapper {
   height: 100%;
+  background: linear-gradient(to right, #283048, #859398);
 }
 
 .mdi {
@@ -166,7 +174,7 @@ Button:highlighted {
 }
 
 .madeby-container {
-  background-color: #DC1B4F;
+  background-color: #e66465;
 }
 
 .madeby-container Label {

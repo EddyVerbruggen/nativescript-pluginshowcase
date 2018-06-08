@@ -10,8 +10,8 @@
 </ActionBar>
 
 <GridLayout>
-  <Gradient height="100%" direction="to bottom" colors="#444, #000" [class.p-20]="isIOS">
-    <ContentView [@flyInOut]="'in'" height="100%" width="100%" borderRadius="20">
+  <StackLayout class="map-page-wrapper" [class.p-20]="isIOS">
+    <ContentView [@flyInOut]="'in'" height="100%" width="100%" [class.map-wrapper]="isIOS">
       <Mapbox
           accessToken="sk.eyJ1IjoiZWRkeXZlcmJydWdnZW4iLCJhIjoia1JpRW82NCJ9.OgnvpsKzB3GJhzyofQNUBw"
           mapStyle="traffic_day"
@@ -28,7 +28,7 @@
           (mapReady)="onMapReady($event)">
       </Mapbox>
     </ContentView>
-  </Gradient>
+  </StackLayout>
   <FAB
       [@from-right]="'in'"
       (tap)="fabTapped()"

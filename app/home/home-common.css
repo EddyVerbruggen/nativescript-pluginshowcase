@@ -1,5 +1,9 @@
 ActionBar {
-  background-color: #009c9b;
+  background-color: #e66465;
+}
+
+.page-wrapper {
+  background: linear-gradient(#e66465, #9198e5);
 }
 
 Label {

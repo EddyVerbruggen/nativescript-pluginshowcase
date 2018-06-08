@@ -1,0 +1,8 @@
+Label.record-mic {
+  padding-top: 12;
+  vertical-align: top;
+}
+
+Label.record-mic.recording {
+  padding-top: 7;
+}

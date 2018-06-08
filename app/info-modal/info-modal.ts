@@ -20,9 +20,10 @@ export class InfoModalComponent implements OnInit, OnDestroy {
   constructor(private page: Page,
               private route: ActivatedRoute,
               private routerExtensions: RouterExtensions) {
-    if (page.android) {
-      this.page.backgroundColor = new Color(50, 0, 0, 0);
-    }
+
+    // if (page.android) {
+    //   this.page.backgroundColor = new Color(50, 0, 0, 0);
+    // }
 
     addTabletCss(this.page, "info-modal");
   }

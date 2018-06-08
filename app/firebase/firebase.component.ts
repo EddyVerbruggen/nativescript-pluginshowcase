@@ -4,8 +4,6 @@ import { AbstractMenuPageComponent } from "~/abstract-menu-page-component";
 import { RouterExtensions } from "nativescript-angular";
 import { PluginInfo } from "~/shared/plugin-info";
 import { PluginInfoWrapper } from "~/shared/plugin-info-wrapper";
-import { AppIconChanger } from "nativescript-app-icon-changer";
-import { AppShortcuts } from "nativescript-app-shortcuts";
 import { AppComponent } from "~/app.component";
 import {
   firestore,
@@ -16,7 +14,7 @@ import {
 } from "nativescript-plugin-firebase";
 import { ListViewEventData } from "nativescript-ui-listview";
 import { Color } from "tns-core-modules/color";
-import * as appSettings from "tns-core-modules/application-settings";
+import { getBoolean, setBoolean } from "tns-core-modules/application-settings";
 import { View } from "tns-core-modules/ui/core/view";
 import { ad, layout } from "tns-core-modules/utils/utils";
 import { prompt, PromptResult } from "tns-core-modules/ui/dialogs";
@@ -85,9 +83,6 @@ interface City {
 })
 export class FirebaseComponent extends AbstractMenuPageComponent implements OnInit {
   private static APP_SETTINGS_KEY_HAS_LOGGED_IN_WITH_GOOGLE = "HAS_LOGGED_IN_WITH_GOOGLE";
-  suppressAppIconChangedNotification: boolean = false;
-  private appIconChanger: AppIconChanger;
-  private appShortcuts: AppShortcuts;
   private citiesCollectionRef: firestore.CollectionReference;
 
   private animationApplied = false;
@@ -120,13 +115,13 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
       this.zone.run(() => {
         const cities: Array<City> = [];
         snapshot.forEach(docSnap => cities.push(this.getCity(docSnap)));
-        // sort alphabetically by city.name
-        this.cities = cities.sort((cityA, cityB) => cityA.name > cityB.name ? 1 : -1);
+        // case-insensitively sort alphabetically by city.name
+        this.cities = cities.sort((cityA, cityB) => cityA.name.toLowerCase() > cityB.name.toLowerCase() ? 1 : -1);
       });
     });
 
     // if the user previously logged in with Google, try again now
-    if (appSettings.getBoolean(FirebaseComponent.APP_SETTINGS_KEY_HAS_LOGGED_IN_WITH_GOOGLE, false)) {
+    if (getBoolean(FirebaseComponent.APP_SETTINGS_KEY_HAS_LOGGED_IN_WITH_GOOGLE, false)) {
       this.loginWithGoogle();
     } else {
       this.loadingUser = false;
@@ -147,7 +142,7 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
         .then(result => {
           this.user = result;
           this.loadingUser = false;
-          appSettings.setBoolean(FirebaseComponent.APP_SETTINGS_KEY_HAS_LOGGED_IN_WITH_GOOGLE, true);
+          setBoolean(FirebaseComponent.APP_SETTINGS_KEY_HAS_LOGGED_IN_WITH_GOOGLE, true);
         })
         .catch(err => this.loadingUser = false);
   }
@@ -156,7 +151,7 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
     firebaseLogout()
         .then(() => {
           this.user = null;
-          appSettings.setBoolean(FirebaseComponent.APP_SETTINGS_KEY_HAS_LOGGED_IN_WITH_GOOGLE, false);
+          setBoolean(FirebaseComponent.APP_SETTINGS_KEY_HAS_LOGGED_IN_WITH_GOOGLE, false);
         })
         .catch(err => console.log("Logout error: " + err));
   }

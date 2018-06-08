@@ -1,5 +1,9 @@
 ActionBar {
-  background-color: #1567a2;
+  background-color: #1f4037;
+}
+
+.page-wrapper {
+  background: linear-gradient(to bottom, #1f4037 0%, #99f2c8 100%);
 }
 
 .plugin-bar {
@@ -10,7 +14,7 @@ ActionBar {
 
 Button.btn-primary {
   background-color: #fff;
-  color: #1567a2;
+  color: #1f4037;
 }
 
 Button.btn-outline {

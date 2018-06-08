@@ -1,5 +1,9 @@
 ActionBar {
-  background-color: mediumseagreen;
+  background-color: #67B26F;
+}
+
+.page-wrapper {
+  background: linear-gradient(to bottom, #67B26F 0%, #4ca2cd 100%);
 }
 
 WrapLayout {

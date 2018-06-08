@@ -1,5 +1,9 @@
-ActionBar, .pageWrapper {
-  background-color: #444;
+ActionBar {
+  background-color: #485563;
+}
+
+.page-wrapper {
+  background: linear-gradient(#485563, #29323c);
 }
 
 Label.hint {
