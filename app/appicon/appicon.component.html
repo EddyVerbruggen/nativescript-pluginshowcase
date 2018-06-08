@@ -5,7 +5,7 @@
   <Label horizontalAlignment="left" class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon" (tap)="toggleTheMenu()" *ngIf="!isIOS"></Label>
   <Label horizontalAlignment="center" class="semibold" text="App icon" *ngIf="isIOS"></Label>
   <ActionItem ios.position="right" (tap)="showPluginInfo()">
-    <Label class="mdi-actionitem mdi-actionitem-right mdi-menu" [text]="'mdi-information-outline' | fonticon"></Label>
+    <Label class="mdi-actionitem mdi-actionitem-right m-r-0" [text]="'mdi-information-outline' | fonticon"></Label>
   </ActionItem>
 </ActionBar>
 
@@ -30,6 +30,7 @@
 
       <GridLayout rows="auto, auto, auto" columns="auto, *" class="icon-container">
         <Label text="Default icon" class="m-t-15"></Label>
+        <!-- TODO change icon -->
         <Image col="1" src="res://icon-default" width="50" height="50" borderRadius="5" (tap)="changeAppIcon(null)" horizontalAlignment="left"></Image>
 
         <Label row="1" text="Alternatives" class="m-t-15 p-t-20" verticalAlignment="top"></Label>

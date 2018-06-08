@@ -5,7 +5,7 @@
   <Label horizontalAlignment="left" class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon" (tap)="toggleTheMenu()" *ngIf="!isIOS"></Label>
   <Label horizontalAlignment="center" class="semibold" text="Input" *ngIf="isIOS"></Label>
   <ActionItem ios.position="right" (tap)="showPluginInfo()">
-    <Label class="mdi-actionitem mdi-actionitem-right mdi-menu" [text]="'mdi-information-outline' | fonticon" style="padding-bottom: 4"></Label>
+    <Label class="mdi-actionitem mdi-actionitem-right m-r-0" [text]="'mdi-information-outline' | fonticon" style="padding-bottom: 4"></Label>
   </ActionItem>
 </ActionBar>
 
