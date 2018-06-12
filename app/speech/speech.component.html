@@ -24,9 +24,9 @@
         </StackLayout>
         <GridLayout [@fade-in-1]="'in'" row="2" rows="auto, auto" columns="auto, *" horizontalalignment="center" width="240" class="m-t-24">
           <Label text="Rate" class="m-r-20"></Label>
-          <Slider backgroundColor="rgba(239,1,124,1)" col="1" [value]="speakRate" (valueChange)="onSpeakRateChange($event)" [maxValue]="maxSpeakRate" minValue="1"></Slider>
+          <Slider debounce debounceDelay="300" debounceFromEvent="valueChange" (debounceFunction)="onSpeakRateChange($event)" backgroundColor="rgba(239,1,124,1)" col="1" [value]="speakRate" [maxValue]="maxSpeakRate" minValue="1"></Slider>
           <Label row="1" text="Pitch" class="m-r-20 m-t-10"></Label>
-          <Slider backgroundColor="rgba(239,1,124,1)" row="1" col="1" [value]="pitch" (valueChange)="onPitchChange($event)" maxValue="200" minValue="1" class="m-t-10"></Slider>
+          <Slider debounce debounceDelay="300" debounceFromEvent="valueChange" (debounceFunction)="onPitchChange($event)" backgroundColor="rgba(239,1,124,1)" row="1" col="1" [value]="pitch" maxValue="200" minValue="1" class="m-t-10"></Slider>
         </GridLayout>
       </GridLayout>
     </StackLayout>

@@ -3,6 +3,8 @@ import { RouterExtensions } from "nativescript-angular";
 import { PluginInfoWrapper } from "./shared/plugin-info-wrapper";
 import { Config } from "./shared/config";
 import { AppComponent } from "~/app.component";
+const firebase = require("nativescript-plugin-firebase");
+import { LogEventParameter } from"nativescript-plugin-firebase/analytics/analytics";
 
 export abstract class AbstractMenuPageComponent {
   isIOS: boolean = isIOS;
@@ -10,7 +12,23 @@ export abstract class AbstractMenuPageComponent {
 
   constructor(protected appComponent: AppComponent,
               protected routerExtensions: RouterExtensions) {
+    this.logScreenName(this.getScreenName());
   }
+
+  private logScreenName(name: string): void {
+    firebase.analytics.setScreenName({
+      screenName: name
+    });
+  }
+
+  protected logEvent(key: string, parameters?: Array<LogEventParameter>): void {
+    firebase.analytics.logEvent({
+      key: key,
+      parameters: parameters
+    });
+  }
+
+  protected abstract getScreenName(): string;
 
   protected abstract getPluginInfo(): PluginInfoWrapper;
 
@@ -32,6 +50,6 @@ export abstract class AbstractMenuPageComponent {
       queryParams: {
         pluginInfo: JSON.stringify(info)
       }
-    });
+    }).then(() => this.logScreenName(`${this.getScreenName()} > Plugin Info`));
   }
 }

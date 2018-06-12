@@ -109,6 +109,10 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
     pad.clearDrawing();
   }
 
+  protected getScreenName(): string {
+    return "Input";
+  }
+
   protected getPluginInfo(): PluginInfoWrapper {
     let plugins = Array.of(
         new PluginInfo(

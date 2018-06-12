@@ -143,6 +143,7 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
           this.user = result;
           this.loadingUser = false;
           setBoolean(FirebaseComponent.APP_SETTINGS_KEY_HAS_LOGGED_IN_WITH_GOOGLE, true);
+          this.logEvent("login");
         })
         .catch(err => this.loadingUser = false);
   }
@@ -294,17 +295,14 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
     }
   }
 
+  protected getScreenName(): string {
+    return "Firebase";
+  }
+
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
-        "Google's cloud storage product, but it can do a whole lot more! This app includes 3 of those sub modules.",
+        "Google's cloud storage product, but it can do a whole lot more! This app includes 4 of those sub modules.",
         Array.of(
-            new PluginInfo(
-                "nativescript-ui-listview",
-                "NativeScript UI ListView",
-                "https://www.npmjs.com/package/nativescript-ui-listview",
-                "The ListView is one of the components that used to be part of Progress NativeScript UI, but now lives on its own. For other components see https://www.npmjs.com/package/nativescript-pro-ui."
-            ),
-
             new PluginInfo(
                 "nativescript-plugin-firebase",
                 "Firebase",
@@ -322,6 +320,13 @@ CRASHLYTICS: Get clear, actionable insight into app issues with this powerful cr
                 "FAB",
                 "https://github.com/bradmartin/nativescript-floatingactionbutton",
                 "Add a Material Design Floating Action Button to your page, at a corner of your liking."
+            ),
+
+            new PluginInfo(
+                "nativescript-ui-listview",
+                "NativeScript UI ListView",
+                "https://www.npmjs.com/package/nativescript-ui-listview",
+                "The ListView is one of the components that used to be part of Progress NativeScript UI, but now lives on its own. For other components see https://www.npmjs.com/package/nativescript-pro-ui."
             )
         )
     );

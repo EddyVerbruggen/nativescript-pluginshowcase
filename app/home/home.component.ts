@@ -64,6 +64,10 @@ export class HomeComponent extends AbstractMenuPageComponent implements OnInit {
     }
   }
 
+  protected getScreenName(): string {
+    return "Home";
+  }
+
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
         "This NativeScript plugin showcases app has an info-icon on every page, showing which plugins are used. Those listed below are used app-wide. Like these plugins, this app is open source as well: goo.gl/7HUAXa",

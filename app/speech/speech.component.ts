@@ -132,6 +132,10 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
         this.speak(this.lastTranscription);
       }
     }
+    this.logEvent("toggle_recording", [{
+      key: "state",
+      value: this.recording ? "started" : "stopped"
+    }]);
   }
 
   private startListening(): void {
@@ -193,17 +197,47 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
 
   onSpeakRateChange(args): void {
     let slider = <Slider>args.object;
+    const oldValue = this.speakRate;
     this.speakRate = Math.floor(slider.value);
-    if (this.lastTranscription) {
-      this.speak(this.lastTranscription);
+
+    if (oldValue !== this.speakRate) {
+      console.log(`Rate change ${oldValue} --> ${this.speakRate}`);
+      if (this.lastTranscription) {
+        this.speak(this.lastTranscription);
+      }
+      this.logEvent("rate_changed", [
+        {
+          key: "from",
+          value: "" + oldValue
+        },
+        {
+          key: "to",
+          value: "" + this.speakRate
+        }
+      ]);
     }
   }
 
   onPitchChange(args): void {
     let slider = <Slider>args.object;
+    const oldValue = this.pitch;
     this.pitch = Math.floor(slider.value);
-    if (this.lastTranscription) {
-      this.speak(this.lastTranscription);
+
+    if (oldValue !== this.pitch) {
+      console.log(`Pitch change ${oldValue} --> ${slider.value}`);
+      if (this.lastTranscription) {
+        this.speak(this.lastTranscription);
+      }
+      this.logEvent("pitch_changed", [
+        {
+          key: "from",
+          value: "" + oldValue
+        },
+        {
+          key: "to",
+          value: "" + this.pitch
+        }
+      ]);
     }
   }
 
@@ -318,15 +352,12 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
             .authorize()
             .then(() => imagePicker.present())
             .then((selection: Array<ImageAsset>) => {
-              console.log(">>> selection: " + selection);
               selection.forEach(selected => {
                 console.log(">>> selected: " + selected);
                 selected.options.height = 1000;
                 selected.options.width = 1000;
                 selected.options.keepAspectRatio = true;
                 selected.getImageAsync((image: any, error: any) => {
-                  console.log(">>> error: " + error);
-                  console.log(">>> image: " + image);
                   if (error) {
                     console.log(`Error getting image source from pickerI: ${error}`);
                     return;
@@ -389,6 +420,10 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
 
   private getPitch(): number {
     return this.pitch / 100;
+  }
+
+  protected getScreenName(): string {
+    return "Speech";
   }
 
   protected getPluginInfo(): PluginInfoWrapper {

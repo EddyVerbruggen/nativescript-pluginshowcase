@@ -49,3 +49,6 @@ npm run ios
 # or: npm run ios.emulator
 # or even: npm run start-ios-bundle (for a much faster startup experience because of Webpack with Uglify)
 ```
+
+> Note that at the moment you'll need to manually apply [this PR](https://github.com/shiv19/nativescript-cfalert-dialog/pull/8)
+to `node_modules` to make tsc not 🤮 during a build. I hope it gets merged soon..

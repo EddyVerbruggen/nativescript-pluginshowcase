@@ -283,6 +283,10 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
     });
   }
 
+  protected getScreenName(): string {
+    return "AR";
+  }
+
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
         "Is normal reality too dull for you? Augment it with the nativescript-ar plugin!",

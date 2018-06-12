@@ -53,6 +53,10 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
     this.toastHelper = new ToastHelper(this.toastService);
   }
 
+  protected getScreenName(): string {
+    return "Feedback";
+  }
+
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
         "Add some 💥 to your app by going beyond the default alert. So here's a couple of alternative ways to feed something back to your users.",

@@ -175,11 +175,13 @@ export class MappingComponent extends AbstractMenuPageComponent {
         preferGoogleMaps: addresses.length > 1,
         allowGoogleMapsWeb: true
       }
-    }).then(() => {
-      console.log("Maps app launched.");
-    }, error => {
-      console.log(error);
-    });
+    })
+        .then(() => this.logEvent("show_directions"))
+        .catch(error => console.log(error));
+  }
+
+  protected getScreenName(): string {
+    return "Mapping";
   }
 
   protected getPluginInfo(): PluginInfoWrapper {

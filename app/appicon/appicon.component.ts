@@ -100,6 +100,10 @@ export class AppIconComponent extends AbstractMenuPageComponent {
     });
   }
 
+  protected getScreenName(): string {
+    return "App Icon";
+  }
+
   protected getPluginInfo(): PluginInfoWrapper {
     return new PluginInfoWrapper(
         "Fiddle with your app's home icon. Currently for iOS only.",
