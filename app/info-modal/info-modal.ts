@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Page } from "tns-core-modules/ui/page";
-import { Color } from "tns-core-modules/color";
 import { PluginInfo } from "~/shared/plugin-info";
 import { openUrl } from "tns-core-modules/utils/utils";
 import { PluginInfoWrapper } from "~/shared/plugin-info-wrapper";

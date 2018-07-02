@@ -13,10 +13,4 @@ android {
   aaptOptions {
     additionalParameters "--no-version-vectors"
   }
-
-  // https://github.com/mapbox/mapbox-java/issues/782
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
 }

@@ -145,6 +145,12 @@ export class MappingComponent extends AbstractMenuPageComponent {
           }
         ]
     );
+
+    // Use this if you want to track the user on the map
+    // this.map.trackUser({
+    //   mode: "FOLLOW_WITH_HEADING",
+    //   animated: true
+    // });
   }
 
   fabTapped(): void {
