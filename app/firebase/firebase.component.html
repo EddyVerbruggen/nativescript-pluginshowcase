@@ -29,8 +29,8 @@
       </StackLayout>
 
       <GridLayout rows="auto, auto, *" [@scale-in]="'in'" row="1" class="transparent-area m-t-20">
-        <Label row="0" class="section-title" text="Firestore"></Label>
-        <Label row="1" class="section-subtitle" text="Add rows with the FAB, and try swiping these rows left and right to reveal actions. Keep it clean :)" textWrap="true"></Label>
+        <Label row="0" class="section-title" text="Firestore & RadListView"></Label>
+        <Label row="1" class="section-subtitle" text="Add a CITY with the FAB, and try swiping these rows left and right to reveal actions. Keep it clean :)" textWrap="true"></Label>
 
         <RadListView #citiesListView row="2" [items]="cities" (itemLoading)="onItemLoading($event)" selectionBehavior="None" swipeActions="true" (itemSwipeProgressEnded)="onSwipeCellFinished($event)" (itemSwipeProgressStarted)="onSwipeCellStarted($event)" (itemSwipeProgressChanged)="onCellSwiping($event)" class="m-t-10" style="border-radius: 5; background-color: transparent">
 
