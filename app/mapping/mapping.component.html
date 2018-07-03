@@ -29,6 +29,12 @@
       </Mapbox>
     </ContentView>
   </StackLayout>
+
+  <StackLayout [@from-left]="'in'" columns="auto, auto" orientation="horizontal" class="follow">
+    <Label text="Follow me" class="m-r-10"></Label>
+    <Switch [checked]="following" (checkedChange)="toggleFollowing($event)"></Switch>
+  </StackLayout>
+
   <FAB
       [@from-right]="'in'"
       (tap)="fabTapped()"

@@ -7,10 +7,10 @@
   "nativescript": {
     "id": "org.nativescript.pluginshowcase",
     "tns-android": {
-      "version": "4.1.2"
+      "version": "4.1.3"
     },
     "tns-ios": {
-      "version": "4.1.0"
+      "version": "4.1.1"
     }
   },
   "author": {
@@ -71,10 +71,10 @@
     "nativescript-insomnia": "~1.2.1",
     "nativescript-iqkeyboardmanager": "~1.3.0",
     "nativescript-local-notifications": "~2.0.3",
-    "nativescript-mapbox": "~4.1.0",
+    "nativescript-mapbox": "~4.1.1",
     "nativescript-ngx-fonticon": "~4.2.0",
     "nativescript-numeric-keyboard": "~4.0.2",
-    "nativescript-plugin-firebase": "~6.0.2",
+    "nativescript-plugin-firebase": "~6.3.0",
     "nativescript-snackbar": "~3.1.0",
     "nativescript-social-share": "~1.5.0",
     "nativescript-speech-recognition": "~1.3.2",

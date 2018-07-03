@@ -13,6 +13,15 @@ ActionBar, .pageWrapper {
   border-width: 1;
 }
 
+.follow {
+  horizontal-align: left;
+  vertical-align: top;
+  border-radius: 16;
+  background-color: #f7797d;
+  margin: 28 0 0 28;
+  padding: 8 13;
+}
+
 .fab {
   height: 54;
   width: 54;

@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
+import { PropertyChangeData } from "tns-core-modules/data/observable";
 import { AbstractMenuPageComponent } from "~/abstract-menu-page-component";
 import { MapboxViewApi, Viewport as MapboxViewport } from "nativescript-mapbox";
 import { AddressOptions, Directions } from "nativescript-directions";
@@ -21,6 +22,17 @@ import { AppComponent } from "~/app.component";
         animate("1000ms 100ms ease-out")
       ])
     ]),
+    trigger("from-left", [
+      state("in", style({
+        "opacity": 0.8,
+        transform: "translate(0)"
+      })),
+      state("void", style({
+        "opacity": 0,
+        transform: "translate(-20%)"
+      })),
+      transition("void => *", [animate("700ms 1800ms ease-out")])
+    ]),
     trigger("from-right", [
       state("in", style({
         "opacity": 1,
@@ -30,11 +42,13 @@ import { AppComponent } from "~/app.component";
         "opacity": 0,
         transform: "translate(20%)"
       })),
-      transition("void => *", [animate("600ms 1500ms ease-out")])
+      transition("void => *", [animate("700ms 2700ms ease-out")])
     ])
   ]
 })
 export class MappingComponent extends AbstractMenuPageComponent {
+
+  following: boolean = false;
 
   private directions: Directions;
   private map: MapboxViewApi;
@@ -151,6 +165,19 @@ export class MappingComponent extends AbstractMenuPageComponent {
     //   mode: "FOLLOW_WITH_HEADING",
     //   animated: true
     // });
+  }
+
+  toggleFollowing(args: PropertyChangeData): void {
+    if (args.value !== null && args.value !== this.following) {
+      this.following = args.value;
+      // adding a timeout so the switch has time to animate properly
+      setTimeout(() => {
+        this.map.trackUser({
+          mode: this.following ? "FOLLOW_WITH_COURSE" : "NONE",
+          animated: true
+        });
+      }, 200);
+    }
   }
 
   fabTapped(): void {
