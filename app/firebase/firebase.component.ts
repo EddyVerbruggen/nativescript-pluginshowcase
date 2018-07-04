@@ -14,6 +14,7 @@ import {
 } from "nativescript-plugin-firebase";
 import { ListViewEventData } from "nativescript-ui-listview";
 import { Color } from "tns-core-modules/color";
+import { isIOS } from "tns-core-modules/platform";
 import { getBoolean, setBoolean } from "tns-core-modules/application-settings";
 import { View } from "tns-core-modules/ui/core/view";
 import { ad, layout } from "tns-core-modules/utils/utils";
@@ -21,6 +22,8 @@ import { prompt, PromptResult } from "tns-core-modules/ui/dialogs";
 import { RadListViewComponent } from "nativescript-ui-listview/angular";
 
 const firebase = require("nativescript-plugin-firebase/app");
+
+declare const Crashlytics: any;
 
 interface City {
   name: string;
@@ -257,6 +260,13 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
       }).then((result: PromptResult) => {
         if (result.result) {
           city.population = +(result.text.trim().length === 0 ? undefined : result.text.trim());
+
+          // I need to test Crashlytics, so crashing the app when a specific population is set 👹
+          if (city.population === 6660666) {
+            this.forceCrash();
+            return;
+          }
+
           this.citiesCollectionRef.doc(city.id).update(
               {
                 population: city.population,
@@ -330,5 +340,13 @@ CRASHLYTICS: Get clear, actionable insight into app issues with this powerful cr
             )
         )
     );
+  }
+
+  private forceCrash(): void {
+    if (isIOS) {
+      Crashlytics.sharedInstance().crash();
+    } else {
+      throw new java.lang.Exception("Forced an exception.");
+    }
   }
 }
