@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="__PACKAGE__"
-    android:versionCode="10"
-    android:versionName="2.0.0">
+    android:versionCode="11"
+    android:versionName="2.1.0">
 
   <supports-screens
       android:smallScreens="true"
@@ -32,7 +32,7 @@
         android:name="com.tns.NativeScriptActivity"
         android:label="@string/title_activity_kimera"
         android:configChanges="keyboardHidden|orientation|screenSize"
-        android:windowSoftInputMode="stateHidden|adjustResize"
+        android:windowSoftInputMode="stateHidden|adjustPan"
         android:theme="@style/LaunchScreenTheme">
 
       <meta-data android:name="SET_THEME_ON_LAUNCH" android:resource="@style/AppTheme"/>
