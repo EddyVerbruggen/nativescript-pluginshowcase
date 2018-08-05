@@ -8,9 +8,9 @@ import { PluginInfoWrapper } from "~/shared/plugin-info-wrapper";
 import { PropertyChangeData } from "tns-core-modules/data/observable";
 import { Color } from "tns-core-modules/color";
 import { AppComponent } from "~/app.component";
+import { keepAwake, allowSleepAgain } from "nativescript-insomnia";
 
 const flashlight = require("nativescript-flashlight");
-const insomnia = require("nativescript-insomnia");
 
 @Component({
   selector: "page-ar",
@@ -83,11 +83,11 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
       pickerView.backgroundColor = new Color("#444").ios;
     }
 
-    insomnia.keepAwake().then(() => console.log("Insomnia is now ON"));
+    keepAwake().then(() => console.log("Insomnia is now ON"));
   }
 
   ngOnDestroy(): void {
-    insomnia.allowSleepAgain().then(() => console.log("Insomnia is now OFF"));
+    allowSleepAgain().then(() => console.log("Insomnia is now OFF"));
   }
 
   togglePlaneDetection(args: PropertyChangeData): void {
