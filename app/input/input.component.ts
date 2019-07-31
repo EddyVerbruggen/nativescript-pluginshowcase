@@ -122,9 +122,9 @@ export class InputComponent extends AbstractMenuPageComponent implements OnInit 
             "Want to capture a signature, or send doodles from one user to the other? Then this is the plugin for you!"),
 
         new PluginInfo(
-            "nativescript-checkbox",
+            "@nstudio/nativescript-checkbox",
             "Checkbox",
-            "https://github.com/bradmartin/nativescript-checkbox",
+            "https://github.com/nstudio/nativescript-checkbox",
             "Add checkboxes and radiobuttons to your app!"),
 
         new PluginInfo(

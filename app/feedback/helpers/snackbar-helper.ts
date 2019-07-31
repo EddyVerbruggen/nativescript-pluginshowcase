@@ -1,5 +1,5 @@
 import { alert } from "tns-core-modules/ui/dialogs";
-import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
+import { SnackBar, SnackBarOptions } from "@nstudio/nativescript-snackbar";
 
 export class SnackbarHelper {
   private snackbar: SnackBar;

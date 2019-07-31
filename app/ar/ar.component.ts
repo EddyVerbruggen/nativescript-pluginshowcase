@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { AbstractMenuPageComponent } from "~/abstract-menu-page-component";
-import { AR, ARDebugLevel, ARMaterial, ARNode, ARPlaneTappedEventData, ARPosition } from "nativescript-ar";
+import { AR, ARDebugLevel, ARMaterial, ARPlaneTappedEventData, ARPosition, ARNodeInteraction } from "nativescript-ar";
 import { RouterExtensions } from "nativescript-angular";
 import { PluginInfo } from "~/shared/plugin-info";
 import { PluginInfoWrapper } from "~/shared/plugin-info-wrapper";
@@ -61,7 +61,7 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
     transparency: 0.2
   };
 
-  @ViewChild("dropDown") dropDown: ElementRef;
+  @ViewChild("dropDown", { static:false}) dropDown: ElementRef;
 
   constructor(protected appComponent: AppComponent,
               protected routerExtensions: RouterExtensions) {
@@ -165,11 +165,11 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
       position: {x: position.x, y: position.y + 0.8, z: position.z},
       dimensions: 0.15,
       mass: 1,
-      onTap: ((model: ARNode) => {
+      onTap: ((model: ARNodeInteraction) => {
         console.log("Box was tapped");
       }),
-      onLongPress: ((model: ARNode) => {
-        model.remove();
+      onLongPress: ((model: ARNodeInteraction) => {
+        model.node.remove();
       })
     }).then(arNode => {
       console.log("Box successfully added");
@@ -192,11 +192,11 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
       position: {x: position.x, y: position.y + 1.3, z: position.z},
       radius: 0.2,
       mass: 0.01,
-      onTap: ((model: ARNode) => {
+      onTap: ((model: ARNodeInteraction) => {
         console.log("Sphere was tapped");
       }),
-      onLongPress: ((model: ARNode) => {
-        model.remove();
+      onLongPress: ((model: ARNodeInteraction) => {
+        model.node.remove();
       })
     }).then(arNode => {
       console.log("Sphere successfully added at " + JSON.stringify(arNode.position));
@@ -221,11 +221,11 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
       radialSegmentCount: 1000,
       height: 0.7,
       mass: 8,
-      onTap: ((model: ARNode) => {
+      onTap: ((model: ARNodeInteraction) => {
         console.log("Tube was tapped");
       }),
-      onLongPress: ((model: ARNode) => {
-        model.remove();
+      onLongPress: ((model: ARNodeInteraction) => {
+        model.node.remove();
       })
     }).then(arNode => {
       console.log("Tube successfully added");
@@ -238,11 +238,11 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
       position: {x: position.x, y: position.y + 1.3, z: position.z},
       scale: 0.08,
       mass: 0.2,
-      onTap: ((model: ARNode) => {
+      onTap: ((model: ARNodeInteraction) => {
         console.log("Ball was tapped");
       }),
-      onLongPress: ((model: ARNode) => {
-        model.remove();
+      onLongPress: ((model: ARNodeInteraction) => {
+        model.node.remove();
       })
     }).then(arNode => {
       // to remove balls after a few seconds you can do this:
@@ -258,11 +258,11 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
       position: {x: position.x, y: position.y + 0.06, z: position.z},
       scale: 0.75,
       mass: 100,
-      onTap: ((model: ARNode) => {
+      onTap: ((model: ARNodeInteraction) => {
         console.log("Car was tapped");
       }),
-      onLongPress: ((model: ARNode) => {
-        model.remove();
+      onLongPress: ((model: ARNodeInteraction) => {
+        model.node.remove();
       })
     });
   }
@@ -274,11 +274,11 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
       position: position,
       scale: 0.01,
       mass: 0.0002,
-      onTap: ((model: ARNode) => {
+      onTap: ((model: ARNodeInteraction) => {
         console.log("Tree was tapped");
       }),
-      onLongPress: ((model: ARNode) => {
-        model.remove();
+      onLongPress: ((model: ARNodeInteraction) => {
+        model.node.remove();
       })
     });
   }

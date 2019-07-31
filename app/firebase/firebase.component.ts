@@ -97,7 +97,7 @@ export class FirebaseComponent extends AbstractMenuPageComponent implements OnIn
   user: firebaseUser;
   cities: Array<City>;
 
-  @ViewChild("citiesListView") listViewComponent: RadListViewComponent;
+  @ViewChild("citiesListView", { static:false }) listViewComponent: RadListViewComponent;
 
   constructor(protected appComponent: AppComponent,
               protected routerExtensions: RouterExtensions,

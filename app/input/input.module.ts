@@ -4,7 +4,7 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { InputRoutingModule } from "./input-routing.module";
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 import { InputComponent } from "./input.component";
-import { TNSCheckBoxModule } from "nativescript-checkbox/angular";
+import { TNSCheckBoxModule } from "@nstudio/nativescript-checkbox/angular";
 
 import { registerElement } from "nativescript-angular/element-registry";
 import { NativeScriptFormsModule } from "nativescript-angular";
