@@ -41,10 +41,10 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
   toastHelper: ToastHelper;
 
   constructor(protected appComponent: AppComponent,
-              protected routerExtensions: RouterExtensions,
-              private toastService: ToastService) {
-    super(appComponent, routerExtensions);
-
+    protected routerExtensions: RouterExtensions,
+    private toastService: ToastService) {
+super(appComponent, routerExtensions);
+    
     this.fancyAlertHelper = new FancyalertHelper();
     this.cfalertDialogHelper = new CFAlertDialogHelper();
     this.feedbackHelper = new FeedbackHelper();
@@ -90,9 +90,9 @@ export class FeedbackComponent extends AbstractMenuPageComponent {
             ),
 
             new PluginInfo(
-                "nativescript-snackbar",
+                "@nstudio/nativescript-snackbar",
                 "Snackbar  🍭 🍫",
-                "https://github.com/bradmartin/nativescript-snackbar",
+                "https://github.com/nstudio/nativescript-snackbar",
                 "Use a Material Design Snackbar in your app."
             ),
 

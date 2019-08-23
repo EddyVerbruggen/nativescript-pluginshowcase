@@ -1,5 +1,5 @@
 import { alert } from "tns-core-modules/ui/dialogs";
-import * as LocalNotifications from "nativescript-local-notifications";
+import { LocalNotifications } from "nativescript-local-notifications";
 
 export class LocalNotificationsHelper {
 
