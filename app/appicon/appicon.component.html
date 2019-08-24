@@ -2,7 +2,8 @@
   <ActionItem ios.position="left" (tap)="toggleTheMenu()" *ngIf="isIOS">
     <Label class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"></Label>
   </ActionItem>
-  <Label horizontalAlignment="left" class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon" (tap)="toggleTheMenu()" *ngIf="!isIOS"></Label>
+  <Label horizontalAlignment="left" class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"
+         (tap)="toggleTheMenu()" *ngIf="!isIOS"></Label>
   <Label horizontalAlignment="center" class="semibold" text="App icon" *ngIf="isIOS"></Label>
   <ActionItem ios.position="right" (tap)="showPluginInfo()">
     <Label class="mdi-actionitem mdi-actionitem-right m-r-0" [text]="'mdi-information-outline' | fonticon"></Label>
@@ -12,12 +13,16 @@
 <StackLayout class="page-wrapper p-20">
   <GridLayout rows="*, auto" columns="*">
 
-    <Label text="Your device doesn't support 3D Touch, which is required for App Shortcuts." textWrap="true" *ngIf="!supportsAppShortcuts && isIOS"></Label>
-    <Label text="Your device doesn't support app shortcuts. Sad. Android 7.1 or newer is required." textWrap="true" *ngIf="!supportsAppShortcuts && !isIOS"></Label>
+    <Label text="Your device doesn't support 3D Touch, which is required for App Shortcuts." textWrap="true"
+           *ngIf="!supportsAppShortcuts && isIOS"></Label>
+    <Label text="Your device doesn't support app shortcuts. Sad. Android 7.1 or newer is required." textWrap="true"
+           *ngIf="!supportsAppShortcuts && !isIOS"></Label>
 
     <StackLayout [@scale-in]="'in'" row="0" class="transparent-area" *ngIf="supportsAppShortcuts">
       <Label class="section-title" text="App Shortcuts"></Label>
-      <Label class="section-subtitle" text="We've preconfigured a few actions upon app installation, and you can add a 'dynamic' one here." textWrap="true"></Label>
+      <Label class="section-subtitle"
+             text="We've preconfigured a few actions upon app installation, and you can add a 'dynamic' one here."
+             textWrap="true"></Label>
       <WrapLayout class="m-t-10">
         <Button text="Add deeplink to Mapping" (tap)="addDeeplink()" class="button button-add"></Button>
         <Button text="Remove deeplink" (tap)="removeDeeplink()" class="button button-remove"></Button>
@@ -26,20 +31,28 @@
 
     <StackLayout [@from-bottom]="'in'" row="1" class="transparent-area m-t-20" *ngIf="isIOS">
       <Label class="section-title" text="App Icon Changer"></Label>
-      <Label class="section-subtitle" text="iOS 10.3 added support for dynamically changing your app's icon. Please note that if a Toast was shown before using this feature, the app will crash - a fix is on its way!" textWrap="true"></Label>
+      <Label class="section-subtitle"
+             text="iOS 10.3 added support for dynamically changing your app's icon. Please note that if a Toast was shown before using this feature, the app will crash - a fix is on its way!"
+             textWrap="true"></Label>
 
       <GridLayout rows="auto, auto, auto" columns="auto, *" class="icon-container">
         <Label text="Default icon" class="m-t-15"></Label>
         <!-- TODO change icon -->
-        <Image col="1" src="res://icon-default" width="50" height="50" borderRadius="5" (tap)="changeAppIcon(null)" horizontalAlignment="left"></Image>
+        <Image col="1" src="res://icon-default" width="50" height="50" borderRadius="5" (tap)="changeAppIcon(null)"
+               horizontalAlignment="left"></Image>
 
         <Label row="1" text="Alternatives" class="m-t-15 p-t-20" verticalAlignment="top"></Label>
         <WrapLayout row="1" col="1">
-          <Image src="res://icon-red-100" width="50" height="50" borderRadius="5" (tap)="changeAppIcon('icon-red')"></Image>
-          <Image src="res://icon-blue-100" width="50" height="50" borderRadius="5" (tap)="changeAppIcon('icon-blue')"></Image>
-          <Image src="res://icon-green-100" width="50" height="50" borderRadius="5" (tap)="changeAppIcon('icon-green')"></Image>
-          <Image src="res://icon-purple-100" width="50" height="50" borderRadius="5" (tap)="changeAppIcon('icon-purple')"></Image>
-          <Image src="res://icon-yellow-152" width="50" height="50" borderRadius="5" (tap)="changeAppIcon('icon-yellow')"></Image>
+          <Image src="res://icon-red-100" width="50" height="50" borderRadius="5"
+                 (tap)="changeAppIcon('icon-red')"></Image>
+          <Image src="res://icon-blue-100" width="50" height="50" borderRadius="5"
+                 (tap)="changeAppIcon('icon-blue')"></Image>
+          <Image src="res://icon-green-100" width="50" height="50" borderRadius="5"
+                 (tap)="changeAppIcon('icon-green')"></Image>
+          <Image src="res://icon-purple-100" width="50" height="50" borderRadius="5"
+                 (tap)="changeAppIcon('icon-purple')"></Image>
+          <Image src="res://icon-yellow-152" width="50" height="50" borderRadius="5"
+                 (tap)="changeAppIcon('icon-yellow')"></Image>
         </WrapLayout>
 
         <!--StackLayout row="2">

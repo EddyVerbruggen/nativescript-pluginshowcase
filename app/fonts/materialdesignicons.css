@@ -2,65 +2,65 @@
 
 /* Need this to make the others work.. */
 .mdi-dummy:before {
-  content: ""
+    content: ""
 }
 
 .mdi-format-quote-close:before {
-  content: "\F27E"
+    content: "\F27E"
 }
 
 .mdi-format-quote-open:before {
-  content: "\F756"
+    content: "\F756"
 }
 
 .mdi-hamburger:before {
-  content: "\F684"
+    content: "\F684"
 }
 
 .mdi-google-maps:before {
-  content: "\F5F5"
+    content: "\F5F5"
 }
 
 .mdi-heart-outline:before {
-  content: "\F2D5"
+    content: "\F2D5"
 }
 
 .mdi-information-outline:before {
-  content: "\F2FD"
+    content: "\F2FD"
 }
 
 .mdi-keyboard:before {
-  content: "\F30C"
+    content: "\F30C"
 }
 
 .mdi-message-text:before {
-  content: "\F369"
+    content: "\F369"
 }
 
 .mdi-microphone-outline:before {
-  content: "\F36E"
+    content: "\F36E"
 }
 
 .mdi-open-in-new:before {
-  content: "\F3CC"
+    content: "\F3CC"
 }
 
 .mdi-printer-3d:before {
-  content: "\F42B"
+    content: "\F42B"
 }
 
 .mdi-security-home:before {
-  content: "\F689"
+    content: "\F689"
 }
 
 .mdi-fire:before {
-  content: "\F238"
+    content: "\F238"
 }
 
 .mdi-text-to-speech:before {
-  content: "\F50A"
+    content: "\F50A"
 }
 
 .mdi-close-circle-outline:before {
-  content: "\F15A"
+    content: "\F15A"
 }

@@ -2,7 +2,8 @@
   <ActionItem ios.position="left" (tap)="toggleTheMenu()" *ngIf="isIOS">
     <Label class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"></Label>
   </ActionItem>
-  <Label horizontalAlignment="left" class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon" (tap)="toggleTheMenu()" *ngIf="!isIOS"></Label>
+  <Label horizontalAlignment="left" class="mdi-actionitem mdi-menu" [text]="'mdi-hamburger' | fonticon"
+         (tap)="toggleTheMenu()" *ngIf="!isIOS"></Label>
   <Label horizontalAlignment="center" class="semibold" text="Feedback" *ngIf="isIOS"></Label>
   <ActionItem ios.position="right" (tap)="showPluginInfo()">
     <Label class="mdi-actionitem mdi-actionitem-right m-r-0" [text]="'mdi-information-outline' | fonticon"></Label>
@@ -16,11 +17,14 @@
       <Label class="section-title" text="Feedback" *ngIf="true"></Label>
       <WrapLayout *ngIf="true">
         <Button text="Success, 2.5s" (tap)="feedbackHelper.showSuccess()" class="button button-success"></Button>
-        <Button text="Success /w tweaks" (tap)="feedbackHelper.showSuccessAltColorsAndFontSize()" class="button button-custom"></Button>
+        <Button text="Success /w tweaks" (tap)="feedbackHelper.showSuccessAltColorsAndFontSize()"
+                class="button button-custom"></Button>
         <Button text="Info, 2s" (tap)="feedbackHelper.showInfo()" class="button button-info"></Button>
         <Button text="Warning, 4s" (tap)="feedbackHelper.showWarning()" class="button button-warning"></Button>
         <Button text="Error, 1s" (tap)="feedbackHelper.showError()" class="button button-error"></Button>
-        <ios><Button text="Error, Bottom" (tap)="feedbackHelper.showErrorBottom()" class="button button-error"></Button></ios>
+        <ios>
+          <Button text="Error, Bottom" (tap)="feedbackHelper.showErrorBottom()" class="button button-error"></Button>
+        </ios>
         <Button text="Title only" (tap)="feedbackHelper.showTitleOnly()" class="button button-custom"></Button>
         <Button text="Custom icon" (tap)="feedbackHelper.showCustomIcon()" class="button button-custom-alt"></Button>
         <Button text="Custom font" (tap)="feedbackHelper.showCustomFont()" class="button button-custom-font"></Button>
@@ -51,13 +55,17 @@
       <WrapLayout *ngIf="true">
         <Button text="Alert" (tap)="cfalertDialogHelper.showAlert(false)" class="button button-error"></Button>
         <ios>
-          <Button text="Alert (blurry)" (tap)="cfalertDialogHelper.showAlert(true)" class="button button-error"></Button>
+          <Button text="Alert (blurry)" (tap)="cfalertDialogHelper.showAlert(true)"
+                  class="button button-error"></Button>
         </ios>
-        <Button text="Notification" (tap)="cfalertDialogHelper.showNotification()" class="button button-success"></Button>
+        <Button text="Notification" (tap)="cfalertDialogHelper.showNotification()"
+                class="button button-success"></Button>
         <Button text="Bottom sheet" (tap)="cfalertDialogHelper.showBottomSheet()" class="button button-custom"></Button>
         <android>
-          <Button text="Simple list" (tap)="cfalertDialogHelper.showSimpleList()" class="button button-custom-alt"></Button>
-          <Button text="Single choice list" (tap)="cfalertDialogHelper.showSingleChoiceList()" class="button button-custom-alt"></Button>
+          <Button text="Simple list" (tap)="cfalertDialogHelper.showSimpleList()"
+                  class="button button-custom-alt"></Button>
+          <Button text="Single choice list" (tap)="cfalertDialogHelper.showSingleChoiceList()"
+                  class="button button-custom-alt"></Button>
         </android>
       </WrapLayout>
 
@@ -69,10 +77,13 @@
       </WrapLayout>
 
       <Label class="section-title" text="Local Notifications" *ngIf="true"></Label>
-      <Label class="section-subtitle" text="Tap a button, close the app, and wait 5 seconds.." textWrap="true" *ngIf="true"></Label>
+      <Label class="section-subtitle" text="Tap a button, close the app, and wait 5 seconds.." textWrap="true"
+             *ngIf="true"></Label>
       <WrapLayout *ngIf="true">
-        <Button text="Badge & Sound" (tap)="localNotificationsHelper.showWithSound()" class="button button-success"></Button>
-        <Button text="Every minute" (tap)="localNotificationsHelper.continuous()" class="button button-warning"></Button>
+        <Button text="Badge & Sound" (tap)="localNotificationsHelper.showWithSound()"
+                class="button button-success"></Button>
+        <Button text="Every minute" (tap)="localNotificationsHelper.continuous()"
+                class="button button-warning"></Button>
         <Button text="Cancel" (tap)="localNotificationsHelper.cancelAll()" class="button button-dismiss"></Button>
       </WrapLayout>
     </StackLayout>

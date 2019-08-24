@@ -19,4 +19,5 @@ import { AppIconComponent } from "./appicon.component";
     NO_ERRORS_SCHEMA
   ]
 })
-export class AppIconModule { }
+export class AppIconModule {
+}

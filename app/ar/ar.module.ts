@@ -7,6 +7,7 @@ import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 import { DropDownModule } from "nativescript-drop-down/angular";
 
 import { registerElement } from "nativescript-angular/element-registry";
+
 registerElement("AR", () => require("nativescript-ar").AR);
 
 @NgModule({
@@ -23,4 +24,5 @@ registerElement("AR", () => require("nativescript-ar").AR);
     NO_ERRORS_SCHEMA
   ]
 })
-export class ARModule { }
+export class ARModule {
+}

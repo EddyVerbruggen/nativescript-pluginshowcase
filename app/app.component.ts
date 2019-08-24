@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   isIOS: boolean = isIOS;
   isTablet: boolean = Config.isTablet;
 
-  @ViewChild(RadSideDrawerComponent, { static:false }) public drawerComponent: RadSideDrawerComponent;
+  @ViewChild(RadSideDrawerComponent, {static: false}) public drawerComponent: RadSideDrawerComponent;
   private drawer: SideDrawerType;
   private routerSubscription: Subscription;
 

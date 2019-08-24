@@ -3,7 +3,7 @@ ActionBar, .pageWrapper {
 }
 
 .map-page-wrapper {
-  height: 100%;
+  height: 99.95%;
   background: linear-gradient(to top, #c6ffdd, #fbd786, #f7797d);
 }
 

@@ -20,4 +20,5 @@ import { DebounceModule } from "~/modules/debounce/debounce.module";
     NO_ERRORS_SCHEMA
   ]
 })
-export class SpeechModule { }
+export class SpeechModule {
+}

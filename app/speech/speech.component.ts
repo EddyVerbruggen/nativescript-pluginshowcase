@@ -107,7 +107,7 @@ export class SpeechComponent extends AbstractMenuPageComponent implements OnInit
     this.speech2text.available().then(avail => {
       this.recordingAvailable = avail;
     });
-    
+
     // releated to issue https://github.com/bradmartin/nativescript-texttospeech/issues/18
     // this.text2speech = new TNSTextToSpeech();
 

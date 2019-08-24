@@ -9,7 +9,7 @@
   </ActionItem>
 </ActionBar>
 
-<GridLayout>
+<GridLayout class="pageWrapper">
   <StackLayout class="map-page-wrapper" [class.p-20]="isIOS">
     <ContentView [@flyInOut]="'in'" height="100%" width="100%" [class.map-wrapper]="isIOS">
       <Mapbox

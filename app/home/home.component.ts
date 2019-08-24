@@ -31,7 +31,7 @@ import { AppComponent } from "~/app.component";
       })),
       state("void", style({
         "opacity": 0,
-        transform: "scale(0) rotate(-1300)"
+        transform: "scale(0.75) rotate(-1300)"
       })),
       // "after a delay of 1000ms, show an animation with a duration of 2300ms"
       transition("void => *", [animate("2300ms 1000ms ease-out")])

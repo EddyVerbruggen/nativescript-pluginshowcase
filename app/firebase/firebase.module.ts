@@ -21,4 +21,5 @@ import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
     NO_ERRORS_SCHEMA
   ]
 })
-export class FirebaseModule { }
+export class FirebaseModule {
+}

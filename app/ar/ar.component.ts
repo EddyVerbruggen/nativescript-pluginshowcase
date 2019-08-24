@@ -61,7 +61,7 @@ export class ARComponent extends AbstractMenuPageComponent implements OnInit, On
     transparency: 0.2
   };
 
-  @ViewChild("dropDown", { static:false}) dropDown: ElementRef;
+  @ViewChild("dropDown", {static: false}) dropDown: ElementRef;
 
   constructor(protected appComponent: AppComponent,
               protected routerExtensions: RouterExtensions) {

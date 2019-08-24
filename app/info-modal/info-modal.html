@@ -16,7 +16,8 @@
         <GridLayout rows="auto, auto" columns="*, 60">
           <Label row="0" col="0" [text]="plugin.name" class="plugin-name"></Label>
           <Label row="1" col="0" [text]="plugin.id" class="plugin-id"></Label>
-          <Label row="0" rowSpan="2" col="1" [text]="'mdi-open-in-new' | fonticon" class="plugin-url mdi p-5" horizontalAlignment="right" (tap)="openPluginUrl(plugin)"></Label>
+          <Label row="0" rowSpan="2" col="1" [text]="'mdi-open-in-new' | fonticon" class="plugin-url mdi p-5"
+                 horizontalAlignment="right" (tap)="openPluginUrl(plugin)"></Label>
         </GridLayout>
         <Label [text]="plugin.description" class="plugin-description" textWrap="true"></Label>
       </StackLayout>

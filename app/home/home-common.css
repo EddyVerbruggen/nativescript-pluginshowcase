@@ -3,7 +3,7 @@ ActionBar {
 }
 
 .page-wrapper {
-  background: linear-gradient(#e66465, #9198e5);
+  background: linear-gradient(#9198e5, #e66465);
 }
 
 Label {

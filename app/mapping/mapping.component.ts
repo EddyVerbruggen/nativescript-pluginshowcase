@@ -16,10 +16,10 @@ import { AppComponent } from "~/app.component";
   styleUrls: ["mapping-common.css"],
   animations: [
     trigger("flyInOut", [
-      state("in", style({transform: "scale(1)", opacity: 1})),
+      state("in", style({opacity: 1})),
       transition("void => *", [
-        style({transform: "scale(0.9)", opacity: 0}),
-        animate("1000ms 100ms ease-out")
+        style({opacity: 0}),
+        animate("1000ms 500ms ease-out")
       ])
     ]),
     trigger("from-left", [

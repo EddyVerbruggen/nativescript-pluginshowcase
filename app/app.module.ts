@@ -90,9 +90,6 @@ export class AppModule {
         this.deeplink = "/mapping";
       }
 
-      if (this.deeplink && isIOS) {
-        this.goToPage(this.deeplink);
-      }
     });
 
     appShortcuts.available().then(avail => {
@@ -109,7 +106,7 @@ export class AppModule {
       });
 
       application.on(application.resumeEvent, args => {
-        if (args.android && this.deeplink) {
+        if (this.deeplink) {
           this.goToPage(this.deeplink);
           this.deeplink = undefined;
         }
@@ -126,6 +123,6 @@ export class AppModule {
           clearHistory: true
         });
       });
-    }, isIOS ? 0 : 50);
+    }, 50);
   }
 }

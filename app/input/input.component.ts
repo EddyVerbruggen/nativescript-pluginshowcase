@@ -15,8 +15,8 @@ import { AppComponent } from "~/app.component";
   moduleId: module.id,
   templateUrl: "./input.component.html",
   styleUrls: [
-      "input-common.css",
-      "input.css"
+    "input-common.css",
+    "input.css"
   ],
   animations: [
     trigger("from-bottom", [

@@ -1,16 +1,16 @@
 android {
-  defaultConfig {
-    generatedDensities = []
-    multiDexEnabled true
-    applicationId = "org.nativescript.pluginshowcase"
-  }
+    defaultConfig {
+        generatedDensities = []
+        multiDexEnabled true
+        applicationId = "org.nativescript.pluginshowcase"
+    }
 
-  // after adding a few additional Firebase libs we'll need this (otherwise: OutOfMemoryException)
-  dexOptions {
-    javaMaxHeapSize "4g"
-  }
+    // after adding a few additional Firebase libs we'll need this (otherwise: OutOfMemoryException)
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
 
-  aaptOptions {
-    additionalParameters "--no-version-vectors"
-  }
+    aaptOptions {
+        additionalParameters "--no-version-vectors"
+    }
 }

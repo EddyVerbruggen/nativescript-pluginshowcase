@@ -18,4 +18,5 @@ import { TNSFontIconModule } from "nativescript-ngx-fonticon";
     NO_ERRORS_SCHEMA
   ]
 })
-export class FeedbackModule { }
+export class FeedbackModule {
+}
