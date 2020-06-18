@@ -44,6 +44,7 @@ Sure, you can either download it from the [AppStore](https://itunes.apple.com/We
 ```bash
 git clone https://github.com/EddyVerbruggen/nativescript-pluginshowcase
 cd nativescript-pluginshowcase
+npm install
 npm run ios
 # or: npm run android
 # or: npm run ios.emulator
